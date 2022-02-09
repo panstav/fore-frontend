@@ -1,7 +1,7 @@
 export default function addClaim(claim) {
 	return {
 		...claim,
-		id: new Date().getTime().toString().substring(0, 6),
+		id: new Date().getTime().toString().slice(-6),
 
 		createdAt: new Date().getTime(),
 		author: {
