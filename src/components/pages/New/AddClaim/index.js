@@ -13,14 +13,9 @@ export default connect(null, actions)(memo(AddClaim, regardless));
 
 function AddClaim({ addClaim }) {
 
-	const [addClaimModalProps, openAddClaimModal, closeAddClaimModal] = useModal({
-		autoClose: false,
+	const [addClaimModalProps, openAddClaimModal] = useModal({
 		title: 'You\'re claiming that:',
-		onSubmit: ({ content, isAnonymous }) => {
-			closeAddClaimModal();
-			return addClaim({ content, isAnonymous });
-		}
-	});
+		onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous })	});
 
 	const props = {
 		openAddClaimModal, addClaimModalProps
