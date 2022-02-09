@@ -11,7 +11,7 @@ export default (store) => ({
 		const notificationId = notify(notifications.NEW_CLAIM_SENT);
 
 		api.addClaim(claim).then((fullClaim) => {
-			notify(notifications.NEW_CLAIM_CREATED, { _notificationId: notificationId, id: fullClaim.id });
+			notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, id: fullClaim.id });
 
 			const { claims } = store.getState();
 			claims.push(fullClaim);
