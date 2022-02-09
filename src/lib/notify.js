@@ -26,7 +26,7 @@ const presets = {
 
 };
 
-export default function showNotification(preset, { _notificationId: notificationId, ...data } = {}) {
+export default function notify(preset, { _notificationId: notificationId, ...data } = {}) {
 	const { type, message, ...notification } = presets[preset](data);
 
 	if (notificationId) return toast.update(notificationId, { type, render: message, ...notification });
