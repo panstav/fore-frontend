@@ -4,22 +4,22 @@ import showNotification from 'lib/show-notification.js';
 
 import { notifications } from 'constants.js';
 
-export default {
+export default (store) => ({
 
-	async addClaim({ claims }, claim) {
+	async addClaim(atActionState, claim) {
 
 		const notificationId = showNotification(notifications.NEW_CLAIM_SENT);
 
 		api.addClaim(claim).then((fullClaim) => {
 			showNotification(notifications.NEW_CLAIM_CREATED, { _notificationId: notificationId, id: fullClaim.id });
 
-			if (fullClaim.isAnonymous) return {};
-
+			const { claims } = store.getState();
 			claims.push(fullClaim);
+			store.setState({ claims });
 		});
 
-		return { claims };
+		return {};
 	}
 
 
-};
+});

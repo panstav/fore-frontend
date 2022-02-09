@@ -17,6 +17,7 @@ const presets = {
 	[notifications.NEW_CLAIM_CREATED]: ({ id }) => ({
 		type: 'success',
 		closeButton: true,
+		autoClose: false,
 		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
 			<p>Got it!</p>
 			<Link className="button is-small" href={`/claim/${id}`}>View Claim</Link>
