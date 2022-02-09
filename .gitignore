@@ -1,0 +1,9 @@
+/.idea/
+/.vscode/
+/jsconfig.json
+
+/node_modules/
+/npm-debug.log
+
+/dist/
+/.parcel-cache/

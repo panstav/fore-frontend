@@ -1,0 +1,54 @@
+{
+  "name": "claimer-front-end",
+  "version": "0.0.0",
+  "description": "",
+  "type": "module",
+  "main": "index.js",
+  "scripts": {
+    "start": "NODE_ENV=production parcel src/index.html",
+    "start-debug": "NODE_ENV=development parcel src/index.html",
+    "build": "NODE_ENV=production parcel build --no-source-maps src/index.html && cp src/_redirects dist/_redirects",
+    "clean": "rm dist/* -rf && rm .parcel-cache/* -rf",
+    "lint": "eslint .",
+    "test": "npm run lint",
+    "preversion": "npm test"
+  },
+  "keywords": [],
+  "author": "Stav Geffen <stavgeffen@gmail.com> (https://github.com/panstav)",
+  "license": "ISC",
+  "alias": {
+    "react": "preact/compat",
+    "react-dom/test-utils": "preact/test-utils",
+    "react-dom": "preact/compat",
+    "react/jsx-runtime": "preact/jsx-runtime"
+  },
+  "dependencies": {
+    "@babel/plugin-transform-react-jsx": "^7.16.7",
+    "@wordpress/dom-ready": "^3.2.3",
+    "babel-plugin-module-resolver": "^4.1.0",
+    "bulma": "^0.9.3",
+    "bulma-pageloader": "^0.3.0",
+    "classnames": "^2.3.1",
+    "dateformat": "^5.0.2",
+    "htm": "^3.1.0",
+    "javascript-time-ago": "^2.3.10",
+    "ky": "^0.28.7",
+    "lodash.get": "^4.4.2",
+    "parcel": "^2.2.1",
+    "preact": "^10.6.4",
+    "preact-router": "^3.2.1",
+    "react-hook-form": "^7.25.3",
+    "react-modal": "^3.14.4",
+    "react-toastify": "^8.1.1",
+    "tippy.js": "^6.3.7",
+    "unistore": "^3.5.2",
+    "wouter-preact": "^2.8.0-alpha.2"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^6.0.0-alpha.3",
+    "@parcel/transformer-sass": "^2.2.1",
+    "eslint": "^8.7.0",
+    "eslint-plugin-react": "^7.28.0",
+    "jest": "^27.4.7"
+  }
+}

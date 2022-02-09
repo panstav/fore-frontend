@@ -1,0 +1,8 @@
+[style^="--total-power"]
+	$start-gradient: transparent calc(100% - (var(--power) / var(--total-power) * 200%))
+	$end-gradient: rgba($primary-light, 0.25) 100%
+
+	background: linear-gradient(90deg, $start-gradient, $end-gradient)
+	&[data-direction="support"]
+		@include from($tablet)
+			background: linear-gradient(270deg, $start-gradient, $end-gradient)
