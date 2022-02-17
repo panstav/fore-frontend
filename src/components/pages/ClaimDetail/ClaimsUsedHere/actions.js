@@ -10,7 +10,7 @@ export default (store) => ({
 
 		const notificationId = notify(notifications.NEW_CLAIM_SENT);
 
-		const fullClaim = await api.addClaim(claim);
+		const fullClaim = await api.addClaim({ parentId, direction, ...claim });
 		notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, id: fullClaim.id });
 
 		const { claims } = store.getState();
@@ -23,4 +23,4 @@ export default (store) => ({
 		return { claims };
 	}
 
-})
+});
