@@ -2,13 +2,11 @@ import { Link } from 'wouter-preact';
 
 import Section from 'wrappers/Section.js';
 
-import AddClaim from './AddClaim';
-
-export default function New({ claims }) {
+export default function New({ claims, createNewClaim }) {
 	return <>
 
 		<Section withTopMargin={true}>
-			<AddClaim/>
+			<input className="input" onClick={createNewClaim} placeholder="Create Claim" />
 		</Section>
 
 		<Section withTopMargin={true} noSidePadding={true}>

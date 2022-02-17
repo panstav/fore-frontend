@@ -1,7 +1,10 @@
 import StoreProvider from './Store';
+import ModalProvider from './Modal';
 
 export default function Config({ children }) {
 	return <StoreProvider>
-		{children}
+		<ModalProvider>
+			{children}
+		</ModalProvider>
 	</StoreProvider>;
 }

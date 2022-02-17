@@ -1,4 +1,4 @@
-import { useContext, useEffect, useRef } from 'preact/compat';
+import { useEffect, useRef } from 'preact/compat';
 import { useLocation } from 'wouter-preact';
 
 import classnames from 'classnames';
@@ -6,12 +6,12 @@ import classnames from 'classnames';
 import Modal from 'wrappers/Modal';
 import Section from 'wrappers/Section';
 
-import { ClaimDetailContext } from 'contexts';
-
 import ClaimsUsedHere from './ClaimsUsedHere';
 
-export default function ClaimDetail({ usedInModalProps, showUsedIn }) {
-	const { content, usedIn, author, createdAtTimeAgo } = useContext(ClaimDetailContext);
+export default function ClaimDetail(
+	{ content, usedIn, author, createdAtTimeAgo,
+		usedInModalProps, showUsedIn
+	}) {
 	return <>
 		<Section noSidePadding={true}>
 			<div className="levem is-align-items-flex-start">

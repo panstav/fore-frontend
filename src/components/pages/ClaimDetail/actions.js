@@ -7,5 +7,5 @@ export default {
 		claims.push(claim);
 		return { claims };
 	}
-    
+
 };

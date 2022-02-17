@@ -1,8 +1,11 @@
+import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
 
 import Loader from 'base/Loader.js';
+
+import { ModalContext } from 'contexts';
 
 import useEffectUntil from 'hooks/use-effect-until';
 
@@ -14,14 +17,18 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(New);
 
-function New({ getLatestClaims, claims, fetchedLatest }) {
+function New({ claims, fetchedLatest, getLatestClaims, addClaim }) {
+
+	const { showAddClaimModal } = useContext(ModalContext);
+	const createNewClaim = () => showAddClaimModal({ onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous }) });
 
 	useEffectUntil(getLatestClaims, [fetchedLatest]);
 
 	if (!claims.length) return <Loader/>;
 
 	const props = {
-		claims
+		claims,
+		createNewClaim
 	};
 
 	return Component(props);

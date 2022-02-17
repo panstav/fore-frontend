@@ -7,6 +7,6 @@ export default function ModalWrapper({ render, onSubmit, hideModal, ...modalProp
 
 	if (onSubmit) return <ComponentWithForm {...{ render, onSubmit, hideModal, ...modalProps }}/>;
 
-	return <Component {...{ title: modalProps.title, hideModal, children: render(modalProps) }}/>;
+	return <Component {...{ title: modalProps.title, hideModal, children: render({ hideModal, ...modalProps }) }}/>;
 
 }

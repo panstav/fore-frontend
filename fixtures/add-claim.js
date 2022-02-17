@@ -1,5 +1,8 @@
-export default function addClaim(claim) {
-	return {
+import getClaimDetail from './get-claim-detail';
+
+export default function addClaim({ parentId, direction, ...claim }) {
+
+	const newClaim = {
 		...claim,
 		id: new Date().getTime().toString().slice(-6),
 
@@ -18,4 +21,8 @@ export default function addClaim(claim) {
 		}
 
 	};
+
+	if (parentId) newClaim.usedIn[direction] = [{ id: parentId, content: getClaimDetail({ id: parentId }).content }];
+
+	return newClaim;
 }
