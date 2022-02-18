@@ -11,13 +11,13 @@ import useEffectUntil from 'hooks/use-effect-until';
 
 import actions from './actions.js';
 
-import Component from './New.js';
+import Component from './Home.js';
 
 const timeAgo = new TimeAgo();
 
-export default connect(mapStateToProps, actions)(New);
+export default connect(mapStateToProps, actions)(Home);
 
-function New({ claims, fetchedLatest, getLatestClaims, addClaim }) {
+function Home({ claims, fetchedLatest, getLatestClaims, addClaim }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 	const createNewClaim = () => showAddClaimModal({ onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous }) });

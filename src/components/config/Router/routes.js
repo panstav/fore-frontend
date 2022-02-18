@@ -1,4 +1,4 @@
-import New from 'pages/New';
+import Home from 'pages/Home';
 import Claim from 'pages/ClaimDetail';
 
 import { roles } from 'constants.js';
@@ -7,7 +7,7 @@ export default [
 	{
 		name: 'home',
 		path: '/',
-		Component: New,
+		Component: Home,
 		minimumRole: roles.GUEST
 	},
 	{

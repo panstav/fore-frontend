@@ -12,9 +12,9 @@ export default function TopNav() {
 						<Logo style={{ height: "2rem" }} className="ml-1 is-clickable has-text-white"/>
 					</Link>
 				</div>
-				<Link href="/top" className="navbar-item is-size-7 is-clickable">Top</Link>
+				{/* <Link href="/top" className="navbar-item is-size-7 is-clickable">Top</Link>
 				<Link href="/rising" className="navbar-item is-size-7 is-clickable">Rising</Link>
-				<Link href="/new" className="navbar-item is-size-7 is-clickable">New</Link>
+				<Link href="/new" className="navbar-item is-size-7 is-clickable">New</Link> */}
 			</div>
 		</div>
 	</div>;

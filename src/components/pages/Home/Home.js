@@ -2,7 +2,7 @@ import { Link } from 'wouter-preact';
 
 import Section from 'wrappers/Section.js';
 
-export default function New({ claims, createNewClaim }) {
+export default function Home({ claims, createNewClaim }) {
 	return <>
 
 		<Section withTopMargin={true}>
