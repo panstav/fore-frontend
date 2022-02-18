@@ -5,8 +5,20 @@ export default function ModalWrapper({ render, onSubmit, hideModal, ...modalProp
 
 	if (!Object.keys(modalProps).length) return null;
 
-	if (onSubmit) return <ComponentWithForm {...{ render, onSubmit, hideModal, ...modalProps }}/>;
+	const renderContextTitle = () => {
+		if (typeof modalProps.contextTitle === 'function') return modalProps.contextTitle(); else
+		if (!modalProps.contextTitle) return null;
+		return <span>{modalProps.contextTitle}</span>;
+	};
 
-	return <Component {...{ title: modalProps.title, hideModal, children: render({ hideModal, ...modalProps }) }}/>;
+	if (onSubmit) return <ComponentWithForm {...{ render, onSubmit, hideModal, renderContextTitle, ...modalProps }}/>;
+
+	const props = {
+		title: modalProps.title,
+		hideModal, renderContextTitle,
+		children: render({ hideModal, ...modalProps })
+	};
+
+	return Component(props);
 
 }
