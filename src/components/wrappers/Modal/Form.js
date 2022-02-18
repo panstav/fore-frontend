@@ -12,7 +12,7 @@ export default function Form({ onSubmit, autoClose = true, hideModal: unsafeHide
 	});
 
 	const hideModal = useCallback(() => {
-		if (!Object.values(form.formState.dirtyFields).length || confirm('Certain?')) return unsafeHideModal();
+		if (!Object.values(form.formState.dirtyFields).length || confirm('Sure?')) return unsafeHideModal();
 	}, [Object.values(form.formState.dirtyFields).length]);
 
 	const handleSubmit = (...args) => {
