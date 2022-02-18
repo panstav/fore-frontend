@@ -3,8 +3,6 @@ import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
 
-import Loader from 'base/Loader.js';
-
 import { ModalContext } from 'contexts';
 
 import useEffectUntil from 'hooks/use-effect-until';
@@ -24,10 +22,9 @@ function Home({ claims, fetchedLatest, getLatestClaims, addClaim }) {
 
 	useEffectUntil(getLatestClaims, [fetchedLatest]);
 
-	if (!claims.length) return <Loader/>;
-
 	const props = {
 		claims,
+		isLoading: !fetchedLatest,
 		createNewClaim
 	};
 

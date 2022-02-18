@@ -2,12 +2,18 @@ import { Link } from 'wouter-preact';
 
 import Section from 'wrappers/Section.js';
 
-export default function Home({ claims, createNewClaim }) {
+import Loader from 'base/Loader.js';
+
+export default function Home({ claims, createNewClaim, isLoading }) {
 	return <>
 
 		<Section withTopMargin={true}>
 			<input className="input" onClick={createNewClaim} placeholder="Create Claim" />
 		</Section>
+
+		{isLoading && <Section className="py-1" withTopMargin={true}>
+			<Loader />
+		</Section> }
 
 		<Section withTopMargin={true} noSidePadding={true}>
 			<div className="boxes">
