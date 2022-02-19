@@ -3,7 +3,7 @@ import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
 
-import { ModalContext } from 'contexts';
+import { ModalContext } from 'contexts.js';
 
 import useEffectUntil from 'hooks/use-effect-until';
 
