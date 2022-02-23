@@ -1,6 +1,6 @@
 export const urls = {
-	// api: ''
-	api: 'http://localhost:8080'
+	api: 'https://3000-panstav-forebackend-yzrfukqt9ur.ws-eu33.gitpod.io'
+	// api: 'https://fore-backend-l6jtvpnuaa-uc.a.run.app'
 };
 
 export const roles = {
