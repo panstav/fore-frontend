@@ -1,5 +1,5 @@
 export const urls = {
-	api: 'https://3000-panstav-forebackend-yzrfukqt9ur.ws-eu33.gitpod.io'
+	api: 'https://3000-panstav-forebackend-6267z49cnht.ws-eu33.gitpod.io/'
 	// api: 'https://fore-backend-l6jtvpnuaa-uc.a.run.app'
 };
 
