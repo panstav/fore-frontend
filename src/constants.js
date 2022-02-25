@@ -1,7 +1,10 @@
 export const urls = {
-	api: 'https://3000-panstav-forebackend-6267z49cnht.ws-eu33.gitpod.io/'
-	// api: 'https://fore-backend-l6jtvpnuaa-uc.a.run.app'
+	api: 'https://fore-backend-l6jtvpnuaa-uc.a.run.app'
 };
+
+if (process.env.NODE_ENV !== 'production') {
+	urls.api = 'https://3000-panstav-forebackend-62see9hlleh.ws-eu34.gitpod.io';
+}
 
 export const roles = {
 	order: ['GUEST', 'MEMBER', 'EDITOR', 'ADMIN'],

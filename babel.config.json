@@ -10,6 +10,17 @@
 					}
 				}]
 			]
+		},
+		"offline": {
+			"plugins": [
+				["module-resolver", {
+					"root": ["./src", "./src/components"],
+					"alias": {
+						"services/xhr": "./src/services/xhr/fixtures",
+						"fixtures": "./fixtures"
+					}
+				}]
+			]
 		}
 	},
 
@@ -19,11 +30,7 @@
 			"importSource": "preact"
 		}],
 		["module-resolver", {
-			"root": ["./src", "./src/components"],
-			"alias": {
-				"services/xhr": "./src/services/xhr/fixtures",
-				"fixtures": "./fixtures"
-			}
+			"root": ["./src", "./src/components"]
 		}]
 	]
 }
