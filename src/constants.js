@@ -3,7 +3,8 @@ export const urls = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-	urls.api = 'https://3000-panstav-forebackend-62see9hlleh.ws-eu34.gitpod.io';
+	urls.api = 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app';
+	// urls.api = 'https://3000-panstav-forebackend-62see9hlleh.ws-eu34.gitpod.io';
 }
 
 export const roles = {
