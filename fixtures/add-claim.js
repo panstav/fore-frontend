@@ -11,7 +11,7 @@ export default function addClaim({ parentId, direction, ...claim }) {
 			name: "You!",
 			profileImageUrl: "https://thispersondoesnotexist.com/image"
 		},
-		usedIn: {
+		usedAt: {
 			support: [],
 			opposition: []
 		},
@@ -22,7 +22,7 @@ export default function addClaim({ parentId, direction, ...claim }) {
 
 	};
 
-	if (parentId) newClaim.usedIn[direction] = [{ id: parentId, content: getClaimDetail({ id: parentId }).content }];
+	if (parentId) newClaim.usedAt[direction] = [{ id: parentId, content: getClaimDetail({ id: parentId }).content }];
 
 	return newClaim;
 }

@@ -10,8 +10,8 @@ export default {
 		return apiCall.get('claims?query=top');
 	},
 
-	async getClaimDetail(id) {
-		return apiCall.get('claim', { id });
+	async getClaimDetail({ id }) {
+		return apiCall.get(`claim-detail?id=${id}`);
 	},
 
 	async addClaim(claim) {
