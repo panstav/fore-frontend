@@ -15,7 +15,7 @@ export default {
 	},
 
 	async addClaim(claim) {
-		return apiCall.post('claim', { claim });
+		return apiCall.post('claim', claim);
 	}
 
 };

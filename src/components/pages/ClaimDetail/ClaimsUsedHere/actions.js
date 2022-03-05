@@ -6,11 +6,11 @@ import { notifications } from 'constants.js';
 
 export default (store) => ({
 
-	async addClaimWithUse(atActionState, { parentId, direction, ...claim }) {
+	async addClaimWithUse(atActionState, { parentId, parentContent, direction, ...claim }) {
 
 		const notificationId = notify(notifications.NEW_CLAIM_SENT);
 
-		const fullClaim = await api.addClaim({ parentId, direction, ...claim });
+		const fullClaim = await api.addClaim({ parentId, parentContent, direction, ...claim });
 		notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, id: fullClaim.id });
 
 		const { claims } = store.getState();

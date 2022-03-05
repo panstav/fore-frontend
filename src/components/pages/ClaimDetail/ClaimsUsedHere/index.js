@@ -1,8 +1,6 @@
 import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
-import pick from 'lodash.pick';
-
 import withContext from 'lib/with-context';
 
 import { ModalContext, ClaimDetailContext } from 'contexts';
@@ -19,13 +17,19 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
 });
 
-function ClaimsUsedHere({ claim: { id, content, usedHere }, addClaimWithUse }) {
+function ClaimsUsedHere({ parentId, parentContent, usedHere, addClaimWithUse }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 
 	const addClaimHere = (direction) => () => showAddClaimModal({
-		contextTitle: `In ${claimsUse[direction]} "${content}"`,
-		onSubmit: ({ content, isAnonymous }) => addClaimWithUse({ content, isAnonymous, parentId: id, direction })
+		contextTitle: `In ${claimsUse[direction]} "${parentContent}"`,
+		onSubmit: ({ content, isAnonymous }) => addClaimWithUse({
+			content,
+			isAnonymous,
+			parentContent,
+			parentId,
+			direction
+		})
 	});
 
 	const props = {
@@ -40,5 +44,9 @@ function mapStateToProps({ claims }, { currentId }) {
 	const claim = claims.find((claim) => claim.id === currentId);
 	if (!claim) return {};
 
-	return { claim: pick(claim, ['id', 'content', 'usedHere']) };
+	return {
+		parentId: claim.id,
+		parentContent: claim.content,
+		usedHere: claim.usedHere
+	};
 }
