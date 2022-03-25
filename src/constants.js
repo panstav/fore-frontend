@@ -1,10 +1,9 @@
 export const urls = {
-	api: 'https://fore-backend-l6jtvpnuaa-uc.a.run.app'
+	api: 'https://api.fore.is'
 };
 
 if (process.env.NODE_ENV !== 'production') {
-	urls.api = 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app';
-	// urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu38.gitpod.io';
+	urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu38.gitpod.io';
 }
 
 export const roles = {
