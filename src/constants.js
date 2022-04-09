@@ -1,4 +1,5 @@
 export const urls = {
+	frontEnd: 'https://fore.is',
 	api: 'https://api.fore.is'
 };
 
