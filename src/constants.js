@@ -3,7 +3,9 @@ export const urls = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-	urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu38.gitpod.io';
+	urls.frontEnd = `${process.env.GITPOD_WORKSPACE_URL.replace('https://', 'https://1234-')}`;
+	// urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu38.gitpod.io';
+	urls.api = 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app';
 }
 
 export const roles = {
