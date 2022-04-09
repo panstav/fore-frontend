@@ -2,6 +2,10 @@ import apiCall from './api-call';
 
 export default {
 
+	async identify() {
+		return apiCall.get('identify');
+	},
+
 	async getLatestClaims() {
 		return apiCall.get('claims?query=new');
 	},

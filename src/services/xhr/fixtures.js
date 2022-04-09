@@ -1,9 +1,11 @@
+import getIdentity from 'fixtures/get-identity.js';
 import getLatestClaims from 'fixtures/get-new-claims.js';
 import getTopClaims from 'fixtures/get-new-claims.js';
 import getClaimDetail from 'fixtures/get-claim-detail.js';
 import addClaim from 'fixtures/add-claim.js';
 
 const fixtures = {
+	identify: getIdentity,
 	getLatestClaims,
 	getTopClaims,
 	getClaimDetail,

@@ -1,17 +1,19 @@
 import { Route, Switch, Redirect } from 'wouter-preact';
 
-// import Route from 'wrappers/RenderChildren.js';
+import Access from 'wrappers/Access';
 
 import routes from './routes';
 
 export default function Router() {
 	// noinspection JSValidateTypes
 	return <Switch>
-		{routes.map(({ name, path, Component }) => {
+		{routes.map(({ name, path, Component, minimumRole }) => {
 			return <Route key={path} path={path} component={({ params }) => {
-				return <div id="page-container" data-page={name}>
-					<Component params={params} />
-				</div>;
+				return <Access minimum={minimumRole} onFail={() => <Redirect to={'/login'}/>}>
+					<div id="page-container" data-page={name}>
+						<Component params={params} />
+					</div>
+				</Access>;
 			}}/>;
 		})
 

@@ -1,10 +1,6 @@
-import { roles } from 'constants.js';
-
 export default {
 
-	user: {
-		role: roles.GUEST
-	},
+	user: {},
 
 	claims: [],
 
