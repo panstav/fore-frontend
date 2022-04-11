@@ -1,6 +1,9 @@
+import WrapConditionally from 'components/wrappers/WrapConditionally';
 import { Route, Switch, Redirect } from 'wouter-preact';
 
 import Access from 'wrappers/Access';
+
+import WaitingList from 'components/pages/WaitingList/WaitingList';
 
 import routes from './routes';
 
@@ -10,9 +13,11 @@ export default function Router() {
 		{routes.map(({ name, path, Component, minimumRole }) => {
 			return <Route key={path} path={path} component={({ params }) => {
 				return <Access minimum={minimumRole} onFail={() => <Redirect to={'/login'}/>}>
-					<div id="page-container" data-page={name}>
-						<Component params={params} />
-					</div>
+					<WrapConditionally wrapper={AdminsOnly} if={path !== '/login'}>
+						<div id="page-container" data-page={name}>
+							<Component params={params} />
+						</div>
+					</WrapConditionally>
 				</Access>;
 			}}/>;
 		})
@@ -23,4 +28,10 @@ export default function Router() {
 			}}/>)
 		}
 	</Switch>;
+
+	function AdminsOnly({ children }) {
+		return <Access only={(r) => r.ADMIN} onFail={WaitingList}>
+			{children}
+		</Access>;
+	}
 }
