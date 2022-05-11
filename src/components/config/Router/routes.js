@@ -1,6 +1,7 @@
 import Home from 'pages/Home';
 import Login from 'pages/Login';
-import Claim from 'pages/ClaimDetail';
+import AddRootClaim from 'pages/AddRootClaim';
+import ClaimDetail from 'pages/ClaimDetail';
 
 import { roles } from 'constants.js';
 
@@ -18,9 +19,15 @@ export default [
 		minimumRole: roles.GUEST
 	},
 	{
+		name: 'very-first-claims',
+		path: '/very-first-claims',
+		Component: AddRootClaim,
+		minimumRole: roles.MEMBER
+	},
+	{
 		name: 'claim-detail',
 		path: '/claim/:id',
-		Component: Claim,
+		Component: ClaimDetail,
 		minimumRole: roles.MEMBER
 	}
 ];

@@ -2,9 +2,18 @@
 	@extend .level
 	@extend .is-mobile
 
-.box.p-0
-	.box-inner
-		padding: $box-padding
+.notification
+	&.is-small
+		padding: $size-8 $size-6 $size-8 $size-7
+		font-size: $size-7
+
+.box
+	&.is-small
+		max-width: 500px
+
+	&.p-0
+		.box-inner
+			padding: $box-padding
 
 .modal.is-active
 	position: fixed

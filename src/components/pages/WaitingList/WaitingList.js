@@ -1,11 +1,18 @@
 import Section from 'wrappers/Section';
 
+import SignupForBetaUpdates from 'base/SignupForBetaUpdates';
+
 export default function WaitingList() {
 	return <Section withTopMargin={true}>
 
-		<div className="box m-auto mt-6" style={{ maxWidth: '500px' }}>
-			<h1 className="title">Fore is still in closed beta.</h1>
-			<p className="mb-6">We&apos;re slowly opening up, you are in the waiting list.</p>
+		<div className="box is-small m-auto mt-6">
+			<div className="content">
+
+				<p className="has-text-centered"><b>Fore</b> is still in closed beta.</p>
+
+				<SignupForBetaUpdates />
+
+			</div>
 		</div>
 
 	</Section>;

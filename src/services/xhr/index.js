@@ -6,6 +6,10 @@ export default {
 		return apiCall.get('identify');
 	},
 
+	async signUserForBetaUpdates(updates) {
+		return apiCall.patch('beta-updates', updates);
+	},
+
 	async getLatestClaims() {
 		return apiCall.get('claims?query=new');
 	},
