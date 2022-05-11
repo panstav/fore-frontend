@@ -35,13 +35,15 @@ export default function AddRootClaim({ isShowingExpaliner, isConfirmed, addAnoth
 				</button>
 			</>}
 
-			<hr />
+			{(isShowingExpaliner || isConfirmed) && <>
+				<hr />
 
-			<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
+				<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
 
-			<p>Join us!</p>
+				<p>Join us!</p>
 
-			<SignupForBetaUpdates />
+				<SignupForBetaUpdates />
+			</>}
 
 		</div>
 
