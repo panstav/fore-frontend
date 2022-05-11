@@ -2,7 +2,7 @@ import ky from 'ky';
 
 import { urls } from 'constants.js';
 
-export default ['get', 'post', 'update'].reduce((accu, method) => {
+export default ['get', 'post', 'put', 'patch'].reduce((accu, method) => {
 	return ({ [method]: transformApiCall(method), ...accu });
 }, {});
 
