@@ -36,7 +36,7 @@ export default function Router() {
 						}
 
 						return <WrapConditionally wrapper={AdminsOnly} if={path !== '/login'}>
-							<div id="page-container" data-page={name}>
+							<div id="page" data-page={name}>
 								<Component params={params} />
 							</div>
 						</WrapConditionally>;
