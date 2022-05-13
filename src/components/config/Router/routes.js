@@ -2,6 +2,7 @@ import Home from 'pages/Home';
 import Login from 'pages/Login';
 import AddRootClaim from 'pages/AddRootClaim';
 import ClaimDetail from 'pages/ClaimDetail';
+import PrivacyPolicy from 'pages/PrivacyPolicy.js';
 
 import { roles } from 'constants.js';
 
@@ -29,5 +30,11 @@ export default [
 		path: '/claim/:id',
 		Component: ClaimDetail,
 		minimumRole: roles.MEMBER
+	},
+	{
+		name: 'privacy-policy',
+		path: '/privacy-policy',
+		Component: PrivacyPolicy,
+		minimumRole: roles.GUEST
 	}
 ];
