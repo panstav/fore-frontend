@@ -40,7 +40,7 @@
     "preact-router": "^3.2.1",
     "react-hook-form": "^7.25.3",
     "react-modal": "^3.14.4",
-    "react-toastify": "^8.1.1",
+    "react-toastify": "^9.0.1",
     "tippy.js": "^6.3.7",
     "unistore": "^3.5.2",
     "wouter-preact": "^2.8.0-alpha.2"

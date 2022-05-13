@@ -14,13 +14,13 @@ const presets = {
 		</div>
 	}),
 
-	[notifications.NEW_CLAIM_CREATED]: ({ id }) => ({
+	[notifications.NEW_CLAIM_CREATED]: ({ claimId }) => ({
 		type: 'success',
 		closeButton: true,
-		autoClose: false,
+		autoClose: true,
 		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
 			<p>Got it!</p>
-			<Link className="button is-small" href={`/claim/${id}`}>View Claim</Link>
+			<Link className="button is-small" href={`/claim/${claimId}`}>View Claim</Link>
 		</div>
 	})
 
@@ -28,6 +28,7 @@ const presets = {
 
 export default function notify(preset, { _id: notificationId, ...data } = {}) {
 	const { type, message, ...notification } = presets[preset](data);
+	if (notification.autoClose) notification.autoClose = notifications.autoCloseMs;
 
 	if (notificationId) return toast.update(notificationId, { type, render: message, ...notification });
 

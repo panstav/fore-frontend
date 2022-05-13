@@ -6,11 +6,12 @@ import { notifications } from 'constants.js';
 
 export async function addClaim({ claims }, claim) {
 
-	const notificationId = notify(notifications.NEW_CLAIM_SENT);
+	let notificationId;
+	if (!('avoidNotifications' in claim)) notificationId = notify(notifications.NEW_CLAIM_SENT);
 
 	const fullClaim = await api.addClaim(claim);
 
-	notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, id: fullClaim.id });
+	if (!('avoidNotifications' in claim)) notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
 
 	claims.push(fullClaim);
 	return { claims };

@@ -24,6 +24,7 @@ export const claimsUse = {
 };
 
 export const notifications = {
+	autoCloseMs: 5000,
 	NEW_CLAIM_SENT: 'new-claim-sent',
 	NEW_CLAIM_CREATED: 'new-claim-created'
 };

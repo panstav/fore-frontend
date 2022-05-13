@@ -24,6 +24,7 @@ function AddRootClaim({ addClaim }) {
 		showAddClaimModal({
 			hideable: false,
 			onSubmit(claim) {
+				claim.avoidNotifications = true;
 				addClaim(claim);
 				showConfirmation();
 			}
