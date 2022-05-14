@@ -8,7 +8,7 @@ export default function AddRootClaim({ isShowingExpaliner, isConfirmed, addAnoth
 		<div className="box is-small m-auto has-text-left">
 
 			{isShowingExpaliner && <>
-				<p>On this page you can create early Claims while Fore is in closed beta.</p>
+				<p>On this page you can create early Claims while Fore is still in closed beta.</p>
 
 				<p>
 					<button className="button mb-5 is-primary" onClick={addAnotherClaim}>
@@ -20,11 +20,11 @@ export default function AddRootClaim({ isShowingExpaliner, isConfirmed, addAnoth
 
 				<p>Claims are the atoms of the platform, much like Posts are the atoms of most social networks.</p>
 
-				<p>A single Claim is a statement, a held belief, a bid for a truth that other Claims can either support or opposse.</p>
+				<p>A single Claim is a statement, a held belief, a bid for a truth that other Claims can either support or oppose.</p>
 
-				<p>No Claim is universal. Every Claim will be judged and rated by the community for its truthfulness within context.</p>
+				<p>No Claim is universal. Every Claim will be assessed and rated for its truthfulness within the context of other Claims.</p>
 
-				<p>This will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
+				<p>All of this will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
 			</> }
 
 			{isConfirmed && <>
@@ -39,8 +39,6 @@ export default function AddRootClaim({ isShowingExpaliner, isConfirmed, addAnoth
 				<hr />
 
 				<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
-
-				<p>Join us!</p>
 
 				<SignupForBetaUpdates />
 			</>}
