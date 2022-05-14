@@ -2,7 +2,7 @@ import Section from 'wrappers/Section';
 
 import SignupForBetaUpdates from 'base/SignupForBetaUpdates';
 
-export default function WaitingList() {
+export default function ClosedBeta() {
 	return <Section withTopMargin={true}>
 
 		<div className="box is-small m-auto mt-6">

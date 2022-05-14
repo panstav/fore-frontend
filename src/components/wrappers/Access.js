@@ -13,7 +13,7 @@ function Access({ userRole, minimum, only, onFail = returnNull, children }) {
 		only: funcOrInline(only)
 	};
 
-	if (!isAuth(userRole, requirements)) return onFail();
+	if (!isAuth(userRole, requirements)) return onFail({ userRole });
 
 	return children;
 }

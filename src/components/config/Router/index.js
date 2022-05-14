@@ -1,13 +1,12 @@
-import WrapConditionally from 'components/wrappers/WrapConditionally';
 import { Route, Switch, Redirect } from 'wouter-preact';
 
 import localDB from 'services/localstorage';
 
 import Access from 'wrappers/Access';
 
-import WaitingList from 'components/pages/WaitingList/WaitingList';
-
 import routes from './routes';
+
+import { roles } from 'constants.js';
 
 export default function Router() {
 	// noinspection JSValidateTypes
@@ -15,32 +14,34 @@ export default function Router() {
 		{routes.map(({ name, path, Component, minimumRole }) => {
 			return <Route key={path} path={path} component={({ params }) => {
 
-				// if user does not have sufficient permissions
-				// redirect to login and remember the path user tried to access
-				return <Access minimum={minimumRole} onFail={() => {
+				// successfully logging in directs users to homepage
+				// so only on the homepage we'll check whether there's a redirectTo saved
+				if (path === '/') {
+					const redirectTo = localDB.get().redirectTo;
+					if (redirectTo) {
+						// there's a url saved - delete it and redirect to it
+						localDB.set({ redirectTo: null });
+						return <Redirect to={redirectTo} />;
+					}
+				}
+
+				return <Access minimum={minimumRole} onFail={({ userRole }) => {
+
+					if (userRole !== roles.GUEST) {
+						// if user is logged and arrived at a restricted route - redirect to /closed-beta exaplanation
+						// in the future this will be replaced with /insufficient-permissions page
+						return <Redirect to={'/closed-beta'}/>;
+					}
+
+					// if user does not have sufficient permissions
+					// redirect to login and remember the path user tried to access
 					const failedPath = location.href.substring(location.origin.length);
 					if (failedPath !== '/') localDB.set({ redirectTo: failedPath });
 					return <Redirect to={`/login`} />;
 				}}>
-					{(() => {
-
-						// successfully logging in directs users to homepage
-						// so only on the homepage we'll check whethere there's a redirectTo saved
-						if (path === '/') {
-							const redirectTo = localDB.get().redirectTo;
-							if (redirectTo) {
-								// there's a url saved - delete it and redirect to it
-								localDB.set({ redirectTo: null });
-								return <Redirect to={redirectTo} />;
-							}
-						}
-
-						return <WrapConditionally wrapper={AdminsOnly} if={!['/login', '/very-first-claims'].includes(path)}>
-							<main id="page" data-page={name}>
-								<Component params={params} />
-							</main>
-						</WrapConditionally>;
-					})() }
+					<main id="page" data-page={name}>
+						<Component params={params} />
+					</main>
 				</Access>;
 			}}/>;
 		})
@@ -51,10 +52,4 @@ export default function Router() {
 			}}/>)
 		}
 	</Switch>;
-}
-
-function AdminsOnly({ children }) {
-	return <Access only={(r) => r.ADMIN} onFail={WaitingList}>
-		{children}
-	</Access>;
 }
