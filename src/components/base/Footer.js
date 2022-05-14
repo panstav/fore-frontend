@@ -1,7 +1,7 @@
 import { Link } from 'wouter-preact';
 
 export default function Footer() {
-	return <footer className="has-text-centered mt-6 mb-3 is-size-7">
+	return <footer className="has-text-centered is-size-7 pb-3 pt-6">
 		<Link href="mailto:stavgeffen@gmail.com">Report a bug</Link>
 		<MidDot/>
 		<Link href="mailto:stavgeffen@gmail.com">Give feedback</Link>

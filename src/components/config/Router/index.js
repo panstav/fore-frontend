@@ -36,9 +36,9 @@ export default function Router() {
 						}
 
 						return <WrapConditionally wrapper={AdminsOnly} if={!['/login', '/very-first-claims'].includes(path)}>
-							<div id="page" data-page={name}>
+							<main id="page" data-page={name}>
 								<Component params={params} />
-							</div>
+							</main>
 						</WrapConditionally>;
 					})() }
 				</Access>;
