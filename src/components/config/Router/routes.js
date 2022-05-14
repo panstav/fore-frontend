@@ -18,7 +18,7 @@ export default [
 		name: 'closed-beta',
 		path: '/closed-beta',
 		Component: ClosedBeta,
-		minimumRole: roles.GUEST
+		minimumRole: roles.MEMBER
 	},
 	{
 		name: 'login',
