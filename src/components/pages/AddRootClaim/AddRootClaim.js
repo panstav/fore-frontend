@@ -2,46 +2,40 @@ import Section from 'wrappers/Section';
 
 import SignupForBetaUpdates from 'base/SignupForBetaUpdates';
 
-export default function AddRootClaim({ isShowingExpaliner, isConfirmed, addAnotherClaim }) {
+export default function AddRootClaim({ isConfirmed, addAnotherClaim }) {
 	return <Section withTopMargin={true} className="has-text-centered content">
 
 		<div className="box is-small m-auto has-text-left">
 
-			{isShowingExpaliner && <>
-				<p>On this page you can create early Claims while Fore is still in closed beta.</p>
-
-				<p>
-					<button className="button mb-5 is-primary" onClick={addAnotherClaim}>
-						Create a Claim
-					</button>
-				</p>
-
-				<p><b>Fore</b> is where collaborative truth-seeking happens.</p>
-
-				<p>Claims are the atoms of the platform, much like Posts are the atoms of most social networks.</p>
-
-				<p>A single Claim is a statement, a held belief, a bid for a truth that other Claims can either support or oppose.</p>
-
-				<p>No Claim is universal. Every Claim will be assessed and rated for its truthfulness within the context of other Claims.</p>
-
-				<p>All of this will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
-			</> }
-
 			{isConfirmed && <>
 				<h2 className="is-size-1">Got it</h2>
 				<p className="is-size-4">Thanks!</p>
-				<button className="button is-primary" onClick={addAnotherClaim}>
-					Add another
+				<hr/>
+			</>}
+
+			<p>On this page you can create early Claims while Fore is still in closed beta.</p>
+
+			<p>
+				<button className="button mb-5 is-primary" onClick={addAnotherClaim}>
+					Create a Claim
 				</button>
-			</>}
+			</p>
 
-			{(isShowingExpaliner || isConfirmed) && <>
-				<hr />
+			<p><b>Fore</b> is where collaborative truth-seeking happens.</p>
 
-				<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
+			<p>Claims are the atoms of the platform, much like Posts are the atoms of most social networks.</p>
 
-				<SignupForBetaUpdates />
-			</>}
+			<p>A single Claim is a statement, a held belief, a bid for a truth that other Claims can either support or oppose.</p>
+
+			<p>No Claim is universal. Every Claim will be assessed and rated for its truthfulness within the context of other Claims.</p>
+
+			<p>All of this will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
+
+			<hr />
+
+			<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
+
+			<SignupForBetaUpdates />
 
 		</div>
 

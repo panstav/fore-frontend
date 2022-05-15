@@ -15,24 +15,19 @@ function AddRootClaim({ addClaim }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 
-	const [isShowingExpaliner, , hideExplainer] = useBooleanState(true);
 	const [isConfirmed, showConfirmation, hideConfirmation] = useBooleanState(false);
 
 	const addAnotherClaim = useCallback(() => {
-		hideExplainer();
 		hideConfirmation();
 		showAddClaimModal({
-			hideable: false,
 			onSubmit(claim) {
-				claim.avoidNotifications = true;
-				addClaim(claim);
+				addClaim(claim, { avoidNotifications: true });
 				showConfirmation();
 			}
 		});
 	});
 
 	const props = {
-		isShowingExpaliner,
 		isConfirmed,
 		addAnotherClaim
 	};
