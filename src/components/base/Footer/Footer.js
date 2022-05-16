@@ -7,21 +7,23 @@ import { Logo } from 'base/Icon';
 import { roles } from 'constants';
 
 export default function Footer({ logOut }) {
-	return <footer className="pt-6 px-5 pb-3">
-		<div className="is-flex is-align-items-center mb-4">
-			<Logo className="mr-3" />
-			<h2 className="has-text-weight-bold">Fore</h2>
-		</div>
-		<div className="is-size-7">
+	return <footer className="mt-6">
+		<div className="container px-3">
+			<div className="is-flex is-align-items-center mb-4">
+				<Logo className="mr-3" />
+				<h2 className="has-text-weight-bold">Fore</h2>
+			</div>
+			<div className="is-size-7 mb-3">
 
-			<DotLink dotless={true} href="mailto:stavgeffen@gmail.com">Give feedback</DotLink>
-			<DotLink href="mailto:stavgeffen@gmail.com">Report a bug</DotLink>
-			<DotLink href="/privacy-policy">Privacy Policy</DotLink>
+				<DotLink dotless={true} href="mailto:stavgeffen@gmail.com">Give feedback</DotLink>
+				<DotLink href="mailto:stavgeffen@gmail.com">Report a bug</DotLink>
+				<DotLink href="/privacy-policy">Privacy Policy</DotLink>
 
-			<Access minimumRole={roles.MEMBER}>
-				<DotLink onClick={logOut}>Logout</DotLink>
-			</Access>
+				<Access minimumRole={roles.MEMBER}>
+					<DotLink onClick={logOut}>Logout</DotLink>
+				</Access>
 
+			</div>
 		</div>
 	</footer>;
 }
@@ -34,7 +36,7 @@ function DotLink({ dotless, ...props }) {
 	</span>;
 
 	function Anchor(props) {
-		if (props.onClick) return <span style={{ cursor: 'pointer' }}onClick={props.onClick}>{props.children}</span>;
+		if (props.onClick) return <span className="is-link" onClick={props.onClick}>{props.children}</span>;
 		if (props.href.includes('mailto')) return <a {...props}>{props.children}</a>;
 		return <Link {...props}>{props.children}</Link>;
 	}
