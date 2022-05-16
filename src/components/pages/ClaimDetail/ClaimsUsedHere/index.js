@@ -17,8 +17,7 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
 });
 
-function ClaimsUsedHere({ parentId, parentContent, usedHere, addClaimWithUse }) {
-
+function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse }) {
 	const { showAddClaimModal } = useContext(ModalContext);
 
 	const addClaimHere = (direction) => () => showAddClaimModal({
@@ -33,7 +32,8 @@ function ClaimsUsedHere({ parentId, parentContent, usedHere, addClaimWithUse }) 
 	});
 
 	const props = {
-		claimsUsedHere: usedHere,
+		support: supportUsedHere,
+		opposition: oppositionUsedHere,
 		addClaimHere
 	};
 
@@ -41,12 +41,16 @@ function ClaimsUsedHere({ parentId, parentContent, usedHere, addClaimWithUse }) 
 }
 
 function mapStateToProps({ claims }, { currentId }) {
+
 	const claim = claims.find((claim) => claim.id === currentId);
 	if (!claim) return {};
 
 	return {
 		parentId: claim.id,
 		parentContent: claim.content,
-		usedHere: claim.usedHere
+
+		// two arrays separated so that component would recognized change in each
+		supportUsedHere: claim.usedHere.support,
+		oppositionUsedHere: claim.usedHere.opposition
 	};
 }

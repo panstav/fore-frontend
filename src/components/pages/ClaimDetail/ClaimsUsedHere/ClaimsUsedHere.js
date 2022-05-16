@@ -4,9 +4,11 @@ import Section from 'wrappers/Section';
 
 import { Power } from 'base/Icon';
 
+// keep this order of directions instead of mapping object keys
 const directions = ['support', 'opposition'];
 
-export default function ClaimsUsedHere({ claimsUsedHere, addClaimHere }) {
+export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
+	const claimsUsedHere = { support, opposition };
 	return <Section withTopMargin={true} noSidePadding={true}>
 		<div className="columns is-fullhd is-gapless">
 			{directions.map((direction) => {
