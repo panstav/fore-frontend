@@ -28,7 +28,7 @@ export default function Router() {
 						if (redirectTo) {
 							// there's a url saved - delete it and redirect to it
 							localDB.set({ redirectTo: null });
-							return <Redirect to={redirectTo} />;
+							return <Redirect to={redirectTo} replace={true} />;
 						}
 					}
 
@@ -37,7 +37,7 @@ export default function Router() {
 						if (userRole !== roles.GUEST) {
 							// if user is logged and arrived at a restricted route - redirect to /closed-beta exaplanation
 							// in the future this will be replaced with /insufficient-permissions page
-							return <Redirect to={'/closed-beta'} />;
+							return <Redirect to={'/closed-beta'} replace={true} />;
 						}
 
 						// if user does not have sufficient permissions
