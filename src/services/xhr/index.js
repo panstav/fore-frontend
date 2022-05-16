@@ -6,6 +6,10 @@ export default {
 		return apiCall.get('identify');
 	},
 
+	async logout() {
+		return apiCall.get('logout');
+	},
+
 	async signUserForBetaUpdates(updates) {
 		return apiCall.patch('beta-updates', updates);
 	},
