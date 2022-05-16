@@ -4,7 +4,7 @@ import notify from 'lib/notify.js';
 
 import { notifications } from 'constants.js';
 
-export async function addClaim({ claims }, claim, { avoidNotifications }) {
+export async function addClaim({ claims }, claim, { avoidNotifications = false } = {}) {
 
 	let notificationId;
 	if (!avoidNotifications) notificationId = notify(notifications.NEW_CLAIM_SENT);
