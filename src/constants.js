@@ -4,9 +4,10 @@ export const urls = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-	urls.frontEnd = `${process.env.GITPOD_WORKSPACE_URL.replace('https://', 'https://1234-')}`;
-	// urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu43.gitpod.io/';
+	if (process.env.CODESPACE_NAME) urls.frontEnd = `https://${process.env.CODESPACE_NAME}.githubpreview.dev`;
+	if (process.env.GITPOD_WORKSPACE_URL) urls.frontEnd = `${process.env.GITPOD_WORKSPACE_URL.replace('https://', 'https://1234-')}`;
 	urls.api = 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app';
+	// urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu43.gitpod.io/';
 }
 
 export const roles = {
