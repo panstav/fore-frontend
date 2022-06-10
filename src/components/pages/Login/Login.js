@@ -7,7 +7,7 @@ export default function Login({ authViaGoogleUrl }) {
 		<Section withTopMargin={true}>
 			<div className="has-text-centered">
 
-				<p className="mb-6">👋 <b>Fore</b> is only availble in closed beta.</p>
+				<p className="mb-6">👋 <b>Fore</b> is only available in closed beta.</p>
 
 				<a className="button px-3" href={authViaGoogleUrl}>
 					<Icon className="m-auto" />
