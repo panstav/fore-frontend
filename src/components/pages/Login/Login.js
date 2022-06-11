@@ -1,6 +1,6 @@
 import Section from 'wrappers/Section';
 
-import {Google as Icon} from 'base/Icon';
+import { Google, Welcome } from 'base/Icon';
 
 export default function Login({ authViaGoogleUrl }) {
 	return <>
@@ -9,10 +9,14 @@ export default function Login({ authViaGoogleUrl }) {
 
 				<p className="mb-6">👋 <b>Fore</b> is only available in closed beta.</p>
 
-				<a className="button px-3" href={authViaGoogleUrl}>
-					<Icon className="m-auto" />
+				<a className="button px-3 mb-6" href={authViaGoogleUrl}>
+					<Google className="m-auto" />
 					<span className="ml-3">Sign in with Google</span>
 				</a>
+
+				<div className="m-auto" style={{ maxWidth: '15rem' }}>
+					<Welcome />
+				</div>
 
 			</div>
 		</Section>

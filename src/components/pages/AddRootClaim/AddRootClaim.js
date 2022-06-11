@@ -1,6 +1,7 @@
 import Section from 'wrappers/Section';
 
 import SignupForBetaUpdates from 'base/SignupForBetaUpdates';
+import { Upgrade } from 'base/Icon';
 
 export default function AddRootClaim({ isConfirmed, addAnotherClaim }) {
 	return <Section withTopMargin={true} className="has-text-centered content">
@@ -31,7 +32,7 @@ export default function AddRootClaim({ isConfirmed, addAnotherClaim }) {
 
 			<p>All of this will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
 
-			<hr />
+			<Upgrade className="my-6" />
 
 			<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
 

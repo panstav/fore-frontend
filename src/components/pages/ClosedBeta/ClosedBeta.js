@@ -1,5 +1,7 @@
 import Section from 'wrappers/Section';
 
+import { Neighborhood } from 'base/Icon';
+
 import SignupForBetaUpdates from 'base/SignupForBetaUpdates';
 
 export default function ClosedBeta() {
@@ -9,6 +11,8 @@ export default function ClosedBeta() {
 			<div className="content">
 
 				<p className="has-text-centered"><b>Fore</b> is still in closed beta.</p>
+
+				<Neighborhood className="mt-5" />
 
 				<SignupForBetaUpdates />
 
