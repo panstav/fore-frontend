@@ -1,5 +1,3 @@
-import classnames from "classnames";
-
 export default function SVGWrapper({ children, size = 24, sizeX = size, sizeY = size, isFullWidth, svgProps = { style: {} }, ...props }) {
 
 	if (isFullWidth) {
