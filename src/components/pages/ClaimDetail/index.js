@@ -3,7 +3,7 @@ import { connect } from 'unistore/preact';
 import TimeAgo from 'javascript-time-ago';
 import pick from 'lodash.pick';
 
-import Loader from 'components/elements/Loader';
+import Loader from 'elements/Loader';
 
 import useEffectUntil from 'hooks/use-effect-until';
 
