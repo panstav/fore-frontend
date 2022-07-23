@@ -40,7 +40,7 @@ export default function PromotionalHomepage () {
 					{...benefit}
 					key={benefit.prompt}
 					className={`is-flex-direction-row${index % 2 === 0 ? '' : '-reverse'}`}
-				/>
+				/>;
 			})}
 		</Section>
 		<Section withTopMargin={true} className="has-text-centered pt-6">
