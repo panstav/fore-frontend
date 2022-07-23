@@ -37,7 +37,7 @@ export default function AddRootClaim({ isConfirmed, addAnotherClaim }) {
 
 			<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
 
-			<SignupForBetaUpdates />
+			<SignupForBetaUpdates className="mt-6" />
 
 		</div>
 

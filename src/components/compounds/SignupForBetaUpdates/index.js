@@ -9,7 +9,7 @@ import Component from './SignupForBetaUpdates.js';
 
 export default connect(null, actions)(SignupForBetaUpdates);
 
-function SignupForBetaUpdates({ signUser }) {
+function SignupForBetaUpdates({ signUser, className }) {
 
 	const { control, handleSubmit } = useForm();
 
@@ -28,7 +28,8 @@ function SignupForBetaUpdates({ signUser }) {
 		control,
 		onSubmit,
 		didSendWithoutMarking,
-		successfullySignedUpForUpdates
+		successfullySignedUpForUpdates,
+		className
 	};
 
 	return Component(props);
