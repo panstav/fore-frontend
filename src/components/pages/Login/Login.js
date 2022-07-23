@@ -1,6 +1,6 @@
 import Section from 'wrappers/Section';
 
-import { Google, Welcome } from 'base/Icon';
+import { Google, Welcome } from 'components/elements/Icon';
 
 export default function Login({ authViaGoogleUrl }) {
 	return <>

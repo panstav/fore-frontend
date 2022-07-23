@@ -1,8 +1,8 @@
 import Section from 'wrappers/Section';
 
-import { Neighborhood } from 'base/Icon';
+import { Neighborhood } from 'components/elements/Icon';
 
-import SignupForBetaUpdates from 'base/SignupForBetaUpdates';
+import SignupForBetaUpdates from 'compounds/SignupForBetaUpdates';
 
 export default function ClosedBeta() {
 	return <Section withTopMargin={true}>

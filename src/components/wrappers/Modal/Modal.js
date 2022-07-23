@@ -1,6 +1,6 @@
 import noop from '../../../../lib/noop';
 
-import { Close } from 'base/Icon';
+import { Close } from 'components/elements/Icon';
 
 import useEscape from 'hooks/use-escape.js';
 

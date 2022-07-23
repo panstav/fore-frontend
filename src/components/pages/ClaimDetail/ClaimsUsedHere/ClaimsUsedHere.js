@@ -2,7 +2,7 @@ import { Link } from 'wouter-preact';
 
 import Section from 'wrappers/Section';
 
-import { Power } from 'base/Icon';
+import { Power } from 'components/elements/Icon';
 
 // keep this order of directions instead of mapping object keys
 const directions = ['support', 'opposition'];

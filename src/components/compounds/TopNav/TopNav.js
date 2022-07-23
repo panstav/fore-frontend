@@ -1,6 +1,6 @@
 import { Link } from 'wouter-preact';
 
-import { Logo } from 'base/Icon';
+import { Logo } from 'components/elements/Icon';
 
 export default function TopNav() {
 	// noinspection HtmlUnknownTarget

@@ -1,4 +1,4 @@
-import Checkbox from 'base/Checkbox';
+import Checkbox from 'components/elements/Checkbox';
 
 export default function SignupForBetaUpdates({ control, onSubmit, didSendWithoutMarking, successfullySignedUpForUpdates }) {
 

@@ -2,8 +2,8 @@ import Providers from 'config/Providers';
 import Router from 'config/Router';
 import Notifications from 'config/Notifications';
 
-import TopNav from 'base/TopNav';
-import Footer from 'base/Footer';
+import TopNav from 'compounds/TopNav';
+import Footer from 'compounds/Footer';
 
 export default function App() {
 	return <Providers>

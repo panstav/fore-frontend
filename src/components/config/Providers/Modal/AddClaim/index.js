@@ -1,6 +1,6 @@
 import Tooltip from 'wrappers/Tooltip';
 
-import Checkbox from 'base/Checkbox';
+import Checkbox from 'components/elements/Checkbox';
 
 import AddClaimBody from "./AddClaimBody";
 
