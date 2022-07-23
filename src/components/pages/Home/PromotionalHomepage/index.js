@@ -9,7 +9,7 @@ const benefits = [
 	{
 		prompt: "Debate",
 		title: "Discover stronger ideas",
-		description: "Fore.is is a platform where debates are naturally constructive abd beneficial to all sides.",
+		description: "Fore.is is a platform where debates are naturally constructive and beneficial to all sides.",
 		illustration: IdeaAbstraction
 	},
 	{
@@ -20,7 +20,7 @@ const benefits = [
 	},
 	{
 		prompt: "Earn",
-		title: "Get rewarded for contributing and connecting Claims",
+		title: "Contribute and connect Claims to get rewarded",
 		description: "We built Fore believing that a strong incentive for constructive debating will bring about unforeseeable benefits.",
 		illustration: Upgrade
 	}
