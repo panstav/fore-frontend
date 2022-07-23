@@ -18,7 +18,7 @@ export default function SignupForBetaUpdates({ control, onSubmit, didSendWithout
 				Email me when Fore enters open beta.
 			</label>
 			<label className="checkbox mb-3">
-				<Checkbox className="checkbox mr-1" name="notifyOtherContibutionOptions" defaultValue={false} control={control} />
+					<Checkbox className="checkbox mr-1" name="notifyOtherContributionOptions" defaultValue={false} control={control} />
 				Email me about other ways I can contribute.
 			</label>
 			{didSendWithoutMarking && <p className="notification is-warning is-small">Mark at least one of these to sign-up for updates.</p>}

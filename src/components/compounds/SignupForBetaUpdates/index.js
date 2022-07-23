@@ -16,11 +16,11 @@ function SignupForBetaUpdates({ signUser }) {
 	const [didSendWithoutMarking, setNothingMarked, resetErrorMessage] = useBooleanState(false);
 	const [successfullySignedUpForUpdates, showSuccessNotification] = useBooleanState(false);
 
-	const onSubmit = handleSubmit(({ notifyWhenOpenBeta, notifyOtherContibutionOptions }) => {
+	const onSubmit = handleSubmit(({ notifyWhenOpenBeta, notifyOtherContributionOptions }) => {
 		resetErrorMessage();
-		if (!notifyWhenOpenBeta && !notifyOtherContibutionOptions) return setNothingMarked();
+		if (!notifyWhenOpenBeta && !notifyOtherContributionOptions) return setNothingMarked();
 
-		signUser({ notifyWhenOpenBeta, notifyOtherContibutionOptions });
+		signUser({ notifyWhenOpenBeta, notifyOtherContributionOptions });
 		showSuccessNotification();
 	});
 
