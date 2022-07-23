@@ -1,48 +1,26 @@
-import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
-import TimeAgo from 'javascript-time-ago';
+import isAuth from 'lib/is-auth';
 
-import { ModalContext } from 'contexts.js';
+import Feed from './Feed';
+import PromotionalHomepage from './PromotionalHomepage';
 
-import useEffectUntil from 'hooks/use-effect-until';
+import { roles } from 'constants.js';
 
-import actions from './actions.js';
+export default connect(mapStateToProps)(Home);
 
-import Component from './Home.js';
+function Home({ isBetaUser }) {
+	const Page = isBetaUser
+		// show feed to beta users
+		? Feed
+		// otherwise show the promotional page
+		: PromotionalHomepage;
 
-const timeAgo = new TimeAgo();
-
-export default connect(mapStateToProps, actions)(Home);
-
-function Home({ claims, fetchedLatest, getLatestClaims, addClaim }) {
-
-	const { showAddClaimModal } = useContext(ModalContext);
-	const createNewClaim = () => showAddClaimModal({ onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous }) });
-
-	useEffectUntil(getLatestClaims, [fetchedLatest]);
-
-	const props = {
-		claims,
-		isLoading: !fetchedLatest,
-		createNewClaim
-	};
-
-	return Component(props);
+	return <Page />;
 }
 
-function mapStateToProps({ claims, flags: { fetchedLatest } }) {
-
-	const sortedClaims = claims
-		.filter(({ isAnonymous }) => !isAnonymous)
-		.sort((a, b) => b.createdAt - a.createdAt)
-		.map((claim) => {
-			claim.createdAtTimeAgo = timeAgo.format(new Date(claim.createdAt), 'mini-now');
-			return claim;
-		});
-
+function mapStateToProps({ user }) {
 	return {
-		claims: sortedClaims,
-		fetchedLatest
+		isBetaUser: isAuth(user.role, { minimum: roles.MEMBER_BETA })
 	};
 }

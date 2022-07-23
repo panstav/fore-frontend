@@ -1,0 +1,14 @@
+.side-by-side
+	@include mobile
+		width: 25rem
+		max-width: 90%
+		margin: auto
+		> *
+			width: 100%
+		svg
+			margin-top: $size-3
+
+	@include tablet
+		display: flex
+		> *
+			width: 45%

@@ -2,7 +2,7 @@ import { Link } from 'wouter-preact';
 
 import Section from 'wrappers/Section.js';
 
-import Loader from 'components/elements/Loader.js';
+import Loader from 'elements/Loader.js';
 
 export default function Home({ claims, createNewClaim, isLoading }) {
 	return <>
