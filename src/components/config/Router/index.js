@@ -8,6 +8,8 @@ import routes from './routes';
 
 import { roles } from 'constants.js';
 
+const defaultPathFor400 = '/';
+
 function OnChange() {
 	useLocation();
 	window.scrollTo(0, 0);
@@ -35,15 +37,15 @@ export default function Router() {
 					return <Access minimum={minimumRole} onFail={({ userRole }) => {
 
 						if (userRole !== roles.GUEST) {
-							// if user is logged and arrived at a restricted route - redirect to /closed-beta exaplanation
-							// in the future this will be replaced with /insufficient-permissions page
-							return <Redirect to={'/closed-beta'} replace={true} />;
+							// if a logged-in user arrived at a restricted route - redirect to home
+							// in the future this will be replaced with a page explaining insufficient permissions
+							return <Redirect to={defaultPathFor400} replace={true} />;
 						}
 
-						// if user does not have sufficient permissions
-						// redirect to login and remember the path user tried to access
+						// if a user that isn't logged-in arrived at a restricted route - redirect to login and remember the path user tried to access
 						const failedPath = location.href.substring(location.origin.length);
-						if (failedPath !== '/') localDB.set({ redirectTo: failedPath });
+						// ignore the default path to avoid unnecessary redirects
+						if (failedPath !== defaultPathFor400) localDB.set({ redirectTo: failedPath });
 						return <Redirect to={`/login`} />;
 					}}>
 						<main id="page" data-page={name}>

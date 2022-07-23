@@ -1,6 +1,5 @@
 import Home from 'pages/Home';
 import Login from 'pages/Login';
-import ClosedBeta from 'pages/ClosedBeta';
 import AddRootClaim from 'pages/AddRootClaim';
 import ClaimDetail from 'pages/ClaimDetail';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
@@ -12,13 +11,7 @@ export default [
 		name: 'home',
 		path: '/',
 		Component: Home,
-		minimumRole: roles.ADMIN
-	},
-	{
-		name: 'closed-beta',
-		path: '/closed-beta',
-		Component: ClosedBeta,
-		minimumRole: roles.MEMBER
+		minimumRole: roles.GUEST
 	},
 	{
 		name: 'login',
