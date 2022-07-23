@@ -9,7 +9,7 @@ export default function Login({ authViaGoogleUrl }) {
 
 				<p className="mb-6">👋 <b>Fore</b> is only available in closed beta.</p>
 
-				<a className="button px-3 mb-6" href={authViaGoogleUrl}>
+				<a className="button is-outlined px-3 mb-6" href={authViaGoogleUrl}>
 					<Google className="m-auto" />
 					<span className="ml-3">Sign in with Google</span>
 				</a>
