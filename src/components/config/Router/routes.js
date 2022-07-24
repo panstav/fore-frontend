@@ -1,12 +1,14 @@
 import Home from 'pages/Home';
 import Login from 'pages/Login';
-import AddRootClaim from 'pages/AddRootClaim';
+import Support from 'pages/Support';
 import ClaimDetail from 'pages/ClaimDetail';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
 
+import redirects from './redirects.js';
+
 import { roles } from 'constants.js';
 
-export default [
+export default redirects.concat([
 	{
 		name: 'home',
 		path: '/',
@@ -20,10 +22,10 @@ export default [
 		minimumRole: roles.GUEST
 	},
 	{
-		name: 'very-first-claims',
-		path: '/very-first-claims',
-		Component: AddRootClaim,
-		minimumRole: roles.MEMBER
+		name: 'support',
+		path: '/support',
+		Component: Support,
+		minimumRole: roles.GUEST
 	},
 	{
 		name: 'claim-detail',
@@ -37,4 +39,4 @@ export default [
 		Component: PrivacyPolicy,
 		minimumRole: roles.GUEST
 	}
-];
+]);

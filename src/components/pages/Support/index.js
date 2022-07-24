@@ -7,11 +7,11 @@ import useBooleanState from 'hooks/use-boolean-state';
 
 import actions from './actions.js';
 
-import Component from './AddRootClaim';
+import Component from './Support';
 
-export default connect(null, actions)(AddRootClaim);
+export default connect(null, actions)(Support);
 
-function AddRootClaim({ addClaim }) {
+function Support({ addClaim }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 

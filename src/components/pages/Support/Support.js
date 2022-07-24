@@ -4,7 +4,7 @@ import SignupForBetaUpdates from 'compounds/SignupForBetaUpdates';
 
 import { Upgrade } from 'elements/Icon';
 
-export default function AddRootClaim({ isConfirmed, addAnotherClaim }) {
+export default function Support({ isConfirmed, addAnotherClaim }) {
 	return <Section withTopMargin={true} className="has-text-centered content">
 
 		<div className="box is-small m-auto has-text-left">
