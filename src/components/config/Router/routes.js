@@ -25,7 +25,7 @@ export default redirects.concat([
 		name: 'support',
 		path: '/support',
 		Component: Support,
-		minimumRole: roles.GUEST
+		minimumRole: roles.MEMBER
 	},
 	{
 		name: 'claim-detail',
