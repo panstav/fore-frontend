@@ -21,13 +21,13 @@ const benefits = [
 	},
 	{
 		prompt: "Organize",
-		title: "Create a private space and empower group thinking",
-		description: "A space for your cooperation instantly raises awareness and allows a greater sense of consensus.",
+		title: "Empower group thinking with private spaces",
+		description: "A dedicated space for your organization instantly raises certainty and allows a greater sense of consensus.",
 		illustration: Cooperation
 	},
 	{
 		prompt: "Earn",
-		title: "Contribute and connect Claims to get rewarded",
+		title: "Get rewarded by contributing and connecting Claims",
 		description: "We built Fore believing that a strong incentive for constructive debating will bring about unforeseeable benefits.",
 		illustration: Upgrade
 	}
