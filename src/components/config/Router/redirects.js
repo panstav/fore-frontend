@@ -17,5 +17,5 @@ export default redirects.map(({ from, to }) => ({
 }));
 
 function redirectTo(to) {
-	return () => <Redirect to={to} />;
+	return () => Redirect({to});
 }
