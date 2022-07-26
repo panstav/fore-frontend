@@ -1,9 +1,16 @@
+import { Link } from "wouter-preact";
+
 import classNames from "classnames";
 
+import SignupForBetaUpdates from "compounds/SignupForBetaUpdates";
+
 import Section from "wrappers/Section";
+import Access from "wrappers/Access";
 
 import SignupWithGoogle from "elements/SignupWithGoogle";
 import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
+
+import { roles } from "constants.js";
 
 const benefits = [
 	{
@@ -32,7 +39,11 @@ export default function PromotionalHomepage () {
 			<Logo className="mt-5" style={{ width: '10rem', height: '10rem' }} />
 			<h1 className="title is-1 mt-6">Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">Where collaborative truth-seeking happens.</p>
-			<SignupWithGoogle className="mt-6" />
+			<Access minimum={roles.order[1]}
+				onFail={() => <SignupWithGoogle className="mt-6" />}
+			>
+				<Link className="button is-primary mt-5" to="/support">Support the Closed Beta</Link>
+			</Access>
 		</Section>
 		<Section withTopMargin={true}>
 			{benefits.map((benefit, index) => {
@@ -43,9 +54,18 @@ export default function PromotionalHomepage () {
 				/>;
 			})}
 		</Section>
-		<Section withTopMargin={true} className="has-text-centered pt-6">
-			<p className="has-text-weight-bold has-text-primary mb-4">Claim Truth</p>
-			<SignupWithGoogle className="mb-6" />
+		<Section withTopMargin={true} className="pt-6">
+			<Access minimum={roles.order[1]}
+				onFail={() => <div className="has-text-centered mt-6 mb-5">
+					<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>
+					<SignupWithGoogle />
+				</div>}
+			>
+				<div className="box">
+					<SignupForBetaUpdates />
+				</div>
+				<p className="has-text-centered has-text-grey-lighter mb-4">Claim Truth</p>
+			</Access>
 		</Section>
 	</>;
 }
