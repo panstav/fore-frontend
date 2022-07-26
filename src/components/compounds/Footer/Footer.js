@@ -19,7 +19,7 @@ export default function Footer({ logOut }) {
 				<DotLink href="mailto:stavgeffen@gmail.com">Report a bug</DotLink>
 				<DotLink href="/privacy-policy">Privacy Policy</DotLink>
 
-				<Access minimumRole={roles.MEMBER}>
+				<Access minimumRole={roles.order[1]}>
 					<DotLink onClick={logOut}>Logout</DotLink>
 				</Access>
 
