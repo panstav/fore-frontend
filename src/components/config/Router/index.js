@@ -2,6 +2,8 @@ import { Route, Switch, Redirect, useLocation } from 'wouter-preact';
 
 import localDB from 'services/localstorage';
 
+import scrollBackToTop from 'lib/scroll-back-to-top';
+
 import Access from 'wrappers/Access';
 
 import routes from './routes';
@@ -12,7 +14,7 @@ const defaultPathFor400 = '/';
 
 function OnChange() {
 	useLocation();
-	window.scrollTo(0, 0);
+	scrollBackToTop();
 	return null;
 }
 
