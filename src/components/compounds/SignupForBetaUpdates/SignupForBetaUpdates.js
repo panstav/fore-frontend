@@ -19,7 +19,7 @@ export default function SignupForBetaUpdates({ control, onSubmit, didSendWithout
 			<div>
 				<label className="checkbox mb-3">
 					<Checkbox className="checkbox mr-1" name="notifyWhenOpenBeta" defaultValue={false} control={control} />
-					Email me when Fore enters open beta.
+					Email me when Fore enters Open Beta.
 				</label>
 			</div>
 			<div>
