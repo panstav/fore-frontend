@@ -15,7 +15,7 @@ export default function Support({ isConfirmed, addAnotherClaim }) {
 				<hr/>
 			</>}
 
-			<p>On this page you can create early Claims while Fore is still in closed beta.</p>
+			<p>On this page you can create early Claims while Fore is still in Closed Beta.</p>
 
 			<p>
 				<button className="button mb-5 is-primary" onClick={addAnotherClaim}>

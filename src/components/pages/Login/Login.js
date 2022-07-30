@@ -8,7 +8,7 @@ export default function Login() {
 		<Section withTopMargin={true}>
 			<div className="has-text-centered">
 
-				<p className="mb-6">👋 <b>Fore</b> is only available in closed beta.</p>
+				<p className="mb-6">👋 <b>Fore</b> is only available in Closed Beta.</p>
 
 				<SignupWithGoogle className="mb-6" />
 
