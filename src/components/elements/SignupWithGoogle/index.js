@@ -2,12 +2,9 @@ import Component from './SignupWithGoogle';
 
 import { urls } from 'constants.js';
 
-export default function SignupWithGoogle({ className }) {
+export default function SignupWithGoogle(props) {
 
-	const props = {
-		authViaGoogleUrl: `${urls.api}/auth/google`,
-		className
-	};
+	props.authViaGoogleUrl = `${urls.api}/auth/google`;
 
 	return Component(props);
 }
