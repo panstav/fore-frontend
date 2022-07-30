@@ -1,11 +1,35 @@
 .title
 	line-height: 1.3
+	@include tablet
+		font-size: $size-1
 
-[style^="--total-power"]
+.fore-claim
 	$start-gradient: transparent calc(100% - (var(--power) / var(--total-power) * 200%))
 	$end-gradient: rgba($primary-light, 0.25) 100%
-
 	background: linear-gradient(90deg, $start-gradient, $end-gradient)
+
+	@include mobile
+		padding: 0.5rem 0
+	@include tablet
+		padding: $size-6 $size-7
+
 	&[data-direction="support"]
-		@include from($tablet)
+		@include tablet
 			background: linear-gradient(270deg, $start-gradient, $end-gradient)
+
+	.icon
+		svg
+			stroke: $grey-light
+			stroke-width: 0.6rem
+			fill: transparent
+		&.is-active svg
+			fill: $power
+
+.fore-claim-power
+	@include tablet
+			margin-right: $size-8
+
+.fore-claim-content
+	font-size: $size-7
+	@include tablet
+		font-size: $size-6
