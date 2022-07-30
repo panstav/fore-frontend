@@ -27,7 +27,7 @@ const benefits = [
 	},
 	{
 		prompt: "Earn",
-		title: "Get rewarded by contributing and connecting Claims",
+		title: "Get rewarded for chaining and contributing new Claims",
 		description: "We built Fore believing that a strong incentive for constructive debating will bring about unforeseeable benefits.",
 		illustration: Upgrade
 	}
