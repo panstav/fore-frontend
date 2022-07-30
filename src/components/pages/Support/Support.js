@@ -29,7 +29,7 @@ export default function Support({ isConfirmed, addAnotherClaim }) {
 
 			<p>A single Claim is a statement, a held belief, a bid for a truth that other Claims can either support or oppose.</p>
 
-			<p>No Claim is universal. Every Claim will be assessed and rated for its truthfulness within the context of other Claims.</p>
+			<p>All Claims are universal. Every Claim will be assessed and rated for in two manners: 1&#41; Its relevancy may be featured within the context of other Claims. 2&#41; Its truthfullness will be deducted by other Claims that either support or oppose it.</p>
 
 			<p>All of this will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
 
