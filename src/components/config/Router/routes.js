@@ -1,5 +1,5 @@
 import Home from 'pages/Home';
-import Login from 'pages/Login';
+import ConnectToFore from 'pages/Connect';
 import Support from 'pages/Support';
 import ClaimDetail from 'pages/ClaimDetail';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
@@ -16,9 +16,9 @@ export default redirects.concat([
 		minimumRole: roles.GUEST
 	},
 	{
-		name: 'login',
-		path: '/login',
-		Component: Login,
+		name: 'connect',
+		path: '/connect',
+		Component: ConnectToFore,
 		minimumRole: roles.GUEST
 	},
 	{

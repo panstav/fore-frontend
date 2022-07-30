@@ -44,11 +44,11 @@ export default function Router() {
 							return <Redirect to={defaultPathFor400} replace={true} />;
 						}
 
-						// if a user that isn't logged-in arrived at a restricted route - redirect to login and remember the path user tried to access
+						// if a user that isn't logged-in arrived at a restricted route - redirect to signup/login page and remember the path user tried to access
 						const failedPath = location.href.substring(location.origin.length);
 						// ignore the default path to avoid unnecessary redirects
 						if (failedPath !== defaultPathFor400) localDB.set({ redirectTo: failedPath });
-						return <Redirect to={`/login`} />;
+						return <Redirect to={`/connect`} />;
 					}}>
 						<main id="page" data-page={name}>
 							<Component params={params} />

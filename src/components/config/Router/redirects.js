@@ -6,6 +6,10 @@ const redirects = [
 	{
 		from: '/very-first-claims',
 		to: '/support'
+	},
+	{
+		from: '/login',
+		to: '/connect'
 	}
 ];
 

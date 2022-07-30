@@ -6,8 +6,6 @@ import SignupForBetaUpdates from "compounds/SignupForBetaUpdates";
 
 import Section from "wrappers/Section";
 import Access from "wrappers/Access";
-
-import SignupWithGoogle from "elements/SignupWithGoogle";
 import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
 
 import { roles } from "constants.js";
@@ -40,7 +38,12 @@ export default function PromotionalHomepage () {
 			<h1 className="title is-1 mt-6">Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">Where collaborative truth-seeking happens.</p>
 			<Access minimum={roles.order[1]}
-				onFail={() => <SignupWithGoogle className="mt-6" />}
+				onFail={() => {
+					return <div className="is-flex is-justify-content-center is-align-items-center mt-6">
+						<Link className="button is-primary mr-2" to="/connect#signup">Sign up</Link>
+						<span> to get started.</span>
+					</div>;
+				}}
 			>
 				<Link className="button is-primary mt-5" to="/support">Support the Closed Beta</Link>
 			</Access>
@@ -58,7 +61,7 @@ export default function PromotionalHomepage () {
 			<Access minimum={roles.order[1]}
 				onFail={() => <div className="has-text-centered mt-6 mb-5">
 					<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>
-					<SignupWithGoogle />
+					<Link className="button is-primary" to="/connect#signup">Sign up for updates</Link>
 				</div>}
 			>
 				<div className="box">

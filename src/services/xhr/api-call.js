@@ -15,7 +15,7 @@ function transformApiCall(method) {
 			.catch((err) => {
 
 				if (err.response.statusCode === 400) {
-					window.location.href = `${urls.frontEnd}/login?redirectTo=${window.location.pathname}`;
+					window.location.href = `${urls.frontEnd}/connect?redirectTo=${window.location.pathname}`;
 					return;
 				}
 
