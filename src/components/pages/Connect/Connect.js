@@ -11,13 +11,13 @@ export default function Connect({ connectingMethods, connectionMethod }) {
 
 			</div>
 
-			<div class="box is-small m-auto panel is-primary">
+			<div className="box is-small m-auto panel is-primary">
 				<h1 className="title is-size-3 has-text-centered mb-5">Connect to Fore</h1>
 
-				<div class="has-text-centered panel-tabs">
+				<div className="has-text-centered panel-tabs">
 					{connectingMethods.map(({ name, isActive, switchTo }) => {
 						const classes = classNames('is-flex-grow-1 is-link', isActive ? 'is-active has-text-weight-bold has-text-primary-dark' : '');
-						return <span className={classes} onClick={switchTo}>{name}</span>;
+						return <span key={name} className={classes} onClick={switchTo}>{name}</span>;
 					})}
 				</div>
 
