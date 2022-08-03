@@ -12,8 +12,8 @@ export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
 	return <Section withTopMargin={true} noSidePadding={true}>
 
 		<div className="levem is-align-items-start mb-0 mt-6 px-3">
-			{directions.map(direction => {
-				return <div className="levem" style={{ width: '49%' }}>
+			{directions.map((direction) => {
+				return <div key={direction} className="levem" style={{ width: '49%' }}>
 					<div className="has-text-weight-light">In {direction}</div>
 					<button className="button is-outlined" onClick={addClaimHere(direction)}>+</button>
 				</div>;
