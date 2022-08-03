@@ -30,7 +30,7 @@ export default function SignupForBetaUpdates({ control, onSubmit, didSendWithout
 			</div>
 			<div className="is-flex is-align-items-center">
 				<button className="button is-success mr-3">Let me know</button>
-				{didSendWithoutMarking && <p className="notification is-warning is-small">Mark at least one of these to sign-up for updates.</p>}
+				{didSendWithoutMarking && <p className="notification is-warning is-small">Mark at least one of these to signup for updates.</p>}
 			</div>
 		</>;
 	}
