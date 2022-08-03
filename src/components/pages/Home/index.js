@@ -1,4 +1,7 @@
 import { connect } from 'unistore/preact';
+import { Redirect } from 'wouter-preact';
+
+import localDB from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
@@ -9,7 +12,20 @@ import { roles } from 'constants.js';
 
 export default connect(mapStateToProps)(Home);
 
-function Home({ isBetaUser }) {
+function Home({ isLoggedIn, isBetaUser }) {
+
+	if (isLoggedIn) {
+		// successfully logging in directs users to homepage
+		// so we'll check whether there's a redirectTo saved
+		const redirectTo = localDB.get().redirectTo;
+		if (redirectTo) {
+			// delete it so this won't happen again before user lands on another unauthorized path
+			// and redirect to it
+			localDB.set({ redirectTo: null });
+			return <Redirect to={redirectTo} replace={true} />;
+		}
+	}
+
 	const Page = isBetaUser
 		// show feed to beta users
 		? Feed
@@ -21,6 +37,7 @@ function Home({ isBetaUser }) {
 
 function mapStateToProps({ user }) {
 	return {
+		isLoggedIn: isAuth(user.role, { minimum: roles.order[1] }),
 		isBetaUser: isAuth(user.role, { minimum: roles.MEMBER_BETA })
 	};
 }

@@ -24,18 +24,6 @@ export default function Router() {
 		<Switch>
 			{routes.map(({ name, path, Component, minimumRole }) => {
 				return <Route key={path} path={path} component={({ params }) => {
-
-					// successfully logging in directs users to homepage
-					// so only on the homepage we'll check whether there's a redirectTo saved
-					if (path === '/') {
-						const redirectTo = localDB.get().redirectTo;
-						if (redirectTo) {
-							// there's a url saved - delete it and redirect to it
-							localDB.set({ redirectTo: null });
-							return <Redirect to={redirectTo} replace={true} />;
-						}
-					}
-
 					return <Access minimum={minimumRole} onFail={({ userRole }) => {
 
 						if (userRole !== roles.GUEST) {
