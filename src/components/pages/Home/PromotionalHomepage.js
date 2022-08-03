@@ -38,12 +38,7 @@ export default function PromotionalHomepage () {
 			<h1 className="title is-1 mt-6">Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">Where collaborative truth-seeking happens.</p>
 			<Access minimum={roles.order[1]}
-				onFail={() => {
-					return <div className="is-flex is-justify-content-center is-align-items-center mt-6">
-						<Link className="button is-primary mr-2" to="/connect#signup">Sign up</Link>
-						<span> to get started.</span>
-					</div>;
-				}}
+				onFail={() => <SignupCTA whatFor="to get started." className="mt-6" />}
 			>
 				<Link className="button is-primary mt-5" to="/support">Support the Closed Beta</Link>
 			</Access>
@@ -61,7 +56,7 @@ export default function PromotionalHomepage () {
 			<Access minimum={roles.order[1]}
 				onFail={() => <div className="has-text-centered mt-6 mb-5">
 					<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>
-					<Link className="button is-primary" to="/connect#signup">Sign up for updates</Link>
+					<SignupCTA whatFor="to receive updates." className="mt-5" />
 				</div>}
 			>
 				<div className="box">
@@ -84,5 +79,13 @@ function SideBySide({ prompt, title, description, illustration: Illustration, cl
 		<div>
 			<Illustration />
 		</div>
+	</div>;
+}
+
+function SignupCTA ({ className, whatFor }) {
+	const classes = classNames('is-flex is-justify-content-center is-align-items-center', className);
+	return <div className={classes}>
+		<Link className="button is-primary mr-2" to="/connect#signup">Sign up</Link>
+		<span> {whatFor}</span>
 	</div>;
 }
