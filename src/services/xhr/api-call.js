@@ -14,7 +14,7 @@ function transformApiCall(method) {
 		return ky[method](`${urls.api}/${endpoint}`, fetchOptions).json()
 			.catch((err) => {
 
-				if (err.response.statusCode === 400) {
+				if (err.response.status === 400) {
 					window.location.href = `${urls.frontEnd}/connect?redirectTo=${window.location.pathname}`;
 					return;
 				}
