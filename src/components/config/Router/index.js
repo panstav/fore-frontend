@@ -1,3 +1,4 @@
+import { useEffect } from 'preact/hooks';
 import { Route, Switch, Redirect, useLocation } from 'wouter-preact';
 
 import localDB from 'services/localstorage';
@@ -12,13 +13,10 @@ import { roles } from 'constants.js';
 
 const defaultPathFor400 = '/';
 
-function OnChange() {
-	useLocation();
-	scrollBackToTop();
-	return null;
-}
-
 export default function Router() {
+
+	useOverlayRemoval();
+
 	return <>
 		<OnChange/>
 		<Switch>
@@ -52,4 +50,25 @@ export default function Router() {
 			}
 		</Switch>
 	</>;
+}
+
+function OnChange() {
+	useLocation();
+	scrollBackToTop();
+	return null;
+}
+
+function useOverlayRemoval() {
+	useEffect(() => {
+		const overlay = document.body.firstElementChild;
+		const animationDuration = 0.3;
+
+		// set animation duration
+		overlay.style.animationDuration = animationDuration + 's';
+		// start animation
+		overlay.classList.add('fading');
+		setTimeout(() => {
+			overlay.remove();
+		}, animationDuration * 1000);
+	}, []);
 }
