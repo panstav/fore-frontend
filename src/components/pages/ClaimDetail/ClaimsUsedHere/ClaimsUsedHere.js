@@ -45,7 +45,7 @@ export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
 
 function Power({ count }) {
 	return <div className="fore-claim-power">
-		<PowerIcon className="is-medium" />
+		<PowerIcon style={{ width: '1.25rem' }} />
 		<div className="has-text-centered" style={{ lineHeight: 1 }}>
 			<span className="">{count}</span>
 		</div>
