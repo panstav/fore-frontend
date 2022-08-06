@@ -1,5 +1,7 @@
 import ky from 'ky';
 
+import localDB from 'services/localstorage';
+
 import { urls } from 'constants.js';
 
 export default ['get', 'post', 'put', 'patch'].reduce((accu, method) => {
@@ -15,7 +17,8 @@ function transformApiCall(method) {
 			.catch((err) => {
 
 				if (err.response.status === 400) {
-					window.location.href = `${urls.frontEnd}/connect?redirectTo=${window.location.pathname}`;
+					localDB.set({ redirectTo: window.location.pathname });
+					window.location.href = `${urls.frontEnd}/connect#login`;
 					return;
 				}
 
