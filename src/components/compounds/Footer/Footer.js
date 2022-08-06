@@ -15,12 +15,14 @@ export default function Footer({ logOut }) {
 			</div>
 			<div className="is-size-7 mb-3">
 
-				<DotLink dotless={true} href="mailto:stavgeffen@gmail.com">Give feedback</DotLink>
-				<DotLink href="mailto:stavgeffen@gmail.com">Report a bug</DotLink>
-				<DotLink href="/privacy-policy">Privacy Policy</DotLink>
+				<FooterLink href="mailto:stavgeffen@gmail.com">Give feedback</FooterLink>
+				<FooterLink href="mailto:stavgeffen@gmail.com">Report a bug</FooterLink>
 
-				<Access minimum={roles.order[1]}>
-					<DotLink onClick={logOut}>Logout</DotLink>
+				<Access minimum={roles.order[1]} onFail={() => {
+					return <FooterLink dotless={true} href="/privacy-policy">Privacy Policy</FooterLink>;
+				}}>
+					<FooterLink href="/privacy-policy">Privacy Policy</FooterLink>
+					<FooterLink dotless={true} onClick={logOut}>Logout</FooterLink>
 				</Access>
 
 			</div>
@@ -28,11 +30,11 @@ export default function Footer({ logOut }) {
 	</footer>;
 }
 
-function DotLink({ dotless, ...props }) {
+function FooterLink({ dotless, ...props }) {
 
 	return <span style={{ display: 'inline-block', cursor: 'default' }}>
-		{ !dotless && <span style={{ padding: '0 1em' }}>·</span> }
 		<Anchor {...props} />
+		{!dotless && <span style={{ padding: '0 1em' }}>·</span>}
 	</span>;
 
 	function Anchor(props) {
