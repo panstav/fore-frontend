@@ -85,7 +85,7 @@ function SideBySide({ prompt, title, description, illustration: Illustration, cl
 function SignupCTA ({ className, whatFor }) {
 	const classes = classNames('is-flex is-justify-content-center is-align-items-center', className);
 	return <div className={classes}>
-		<Link className="button is-primary mr-2" to="/connect#signup">Sign up</Link>
+		<Link className="button is-primary mr-2" to="/connect?signup">Sign up</Link>
 		<span> {whatFor}</span>
 	</div>;
 }

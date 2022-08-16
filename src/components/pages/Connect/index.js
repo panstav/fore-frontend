@@ -51,12 +51,10 @@ function Connect({ isLoggedIn, methodFromUrl }) {
 }
 
 function mapStateToProps({ user }) {
-	const hashString = window.location.hash.substring(1);
-	// remove the hash from the url
-	window.history.replaceState("", document.title, window.location.pathname + window.location.search);
+	const searchString = window.location.search.substring(1);
 
 	return {
 		isLoggedIn: isAuth(user.role, { minimum: roles.order[1] }),
-		methodFromUrl: Object.keys(connectingMethodNames).includes(hashString) ? connectingMethodNames[hashString] : connectingMethodNames.login
+		methodFromUrl: Object.keys(connectingMethodNames).includes(searchString) ? connectingMethodNames[searchString] : connectingMethodNames.login
 	};
 }

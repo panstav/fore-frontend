@@ -18,7 +18,7 @@ function transformApiCall(method) {
 
 				if (err.response.status === 400) {
 					localDB.set({ redirectTo: window.location.pathname });
-					window.location.href = `${urls.frontEnd}/connect#login`;
+					window.location.href = `${urls.frontEnd}/connect?login`;
 					return;
 				}
 
