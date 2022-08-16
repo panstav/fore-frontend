@@ -25,7 +25,7 @@ const benefits = [
 	},
 	{
 		prompt: "Earn",
-		title: "Get rewarded for chaining and contributing new Claims",
+		title: "Get rewarded for creating and connecting meaningful Claims",
 		description: "We built Fore believing that a strong incentive for constructive debating will bring about unforeseeable benefits.",
 		illustration: Upgrade
 	}
@@ -73,7 +73,7 @@ function SideBySide({ prompt, title, description, illustration: Illustration, cl
 	return <div className={classes}>
 		<div>
 			<span className="has-text-primary-light has-text-weight-bold mb-1 is-block">{prompt}</span>
-			<h2 className="title is-2 mb-3">{title}</h2>
+			<h2 className="title is-2 mb-3" style={{ hyphens: 'auto' }}>{title}</h2>
 			<p>{description}</p>
 		</div>
 		<div>
