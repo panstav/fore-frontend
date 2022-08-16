@@ -6,3 +6,6 @@
 
 /dist/
 /.parcel-cache/
+
+# ignore env-dependent entry file
+/src/index.html
