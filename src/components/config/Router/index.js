@@ -54,6 +54,7 @@ export default function Router() {
 
 function OnChange() {
 	useLocation();
+	if ('hj' in window) window.hj('stateChange', window.location.pathname);
 	scrollBackToTop();
 	return null;
 }
