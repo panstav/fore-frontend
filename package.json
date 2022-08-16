@@ -51,7 +51,7 @@
   "devDependencies": {
     "@faker-js/faker": "^6.0.0-alpha.3",
     "@parcel/packager-raw-url": "^2.7.0",
-    "@parcel/transformer-sass": "^2.2.1",
+    "@parcel/transformer-sass": "^2.7.0",
     "@parcel/transformer-webmanifest": "^2.7.0",
     "eslint": "^8.7.0",
     "eslint-plugin-react": "^7.28.0",
