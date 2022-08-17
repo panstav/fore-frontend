@@ -9,14 +9,14 @@ const directions = ['support', 'opposition'];
 
 export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
 	const claimsUsedHere = { support, opposition };
-	return <Section withTopMargin={true} noSidePadding={true}>
+	return <Section noSidePadding={true}>
 
 		<div className="levem is-align-items-start mb-0 mt-6 px-3">
 			{directions.map((direction) => {
 				const label = { support: 'Supported', opposition: 'Opposed' }[direction];
 				return <div key={direction} className="levem" style={{ width: '49%' }}>
 					<div className="has-text-weight-light">{label} by</div>
-					<button className="button is-outlined" onClick={addClaimHere(direction)}>+</button>
+					<button className="button is-small is-outlined" onClick={addClaimHere(direction)}>+</button>
 				</div>;
 			})}
 		</div>
@@ -31,7 +31,7 @@ export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
 							return <Link key={id} href={`/claim/${id}`}>
 								<div data-direction={direction} className={claimClasses} style={claimCssVariables}>
 									<div className="levem">
-										<Power count={power} />
+										<PowerIcon className="is-size-7 is-flex-shrink-0" />
 										<div className="fore-claim-content is-flex-grow-1 pr-1">{content}</div>
 									</div>
 								</div>
@@ -42,13 +42,4 @@ export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
 			})}
 		</div>
 	</Section>;
-}
-
-function Power({ count }) {
-	return <div className="fore-claim-power">
-		<PowerIcon style={{ width: '1.25rem' }} />
-		<div className="has-text-centered" style={{ lineHeight: 1 }}>
-			<span className="">{count}</span>
-		</div>
-	</div>;
 }
