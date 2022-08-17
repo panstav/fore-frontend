@@ -13,8 +13,9 @@ export default function ClaimsUsedHere({ support, opposition, addClaimHere }) {
 
 		<div className="levem is-align-items-start mb-0 mt-6 px-3">
 			{directions.map((direction) => {
+				const label = { support: 'Supported', opposition: 'Opposed' }[direction];
 				return <div key={direction} className="levem" style={{ width: '49%' }}>
-					<div className="has-text-weight-light">In {direction}</div>
+					<div className="has-text-weight-light">{label} by</div>
 					<button className="button is-outlined" onClick={addClaimHere(direction)}>+</button>
 				</div>;
 			})}

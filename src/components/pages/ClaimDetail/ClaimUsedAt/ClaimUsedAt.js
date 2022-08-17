@@ -10,8 +10,8 @@ export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
 	return <>
 
 		<div className="levem is-align-items-flex-start">
-			<UsedIn onClick={showUsedAt('support')} how="support" times={usedAt.support.length} className="has-text-success" />
-			<UsedIn onClick={showUsedAt('opposition')} how="opposition" times={usedAt.opposition.length} className="has-text-danger" />
+			<UsedIn onClick={showUsedAt('support')} label="Supporting" times={usedAt.support.length} className="has-text-success" />
+			<UsedIn onClick={showUsedAt('opposition')} label="Opposing" times={usedAt.opposition.length} className="has-text-danger" />
 		</div>
 
 		<Modal {...usedAtModalProps} render={({ claims, hideModal }) => {
@@ -28,10 +28,10 @@ export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
 
 }
 
-function UsedIn({ how, className, times, onClick }) {
+function UsedIn({ label, className, times, onClick }) {
 	const stringClasses = classnames('has-text-weight-bold', className);
 	return <button onClick={onClick} className="is-align-items-baseline is-borderless is-clickable is-size-7 is-flex-grow-1 is-justify-content-center levem px-2 py-4">
-		<div>In <span className={stringClasses}>{how}</span> of</div>
+		<div className={stringClasses}>{label}</div>
 		<div className="has-background-white is-align-items-center is-flex is-justify-content-center is-round ml-3 has-text-dark" style="width: 4ch; height: 4ch;">{times}</div>
 	</button>;
 }
