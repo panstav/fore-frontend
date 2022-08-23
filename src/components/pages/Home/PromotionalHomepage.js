@@ -3,6 +3,7 @@ import { Link } from "wouter-preact";
 import classNames from "classnames";
 
 import SignupForBetaUpdates from "compounds/SignupForBetaUpdates";
+import CurrentFeatures from "compounds/CurrentFeatures";
 
 import Section from "wrappers/Section";
 import Access from "wrappers/Access";
@@ -53,6 +54,9 @@ export default function PromotionalHomepage () {
 			})}
 		</Section>
 		<Section withTopMargin={true} className="pt-6">
+			<CurrentFeatures />
+		</Section>
+		<Section withTopMargin={true}>
 			<Access minimum={roles.order[1]}
 				onFail={() => <div className="has-text-centered mt-6 mb-5">
 					<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>
