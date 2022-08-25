@@ -4,7 +4,7 @@ import Checkbox from 'components/elements/Checkbox';
 
 import AddClaimBody from "./AddClaimBody";
 
-export default function AddClaim({ control}) {
+export default function AddClaim({ control }) {
 	return <>
 		<div className="field">
 			<div className="is-relative">
