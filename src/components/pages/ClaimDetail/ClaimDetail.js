@@ -10,7 +10,7 @@ export default function ClaimDetail({ content, author, createdAtTimeAgo }) {
 		</Section>
 
 		<Section withTopMargin={true}>
-			<div className="title mb-3">{content}</div>
+			<h1 className="title mb-3">{content}</h1>
 			<div className="levem">
 				<div className="has-text-grey-light" style="width: 5ch; min-width: 5ch;">{createdAtTimeAgo}</div>
 				<div className="is-flex-grow-1 level is-justify-content-start is-mobile m-0">
