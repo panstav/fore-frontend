@@ -28,7 +28,7 @@ const presets = {
 		closeButton: false,
 		autoClose: true,
 		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
-			<p>Connected!</p>
+			<p>Reused Claim! </p>
 		</div>
 	}),
 
