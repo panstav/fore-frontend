@@ -21,13 +21,9 @@ export const roles = {
 };
 roles.DEMO = roles.MEMBER;
 
-export const claimsUse = {
-	support: 'support of',
-	opposition: 'opposition to'
-};
-
 export const notifications = {
 	autoCloseMs: 5000,
 	NEW_CLAIM_SENT: 'new-claim-sent',
-	NEW_CLAIM_CREATED: 'new-claim-created'
+	NEW_CLAIM_CREATED: 'new-claim-created',
+	NEW_CLAIM_CONNECTED: 'new-claim-connected'
 };

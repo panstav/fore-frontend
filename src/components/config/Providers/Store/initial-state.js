@@ -4,6 +4,15 @@ export default {
 
 	claims: [],
 
+	recent: {
+		viewedClaims: [],
+		connectedClaims: []
+	},
+
+	search: {
+		ClaimDetailAddClaim: []
+	},
+
 	flags: {
 		fetchedLatest: false
 	}

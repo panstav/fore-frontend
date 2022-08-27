@@ -28,6 +28,10 @@ export default {
 
 	async addClaim(claim) {
 		return apiCall.post('claim', claim);
+	},
+
+	async connectClaim(connection) {
+		return apiCall.post('connect-claim', connection);
 	}
 
 };

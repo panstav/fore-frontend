@@ -1,15 +1,14 @@
-import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import withContext from 'lib/with-context';
 
-import { ModalContext, ClaimDetailContext } from 'contexts';
+import { ClaimDetailContext } from 'contexts';
+
+import useModal from 'hooks/use-modal';
 
 import Component from './ClaimsUsedHere';
 
 import actions from './actions';
-
-import { claimsUse } from 'constants';
 
 export default withContext({
 	context: ClaimDetailContext,
@@ -17,24 +16,41 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
 });
 
-function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse }) {
-	const { showAddClaimModal } = useContext(ModalContext);
+function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaim }) {
 
-	const addClaimHere = (direction) => () => showAddClaimModal({
-		contextTitle: `In ${claimsUse[direction]} "${parentContent}"`,
-		onSubmit: ({ content, isAnonymous }) => addClaimWithUse({
-			content,
-			isAnonymous,
+	const [ addClaimHereModalProps, showAddClaimHereModal ] = useModal();
+
+	const addClaimHere = (direction) => () => {
+		return showAddClaimHereModal({
+			direction,
 			parentContent,
-			parentId,
-			direction
-		})
-	});
+			onSubmit: ({ content, isAnonymous }, event) => {
+				const claimId = event.submitter?.dataset.claimId;
+				const claimContent = event.submitter?.dataset.claimContent;
+				if (claimId) return connectClaim({
+					direction,
+					childId: claimId,
+					childContent: claimContent,
+					parentId,
+					parentContent
+				});
+				return addClaimWithUse({
+					direction,
+					content,
+					isAnonymous,
+					parentContent,
+					parentId
+				});
+			}
+		});
+	};
 
 	const props = {
 		support: supportUsedHere,
 		opposition: oppositionUsedHere,
-		addClaimHere
+		addClaimHere,
+		addClaimHereModalProps,
+		claimsOnBothSides: supportUsedHere.length && oppositionUsedHere.length
 	};
 
 	return Component(props);

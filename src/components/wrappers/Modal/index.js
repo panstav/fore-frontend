@@ -1,21 +1,17 @@
 import ComponentWithForm from './Form';
-import Component from './Modal';
+import Component, { Title, ContextTitle } from './Modal';
+
+export { Title, ContextTitle };
 
 export default function ModalWrapper({ render, onSubmit, hideModal, ...modalProps }) {
 
 	if (!Object.keys(modalProps).length) return null;
 
-	const renderContextTitle = () => {
-		if (typeof modalProps.contextTitle === 'function') return modalProps.contextTitle(); else
-		if (!modalProps.contextTitle) return null;
-		return <span>{modalProps.contextTitle}</span>;
-	};
-
-	if (onSubmit) return <ComponentWithForm {...{ render, onSubmit, hideModal, renderContextTitle, ...modalProps }}/>;
+	if (onSubmit) return <ComponentWithForm {...{ render, onSubmit, hideModal, ...modalProps }}/>;
 
 	const props = {
 		title: modalProps.title,
-		hideModal, renderContextTitle,
+		hideModal,
 		children: render({ hideModal, ...modalProps })
 	};
 
