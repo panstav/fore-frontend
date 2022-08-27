@@ -12,7 +12,7 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ExistingClaim)
 });
 
-function ExistingClaim({ searchResults, recentlyConnectedClaims, recentlyViewedClaims, addClaimWithUse }) {
+function ExistingClaim({ searchResults, recentlyConnectedClaims, recentlyViewedClaims }) {
 
 	const claimLists = [
 		{
@@ -44,12 +44,13 @@ function mapStateToProps ({ search, recent, claims }, { claimId }) {
 
 	return {
 		searchResults: search.ClaimDetailAddClaim
-			.map(markAlreadyUsed),
+			.map(markInvalidClaims),
 		recentlyConnectedClaims: recent.connectedClaims
-			.map(markAlreadyUsed),
+			.map(markInvalidClaims),
 		recentlyViewedClaims: recent.viewedClaims
+			// avoid showing "last" addition to recently viewed
 			.filter((claim) => claim.id !== claimId)
-			.map(markAlreadyUsed)
+			.map(markInvalidClaims)
 	};
 
 	function concatUsedHere (claims, claimId) {
@@ -57,12 +58,14 @@ function mapStateToProps ({ search, recent, claims }, { claimId }) {
 		return claimsUsedHere.support.concat(claimsUsedHere.opposition);
 	}
 
-	function markAlreadyUsed (claim) {
+	function markInvalidClaims (claim) {
 
-		claim.alreadyUsedHere = claimsUsedHere.some((claimUsedHere) => {
-			// disable results that are already used here or are the parent id
-			return claimUsedHere.id === claim.id || claim.id === claimId;
-		});
+		// disable the claim if
+		claim.invalid =
+			// it was already used here
+			claimsUsedHere.some((usedHere) => usedHere.id === claim.id)
+			// it is the same as the parent claim
+			|| claim.id === claimId;
 
 		return claim;
 	}
