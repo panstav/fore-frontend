@@ -20,9 +20,9 @@ function ClaimsList({ title, className, children }) {
 	return <div {...{ className }}>
 		<ContextTitle>{title}</ContextTitle>
 		<ul className="buttons has-addons is-vertical">
-			{children.map(({ id, content, alreadyUsedHere }) => {
-				return <li key={id} disabled={alreadyUsedHere} className="button p-0 is-fullwidth" style={{ height: 'auto' }}>
-					<button className="has-text-left p-3 reset is-clickable" style={{ width: '100%', height: '100%', whiteSpace: 'normal' }} data-claim-id={id} data-claim-content={content}>{content}</button>
+			{children.map(({ id, content, invalid }) => {
+				return <li key={id} disabled={invalid} className="button p-0 is-fullwidth" style={{ height: 'auto' }}>
+					<button disabled={invalid} className="has-text-left p-3 reset" style={{ width: '100%', height: '100%', whiteSpace: 'normal', cursor: invalid ? 'not-allowed' : 'pointer' }} data-claim-id={id} data-claim-content={content}>{content}</button>
 				</li>;
 			})}
 		</ul>
