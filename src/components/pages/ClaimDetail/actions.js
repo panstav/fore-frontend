@@ -1,4 +1,5 @@
 import api from 'services/xhr';
+import localstorage from 'services/localstorage';
 
 import fifo from 'lib/fifo';
 
