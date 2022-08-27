@@ -16,7 +16,7 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
 });
 
-function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaim }) {
+function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims }) {
 
 	const [ addClaimHereModalProps, showAddClaimHereModal ] = useModal();
 
@@ -27,7 +27,7 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 			onSubmit: ({ content, isAnonymous }, event) => {
 				const claimId = event.submitter?.dataset.claimId;
 				const claimContent = event.submitter?.dataset.claimContent;
-				if (claimId) return connectClaim({
+				if (claimId) return connectClaims({
 					direction,
 					childId: claimId,
 					childContent: claimContent,

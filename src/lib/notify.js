@@ -24,7 +24,7 @@ const presets = {
 		</div>
 	}),
 
-	[notifications.NEW_CLAIM_CONNECTED]: () => ({
+	[notifications.NEW_CLAIM_CONNECTION]: () => ({
 		closeButton: false,
 		autoClose: true,
 		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">

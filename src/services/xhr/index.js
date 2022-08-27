@@ -30,8 +30,8 @@ export default {
 		return apiCall.post('claim', claim);
 	},
 
-	async connectClaim(connection) {
-		return apiCall.post('connect-claim', connection);
+	async connectClaims(connection) {
+		return apiCall.post('connect-claims', connection);
 	}
 
 };
