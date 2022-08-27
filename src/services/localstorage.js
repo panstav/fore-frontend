@@ -8,7 +8,7 @@ export default {
 		localStorage.setItem(key, JSON.stringify(newValue));
 	},
 
-	get() {
+	get(key) {
 		return JSON.parse(localStorage.getItem(key)) || {};
 	}
 
