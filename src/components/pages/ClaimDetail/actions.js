@@ -18,12 +18,20 @@ export default {
 		return { claims };
 	},
 
-	trackClaimView({ recent }, { id, content }) {
-		fifo(recent.viewedClaims, { id, content }, {
+	trackClaimView(state, { id, content }) {
+
+		// load recently connected claims from localStorage
+		const { viewedClaims = [] } = localstorage.get('recent');
+
+		// bump existing / add claim to the list
+		fifo(viewedClaims, { id, content }, {
 			max: 5,
 			compare: (claim) => claim.id === id
 		});
-		return { recent };
+
+		// save recently connected claims to localStorage
+		localstorage.set('recent', { viewedClaims });
+		return {};
 	}
 
 };

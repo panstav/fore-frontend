@@ -1,8 +1,10 @@
 import api from 'services/xhr';
 
 import notify from 'lib/notify.js';
+import fifo from 'lib/fifo';
 
 import { notifications } from 'constants.js';
+import localstorage from 'services/localstorage';
 
 export default {
 
@@ -38,6 +40,23 @@ export default {
 
 		return { claims };
 
+	},
+
+	trackClaimConnection(state, { id, content }) {
+
+		// load recently connected claims from localStorage
+		const { connectedClaims = [] } = localstorage.get('recent');
+
+		// bump existing / add claim to the list
+		fifo(connectedClaims, { id, content }, {
+			max: 5,
+			compare: (claim) => claim.id === id
+		});
+
+		// save recently connected claims to localStorage
+		localstorage.set('recent', { connectedClaims });
+		return {};
+		
 	}
 
 };

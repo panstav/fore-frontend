@@ -4,11 +4,6 @@ export default {
 
 	claims: [],
 
-	recent: {
-		viewedClaims: [],
-		connectedClaims: []
-	},
-
 	search: {
 		ClaimDetailAddClaim: []
 	},

@@ -33,7 +33,7 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 					childContent: claimContent,
 					parentId,
 					parentContent
-				});
+				}).then(() => trackClaimConnection({ id: claimId, content: claimContent }));
 				return addClaimWithUse({
 					direction,
 					content,
