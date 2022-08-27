@@ -1,6 +1,10 @@
-import { ClaimDetailContext } from "contexts";
-import withContext from "lib/with-context";
 import { connect } from "unistore/preact";
+
+import localstorage from "services/localstorage";
+
+import withContext from "lib/with-context";
+
+import { ClaimDetailContext } from "contexts";
 
 import actions from './actions';
 
@@ -38,19 +42,23 @@ function ExistingClaim({ searchResults, recentlyConnectedClaims, recentlyViewedC
 
 }
 
-function mapStateToProps ({ search, recent, claims }, { claimId }) {
+function mapStateToProps ({ search, claims }, { claimId }) {
 
 	const claimsUsedHere = concatUsedHere(claims, claimId);
+
+	const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', [])
+		.map(markInvalidClaims);
+	const recentlyViewedClaims = localstorage.get('recentlyViewedClaims', [])
+		// avoid showing "last" addition to recently viewed
+		.filter((claim) => claim.id !== claimId)
+		.map(markInvalidClaims);
 
 	return {
 		searchResults: search.ClaimDetailAddClaim
 			.map(markInvalidClaims),
-		recentlyConnectedClaims: recent.connectedClaims
-			.map(markInvalidClaims),
-		recentlyViewedClaims: recent.viewedClaims
-			// avoid showing "last" addition to recently viewed
-			.filter((claim) => claim.id !== claimId)
-			.map(markInvalidClaims)
+		recentlyConnectedClaims,
+		recentlyViewedClaims
+
 	};
 
 	function concatUsedHere (claims, claimId) {

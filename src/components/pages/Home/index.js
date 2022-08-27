@@ -17,11 +17,11 @@ function Home({ isLoggedIn, isBetaUser }) {
 	if (isLoggedIn) {
 		// successfully logging in directs users to homepage
 		// so we'll check whether there's a redirectTo saved
-		const redirectTo = localstorage.get().redirectTo;
+		const redirectTo = localstorage.get('redirectTo');
 		if (redirectTo) {
 			// delete it so this won't happen again before user lands on another unauthorized path
 			// and redirect to it
-			localstorage.set({ redirectTo: null });
+			localstorage.set('redirectTo', null);
 			return <Redirect to={redirectTo} replace={true} />;
 		}
 	}

@@ -54,9 +54,9 @@ export default {
 		});
 
 		// save recently connected claims to localStorage
-		localstorage.set('recent', { connectedClaims });
+		localstorage.set('recentlyConnectedClaims', connectedClaims);
 		return {};
-		
+
 	}
 
 };
