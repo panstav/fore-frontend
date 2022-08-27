@@ -5,16 +5,19 @@ import ClaimsUsedHere from './ClaimsUsedHere';
 
 export default function ClaimDetail({ content, author, createdAtTimeAgo }) {
 	return <>
-		<Section withTopMargin={true}>
+
+		<Section className="mt-3">
 			<ClaimUsedAt />
+		</Section>
+
+		<Section withTopMargin={true}>
 			<h1 className="title mt-2 mb-3">{content}</h1>
-			<div className="is-flex is-align-items-center">
-				<div className="has-text-grey-light" style="width: 5ch; min-width: 5ch;">{createdAtTimeAgo}</div>
-				<div className="is-flex-grow-1 level is-justify-content-start is-mobile mb-0 mr-3">
-					<span>By</span>
-					<img width={40} height={40} className="mx-2 is-round" src={author.profileImageUrl} alt={author.name}/>
+			<div className="is-flex is-align-items-center is-size-7">
+				<div className="fore-claim-owner levem is-justify-content-start mb-0 mr-3">
+					<img className="mx-2 is-round" src={author.profileImageUrl} alt={author.name} />
 					<span>{author.name}</span>
 				</div>
+				<div className="has-text-grey-light">{createdAtTimeAgo}</div>
 			</div>
 		</Section>
 

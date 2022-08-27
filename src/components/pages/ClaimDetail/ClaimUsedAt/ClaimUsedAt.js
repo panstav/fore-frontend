@@ -31,11 +31,12 @@ export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
 function UsedIn({ label, className, times, onClick }) {
 
 	const counterWidth = calcDigitsWidth(times) + 'ch';
+	const gap = '0.5em';
 	const classes = classnames('button is-flex is-align-items-center is-size-7 px-2 py-3 is-clickable', className);
 
 	return <button onClick={onClick} className={classes} style={{ width: '50%' }}>
 		<div className="has-text-weight-bold">{label}</div>
-		<div className="has-background-white-ter is-align-items-center is-flex is-justify-content-center is-round ml-3 has-text-dark" style={{ width: counterWidth, height: '3ch' }}>{times}</div>
+		<div className="fore-used-at-counter has-background-white-ter is-align-items-center is-flex is-justify-content-center is-round has-text-dark" style={{ width: counterWidth, height: '3ch', marginInlineStart: gap, marginInlineEnd: `calc(-${counterWidth} + ${gap} + ${gap})` }}>{times}</div>
 	</button>;
 
 	function calcDigitsWidth(num) {

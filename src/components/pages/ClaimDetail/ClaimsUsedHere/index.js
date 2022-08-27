@@ -45,15 +45,29 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 		});
 	};
 
+	const totalPower = {
+		support: countPower(supportUsedHere),
+		opposition: countPower(oppositionUsedHere)
+	};
+	const totalPowerHere = totalPower.support + totalPower.opposition;
+	const isDominating = (direction) => totalPower[direction] > totalPowerHere - totalPower[direction];
+
 	const props = {
 		support: supportUsedHere,
 		opposition: oppositionUsedHere,
+		totalPowerHere,
+		isDominating,
 		addClaimHere,
 		addClaimHereModalProps,
 		claimsOnBothSides: supportUsedHere.length && oppositionUsedHere.length
 	};
 
 	return Component(props);
+
+	function countPower(claims) {
+		return claims.reduce((total, claim) => total + claim.power, 0);
+	}
+
 }
 
 function mapStateToProps({ claims }, { currentId }) {
@@ -66,7 +80,15 @@ function mapStateToProps({ claims }, { currentId }) {
 		parentContent: claim.content,
 
 		// two arrays separated so that component would recognized change in each
-		supportUsedHere: claim.usedHere.support,
+		supportUsedHere: claim.usedHere.support
+			.sort(directedClaimSort),
 		oppositionUsedHere: claim.usedHere.opposition
+			.sort(directedClaimSort)
 	};
+
+	function directedClaimSort(a, b) {
+		if (a.poweredByUser) return -1;
+		return b.power - a.power;
+	}
+
 }
