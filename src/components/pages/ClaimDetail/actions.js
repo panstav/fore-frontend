@@ -14,6 +14,21 @@ export default {
 		}
 
 		return { claims };
+	},
+
+	trackClaimView({ recent }, { id, content }) {
+		fifo(recent.viewedClaims, { id, content }, {
+			max: 5,
+			compare: (claim) => claim.id === id
+		});
+		return { recent };
 	}
 
 };
+
+function fifo(array, item, { max, compare = () => false }) {
+	const index = compare ? array.findIndex(compare) : array.indexOf(item);
+	if (index >= 0) array.splice(index, 1);
+	array.unshift(item);
+	if (max && array.length > max) array.pop();
+}

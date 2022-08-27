@@ -17,11 +17,13 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, author, createdAt, isDetailed, getClaimDetail }) {
+function ClaimDetail({ id, content, author, createdAt, isDetailed, getClaimDetail, trackClaimView }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
 	if (!isDetailed) return <Loader />;
+
+	trackClaimView({ id, content });
 
 	const createdAtTimeAgo = timeAgo.format(new Date(createdAt), 'mini');
 
