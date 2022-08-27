@@ -1,7 +1,7 @@
 import { useEffect } from 'preact/hooks';
 import { Route, Switch, Redirect, useLocation } from 'wouter-preact';
 
-import localDB from 'services/localstorage';
+import localstorage from 'services/localstorage';
 
 import scrollBackToTop from 'lib/scroll-back-to-top';
 
@@ -33,7 +33,7 @@ export default function Router() {
 						// if a user that isn't logged-in arrived at a restricted route - redirect to signup/login page and remember the path user tried to access
 						const failedPath = location.href.substring(location.origin.length);
 						// ignore the default path to avoid unnecessary redirects
-						if (failedPath !== defaultPathFor400) localDB.set({ redirectTo: failedPath });
+						if (failedPath !== defaultPathFor400) localstorage.set({ redirectTo: failedPath });
 						return <Redirect to={`/connect`} />;
 					}}>
 						<main id="page" data-page={name}>

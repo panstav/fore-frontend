@@ -1,6 +1,6 @@
 import ky from 'ky';
 
-import localDB from 'services/localstorage';
+import localstorage from 'services/localstorage';
 
 import { urls } from 'constants.js';
 
@@ -17,7 +17,7 @@ function transformApiCall(method) {
 			.catch((err) => {
 
 				if (err.response.status === 400) {
-					localDB.set({ redirectTo: window.location.pathname });
+					localstorage.set({ redirectTo: window.location.pathname });
 					window.location.href = `${urls.frontEnd}/connect?login`;
 					return;
 				}
