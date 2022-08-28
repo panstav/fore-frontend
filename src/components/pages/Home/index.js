@@ -21,7 +21,7 @@ function Home({ isLoggedIn, isBetaUser }) {
 		if (redirectTo) {
 			// delete it so this won't happen again before user lands on another unauthorized path
 			// and redirect to it
-			localstorage.set('redirectTo', null);
+			localstorage.unset('redirectTo');
 			return <Redirect to={redirectTo} replace={true} />;
 		}
 	}
