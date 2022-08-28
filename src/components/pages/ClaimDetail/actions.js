@@ -22,7 +22,7 @@ export default {
 	trackClaimView(state, { id, content }) {
 
 		// load recently connected claims from localStorage
-		const { viewedClaims = [] } = localstorage.get('recent');
+		const { viewedClaims = [] } = localstorage.get('recent', {});
 
 		// bump existing / add claim to the list
 		fifo(viewedClaims, { id, content }, {

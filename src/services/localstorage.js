@@ -3,7 +3,7 @@ const masterKey = 'foreis';
 
 export default { get, set, unset };
 
-function get(key, fallback = {}) {
+function get(key, fallback) {
 	if (!key) throw new Error('key is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
@@ -15,7 +15,7 @@ function set(key, value) {
 	if (!value) throw new Error('value is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	const previousMasterValue = get(key);
+	const previousMasterValue = get(key, {});
 	const newMasterValue = Object.assign(previousMasterValue, { [key]: value });
 	localStorage.setItem(masterKey, JSON.stringify(newMasterValue));
 }
@@ -24,7 +24,7 @@ function unset(key) {
 	if (!key) throw new Error('key is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	const currentValue = get(key);
+	const currentValue = get(key, {});
 	delete currentValue[key];
 	localStorage.setItem(masterKey, JSON.stringify(currentValue));
 }

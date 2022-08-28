@@ -45,7 +45,7 @@ export default {
 	trackClaimConnection(state, { id, content }) {
 
 		// load recently connected claims from localStorage
-		const { connectedClaims = [] } = localstorage.get('recent');
+		const { connectedClaims = [] } = localstorage.get('recent', {});
 
 		// bump existing / add claim to the list
 		fifo(connectedClaims, { id, content }, {
