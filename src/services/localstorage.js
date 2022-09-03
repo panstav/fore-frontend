@@ -7,7 +7,14 @@ function get(key, fallback) {
 	if (!key) throw new Error('key is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	return JSON.parse(localStorage.getItem(masterKey))[key] || fallback;
+	const masterValue = JSON.parse(localStorage.getItem(masterKey));
+	if (!masterValue) {
+		// initiate empty storage object if it doesn't exist
+		localStorage.setItem(masterKey, JSON.stringify({}));
+		return fallback;
+	};
+
+	return masterValue[key] || fallback;
 }
 
 function set(key, value) {
