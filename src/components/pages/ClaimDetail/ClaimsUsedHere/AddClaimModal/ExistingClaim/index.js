@@ -42,15 +42,16 @@ function ExistingClaim({ searchResults, recentlyConnectedClaims, recentlyViewedC
 
 }
 
-function mapStateToProps ({ search, claims }, { claimId }) {
+function mapStateToProps ({ user, search, claims }, { claimId }) {
 
 	const claimsUsedHere = concatUsedHere(claims, claimId);
 
 	const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', [])
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get('recentlyViewedClaims', [])
-		// avoid showing "last" addition to recently viewed
-		.filter((claim) => claim.id !== claimId)
+		// avoid showing current claim as it may have been recently added
+		// also avoid showing claims that weren't authored by the user
+		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id))
 		.map(markInvalidClaims);
 
 	return {
@@ -70,6 +71,8 @@ function mapStateToProps ({ search, claims }, { claimId }) {
 
 		// disable the claim if
 		claim.invalid =
+			// user is not the author of the claim
+			// claim.authorId && user.id !== claim.authorId
 			// it was already used here
 			claimsUsedHere.some((usedHere) => usedHere.id === claim.id)
 			// it is the same as the parent claim

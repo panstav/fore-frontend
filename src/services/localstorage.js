@@ -7,14 +7,14 @@ function get(key, fallback) {
 	if (!key) throw new Error('key is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	const masterValue = JSON.parse(localStorage.getItem(masterKey));
+	const masterValue = localStorage.getItem(masterKey);
 	if (!masterValue) {
 		// initiate empty storage object if it doesn't exist
 		localStorage.setItem(masterKey, JSON.stringify({}));
 		return fallback;
 	};
 
-	return masterValue[key] || fallback;
+	return JSON.parse(masterValue)[key] || fallback;
 }
 
 function set(key, value) {
@@ -22,8 +22,8 @@ function set(key, value) {
 	if (!value) throw new Error('value is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	const previousMasterValue = get(key, {});
-	const newMasterValue = Object.assign(previousMasterValue, { [key]: value });
+	const previousMasterValue = JSON.parse(localStorage.getItem(masterKey) || '{}');
+	const newMasterValue = Object.assign({}, previousMasterValue, { [key]: value });
 	localStorage.setItem(masterKey, JSON.stringify(newMasterValue));
 }
 
