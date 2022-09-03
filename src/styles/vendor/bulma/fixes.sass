@@ -39,12 +39,19 @@
 		.box-inner
 			padding: $box-padding
 
+body.with-modal
+	overflow: hidden
 .modal
 	&.is-active
 		position: fixed
 	.modal-content
 		max-height: calc(100% - 2rem)
 		max-width: calc(100% - 2rem)
+		@include mobile
+			max-height: 100%
+			max-width: 100%
+			.box
+				border-radius: 0
 		overflow: unset
 
 	// fix odd pulling downwards of buttons stack
