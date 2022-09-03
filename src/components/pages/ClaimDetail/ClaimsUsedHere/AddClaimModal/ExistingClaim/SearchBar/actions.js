@@ -1,7 +1,9 @@
+import { emptySearch } from "components/config/Providers/Store/initial-state";
+
 export default {
 
 	clearSearchResults: ({ search }) => {
-		search.ClaimDetailAddClaim = [];
+		search.ClaimDetailAddClaim = emptySearch;
 		return { search };
 	},
 
@@ -24,7 +26,10 @@ export default {
 		}
 		// const searchResults = await api.searchForKeywords(keywords);
 
-		search.ClaimDetailAddClaim = searchResults;
+		search.ClaimDetailAddClaim = {
+			results: searchResults,
+			keywords
+		};
 
 		return { search };
 

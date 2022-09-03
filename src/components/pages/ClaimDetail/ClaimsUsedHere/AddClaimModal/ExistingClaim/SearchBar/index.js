@@ -31,9 +31,3 @@ function SearchBar({ searchClaimsOfUser, clearSearchResults, className }) {
 	}
 
 }
-
-// function mapStateToProps ({ search: { ClaimDetailAddClaim: searchResults } }) {
-// 	return {
-// 		isLoading: !searchResults.length
-// 	};
-// }

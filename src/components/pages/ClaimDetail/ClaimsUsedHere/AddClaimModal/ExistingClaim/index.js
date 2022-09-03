@@ -16,13 +16,14 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ExistingClaim)
 });
 
-function ExistingClaim({ searchResults, recentlyConnectedClaims, recentlyViewedClaims }) {
+function ExistingClaim({ searchResults, searchKeywords, recentlyConnectedClaims, recentlyViewedClaims }) {
 
 	const claimLists = [
 		{
 			title: 'Search results',
 			claims: searchResults,
-			searchRelated: true
+			searchRelated: true,
+			searchKeywords
 		},
 		{
 			title: 'Recently used',
@@ -55,7 +56,8 @@ function mapStateToProps ({ user, search, claims }, { claimId }) {
 		.map(markInvalidClaims);
 
 	return {
-		searchResults: search.ClaimDetailAddClaim
+		searchKeywords: search.ClaimDetailAddClaim.keywords,
+		searchResults: search.ClaimDetailAddClaim.results
 			.map(markInvalidClaims),
 		recentlyConnectedClaims,
 		recentlyViewedClaims

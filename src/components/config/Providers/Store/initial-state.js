@@ -1,3 +1,8 @@
+export const emptySearch = {
+	keywords: '',
+	results: []
+};
+
 export default {
 
 	user: {},
@@ -5,7 +10,7 @@ export default {
 	claims: [],
 
 	search: {
-		ClaimDetailAddClaim: []
+		ClaimDetailAddClaim: emptySearch
 	},
 
 	flags: {
