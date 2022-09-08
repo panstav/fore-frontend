@@ -9,7 +9,11 @@ import { Power } from 'elements/Icon';
 import AddClaimModal from './AddClaimModal';
 
 // keep this order of directions instead of mapping object keys
-const directions = ['support', 'opposition'];
+const propsByDirection = {
+	support: { label: 'Support', color: 'success' },
+	opposition: { label: 'Opposition', color: 'danger' }
+};
+const directions = Object.keys(propsByDirection);
 
 export default function ClaimsUsedHere({ support, opposition, totalPowerHere, isDominating, claimsOnBothSides, addClaimHere, addClaimHereModalProps }) {
 	const claimsUsedHere = { support, opposition };
@@ -18,14 +22,14 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, is
 
 			<div className="levem is-align-items-start mb-0 mt-6 px-3 is-relative">
 				{directions.map((direction) => {
-					const label = { support: 'Supported', opposition: 'Opposed' }[direction];
+					const { label, color } = propsByDirection[direction];
 					const labelClasses = classNames(
 						'is-size-7 has-text-weight-bold',
-						`has-text-${{ support: 'success', opposition: 'danger' }[direction]}`
+						`has-text-${color}`
 					);
 					return <div key={direction} className="is-flex is-justify-content-center is-align-items-center py-4" style={{ width: '49%' }}>
 						<div className={labelClasses}>{label} by</div>
-						<button className={`button is-small px-2 fore-add-${direction}`} onClick={addClaimHere(direction)}>+</button>
+						<button className={`button is-small has-background-${color}-light px-2 fore-add-${direction}`} onClick={addClaimHere(direction)}>+</button>
 					</div>;
 				})}
 			</div>
