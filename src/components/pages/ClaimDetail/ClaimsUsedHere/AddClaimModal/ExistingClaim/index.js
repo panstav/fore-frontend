@@ -6,14 +6,12 @@ import withContext from "lib/with-context";
 
 import { ClaimDetailContext } from "contexts";
 
-import actions from './actions';
-
 import Component from "./ExistingClaim";
 
 export default withContext({
 	context: ClaimDetailContext,
 	map: ({ id }) => ({ claimId: id }),
-	component: connect(mapStateToProps, actions)(ExistingClaim)
+	component: connect(mapStateToProps)(ExistingClaim)
 });
 
 function ExistingClaim({ searchResults, searchKeywords, recentlyConnectedClaims, recentlyViewedClaims }) {

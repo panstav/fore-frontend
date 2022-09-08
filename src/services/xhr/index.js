@@ -32,6 +32,10 @@ export default {
 
 	async connectClaims(connection) {
 		return apiCall.post('connect-claims', connection);
+	},
+
+	async searchClaimsOfUser(keywords) {
+		return apiCall.get(`search-own-claims?q=${keywords}`);
 	}
 
 };

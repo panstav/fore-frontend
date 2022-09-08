@@ -30,13 +30,16 @@ export default {
 		notify(notifications.NEW_CLAIM_CONNECTION);
 
 		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
+		if (~indexOfParentClaim) {
+			const newParentDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: childId, content: childContent, power: 0 });
+			claims[indexOfParentClaim].usedHere[direction] = newParentDirectedUsedHere;
+		}
+
 		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
-
-		const newParentDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: childId, content: childContent, power: 0 });
-		const newChildDirectedUsedAt = claims[indexOfChildClaim].usedAt[direction].concat({ id: parentId, content: parentContent, power: 0 });
-
-		claims[indexOfParentClaim].usedHere[direction] = newParentDirectedUsedHere;
-		claims[indexOfChildClaim].usedAt[direction] = newChildDirectedUsedAt;
+		if (~indexOfChildClaim) {
+			const newChildDirectedUsedAt = claims[indexOfChildClaim].usedAt[direction].concat({ id: parentId, content: parentContent, power: 0 });
+			claims[indexOfChildClaim].usedAt[direction] = newChildDirectedUsedAt;
+		}
 
 		return { claims };
 
