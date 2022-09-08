@@ -3,13 +3,17 @@ import getLatestClaims from 'fixtures/get-new-claims.js';
 import getTopClaims from 'fixtures/get-new-claims.js';
 import getClaimDetail from 'fixtures/get-claim-detail.js';
 import addClaim from 'fixtures/add-claim.js';
+import connectClaims from 'fixtures/connect-claim';
+import searchOwnClaims from 'fixtures/search-own-claims';
 
 const fixtures = {
 	identify: getIdentity,
 	getLatestClaims,
 	getTopClaims,
 	getClaimDetail,
-	addClaim
+	addClaim,
+	connectClaims,
+	searchOwnClaims
 };
 
 // export js objects as functions that return them

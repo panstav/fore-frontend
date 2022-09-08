@@ -1,12 +1,37 @@
-.title
+h1.title
 	line-height: 1.3
 	@include tablet
 		font-size: $size-1
 
+.fore-used-at-counter
+	@include mobile
+		margin-inline-end: -0.5em !important
+
+.fore-claim-owner
+	font-size: $size-7
+	@include tablet
+		font-size: $size-6
+	img
+		width: 30px
+		height: 30px
+		@include tablet
+			width: 40px
+			height: 40px
+
+.fore-add-support, .fore-add-opposition
+	position: absolute
+.fore-add-support
+	left: 0
+	@include tablet
+		left: 1em
+.fore-add-opposition
+	right: 0
+	@include tablet
+		right: 1em
+
 .fore-claim
 	$start-gradient: transparent calc(100% - (var(--power) / var(--total-power) * 200%))
-	$end-gradient: rgba($primary-light, 0.25) 100%
-	background: linear-gradient(90deg, $start-gradient, $end-gradient)
+	$end-gradient: rgba($primary-light, 0.15) 100%
 
 	@include mobile
 		padding: 0.5rem 0
@@ -14,8 +39,15 @@
 		padding: $size-6 $size-7
 
 	&[data-direction="support"]
-		@include tablet
-			background: linear-gradient(270deg, $start-gradient, $end-gradient)
+		background: linear-gradient(270deg, $start-gradient, $end-gradient)
+		&.flat-across
+			border-top-right-radius: 0
+	&[data-direction="opposition"]
+		background: linear-gradient(90deg, $start-gradient, $end-gradient)
+		&.flat-across
+			border-top-left-radius: 0
+		.fore-claim-content
+			padding: 0 $size-8
 
 	.icon
 		width: 1.25rem

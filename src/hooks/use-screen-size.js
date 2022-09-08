@@ -2,6 +2,8 @@
 
 import { useEffect, useState } from 'preact/compat';
 
+import debounce from 'lib/debounce';
+
 export default function useScreenSize(options = {}) {
 
 	const [screenSize, setScreenSize] = useState(getSize());
@@ -20,13 +22,5 @@ function getSize() {
 	return {
 		width: window.innerWidth,
 		height: window.innerHeight
-	};
-}
-
-function debounce(func, delay) {
-	let timerId;
-	return function() {
-		clearTimeout(timerId);
-		timerId = setTimeout(() => func.apply(this, arguments), delay);
 	};
 }

@@ -10,8 +10,6 @@ import { ClaimDetailContext } from 'contexts.js';
 
 import Component from './ClaimUsedAt.js';
 
-import { claimsUse } from 'constants';
-
 export default withContext({
 	context: ClaimDetailContext,
 	map: ({ id }) => ({ currentId: id }),
@@ -21,7 +19,7 @@ export default withContext({
 function ClaimUsedAt({ usedAt }) {
 
 	const [usedAtModalProps, showUsedInModal] = useModal(({ direction, claims }) => ({
-		title: `Used in ${claimsUse[direction]}`,
+		title: `Used in ${direction}`,
 		claims
 	}));
 

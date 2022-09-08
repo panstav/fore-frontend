@@ -2,6 +2,30 @@
 	@extend .level
 	@extend .is-mobile
 
+.buttons
+	// sets correct border radius for vertically stacked buttons
+	&.has-addons.is-vertical
+		.button
+			margin: 0
+			border-radius: 0
+			&:not(:first-child)
+				margin-top: -1px
+			&:first-child
+				border-top-left-radius: $radius
+				border-top-right-radius: $radius
+				border-bottom-left-radius: 0
+				border-bottom-right-radius: 0
+			&:last-child
+				border-top-left-radius: 0
+				border-top-right-radius: 0
+				border-bottom-left-radius: $radius
+				border-bottom-right-radius: $radius
+				&:first-child
+					border-top-left-radius: $radius
+					border-top-right-radius: $radius
+					border-bottom-left-radius: $radius
+					border-bottom-right-radius: $radius
+
 .notification
 	&.is-small
 		padding: $size-8 $size-6 $size-8 $size-7
@@ -15,17 +39,21 @@
 		.box-inner
 			padding: $box-padding
 
+body.with-modal
+	overflow: hidden
 .modal
 	&.is-active
 		position: fixed
 	.modal-content
+		max-height: calc(100% - 2rem)
 		max-width: calc(100% - 2rem)
+		@include until(550px)
+			max-height: 100%
+			max-width: 100%
+			.box
+				border-radius: 0
+		overflow: unset
 
-.textarea
-	border-color: $input-hover-border-color
-	&:focus
-		border-color: $primary-light
-
-.button, .input
-	&.is-outlined
-		border-color: $border
+	// fix odd pulling downwards of buttons stack
+	.buttons:last-child
+		margin-bottom: unset

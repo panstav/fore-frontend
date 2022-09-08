@@ -4,7 +4,7 @@ import { Close } from 'components/elements/Icon';
 
 import useEscape from 'hooks/use-escape.js';
 
-export default function Modal({ title, renderContextTitle, hideModal, children, hideable = true }) {
+export default function Modal({ title, hideModal, children, hideable = true }) {
 
 	if (!hideable) hideModal = noop;
 
@@ -12,21 +12,28 @@ export default function Modal({ title, renderContextTitle, hideModal, children, 
 
 	return <div className="modal is-active">
 		<div className="modal-background" onClick={hideModal}/>
-		<div className="modal-content">
-			<div className="box is-relative p-0">
-				{ hideable && <Close className="is-pulled-right m-1" onClick={hideModal} /> }
+		<div className="modal-content is-relative">
+			<div className="box p-0" style={{ maxHeight: '100%', overflow: 'scroll' }}>
+
+				{hideable && <Close className="is-overlay" style={{ left: 'unset' }} onClick={hideModal} /> }
 				<div className="box-inner">
 
-					<div className="has-text-grey-light has-text-weight-bold mb-3 text-wrap">
-						{renderContextTitle()}
-					</div>
-
-					<div className="level is-mobile title is-4 has-text-grey">{title}</div>
-
+					{title && <Title>{title}</Title>}
 					{children}
 
 				</div>
+
 			</div>
 		</div>
+	</div>;
+}
+
+export function Title ({ children }) {
+	return <div className="level is-mobile title is-4 has-text-grey">{children}</div>;
+}
+
+export function ContextTitle ({ children }) {
+	return <div className="has-text-grey-light has-text-weight-bold mb-3 text-wrap">
+		{children}
 	</div>;
 }

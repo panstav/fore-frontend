@@ -1,8 +1,10 @@
 import api from 'services/xhr';
 
 import notify from 'lib/notify.js';
+import fifo from 'lib/fifo';
 
 import { notifications } from 'constants.js';
+import localstorage from 'services/localstorage';
 
 export default {
 
@@ -19,6 +21,45 @@ export default {
 		newClaims[indexOfParentClaim].usedHere[direction] = newDirectedUsedHere;
 
 		return { claims: newClaims };
+
+	},
+
+	async connectClaims({ claims }, { parentId, parentContent, childId, childContent, direction }) {
+
+		await api.connectClaims({ parentId, parentContent, childId, childContent, direction });
+		notify(notifications.NEW_CLAIM_CONNECTION);
+
+		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
+		if (~indexOfParentClaim) {
+			const newParentDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: childId, content: childContent, power: 0 });
+			claims[indexOfParentClaim].usedHere[direction] = newParentDirectedUsedHere;
+		}
+
+		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
+		if (~indexOfChildClaim) {
+			const newChildDirectedUsedAt = claims[indexOfChildClaim].usedAt[direction].concat({ id: parentId, content: parentContent, power: 0 });
+			claims[indexOfChildClaim].usedAt[direction] = newChildDirectedUsedAt;
+		}
+
+		return { claims };
+
+	},
+
+	trackClaimConnection(state, { id, content }) {
+
+		// load recently connected claims from localStorage
+		const { connectedClaims = [] } = localstorage.get('recent', {});
+
+		// bump existing / add claim to the list
+		fifo(connectedClaims, { id, content }, {
+			max: 5,
+			compare: (claim) => claim.id === id
+		});
+
+		// save recently connected claims to localStorage
+		localstorage.set('recentlyConnectedClaims', connectedClaims);
+		return {};
+
 	}
 
 };

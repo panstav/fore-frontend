@@ -1,7 +1,7 @@
 import { connect } from 'unistore/preact';
 import { Redirect } from 'wouter-preact';
 
-import localDB from 'services/localstorage';
+import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
@@ -17,11 +17,11 @@ function Home({ isLoggedIn, isBetaUser }) {
 	if (isLoggedIn) {
 		// successfully logging in directs users to homepage
 		// so we'll check whether there's a redirectTo saved
-		const redirectTo = localDB.get().redirectTo;
+		const redirectTo = localstorage.get('redirectTo');
 		if (redirectTo) {
 			// delete it so this won't happen again before user lands on another unauthorized path
 			// and redirect to it
-			localDB.set({ redirectTo: null });
+			localstorage.unset('redirectTo');
 			return <Redirect to={redirectTo} replace={true} />;
 		}
 	}

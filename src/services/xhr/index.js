@@ -28,6 +28,14 @@ export default {
 
 	async addClaim(claim) {
 		return apiCall.post('claim', claim);
+	},
+
+	async connectClaims(connection) {
+		return apiCall.post('connect-claims', connection);
+	},
+
+	async searchClaimsOfUser(keywords) {
+		return apiCall.get(`search-own-claims?q=${keywords}`);
 	}
 
 };

@@ -4,8 +4,8 @@
   "description": "",
   "type": "module",
   "scripts": {
-    "start-development": "npm run build-entry-dev && NODE_ENV=development parcel src/index.html",
     "start-offline": "npm run build-entry-dev && NODE_ENV=offline parcel src/index.html",
+    "start-development": "npm run build-entry-dev && NODE_ENV=development parcel src/index.html",
     "start-production": "npm run build-entry-prod && NODE_ENV=production parcel src/index.html",
     "build": "npm run build-entry-prod && NODE_ENV=production parcel build --no-source-maps src/index.html && cp static/* dist",
     "clean": "rm dist/* -rf && rm .parcel-cache/* -rf",

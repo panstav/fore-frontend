@@ -1,15 +1,14 @@
-import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import withContext from 'lib/with-context';
 
-import { ModalContext, ClaimDetailContext } from 'contexts';
+import { ClaimDetailContext } from 'contexts';
+
+import useModal from 'hooks/use-modal';
 
 import Component from './ClaimsUsedHere';
 
 import actions from './actions';
-
-import { claimsUse } from 'constants';
 
 export default withContext({
 	context: ClaimDetailContext,
@@ -17,27 +16,58 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
 });
 
-function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse }) {
-	const { showAddClaimModal } = useContext(ModalContext);
+function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims }) {
 
-	const addClaimHere = (direction) => () => showAddClaimModal({
-		contextTitle: `In ${claimsUse[direction]} "${parentContent}"`,
-		onSubmit: ({ content, isAnonymous }) => addClaimWithUse({
-			content,
-			isAnonymous,
+	const [ addClaimHereModalProps, showAddClaimHereModal ] = useModal();
+
+	const addClaimHere = (direction) => () => {
+		return showAddClaimHereModal({
+			direction,
 			parentContent,
-			parentId,
-			direction
-		})
-	});
+			onSubmit: ({ content, isAnonymous }, event) => {
+				const claimId = event.submitter?.dataset.claimId;
+				const claimContent = event.submitter?.dataset.claimContent;
+				if (claimId) return connectClaims({
+					direction,
+					childId: claimId,
+					childContent: claimContent,
+					parentId,
+					parentContent
+				}).then(() => trackClaimConnection({ id: claimId, content: claimContent }));
+				return addClaimWithUse({
+					direction,
+					content,
+					isAnonymous,
+					parentContent,
+					parentId
+				});
+			}
+		});
+	};
+
+	const totalPower = {
+		support: countPower(supportUsedHere),
+		opposition: countPower(oppositionUsedHere)
+	};
+	const totalPowerHere = totalPower.support + totalPower.opposition;
+	const isDominating = (direction) => totalPower[direction] > totalPowerHere - totalPower[direction];
 
 	const props = {
 		support: supportUsedHere,
 		opposition: oppositionUsedHere,
-		addClaimHere
+		totalPowerHere,
+		isDominating,
+		addClaimHere,
+		addClaimHereModalProps,
+		claimsOnBothSides: supportUsedHere.length && oppositionUsedHere.length
 	};
 
 	return Component(props);
+
+	function countPower(claims) {
+		return claims.reduce((total, claim) => total + claim.power, 0);
+	}
+
 }
 
 function mapStateToProps({ claims }, { currentId }) {
@@ -50,7 +80,15 @@ function mapStateToProps({ claims }, { currentId }) {
 		parentContent: claim.content,
 
 		// two arrays separated so that component would recognized change in each
-		supportUsedHere: claim.usedHere.support,
+		supportUsedHere: claim.usedHere.support
+			.sort(directedClaimSort),
 		oppositionUsedHere: claim.usedHere.opposition
+			.sort(directedClaimSort)
 	};
+
+	function directedClaimSort(a, b) {
+		if (a.poweredByUser) return -1;
+		return b.power - a.power;
+	}
+
 }

@@ -22,7 +22,15 @@ const presets = {
 			<p>Got it!</p>
 			<Link className="button is-small" href={`/claim/${claimId}`}>View Claim</Link>
 		</div>
-	})
+	}),
+
+	[notifications.NEW_CLAIM_CONNECTION]: () => ({
+		closeButton: false,
+		autoClose: true,
+		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
+			<p>Reused Claim! </p>
+		</div>
+	}),
 
 };
 

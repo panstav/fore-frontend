@@ -1,15 +1,37 @@
-const key = 'foreis';
+// a master key is used to store all fore data in localstorage
+const masterKey = 'foreis';
 
-export default {
+export default { get, set, unset };
 
-	set(value) {
-		const previousValue = JSON.parse(localStorage.getItem(key)) || {};
-		const masterValue = Object.assign(previousValue, value);
-		localStorage.setItem(key, JSON.stringify(masterValue));
-	},
+function get(key, fallback) {
+	if (!key) throw new Error('key is required');
+	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	get() {
-		return JSON.parse(localStorage.getItem(key)) || {};
-	}
+	const masterValue = localStorage.getItem(masterKey);
+	if (!masterValue) {
+		// initiate empty storage object if it doesn't exist
+		localStorage.setItem(masterKey, JSON.stringify({}));
+		return fallback;
+	};
 
-};
+	return JSON.parse(masterValue)[key] || fallback;
+}
+
+function set(key, value) {
+	if (typeof key !== 'string') throw new Error('key must be a string');
+	if (!value) throw new Error('value is required');
+	if (key.includes('.')) throw new Error('dot notation is not supported');
+
+	const previousMasterValue = JSON.parse(localStorage.getItem(masterKey) || '{}');
+	const newMasterValue = Object.assign({}, previousMasterValue, { [key]: value });
+	localStorage.setItem(masterKey, JSON.stringify(newMasterValue));
+}
+
+function unset(key) {
+	if (!key) throw new Error('key is required');
+	if (key.includes('.')) throw new Error('dot notation is not supported');
+
+	const currentValue = get(key, {});
+	delete currentValue[key];
+	localStorage.setItem(masterKey, JSON.stringify(currentValue));
+}
