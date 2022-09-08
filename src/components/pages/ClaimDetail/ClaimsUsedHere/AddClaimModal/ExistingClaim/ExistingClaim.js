@@ -6,9 +6,9 @@ import SearchBar from './SearchBar';
 export default function ExistingClaim({ claimLists }) {
 	return <>
 		<SearchBar />
-		{claimLists.map(({ title, claims, searchRelated, isSearchingKeywords }) => {
+		{claimLists.map(({ title, claims, searchRelated, searchKeywords }) => {
 			return <Fragment key={title}>
-				<ClaimsList {...{ title, searchRelated, isSearchingKeywords }} className={`mt-${searchRelated ? 3 : 5}`}>{claims}</ClaimsList>
+				<ClaimsList {...{ title, searchRelated, searchKeywords }} className={`mt-${searchRelated ? 3 : 5}`}>{claims}</ClaimsList>
 			</Fragment>
 		})}
 	</>;
@@ -28,6 +28,6 @@ function ClaimsList({ title, searchRelated, searchKeywords, className, children 
 					</li>;
 				})}
 			</ul>
-			: <div>No results for {searchKeywords}</div>}
+			: <div>No results for "{searchKeywords}".</div>}
 	</div>;
 }
