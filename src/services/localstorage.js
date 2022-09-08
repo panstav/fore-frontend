@@ -12,7 +12,7 @@ function get(key, fallback) {
 		// initiate empty storage object if it doesn't exist
 		localStorage.setItem(masterKey, JSON.stringify({}));
 		return fallback;
-	};
+	}
 
 	return JSON.parse(masterValue)[key] || fallback;
 }
