@@ -4,7 +4,7 @@ import { Logo } from 'components/elements/Icon';
 
 export default function TopNav() {
 	// noinspection HtmlUnknownTarget
-	return <div className="navbar is-primary is-fixed-top">
+	return <div className="navbar is-primary">
 		<div className="container">
 			<div className="navbar-brand">
 				<div className="navbar-item">
