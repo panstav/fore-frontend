@@ -1,7 +1,7 @@
 import { useFormContext, useWatch } from 'react-hook-form';
 import classnames from 'classnames';
 
-const maxCharacters = 200;
+const maxCharacters = 240;
 
 export default function AddClaimBody({ copiedContent = '' }) {
 
