@@ -12,13 +12,13 @@ export default function AddClaimModal({ direction, parentContent, isNewClaim, se
 		{isNewClaim ? <NewClaim /> : <ExistingClaim />}
 	</>;
 
-	function NewClaim() {
-		return <>
-			<Title>You&apos;re Claiming that:</Title>
-			<NewClaimBody />
-		</>;
-	}
+}
 
+function NewClaim() {
+	return <>
+		<Title>You&apos;re Claiming that:</Title>
+		<NewClaimBody />
+	</>;
 }
 
 function SelectNewOrExisting({ setClaimType }) {
