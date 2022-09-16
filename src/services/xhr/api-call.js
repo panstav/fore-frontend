@@ -17,6 +17,11 @@ function transformApiCall(method) {
 			.catch((err) => {
 
 				if (err.response.status === 400) {
+					window.location.href = urls.frontEnd;
+					return;
+				}
+
+				if (err.response.status === 401) {
 					localstorage.set('redirectTo', window.location.pathname);
 					window.location.href = `${urls.frontEnd}/connect?login`;
 					return;
