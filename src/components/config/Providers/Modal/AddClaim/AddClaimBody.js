@@ -3,19 +3,20 @@ import classnames from 'classnames';
 
 const maxCharacters = 200;
 
-export default function AddClaimBody() {
+export default function AddClaimBody({ copiedContent = '' }) {
+
 	const { register, control } = useFormContext();
 
 	const content = useWatch({
 		control,
 		name: 'content', // without supply name will watch the entire form, or ['firstName', 'lastName'] to watch both
-		defaultValue: '' // default value before the render
+		defaultValue: copiedContent // default value before the render
 	});
 
 	const counterClasses = classnames(content.length >= maxCharacters ? 'has-text-danger' : '');
 
 	return <div className="is-relative">
-		<textarea {...register('content', { required: true, maxLength: maxCharacters })} className="textarea pb-5" style="height: 12em; resize: none;"/>
+		<textarea {...register('content', { required: true, maxLength: maxCharacters, value: copiedContent })} className="textarea pb-5" style="height: 12em; resize: none;"/>
 		<span className={counterClasses} style="position: absolute; bottom: 0.2em; right: 1em">{content.length}/{maxCharacters}</span>
 	</div>;
 }

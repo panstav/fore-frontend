@@ -4,11 +4,11 @@ import Checkbox from 'components/elements/Checkbox';
 
 import AddClaimBody from "./AddClaimBody";
 
-export default function AddClaim({ control }) {
+export default function AddClaim({ control, copiedContent }) {
 	return <>
 		<div className="field">
 			<div className="is-relative">
-				<AddClaimBody />
+				<AddClaimBody {...{ copiedContent }} />
 			</div>
 		</div>
 		<div style={{display:'none'}} className="field levem is-justify-content-start">
