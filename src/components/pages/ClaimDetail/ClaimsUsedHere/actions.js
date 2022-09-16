@@ -26,8 +26,8 @@ export default {
 
 	async connectClaims({ claims }, { parentId, parentContent, childId, childContent, direction }) {
 
-		await api.connectClaims({ parentId, parentContent, childId, childContent, direction });
-		notify(notifications.NEW_CLAIM_CONNECTION);
+		api.connectClaims({ parentId, parentContent, childId, childContent, direction })
+			.then(() => notify(notifications.NEW_CLAIM_CONNECTION));
 
 		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
 		if (~indexOfParentClaim) {
