@@ -30,8 +30,14 @@ h1.title
 		right: 1em
 
 .fore-claim
-	$start-gradient: transparent calc(100% - (var(--power) / var(--total-power) * 200%))
-	$end-gradient: rgba($primary-light, 0.15) 100%
+	// avoid blue background when clicking on the claim
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+	-webkit-tap-highlight-color: transparent
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
 
 	@include mobile
 		padding: 0.5rem 0
