@@ -51,8 +51,12 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, pa
 						<div className="boxes">
 							{!claimsUsedHere[direction].length && <div className="has-text-centered has-text-grey-light pt-3 pb-6">None</div>}
 							{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
-								const styles = { ['--total-power']: totalPowerHere, ['--power']: power, ...(isPoweredByUser ? {} : { ['--bg-color']: 'transparent' } ) };
-								const classes = classNames('fore-claim box is-clickable has-background-white', claimsOnBothSides ? 'flat-across' : '');
+								const styles = { ['--total-power']: totalPowerHere, ['--power']: power };
+								const classes = classNames(
+									'fore-claim box is-clickable has-background-white',
+									claimsOnBothSides && 'flat-across',
+									isPoweredByUser && 'is-powered-by-user'
+								);
 								const innerClasses = classNames('is-flex is-align-items-center reset-anchors', `is-flex is-flex-direction-${contentOptionsOrder}`);
 								return <div key={id}>
 									<div data-direction={direction} className={classes} style={styles}>

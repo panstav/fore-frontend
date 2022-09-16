@@ -35,8 +35,10 @@ h1.title
 
 
 .fore-claim
-	$start-gradient: var(--bg-color, rgba($power, 0.2)) calc(100% - (var(--power) / var(--total-power) * 200%))
-	$end-gradient: rgba($primary-light, 0.2) 100%
+	$start-gradient: white calc(100% - (var(--power) / var(--total-power) * 200%))
+	$end-support-gradient: rgba($success, 0.2) 100%
+	$end-opposition-gradient: rgba($danger, 0.2) 100%
+	$end-powered-gradient: rgba($power, 0.2) 100%
 
 	// avoid blue background when clicking on the claim
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
@@ -53,11 +55,15 @@ h1.title
 		padding: $size-6 $size-7
 
 	&[data-direction="support"]
-		background: linear-gradient(270deg, $start-gradient, $end-gradient)
+		background: linear-gradient(270deg, $start-gradient, $end-support-gradient)
+		&.is-powered-by-user
+			background: linear-gradient(270deg, $start-gradient, $end-powered-gradient)
 		&.flat-across
 			border-top-right-radius: 0
 	&[data-direction="opposition"]
-		background: linear-gradient(90deg, $start-gradient, $end-gradient)
+		background: linear-gradient(90deg, $start-gradient, $end-opposition-gradient)
+		&.is-powered-by-user
+			background: linear-gradient(90deg, $start-gradient, $end-powered-gradient)
 		&.flat-across
 			border-top-left-radius: 0
 
