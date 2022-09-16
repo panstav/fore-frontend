@@ -9,7 +9,7 @@ const presets = {
 	[notifications.NEW_CLAIM_SENT]: () => ({
 		closeButton: false,
 		autoClose: false,
-		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
+		message: () => <div className="is-align-items-center is-flex is-justify-content-space-between">
 			<p>Creating your Claim...</p>
 		</div>
 	}),
@@ -18,7 +18,7 @@ const presets = {
 		type: 'success',
 		closeButton: true,
 		autoClose: true,
-		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
+		message: () => <div className="is-align-items-center is-flex is-justify-content-space-between">
 			<p>Got it!</p>
 			<Link className="button is-small" href={`/claim/${claimId}`}>View Claim</Link>
 		</div>
@@ -27,7 +27,7 @@ const presets = {
 	[notifications.NEW_CLAIM_CONNECTION]: () => ({
 		closeButton: false,
 		autoClose: true,
-		message: () => <div className="is-align-items-baseline is-flex is-justify-content-space-between">
+		message: () => <div className="is-align-items-center is-flex is-justify-content-space-between">
 			<p>Reused Claim! </p>
 		</div>
 	}),
