@@ -72,8 +72,7 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 				tooltip: 'Remove your Claim from here'
 			}
 		]
-	]
-	.reduce((accu, options, index) => {
+	].reduce((accu, options, index) => {
 		if (!options) return accu;
 		if (!accu.length) return accu.concat(options.filter((option) => !!option));
 		return accu.concat({ isDivider: true, key: `divider-${index}` }, options);
