@@ -1,11 +1,24 @@
+import { connect } from 'unistore/preact';
 import { useLocation } from 'wouter-preact';
+
+import isAuth from 'lib/is-auth';
 
 import Component from './TopNav';
 
-export default function TopNav() {
+import { roles } from 'constants';
+
+export default connect(mapStateToProps)(TopNav);
+
+function TopNav({ isShownOnHome }) {
 	// don't show the top nav if we're viewing the promotional homepage
 	const [location] = useLocation();
-	if (location === '/') return null;
+	if (!isShownOnHome && location === '/') return null;
 
 	return Component();
+}
+
+function mapStateToProps({ user }) {
+	return {
+		isShownOnHome: isAuth(user.role, { minimum: roles.MEMBER_BETA })
+	};
 }
