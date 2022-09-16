@@ -33,6 +33,10 @@ h1.title
 	@include tablet
 		right: 1em
 
+.support-claims, .opposition-claims
+		width: calc(50% - $size-9)
+		@include tablet
+			width: calc(50% - $size-8)
 
 .fore-claim
 	$start-gradient: white calc(100% - (var(--power) / var(--total-power) * 200%))
@@ -49,26 +53,53 @@ h1.title
 	-ms-user-select: none
 	user-select: none
 
-	@include mobile
-		padding: 0.5rem 0
-	@include tablet
-		padding: $size-6 $size-7
-
 	&[data-direction="support"]
 		background: linear-gradient(270deg, $start-gradient, $end-support-gradient)
 		&.is-powered-by-user
 			background: linear-gradient(270deg, $start-gradient, $end-powered-gradient)
-		&.flat-across
-			border-top-right-radius: 0
+		@include touch
+			border-top-left-radius: 0
+			border-bottom-left-radius: 0
 	&[data-direction="opposition"]
 		background: linear-gradient(90deg, $start-gradient, $end-opposition-gradient)
 		&.is-powered-by-user
 			background: linear-gradient(90deg, $start-gradient, $end-powered-gradient)
-		&.flat-across
-			border-top-left-radius: 0
+		@include touch
+			border-top-right-radius: 0
+			border-bottom-right-radius: 0
 
-	.fore-claim-content
-		padding: 0 0 0 $size-8
+	margin-bottom: $size-8
+	@include tablet
+		margin-bottom: $size-6
+
+	padding: 0
+	a.fore-claim-content
+		font-size: $size-7
+		padding: $size-9 $size-8
+		@include tablet
+			font-size: $size-6
+			padding: $size-7
+	&[data-direction="support"]
+		a.fore-claim-content
+			@include mobile
+				padding-left: 0
+	&[data-direction="opposition"]
+		a.fore-claim-content
+			@include mobile
+				padding-right: 0
+
+	.dropdown
+		.dropdown-trigger
+			padding-top: 0.1em
+		@include tablet
+			.dropdown-trigger
+				padding-top: $size-7
+			&.is-left
+				.dropdown-trigger
+					padding-left: $size-8
+			&.is-right
+				.dropdown-trigger
+					padding-right: $size-8
 
 	.dropdown-trigger
 		padding: 0 $size-9
@@ -96,11 +127,6 @@ h1.title
 		&.rephrase-claim
 			width: $size-6
 
-.fore-claim-power
-	@include tablet
-			margin-right: $size-8
-
-.fore-claim-content
-	font-size: $size-7
-	@include tablet
-		font-size: $size-6
+	.fore-claim-power
+		@include tablet
+				margin-right: $size-8

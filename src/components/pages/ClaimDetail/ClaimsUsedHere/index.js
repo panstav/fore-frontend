@@ -58,17 +58,14 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 	};
 	const totalPowerHere = totalPower.support + totalPower.opposition;
 	const parentHasUserPower = supportUsedHere.concat(oppositionUsedHere).some((claim) => claim.isPoweredByUser);
-	const isDominating = (direction) => totalPower[direction] > totalPowerHere - totalPower[direction];
 
 	const props = {
 		support: supportUsedHere.sort(directedClaimSort),
 		opposition: oppositionUsedHere.sort(directedClaimSort),
 		totalPowerHere,
 		parentHasUserPower,
-		isDominating,
 		addClaimHere,
 		addClaimHereModalProps,
-		claimsOnBothSides: supportUsedHere.length && oppositionUsedHere.length,
 		claimIdWithOpenDropdown, openDropdown
 	};
 
