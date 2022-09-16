@@ -1,3 +1,4 @@
+import { useCallback, useState } from 'preact/hooks';
 import { connect } from 'unistore/preact';
 
 import withContext from 'lib/with-context';
@@ -17,6 +18,12 @@ export default withContext({
 });
 
 function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection }) {
+
+	const [ claimIdWithOpenDropdown, setClaimIdWithOpenDropdown ] = useState();
+	const openDropdown = useCallback((claimId) => {
+		if (claimIdWithOpenDropdown === claimId) return setClaimIdWithOpenDropdown();
+		return setClaimIdWithOpenDropdown(claimId);
+	}, [claimIdWithOpenDropdown, setClaimIdWithOpenDropdown]);
 
 	const [ addClaimHereModalProps, showAddClaimHereModal ] = useModal();
 
@@ -50,16 +57,19 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 		opposition: countPower(oppositionUsedHere)
 	};
 	const totalPowerHere = totalPower.support + totalPower.opposition;
+	const parentHasUserPower = supportUsedHere.concat(oppositionUsedHere).some((claim) => claim.isPoweredByUser);
 	const isDominating = (direction) => totalPower[direction] > totalPowerHere - totalPower[direction];
 
 	const props = {
-		support: supportUsedHere,
-		opposition: oppositionUsedHere,
+		support: supportUsedHere.sort(directedClaimSort),
+		opposition: oppositionUsedHere.sort(directedClaimSort),
 		totalPowerHere,
+		parentHasUserPower,
 		isDominating,
 		addClaimHere,
 		addClaimHereModalProps,
-		claimsOnBothSides: supportUsedHere.length && oppositionUsedHere.length
+		claimsOnBothSides: supportUsedHere.length && oppositionUsedHere.length,
+		claimIdWithOpenDropdown, openDropdown
 	};
 
 	return Component(props);
@@ -88,10 +98,8 @@ function mapStateToProps({ claims }, { currentId }) {
 		parentContent: claim.content,
 
 		// two arrays separated so that component would recognized change in each
-		supportUsedHere: claim.usedHere.support
-			.sort(directedClaimSort),
+		supportUsedHere: claim.usedHere.support,
 		oppositionUsedHere: claim.usedHere.opposition
-			.sort(directedClaimSort)
 	};
 
 }

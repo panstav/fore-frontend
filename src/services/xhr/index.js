@@ -26,12 +26,24 @@ export default {
 		return apiCall.get(`claim-detail?id=${id}`);
 	},
 
+	powerClaim(relation) {
+		return apiCall.post('power-claim', relation);
+	},
+
+	releasePower(relation) {
+		return apiCall.post('release-power', relation);
+	},
+
 	async addClaim(claim) {
 		return apiCall.post('claim', claim);
 	},
 
 	async connectClaims(connection) {
 		return apiCall.post('connect-claims', connection);
+	},
+
+	async disconnectClaim(connection) {
+		return apiCall.delete('claim-connection', connection);
 	},
 
 	async searchClaimsOfUser(keywords) {

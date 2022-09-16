@@ -3,6 +3,10 @@ h1.title
 	@include tablet
 		font-size: $size-1
 
+.dropdown-menu .dropdown-item[disabled="true"] > *:not(.disable-unaffected)
+	pointer-events: none
+	opacity: 0.5
+
 .fore-used-at-counter
 	@include mobile
 		margin-inline-end: -0.5em !important
@@ -29,7 +33,11 @@ h1.title
 	@include tablet
 		right: 1em
 
+
 .fore-claim
+	$start-gradient: var(--bg-color, rgba($power, 0.2)) calc(100% - (var(--power) / var(--total-power) * 200%))
+	$end-gradient: rgba($primary-light, 0.2) 100%
+
 	// avoid blue background when clicking on the claim
 	-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
 	-webkit-tap-highlight-color: transparent
@@ -52,20 +60,35 @@ h1.title
 		background: linear-gradient(90deg, $start-gradient, $end-gradient)
 		&.flat-across
 			border-top-left-radius: 0
-		.fore-claim-content
-			padding: 0 $size-8
+
+	.fore-claim-content
+		padding: 0 0 0 $size-8
+
+	.dropdown-trigger
+		padding: 0 $size-9
+		@include tablet
+			padding: 0
+		.icon
+			width: $size-6
+
+	.dropdown-menu
+		z-index: 100
+		.icon
+			width: $size-5
+
+	.icon-wrapper
+		width: $size-4
 
 	.icon
-		width: 1.25rem
-		@include tablet
-			width: 1.5rem
-			margin-right: 0.5rem
-		svg
-			stroke: $grey-light
-			stroke-width: 0.6rem
-			fill: transparent
-		&.is-active svg
-			fill: $power
+		stroke-width: 0.6em
+
+		&.power-claim, &.release-power
+			svg
+				stroke: $grey-light
+				fill: $power
+
+		&.rephrase-claim
+			width: $size-6
 
 .fore-claim-power
 	@include tablet

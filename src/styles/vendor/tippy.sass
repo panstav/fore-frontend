@@ -1,0 +1,22 @@
+@import node_modules/tippy.js/dist/tippy
+
+.tippy-box[data-theme="default"] .tippy-content
+	a
+		color: $primary
+
+.tippy-box[data-theme="desktop-only"]
+	display: none
+	@include from($desktop)
+		display: inherit
+
+$lightTippy: hsl(0, 0%, 48%)
+.tippy-box[data-theme~='light']
+	background-color: $lightTippy
+.tippy-box[data-theme~='light'][data-placement^='top'] > .tippy-arrow::before
+	border-top-color: $lightTippy
+.tippy-box[data-theme~='light'][data-placement^='bottom'] > .tippy-arrow::before
+	border-bottom-color: $lightTippy
+.tippy-box[data-theme~='light'][data-placement^='left'] > .tippy-arrow::before
+	border-left-color: $lightTippy
+.tippy-box[data-theme~='light'][data-placement^='right'] > .tippy-arrow::before
+	border-right-color: $lightTippy
