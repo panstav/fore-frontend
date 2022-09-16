@@ -68,6 +68,14 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 		return claims.reduce((total, claim) => total + claim.power, 0);
 	}
 
+	function directedClaimSort(a, b) {
+		// powered by user claims should be first
+		if (a.isPoweredByUser && !b.isPoweredByUser) return -1;
+		if (!a.isPoweredByUser && b.isPoweredByUser) return 1;
+		// if a and b are both powered by user or none is - sort by power
+		return b.power - a.power;
+	}
+
 }
 
 function mapStateToProps({ claims }, { currentId }) {
@@ -85,10 +93,5 @@ function mapStateToProps({ claims }, { currentId }) {
 		oppositionUsedHere: claim.usedHere.opposition
 			.sort(directedClaimSort)
 	};
-
-	function directedClaimSort(a, b) {
-		if (a.poweredByUser) return -1;
-		return b.power - a.power;
-	}
 
 }
