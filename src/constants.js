@@ -19,7 +19,6 @@ export const roles = {
 	EDITOR: 'EDITOR',
 	ADMIN: 'ADMIN'
 };
-roles.DEMO = roles.MEMBER;
 
 export const notifications = {
 	autoCloseMs: 5000,
