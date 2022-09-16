@@ -4,7 +4,7 @@ import localstorage from 'services/localstorage';
 
 import { urls } from 'constants.js';
 
-export default ['get', 'post', 'put', 'patch'].reduce((accu, method) => {
+export default ['get', 'post', 'put', 'patch', 'delete'].reduce((accu, method) => {
 	return ({ [method]: transformApiCall(method), ...accu });
 }, {});
 
