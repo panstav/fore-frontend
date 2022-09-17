@@ -36,7 +36,7 @@ export default {
 		}
 
 		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
-		if (~indexOfChildClaim) {
+		if (~indexOfChildClaim && ('usedAt' in claims[indexOfChildClaim])) {
 			const newChildDirectedUsedAt = claims[indexOfChildClaim].usedAt[direction].concat({ id: parentId, content: parentContent, power: 0 });
 			claims[indexOfChildClaim].usedAt[direction] = newChildDirectedUsedAt;
 		}
