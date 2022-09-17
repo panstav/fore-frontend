@@ -38,17 +38,17 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 				slug: 'release-power',
 				icon: Power,
 				onClick: () => {
-					openDropdown();
-					return releasePower({ parentClaimId, direction, childClaimId: claimId });
+					releasePower({ parentClaimId, direction, childClaimId: claimId });
+					return openDropdown();
 				}
 			} : {
 				label: 'Power',
 				slug: 'power-claim',
 				icon: Power,
 				onClick: () => {
-					openDropdown();
 					if (parentHasUserPower) return;
-					return powerClaim({ parentClaimId, direction, childClaimId: claimId });
+					powerClaim({ parentClaimId, direction, childClaimId: claimId });
+					return openDropdown();
 				},
 				disabled: parentHasUserPower,
 				tooltip: parentHasUserPower ? 'You\'ve already powered a claim here' : 'Choose Claim as the best argument'
@@ -57,10 +57,13 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 				label: 'Rephrase',
 				slug: 'rephrase-claim',
 				icon: Copy,
-				onClick: () => showAddClaimModal({
-					copiedContent: claimContent,
-					onSubmit: addClaim
-				})
+				onClick: () => {
+					showAddClaimModal({
+						copiedContent: claimContent,
+						onSubmit: addClaim
+					});
+					return openDropdown();
+				}
 			}
 		],
 		!isByUser ? null : [
@@ -68,7 +71,10 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 				label: 'Disconnect',
 				slug: 'disconnect',
 				icon: ({ className }) => <Close className={classNames('has-text-danger', className)} />,
-				onClick: () => disconnectClaim({ parentClaimId, direction, childClaimId: claimId }),
+				onClick: () => {
+					disconnectClaim({ parentClaimId, direction, childClaimId: claimId });
+					return openDropdown();
+				},
 				tooltip: 'Remove your Claim from here'
 			}
 		]

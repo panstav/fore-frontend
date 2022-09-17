@@ -26,7 +26,7 @@ export default function ClaimOptionsDropdown({ isOpen, dropDownOptions, directio
 								<span>{label}</span>
 							</div>
 							{tooltip && <Tooltip content={tooltip} className="disable-unaffected">
-								<Info className="has-text-grey" style={{ width: '1.25em' }} />
+								<Info onClick={stopPropagation} className="has-text-grey" style={{ width: '1.25em' }} />
 							</Tooltip>}
 						</a>
 					</Fragment>;
@@ -34,4 +34,8 @@ export default function ClaimOptionsDropdown({ isOpen, dropDownOptions, directio
 			</div>
 		</div>}
 	</div>;
+}
+
+function stopPropagation(event) {
+	event.stopPropagation();
 }
