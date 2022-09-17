@@ -15,7 +15,7 @@ export default {
 		notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
 
 		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
-		const newDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: fullClaim.id, content: fullClaim.content, power: 0 });
+		const newDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: fullClaim.id, content: fullClaim.content, power: 0, isByUser: true });
 
 		const newClaims = claims.concat(fullClaim);
 		newClaims[indexOfParentClaim].usedHere[direction] = newDirectedUsedHere;
