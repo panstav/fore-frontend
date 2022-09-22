@@ -11,7 +11,7 @@ export default function ClaimOptionsDropdown({ isOpen, dropDownOptions, directio
 
 	return <div className={classes} {...{ onBlur }} tabIndex={0}>
 		<div className="dropdown-trigger has-text-grey-light is-flex" onClick={openDropdown}>
-			<Dropdown isVertical={true} style={{ opacity: '0.5' }} />
+			<Dropdown isVertical={true} style={{ opacity: '0.75' }} />
 		</div>
 		{isOpen && <div className="dropdown-menu" id="dropdown-menu" role="menu">
 			<div className="dropdown-content">

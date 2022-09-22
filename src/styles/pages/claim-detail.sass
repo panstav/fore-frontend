@@ -22,55 +22,38 @@ h1.title
 			width: 40px
 			height: 40px
 
-.fore-add-support, .fore-add-opposition
-	position: absolute
-.fore-add-support
-	left: 0
-	@include tablet
-		left: 1em
-.fore-add-opposition
-	right: 0
-	@include tablet
-		right: 1em
-
 .support-claims, .opposition-claims
-		width: calc(50% - $size-9)
-		@include tablet
-			width: calc(50% - $size-8)
+	width: 50%
+.support-claims .box
+	border-top-right-radius: 0
+	border-bottom-right-radius: 0
+	@include touch
+		border-top-left-radius: 0
+		border-bottom-left-radius: 0
+.opposition-claims .box
+	border-top-left-radius: 0
+	border-bottom-left-radius: 0
+	@include touch
+		border-top-right-radius: 0
+		border-bottom-right-radius: 0
 
 .fore-claim
+	@include no-select-marks
+	margin: 0
+
 	$start-gradient: white calc(100% - (var(--power) / var(--total-power) * 200%))
 	$end-support-gradient: rgba($success, 0.2) 100%
 	$end-opposition-gradient: rgba($danger, 0.2) 100%
 	$end-powered-gradient: rgba($power, 0.2) 100%
 
-	// avoid blue background when clicking on the claim
-	-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
-	-webkit-tap-highlight-color: transparent
-	-webkit-user-select: none
-	-khtml-user-select: none
-	-moz-user-select: none
-	-ms-user-select: none
-	user-select: none
-
 	&[data-direction="support"]
 		background: linear-gradient(270deg, $start-gradient, $end-support-gradient)
 		&.is-powered-by-user
 			background: linear-gradient(270deg, $start-gradient, $end-powered-gradient)
-		@include touch
-			border-top-left-radius: 0
-			border-bottom-left-radius: 0
 	&[data-direction="opposition"]
 		background: linear-gradient(90deg, $start-gradient, $end-opposition-gradient)
 		&.is-powered-by-user
 			background: linear-gradient(90deg, $start-gradient, $end-powered-gradient)
-		@include touch
-			border-top-right-radius: 0
-			border-bottom-right-radius: 0
-
-	margin-bottom: $size-8
-	@include tablet
-		margin-bottom: $size-6
 
 	padding: 0
 	a.fore-claim-content

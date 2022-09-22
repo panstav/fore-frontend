@@ -4,6 +4,8 @@ import classNames from 'classnames';
 import Section from 'wrappers/Section';
 import Modal from 'wrappers/Modal';
 
+import { Plus } from 'elements/Icon';
+
 import ClaimOptionsDropdown from './ClaimOptionsDropdown';
 import AddClaimModal from './AddClaimModal';
 
@@ -29,12 +31,14 @@ const directions = Object.keys(propsByDirection);
 export default function ClaimsUsedHere({ support, opposition, totalPowerHere, parentHasUserPower, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
 	const claimsUsedHere = { support, opposition };
 	return <>
-		<Section noSidePadding={true} className="is-flex is-justify-content-space-between mt-6 px-2 mb-3">
+		<Section className="is-flex is-justify-content-space-between mt-6 mb-3">
 			{directions.map((direction) => {
 				const { label, color } = propsByDirection[direction];
-				const buttonColors = classNames('button is-small has-text-weight-bold has-text-white', `has-background-${color}`);
-				return <button key={direction} onClick={addClaimHere(direction)} className={buttonColors} style={{ borderRadius: '0.25em' }}>
-					{label}
+				const buttonClasses = classNames('button is-small has-text-weight-bold has-text-white', `has-background-${color}`);
+				return <button key={direction} onClick={addClaimHere(direction)} className={buttonClasses} style={{ borderRadius: '0.25em' }}>
+					{ direction === 'support' && <Plus /> }
+					<div className="icon-text">{label}</div>
+					{ direction === 'opposition' && <Plus /> }
 				</button>;
 			})}
 		</Section>
@@ -42,7 +46,7 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, pa
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
 					const { contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
-					return <div key={direction} className={`${direction}-claims`}>
+					return <div key={direction} className={`${direction}-claims boxes`}>
 						{!claimsUsedHere[direction].length && <div className="has-text-centered has-text-grey-light pt-3 pb-6">None</div>}
 						{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
 							const styles = { ['--total-power']: totalPowerHere, ['--power']: power };

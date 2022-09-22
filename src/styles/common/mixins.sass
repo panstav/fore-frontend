@@ -4,3 +4,15 @@
 		text-decoration: none
 .reset-anchors
 	@include reset-anchors
+
+@mixin no-select-marks
+	// avoid blue background when clicking on the claim
+	-webkit-tap-highlight-color: rgba(255, 255, 255, 0)
+	-webkit-tap-highlight-color: transparent
+	-webkit-user-select: none
+	-khtml-user-select: none
+	-moz-user-select: none
+	-ms-user-select: none
+	user-select: none
+.no-select-marks
+	@include no-select-marks
