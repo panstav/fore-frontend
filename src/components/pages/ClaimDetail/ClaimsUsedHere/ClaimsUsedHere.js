@@ -17,7 +17,7 @@ const propsByDirection = {
 		dropDownStyle: { paddingRight: '2px' }
 	},
 	opposition: {
-		label: 'Opposition',
+		label: 'Oppose',
 		color: 'danger',
 		contentOptionsOrder: 'row-reverse',
 		dropdownIsRight: true,
