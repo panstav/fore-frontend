@@ -15,7 +15,7 @@ const fixtures = {
 	getClaimDetail,
 	addClaim,
 	connectClaims,
-	searchOwnClaims,
+	searchClaimsOfUser: searchOwnClaims,
 	powerClaim,
 	releasePower
 };
