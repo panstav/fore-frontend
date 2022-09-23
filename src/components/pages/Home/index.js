@@ -5,7 +5,8 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
-import Feed from './Feed';
+import Feed from 'compounds/Feed';
+
 import PromotionalHomepage from './PromotionalHomepage';
 
 import { roles } from 'constants.js';
@@ -26,13 +27,11 @@ function Home({ isLoggedIn, isBetaUser }) {
 		}
 	}
 
-	const Page = isBetaUser
 		// show feed to beta users
-		? Feed
-		// otherwise show the promotional page
-		: PromotionalHomepage;
+	if (isBetaUser) return <Feed spaceId="public" />;
 
-	return <Page />;
+	// otherwise show the promotional page
+	return <PromotionalHomepage />;
 }
 
 function mapStateToProps({ user }) {

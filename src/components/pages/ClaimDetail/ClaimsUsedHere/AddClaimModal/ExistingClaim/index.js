@@ -41,22 +41,25 @@ function ExistingClaim({ searchResults, searchKeywords, recentlyConnectedClaims,
 
 }
 
-function mapStateToProps ({ user, search, claims }, { claimId }) {
+function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 
 	const claimsUsedHere = concatUsedHere(claims, claimId);
 
 	const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', [])
+		.filter(({ spaceId }) => spaces.currentId === spaceId)
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get('recentlyViewedClaims', [])
 		// avoid showing current claim as it may have been recently added
 		// also avoid showing claims that weren't authored by the user
-		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id))
+		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id && claim.spaceId === spaces.currentId))
+		.map(markInvalidClaims);
+	const searchResults = search.ClaimDetailAddClaim.results
+		.filter(({ spaceId }) => spaces.currentId === spaceId)
 		.map(markInvalidClaims);
 
 	return {
 		searchKeywords: search.ClaimDetailAddClaim.keywords,
-		searchResults: search.ClaimDetailAddClaim.results
-			.map(markInvalidClaims),
+		searchResults,
 		recentlyConnectedClaims,
 		recentlyViewedClaims
 

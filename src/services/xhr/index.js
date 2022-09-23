@@ -14,8 +14,8 @@ export default {
 		return apiCall.patch('beta-updates', updates);
 	},
 
-	async getLatestClaims() {
-		return apiCall.get('claims?query=new');
+	async getLatestClaims({ spaceId }) {
+		return apiCall.get(`claims?spaceId=${spaceId}`);
 	},
 
 	async getTopClaims() {
@@ -46,8 +46,8 @@ export default {
 		return apiCall.delete('claim-connection', connection);
 	},
 
-	async searchClaimsOfUser(keywords) {
-		return apiCall.get(`search-own-claims?q=${keywords}`);
+	async searchClaimsOfUser({ keywords, spaceId }) {
+		return apiCall.get(`search-own-claims?q=${keywords}&spaceId=${spaceId}`);
 	}
 
 };

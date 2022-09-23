@@ -1,4 +1,4 @@
-import { useContext } from 'preact/compat';
+import { useContext, useEffect } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
@@ -9,18 +9,20 @@ import useEffectUntil from 'hooks/use-effect-until';
 
 import actions from './actions.js';
 
-import Component from './Home.js';
+import Component from './Feed.js';
 
 const timeAgo = new TimeAgo();
 
-export default connect(mapStateToProps, actions)(Home);
+export default connect(mapStateToProps, actions)(Feed);
 
-function Home({ claims, fetchedLatest, getLatestClaims, addClaim }) {
+function Feed({ claims, fetchedLatest, getLatestClaims, addClaim, setCurrentSpace, spaceId }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 	const createNewClaim = () => showAddClaimModal({ onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous }) });
 
 	useEffectUntil(getLatestClaims, [fetchedLatest]);
+
+	useEffect(() => setCurrentSpace(spaceId), [spaceId, setCurrentSpace]);
 
 	const props = {
 		claims,
@@ -31,10 +33,10 @@ function Home({ claims, fetchedLatest, getLatestClaims, addClaim }) {
 	return Component(props);
 }
 
-function mapStateToProps({ claims, flags: { fetchedLatest } }) {
+function mapStateToProps({ claims, flags: { fetchedLatest } }, { spaceId }) {
 
 	const sortedClaims = claims
-		.filter(({ isAnonymous }) => !isAnonymous)
+		.filter((claim) => claim.spaceId === spaceId)
 		.sort((a, b) => b.createdAt - a.createdAt)
 		.map((claim) => {
 			claim.createdAtTimeAgo = timeAgo.format(new Date(claim.createdAt), 'mini-now');
@@ -43,6 +45,7 @@ function mapStateToProps({ claims, flags: { fetchedLatest } }) {
 
 	return {
 		claims: sortedClaims,
-		fetchedLatest
+		fetchedLatest,
+		spaceId
 	};
 }

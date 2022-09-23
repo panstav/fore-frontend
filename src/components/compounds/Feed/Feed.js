@@ -5,7 +5,7 @@ import Section from 'wrappers/Section.js';
 import Loader from 'elements/Loader.js';
 import Avatar from 'elements/Avatar';
 
-export default function Home({ claims, createNewClaim, isLoading }) {
+export default function Feed({ claims, createNewClaim, isLoading }) {
 	return <>
 		<Section withTopMargin={true}>
 			<h1 className="title">Recent</h1>

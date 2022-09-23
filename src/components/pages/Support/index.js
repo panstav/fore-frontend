@@ -21,6 +21,9 @@ function Support({ addClaim }) {
 		hideConfirmation();
 		showAddClaimModal({
 			onSubmit(claim) {
+				// action has access to spaces.currentId
+				// only in this case are we required to pass the spaceId explicitly
+				claim.spaceId = 'public';
 				addClaim(claim, { avoidNotifications: true });
 				showConfirmation();
 			}
