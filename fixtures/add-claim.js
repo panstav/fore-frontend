@@ -9,7 +9,7 @@ export default function addClaim({ parentId, direction, ...claim }) {
 		createdAt: new Date().getTime(),
 		author: {
 			name: "You!",
-			profileImageUrl: "https://thispersondoesnotexist.com/image"
+			profileImageUrl: `https://avatars.dicebear.com/v2/avataaars/${claimId}.jpg`
 		},
 		usedAt: {
 			support: [],
