@@ -15,14 +15,12 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(Feed);
 
-function Feed({ claims, fetchedLatest, getLatestClaims, addClaim, setCurrentSpace, spaceId }) {
+function Feed({ claims, fetchedLatest, getLatestClaims, addClaim }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 	const createNewClaim = () => showAddClaimModal({ onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous }) });
 
-	useEffectUntil(getLatestClaims, [fetchedLatest]);
-
-	useEffect(() => setCurrentSpace(spaceId), [spaceId, setCurrentSpace]);
+	useEffect(getLatestClaims, []);
 
 	const props = {
 		claims,
@@ -45,7 +43,6 @@ function mapStateToProps({ claims, flags: { fetchedLatest } }, { spaceId }) {
 
 	return {
 		claims: sortedClaims,
-		fetchedLatest,
-		spaceId
+		fetchedLatest
 	};
 }

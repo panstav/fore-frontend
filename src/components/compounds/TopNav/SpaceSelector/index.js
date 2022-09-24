@@ -9,13 +9,16 @@ import Component from './SpaceSelector';
 
 export default connect(mapStateToProps)(SpaceSelector);
 
-function SpaceSelector({ currentSpace, availableSpaces, userRole }) {
+function SpaceSelector({ currentSpace, availableSpaces }) {
 
 	const [isOpenDropdown,, closeDropdown, toggleDropdown] = useBooleanState(false);
 	const handleCloseDropdown = useCallback((event) => {
 		if (event.relatedTarget && event.relatedTarget.classList.contains('dropdown-item')) return;
 		closeDropdown();
 	}, [closeDropdown]);
+
+	// avoid rendering dropdown when not Space was yet to be determined
+	if (!currentSpace) return null;
 
 	useEffect(() => {
 		// ensure that the dropdown is closed when the user navigates
@@ -44,7 +47,7 @@ function mapStateToProps({ user, spaces }) {
 
 	function attachHrefDisabled(space) {
 		space.href = `/space/${space.id}`;
-		space.disabled = space.id === currentSpace.id || !isAuth(user.role, { minimum: space.minRole });
+		space.disabled = currentSpace && (space.id === currentSpace.id || !isAuth(user.role, { minimum: space.minRole }));
 		return space;
 	}
 

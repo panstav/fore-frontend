@@ -5,7 +5,7 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
-import Feed from 'compounds/Feed';
+import Space from 'pages/Space';
 
 import PromotionalHomepage from './PromotionalHomepage';
 
@@ -27,8 +27,8 @@ function Home({ isLoggedIn, isBetaUser }) {
 		}
 	}
 
-		// show feed to beta users
-	if (isBetaUser) return <Feed spaceId="public" />;
+	// show feed to beta users
+	if (isBetaUser) return <Space params={{ spaceId: 'public' }} />;
 
 	// otherwise show the promotional page
 	return <PromotionalHomepage />;
