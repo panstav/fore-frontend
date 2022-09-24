@@ -16,7 +16,7 @@ export default function SpaceSelector({ currentSpaceName, availableSpaces, isOpe
 		<div className="dropdown-menu fore-available-spaces">
 			<div className="dropdown-content">
 				{availableSpaces.map(({ href, disabled, tag, name }) => {
-					return <DropdownItemOrOption {...{ href, disabled }} key={href} className="dropdown-item is-flex is-justify-content-space-between is-align-items-center">
+					return <DropdownItemOrOption {...{ href, disabled, toggleDropdown }} key={href} className="dropdown-item is-flex is-justify-content-space-between is-align-items-center">
 						<span>{name}</span>
 						{tag && <span className="tag is-size-8 is-light" style={{ textTransform: 'uppercase', alignItems: 'end' }}>{tag}</span>}
 					</DropdownItemOrOption>;
@@ -26,6 +26,13 @@ export default function SpaceSelector({ currentSpaceName, availableSpaces, isOpe
 	</div>;
 }
 
-function DropdownItemOrOption({ href, ...props }) {
-	return props.disabled ? <div {...props} /> : <Link {...{ href, onClick: stopPropagation, ...props }} />;
+function DropdownItemOrOption({ href, toggleDropdown, ...props }) {
+	return props.disabled
+		// disabled item should not appear clickable
+		? <div {...props} className="has-text-gray" />
+		: href
+			// link is available - render a clickable item
+			? <Link {...{ href, onClick: stopPropagation, ...props }} />
+			// no link means we don't do anything, just close the dropdown
+			: <a onClick={toggleDropdown} {...props} />;
 }

@@ -27,8 +27,9 @@ function SpaceSelector({ currentSpace, availableSpaces }) {
 
 	const props = {
 		currentSpaceName: currentSpace.name,
-		availableSpaces: availableSpaces,
+		availableSpaces,
 		isOpenDropdown,
+		// ignore event data triggering the toggle
 		toggleDropdown: () => toggleDropdown(),
 		closeDropdown: handleCloseDropdown
 	};
@@ -46,8 +47,14 @@ function mapStateToProps({ user, spaces }) {
 	};
 
 	function attachHrefDisabled(space) {
-		space.href = `/space/${space.id}`;
-		space.disabled = currentSpace && (space.id === currentSpace.id || !isAuth(user.role, { minimum: space.minRole }));
+		// item should appear unclickable to unauthenticated users
+		space.disabled = !isAuth(user.role, { minimum: space.minRole });
+		// disabled items + the items that directs here don't need a link
+		space.href = (space.disabled || (currentSpace && space.id === currentSpace.id))
+			? null
+			// link to the space, unless it's the public space, then link to the home page
+			: space.id === 'public' ? '/' : `/space/${space.id}`;
+
 		return space;
 	}
 
