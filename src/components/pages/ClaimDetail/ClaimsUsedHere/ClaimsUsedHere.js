@@ -46,7 +46,7 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, pa
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
 					const { contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
-					return <div key={direction} className={`${direction}-claims boxes`}>
+					return <div key={direction} className={`${direction}-claims`}>
 						{!claimsUsedHere[direction].length && <div className="has-text-centered has-text-grey-light pt-3 pb-6">None</div>}
 						{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
 							const styles = { ['--total-power']: totalPowerHere, ['--power']: power };
