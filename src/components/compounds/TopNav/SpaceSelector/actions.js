@@ -19,7 +19,7 @@ export default {
 			const indexOfPublicSpace = updatedSpaces.findIndex(space => space.id === 'public');
 			updatedSpaces[indexOfPublicSpace].isCurrent = true;
 			return { spaces: updatedSpaces };
-		};
+		}
 
 		const [, slug, spaceId] = pathname.split('/');
 		if (slug !== 'space' || !spaceId) return {};
@@ -32,4 +32,4 @@ export default {
 		return { spaces: updatedSpaces };
 	}
 
-}
+};

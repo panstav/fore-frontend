@@ -26,6 +26,7 @@ claims = claims.map((claim) => ({
 	})
 }));
 
+// eslint-disable-next-line no-debugger
 debugger;
 
 function getRandomClaimRefs({ max = 10, map = (x) => x }) {

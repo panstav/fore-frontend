@@ -1,8 +1,6 @@
 import { Link } from "wouter-preact";
 import classNames from "classnames";
 
-import stopPropagation from "lib/stop-propagation";
-
 import { DownArrow } from "elements/Icon";
 
 export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentSpaceName, availableSpaces, setCurrentSpace, closeDropdown }) {
@@ -18,7 +16,7 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 		<div className="dropdown-menu fore-available-spaces">
 			<div className="dropdown-content">
 				{availableSpaces.map(({ id, href, disabled, tag, name }) => {
-					const onClick = () => { toggleDropdown(); setCurrentSpace(id) };
+					const onClick = () => { toggleDropdown(); setCurrentSpace(id); };
 					return <DropdownItemOrOption {...{ href, disabled, toggleDropdown, onClick }} key={href} className="dropdown-item is-flex is-justify-content-space-between is-align-items-center">
 						<span>{name}</span>
 						{tag && <span className="tag is-size-8 is-light" style={{ textTransform: 'uppercase', alignItems: 'end' }}>{tag}</span>}
