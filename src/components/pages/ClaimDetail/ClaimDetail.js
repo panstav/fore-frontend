@@ -12,7 +12,7 @@ export default function ClaimDetail(props) {
 			<ClaimUsedAt />
 		</Section>
 
-		<Section withTopMargin={true}>
+		<Section>
 			<ClaimContent {...props} />
 		</Section>
 

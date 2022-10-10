@@ -5,7 +5,7 @@ import Section from 'wrappers/Section.js';
 import Avatar from 'elements/Avatar';
 
 export default function Feed({ claims }) {
-	return <Section withTopMargin={true} noSidePadding={true} className="claims-container">
+	return <Section noSidePadding={true} className="claims-container">
 		<div className="boxes has-text-left" style={{ width: '100%', maxWidth: '70ch' }}>
 			{claims.map(Claim)}
 		</div>

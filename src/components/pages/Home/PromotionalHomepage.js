@@ -34,7 +34,7 @@ const benefits = [
 
 export default function PromotionalHomepage () {
 	return <>
-		<Section className="has-text-centered">
+		<Section withTopMargin={false} className="has-text-centered">
 			<Logo className="mt-5" style={{ width: '10rem', height: '10rem' }} />
 			<h1 className="title is-1 mt-6" style={{ letterSpacing: '0.05em' }}>Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">Where collaborative truth-seeking happens.</p>
@@ -44,7 +44,7 @@ export default function PromotionalHomepage () {
 				<Link className="button is-primary mt-5" to="/support">Support the Closed Beta</Link>
 			</Access>
 		</Section>
-		<Section withTopMargin={true}>
+		<Section>
 			{benefits.map((benefit, index) => {
 				return <SideBySide
 					{...benefit}
@@ -53,10 +53,10 @@ export default function PromotionalHomepage () {
 				/>;
 			})}
 		</Section>
-		<Section withTopMargin={true} className="pt-6">
+		<Section withTopMargin={false} className="pt-6">
 			<CurrentFeatures />
 		</Section>
-		<Section withTopMargin={true}>
+		<Section>
 			<Access minimum={roles.order[1]}
 				onFail={() => <div className="has-text-centered mt-6 mb-5">
 					<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>

@@ -31,7 +31,7 @@ const directions = Object.keys(propsByDirection);
 export default function ClaimsUsedHere({ support, opposition, totalPowerHere, parentHasUserPower, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
 	const claimsUsedHere = { support, opposition };
 	return <>
-		<Section className="is-flex is-justify-content-space-between mt-6 mb-3">
+		<Section className="is-flex is-justify-content-space-between mb-3">
 			{directions.map((direction) => {
 				const { label, color } = propsByDirection[direction];
 				const buttonClasses = classNames('button is-small has-text-weight-bold has-text-white', `has-background-${color}`);
@@ -42,7 +42,7 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, pa
 				</button>;
 			})}
 		</Section>
-		<Section noSidePadding={true}>
+		<Section withTopMargin={false} noSidePadding={true}>
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
 					const { contentOptionsOrder, dropDownStyle } = propsByDirection[direction];

@@ -1,7 +1,7 @@
 import Section from 'wrappers/Section';
 
 export default function PrivacyPolicy() {
-	return <Section withTopMargin={true}>
+	return <Section>
 
 		<div className="box m-auto mt-6">
 			<div className="content">

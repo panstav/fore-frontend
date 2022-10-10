@@ -8,7 +8,7 @@ import SignupWithGoogle from 'elements/SignupWithGoogle';
 
 export default function Connect({ connectingMethods, connectionMethod }) {
 	return <>
-		<Section withTopMargin={true}>
+		<Section>
 			<div className="box is-small m-auto panel is-primary">
 				<h1 className="title is-size-3 has-text-centered mb-5">Connect to Fore</h1>
 
@@ -22,7 +22,7 @@ export default function Connect({ connectingMethods, connectionMethod }) {
 				<SignupWithGoogle method={connectionMethod} fullWidth={true} className="mt-5" />
 			</div>
 		</Section>
-		<Section withTopMargin={true}>
+		<Section>
 			<CurrentFeatures />
 		</Section>
 	</>;
