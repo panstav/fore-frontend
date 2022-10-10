@@ -2,26 +2,14 @@ import { Link } from 'wouter-preact';
 
 import Section from 'wrappers/Section.js';
 
-import Loader from 'elements/Loader.js';
 import Avatar from 'elements/Avatar';
 
-export default function Feed({ claims, createNewClaim, isLoading }) {
-	return <>
-		<Section withTopMargin={true}>
-			<h1 className="title">Recent</h1>
-			<button onClick={createNewClaim} className="button is-primary">Create a Claim</button>
-		</Section>
-
-		{isLoading && <Section className="py-1" withTopMargin={true}>
-			<Loader />
-		</Section> }
-
-		<Section withTopMargin={true} noSidePadding={true} className="claims-container">
-			<div className="boxes has-text-left" style={{ width: '100%', maxWidth: '70ch' }}>
-				{claims.map(Claim)}
-			</div>
-		</Section>
-	</>;
+export default function Feed({ claims }) {
+	return <Section withTopMargin={true} noSidePadding={true} className="claims-container">
+		<div className="boxes has-text-left" style={{ width: '100%', maxWidth: '70ch' }}>
+			{claims.map(Claim)}
+		</div>
+	</Section>;
 }
 
 function Claim({ id, createdAtTimeAgo, content, author }) {

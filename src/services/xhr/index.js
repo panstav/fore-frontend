@@ -14,16 +14,12 @@ export default {
 		return apiCall.patch('beta-updates', updates);
 	},
 
-	async getLatestClaims({ spaceId }) {
-		return apiCall.get(`claims?spaceId=${spaceId}`);
-	},
-
-	async getTopClaims() {
-		return apiCall.get('claims?query=top');
-	},
-
 	async getClaimDetail({ id }) {
 		return apiCall.get(`claim-detail?id=${id}`);
+	},
+
+	async getSpaceDetail(id) {
+		return apiCall.get(`space-detail?id=${id}`);
 	},
 
 	powerClaim(relation) {

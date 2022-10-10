@@ -13,7 +13,10 @@ export default {
 
 		if (!keywords) return { search };
 
-		const searchResults = await api.searchClaimsOfUser({ keywords, spaceId: spaces.currentId });
+		const searchResults = await api.searchClaimsOfUser({
+			keywords,
+			spaceId: spaces.find(space => space.isCurrent).id
+		});
 
 		search.ClaimDetailAddClaim = {
 			results: searchResults,

@@ -36,7 +36,7 @@ function Home({ isLoggedIn, isBetaUser }) {
 
 function mapStateToProps({ user }) {
 	return {
-		isLoggedIn: isAuth(user.role, { minimum: roles.order[1] }),
+		isLoggedIn: !!user.id,
 		isBetaUser: isAuth(user.role, { minimum: roles.MEMBER_BETA })
 	};
 }

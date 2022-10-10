@@ -3,13 +3,15 @@ import { connect } from 'unistore/preact';
 
 import isAuth from 'lib/is-auth';
 
+import actions from './actions';
+
 import useBooleanState from 'hooks/use-boolean-state';
 
 import Component from './SpaceSelector';
 
-export default connect(mapStateToProps)(SpaceSelector);
+export default connect(mapStateToProps, actions)(SpaceSelector);
 
-function SpaceSelector({ currentSpace, availableSpaces }) {
+function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRole }) {
 
 	const [isOpenDropdown,, closeDropdown, toggleDropdown] = useBooleanState(false);
 	const handleCloseDropdown = useCallback((event) => {
@@ -17,17 +19,16 @@ function SpaceSelector({ currentSpace, availableSpaces }) {
 		closeDropdown();
 	}, [closeDropdown]);
 
-	// avoid rendering dropdown when not Space was yet to be determined
-	if (!currentSpace) return null;
-
-	useEffect(() => {
-		// ensure that the dropdown is closed when the user navigates
-		closeDropdown();
-	}, [currentSpace.id]);
+	// avoid rendering dropdown when no Space was yet to be determined
+	if (!currentSpace){
+		setCurrentSpace();
+		return null;
+	}
 
 	const props = {
+		setCurrentSpace,
 		currentSpaceName: currentSpace.name,
-		availableSpaces,
+		availableSpaces: availableSpaces.map(attachHrefDisabled),
 		isOpenDropdown,
 		// ignore event data triggering the toggle
 		toggleDropdown: () => toggleDropdown(),
@@ -35,21 +36,11 @@ function SpaceSelector({ currentSpace, availableSpaces }) {
 	};
 
 	return Component(props);
-}
-
-function mapStateToProps({ user, spaces }) {
-
-	const currentSpace = spaces.available.find((space) => space.id === spaces.currentId);
-
-	return {
-		currentSpace,
-		availableSpaces: spaces.available.map(attachHrefDisabled)
-	};
 
 	function attachHrefDisabled(space) {
 		// item should appear unclickable to unauthenticated users
-		space.disabled = !isAuth(user.role, { minimum: space.minRole });
-		// disabled items + the items that directs here don't need a link
+		space.disabled = !isAuth(userRole, { minimum: space.minRole });
+		// disabled items + the items that direct to the current page - don't need a link
 		space.href = (space.disabled || (currentSpace && space.id === currentSpace.id))
 			? null
 			// link to the space, unless it's the public space, then link to the home page
@@ -58,4 +49,13 @@ function mapStateToProps({ user, spaces }) {
 		return space;
 	}
 
+}
+
+function mapStateToProps({ user, spaces }) {
+	const currentSpace = spaces.find((space) => space.isCurrent);
+	return {
+		userRole: user.role,
+		currentSpace,
+		availableSpaces: spaces
+	};
 }
