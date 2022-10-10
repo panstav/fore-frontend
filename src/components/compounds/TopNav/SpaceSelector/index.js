@@ -1,0 +1,61 @@
+import { useCallback, useEffect } from 'preact/hooks';
+import { connect } from 'unistore/preact';
+
+import isAuth from 'lib/is-auth';
+
+import actions from './actions';
+
+import useBooleanState from 'hooks/use-boolean-state';
+
+import Component from './SpaceSelector';
+
+export default connect(mapStateToProps, actions)(SpaceSelector);
+
+function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRole }) {
+
+	const [isOpenDropdown,, closeDropdown, toggleDropdown] = useBooleanState(false);
+	const handleCloseDropdown = useCallback((event) => {
+		if (event.relatedTarget && event.relatedTarget.classList.contains('dropdown-item')) return;
+		closeDropdown();
+	}, [closeDropdown]);
+
+	// avoid rendering dropdown when no Space was yet to be determined
+	if (!currentSpace){
+		setCurrentSpace();
+		return null;
+	}
+
+	const props = {
+		setCurrentSpace,
+		currentSpaceName: currentSpace.name,
+		availableSpaces: availableSpaces.map(attachHrefDisabled),
+		isOpenDropdown,
+		// ignore event data triggering the toggle
+		toggleDropdown: () => toggleDropdown(),
+		closeDropdown: handleCloseDropdown
+	};
+
+	return Component(props);
+
+	function attachHrefDisabled(space) {
+		// item should appear unclickable to unauthenticated users
+		space.disabled = !isAuth(userRole, { minimum: space.minRole });
+		// disabled items + the items that direct to the current page - don't need a link
+		space.href = (space.disabled || (currentSpace && space.id === currentSpace.id))
+			? null
+			// link to the space, unless it's the public space, then link to the home page
+			: space.id === 'public' ? '/' : `/space/${space.id}`;
+
+		return space;
+	}
+
+}
+
+function mapStateToProps({ user, spaces }) {
+	const currentSpace = spaces.find((space) => space.isCurrent);
+	return {
+		userRole: user.role,
+		currentSpace,
+		availableSpaces: spaces
+	};
+}

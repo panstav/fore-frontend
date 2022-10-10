@@ -41,25 +41,29 @@ function ExistingClaim({ searchResults, searchKeywords, recentlyConnectedClaims,
 
 }
 
-function mapStateToProps ({ user, search, claims }, { claimId }) {
+function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 
 	const claimsUsedHere = concatUsedHere(claims, claimId);
+	const currentSpaceId = spaces.find(space => space.isCurrent).id;
 
 	const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', [])
+		.filter(atCurrectSpace)
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get('recentlyViewedClaims', [])
 		// avoid showing current claim as it may have been recently added
 		// also avoid showing claims that weren't authored by the user
-		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id))
+		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id && atCurrectSpace(claim)))
+		.map(markInvalidClaims);
+
+	const searchResults = search.ClaimDetailAddClaim.results
+		.filter(atCurrectSpace)
 		.map(markInvalidClaims);
 
 	return {
 		searchKeywords: search.ClaimDetailAddClaim.keywords,
-		searchResults: search.ClaimDetailAddClaim.results
-			.map(markInvalidClaims),
+		searchResults,
 		recentlyConnectedClaims,
 		recentlyViewedClaims
-
 	};
 
 	function concatUsedHere (claims, claimId) {
@@ -79,6 +83,10 @@ function mapStateToProps ({ user, search, claims }, { claimId }) {
 			|| claim.id === claimId;
 
 		return claim;
+	}
+
+	function atCurrectSpace({ spaceId }) {
+		return spaceId === currentSpaceId;
 	}
 
 }

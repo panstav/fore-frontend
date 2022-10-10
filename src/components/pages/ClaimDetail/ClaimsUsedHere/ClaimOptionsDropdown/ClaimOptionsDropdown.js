@@ -1,6 +1,8 @@
 import { Fragment } from 'preact';
 import classNames from 'classnames';
 
+import stopPropagation from 'lib/stop-propagation';
+
 import Tooltip from 'wrappers/Tooltip';
 
 import { Dropdown, Info } from 'elements/Icon';
@@ -34,8 +36,4 @@ export default function ClaimOptionsDropdown({ isOpen, dropDownOptions, directio
 			</div>
 		</div>}
 	</div>;
-}
-
-function stopPropagation(event) {
-	event.stopPropagation();
 }

@@ -9,11 +9,14 @@ export default {
 		return { search };
 	},
 
-	async searchClaimsOfUser({ search }, keywords) {
+	async searchClaimsOfUser({ search, spaces }, keywords) {
 
 		if (!keywords) return { search };
 
-		const searchResults = await api.searchClaimsOfUser(keywords);
+		const searchResults = await api.searchClaimsOfUser({
+			keywords,
+			spaceId: spaces.find(space => space.isCurrent).id
+		});
 
 		search.ClaimDetailAddClaim = {
 			results: searchResults,

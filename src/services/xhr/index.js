@@ -14,16 +14,12 @@ export default {
 		return apiCall.patch('beta-updates', updates);
 	},
 
-	async getLatestClaims() {
-		return apiCall.get('claims?query=new');
-	},
-
-	async getTopClaims() {
-		return apiCall.get('claims?query=top');
-	},
-
 	async getClaimDetail({ id }) {
 		return apiCall.get(`claim-detail?id=${id}`);
+	},
+
+	async getSpaceDetail(id) {
+		return apiCall.get(`space-detail?id=${id}`);
 	},
 
 	powerClaim(relation) {
@@ -46,8 +42,8 @@ export default {
 		return apiCall.delete('claim-connection', connection);
 	},
 
-	async searchClaimsOfUser(keywords) {
-		return apiCall.get(`search-own-claims?q=${keywords}`);
+	async searchClaimsOfUser({ keywords, spaceId }) {
+		return apiCall.get(`search-own-claims?q=${keywords}&spaceId=${spaceId}`);
 	}
 
 };

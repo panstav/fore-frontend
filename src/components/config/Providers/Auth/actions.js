@@ -2,7 +2,7 @@ import api from 'services/xhr';
 
 export default {
 
-	async identify({ user }) {
+	async identify() {
 
 		let loadedUser;
 
@@ -11,10 +11,9 @@ export default {
 
 		} catch (err) {
 			console.error(err);
-			return { loadedUser };
 		}
 
-		return { user: Object.assign(loadedUser, user) };
+		return { user: loadedUser };
 	}
 
 };

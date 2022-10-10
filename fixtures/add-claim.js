@@ -1,15 +1,18 @@
 import getClaimDetail from './get-claim-detail';
 
-export default function addClaim({ parentId, direction, ...claim }) {
+export default function addClaim({ parentId, direction, spaceId, ...claim }) {
+
+	const claimId = new Date().getTime().toString().slice(-6);
 
 	const newClaim = {
 		...claim,
-		id: new Date().getTime().toString().slice(-6),
+		spaceId,
+		id: claimId,
 
 		createdAt: new Date().getTime(),
 		author: {
 			name: "You!",
-			profileImageUrl: "https://thispersondoesnotexist.com/image"
+			profileImageUrl: `https://avatars.dicebear.com/v2/avataaars/${claimId}.jpg`
 		},
 		usedAt: {
 			support: [],

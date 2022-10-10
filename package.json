@@ -11,6 +11,7 @@
     "clean": "rm dist/* -rf; rm .parcel-cache/* -rf",
     "lint": "eslint .",
     "test": "npm run lint",
+    "fake-data": "node scripts/fake-data.js",
     "preversion": "npm test",
     "build-entry-dev": "node scripts/build-entry-dev.js",
     "build-entry-prod": "node scripts/build-entry-prod.js"

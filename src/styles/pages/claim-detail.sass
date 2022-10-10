@@ -23,23 +23,23 @@ h1.title
 			height: 40px
 
 .support-claims, .opposition-claims
-	width: 50%
-.support-claims .box
-	border-top-right-radius: 0
-	border-bottom-right-radius: 0
-	@include touch
+	width: calc(50% - $size-9)
+	@include tablet
+			width: calc(50% - ($size-7 / 2))
+
+@include touch
+	.support-claims .box
 		border-top-left-radius: 0
 		border-bottom-left-radius: 0
-.opposition-claims .box
-	border-top-left-radius: 0
-	border-bottom-left-radius: 0
-	@include touch
+	.opposition-claims .box
 		border-top-right-radius: 0
 		border-bottom-right-radius: 0
 
 .fore-claim
 	@include no-select-marks
-	margin: 0
+	margin-bottom: $size-8
+	@include tablet
+		margin-bottom: $size-7
 
 	$start-gradient: white calc(100% - (var(--power) / var(--total-power) * 200%))
 	$end-support-gradient: rgba($success, 0.2) 100%

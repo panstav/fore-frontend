@@ -13,16 +13,16 @@ import { roles } from "constants.js";
 
 const benefits = [
 	{
-		prompt: "Debate",
-		title: "Discover stronger ideas",
-		description: "Fore.is is a platform where debates are naturally constructive and beneficial to all sides.",
-		illustration: IdeaAbstraction
-	},
-	{
 		prompt: "Organize",
 		title: "Empower group thinking with private spaces",
 		description: "A dedicated space for your organization instantly raises certainty and allows a greater sense of consensus.",
 		illustration: Cooperation
+	},
+	{
+		prompt: "Debate",
+		title: "Discover stronger ideas",
+		description: "Fore.is is a platform where debates are naturally constructive and beneficial to all sides.",
+		illustration: IdeaAbstraction
 	},
 	{
 		prompt: "Earn",

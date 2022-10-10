@@ -2,15 +2,14 @@ import api from 'services/xhr';
 
 import scrollBackToTop from 'lib/scroll-back-to-top';
 
-import { roles } from 'constants.js';
+import initialState from 'config/Providers/Store/initial-state';
 
 export default {
 
-	logOut({ user }) {
+	async logOut() {
 		api.logout();
 		scrollBackToTop();
-		user.role = roles.GUEST;
-		return { user };
+		return initialState;
 	}
 
 };

@@ -5,7 +5,8 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
-import Feed from './Feed';
+import Space from 'pages/Space';
+
 import PromotionalHomepage from './PromotionalHomepage';
 
 import { roles } from 'constants.js';
@@ -26,18 +27,16 @@ function Home({ isLoggedIn, isBetaUser }) {
 		}
 	}
 
-	const Page = isBetaUser
-		// show feed to beta users
-		? Feed
-		// otherwise show the promotional page
-		: PromotionalHomepage;
+	// show feed to beta users
+	if (isBetaUser) return <Space params={{ spaceId: 'public' }} />;
 
-	return <Page />;
+	// otherwise show the promotional page
+	return <PromotionalHomepage />;
 }
 
 function mapStateToProps({ user }) {
 	return {
-		isLoggedIn: isAuth(user.role, { minimum: roles.order[1] }),
+		isLoggedIn: !!user.id,
 		isBetaUser: isAuth(user.role, { minimum: roles.MEMBER_BETA })
 	};
 }
