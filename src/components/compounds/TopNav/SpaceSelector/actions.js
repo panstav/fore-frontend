@@ -22,9 +22,9 @@ export default {
 		};
 
 		const [, slug, spaceId] = pathname.split('/');
-		if (slug !== 'space' || !nextSpaceId) return {};
+		if (slug !== 'space' || !spaceId) return {};
 
-		const indexOfSpace = updatedSpaces.findIndex(space => space.id === nextSpaceId);
+		const indexOfSpace = updatedSpaces.findIndex(space => space.id === spaceId);
 		if (!~indexOfSpace) return {};
 
 		// set the one that matches the URL as the current space
