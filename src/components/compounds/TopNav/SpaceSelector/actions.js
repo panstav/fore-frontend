@@ -1,35 +1,55 @@
 export default {
 
-	setCurrentSpace({ spaces }, nextSpaceId) {
+	setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
-		const updatedSpaces = spaces.map((space) => {
-			if (space.isCurrent) delete space.isCurrent;
-			return space;
-		});
+		// const updatedSpaces = spaces.map((space) => {
+		// 	if (space.isCurrent) delete space.isCurrent;
+		// 	return space;
+		// });
 
 		if (nextSpaceId) {
-			const indexOfPublicSpace = updatedSpaces.findIndex(space => space.id === nextSpaceId);
-			updatedSpaces[indexOfPublicSpace].isCurrent = true;
+			const updatedSpaces = setCurrentBy((space) => space.id === nextSpaceId);
 			return { spaces: updatedSpaces };
 		}
 
+		// no space was selected from dropdown
+		// set the current space to the first requirements satisfier
 		const { pathname } = window.location;
 
 		if (pathname === '/') {
-			const indexOfPublicSpace = updatedSpaces.findIndex(space => space.id === 'public');
-			updatedSpaces[indexOfPublicSpace].isCurrent = true;
+			const updatedSpaces = setCurrentBy((space) => space.id === 'public');
 			return { spaces: updatedSpaces };
 		}
 
-		const [, slug, spaceId] = pathname.split('/');
-		if (slug !== 'space' || !spaceId) return {};
+		// usually, the resource id is the second part of the url
+		// and the first part is the type of the resource
+		const [, resourceType, resourceId] = pathname.split('/');
 
-		const indexOfSpace = updatedSpaces.findIndex(space => space.id === spaceId);
-		if (!~indexOfSpace) return {};
+		if (resourceType === 'space') {
+			const updatedSpaces = setCurrentBy((space) => space.id === resourceId);
+			return { spaces: updatedSpaces };
+		}
 
-		// set the one that matches the URL as the current space
-		updatedSpaces[indexOfSpace].isCurrent = true;
-		return { spaces: updatedSpaces };
+		if (resourceType === 'claim') {
+			const claimId = claims.find((claim) => claim.id === resourceId);
+			if (claimId && claimId.spaceId) {
+				const updatedSpaces = setCurrentBy((space) => space.id === claimId.spaceId);
+				return { spaces: updatedSpaces };
+			}
+		}
+
+		// assume action will be called again when a space indicator is relevant
+		// (e.g. when the user navigates to a space page)
+
+		function setCurrentBy(fn) {
+			return spaces.map((space) => {
+				const isCurrent = fn(space);
+				if (isCurrent !== true && isCurrent !== false) throw new Error('setCurrentBy first argument must return a boolean');
+				space.isCurrent = isCurrent;
+				return space;
+			});
+		}
+
 	}
 
 };

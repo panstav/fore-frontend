@@ -51,11 +51,13 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRol
 
 }
 
-function mapStateToProps({ user, spaces }) {
+function mapStateToProps({ user, spaces, claims }) {
 	const currentSpace = spaces.find((space) => space.isCurrent);
 	return {
 		userRole: user.role,
-		currentSpace,
-		availableSpaces: spaces
+		currentSpace: currentSpace && ({ id, name } = currentSpace),
+		availableSpaces: spaces,
+		// just to trigger a re-render when the user first navigates to a claim page
+		gotClaims: !!claims.length
 	};
 }
