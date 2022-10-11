@@ -34,7 +34,7 @@ const benefits = [
 
 export default function PromotionalHomepage () {
 	return <>
-		<Section withTopMargin={false} className="has-text-centered">
+		<Section className="has-text-centered">
 			<Logo className="mt-5" style={{ width: '10rem', height: '10rem' }} />
 			<h1 className="title is-1 mt-6" style={{ letterSpacing: '0.05em' }}>Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">Where collaborative truth-seeking happens.</p>
