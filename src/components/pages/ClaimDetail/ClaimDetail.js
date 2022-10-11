@@ -8,7 +8,7 @@ import ClaimsUsedHere from './ClaimsUsedHere';
 export default function ClaimDetail(props) {
 	return <>
 
-		<Section className="mt-3">
+		<Section withTopMargin={false} className="mt-3">
 			<ClaimUsedAt />
 		</Section>
 
