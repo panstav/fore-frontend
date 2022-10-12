@@ -7,8 +7,11 @@ import Footer from 'compounds/Footer';
 
 export default function App() {
 	return <Providers>
+
 		<TopNav/>
+
 		<Router/>
+		
 		<Footer/>
 
 		<Notifications/>
