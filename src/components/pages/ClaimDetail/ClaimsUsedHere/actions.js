@@ -11,10 +11,12 @@ export default {
 	async addClaimWithUse({ claims }, { parentId, parentContent, direction, ...claim }) {
 		const notificationId = notify(notifications.NEW_CLAIM_SENT);
 
-		const fullClaim = await api.addClaim({ parentId, parentContent, direction, ...claim });
+		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
+		const spaceId = claims[indexOfParentClaim].spaceId;
+
+		const fullClaim = await api.addClaim({ parentId, parentContent, direction, spaceId, ...claim });
 		notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
 
-		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
 		const newDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: fullClaim.id, content: fullClaim.content, power: 0, isByUser: true });
 
 		const newClaims = claims.concat(fullClaim);
