@@ -12,10 +12,11 @@ export default {
 
 	async powerClaim({ claims }, { parentClaimId, childClaimId, direction }) {
 
-		api.powerClaim({ parentId: parentClaimId, childId: childClaimId, direction });
-
 		const indexOfParentClaim = claims.findIndex(claim => claim.id === parentClaimId);
 		const indexOfChildClaim = claims[indexOfParentClaim].usedHere[direction].findIndex((childClaim) => childClaim.id === childClaimId);
+
+		const spaceId = claims[indexOfParentClaim].spaceId;
+		api.powerClaim({ parentId: parentClaimId, childId: childClaimId, direction, spaceId });
 
 		Object.assign(claims[indexOfParentClaim].usedHere[direction][indexOfChildClaim], {
 			isPoweredByUser: true,
@@ -28,10 +29,11 @@ export default {
 
 	async releasePower({ claims }, { parentClaimId, childClaimId, direction }) {
 
-		api.releasePower({ parentId: parentClaimId, childId: childClaimId, direction });
-
 		const indexOfParentClaim = claims.findIndex(claim => claim.id === parentClaimId);
 		const indexOfChildClaim = claims[indexOfParentClaim].usedHere[direction].findIndex((childClaim) => childClaim.id === childClaimId);
+
+		const spaceId = claims[indexOfParentClaim].spaceId;
+		api.releasePower({ parentId: parentClaimId, childId: childClaimId, direction, spaceId });
 
 		Object.assign(claims[indexOfParentClaim].usedHere[direction][indexOfChildClaim], {
 			isPoweredByUser: false,
@@ -44,11 +46,12 @@ export default {
 
 	async disconnectClaim({ claims }, { parentClaimId, childClaimId, direction }) {
 
-		api.disconnectClaim({ parentId: parentClaimId, childId: childClaimId, direction })
-			.then(() => notify(notifications.CLAIM_DISCONNECTED, { claimId: childClaimId }));
-
 		const indexOfParentClaim = claims.findIndex(claim => claim.id === parentClaimId);
 		const indexOfUsedChildClaim = claims[indexOfParentClaim].usedHere[direction].findIndex((childClaim) => childClaim.id === childClaimId);
+
+		const spaceId = claims[indexOfParentClaim].spaceId;
+		api.disconnectClaim({ parentId: parentClaimId, childId: childClaimId, direction, spaceId })
+			.then(() => notify(notifications.CLAIM_DISCONNECTED, { claimId: childClaimId }));
 
 		const list = claims[indexOfParentClaim].usedHere[direction];
 		claims[indexOfParentClaim].usedHere[direction] = list.slice(0, indexOfUsedChildClaim).concat(list.slice(indexOfUsedChildClaim + 1));
