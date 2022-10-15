@@ -18,6 +18,8 @@ function transformApiCall(method) {
 				console.error(err);
 
 				if (err.response.status === 400) {
+					// we might have already redirected to home, no need to do it again
+					if (window.location.pathname === '/') return;
 					window.location.href = urls.frontEnd;
 					return;
 				}
