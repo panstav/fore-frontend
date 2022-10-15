@@ -15,7 +15,7 @@ function transformApiCall(method) {
 		const fetchOptions = Object.assign({ json: data, credentials: 'include' });
 		return ky[method](`${urls.api}/${endpoint}`, fetchOptions).json()
 			.catch((err) => {
-				console.err(err);
+				console.error(err);
 
 				if (err.response.status === 400) {
 					window.location.href = urls.frontEnd;
