@@ -10,7 +10,7 @@ export default function Support({ isConfirmed, addAnotherClaim }) {
 		<div className="box is-small m-auto has-text-left">
 
 			{isConfirmed && <>
-				<h2 className="is-size-1">Got it</h2>
+				<h2 className="is-size-1 mb-2">Got it</h2>
 				<p className="is-size-4">Thanks!</p>
 				<hr/>
 			</>}
