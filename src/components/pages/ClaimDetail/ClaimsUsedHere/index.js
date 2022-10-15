@@ -40,7 +40,7 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 					childContent: claimContent,
 					parentId,
 					parentContent
-				}).then(() => trackClaimConnection({ id: claimId, content: claimContent }));
+				}).then(() => trackClaimConnection({ claimId }));
 				return addClaimWithUse({
 					direction,
 					content,

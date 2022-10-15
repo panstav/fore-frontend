@@ -19,7 +19,7 @@ export default {
 		});
 
 		search.ClaimDetailAddClaim = {
-			results: searchResults,
+			results: searchResults || [],
 			keywords
 		};
 

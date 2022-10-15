@@ -23,7 +23,7 @@ function ClaimDetail({ id, content, author, createdAt, isDetailed, getClaimDetai
 
 	if (!isDetailed) return <Loader />;
 
-	trackClaimView({ claimId: id, claimContent: content, authorId: author.id });
+	trackClaimView({ claimId: id });
 
 	const createdAtTimeAgo = timeAgo.format(new Date(createdAt), 'mini');
 

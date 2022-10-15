@@ -26,14 +26,13 @@ export default {
 
 	async connectClaims({ claims }, { parentId, parentContent, childId, childContent, direction }) {
 
-		api.connectClaims({ parentId, parentContent, childId, childContent, direction })
-			.then(() => notify(notifications.NEW_CLAIM_CONNECTION));
-
 		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
-		if (~indexOfParentClaim) {
-			const newParentDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: childId, content: childContent, power: 0, isByUser: true });
-			claims[indexOfParentClaim].usedHere[direction] = newParentDirectedUsedHere;
-		}
+		const newParentDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: childId, content: childContent, power: 0, isByUser: true });
+		claims[indexOfParentClaim].usedHere[direction] = newParentDirectedUsedHere;
+
+		const spaceId = claims[indexOfParentClaim].spaceId;
+		api.connectClaims({ parentId, parentContent, childId, childContent, direction, spaceId })
+			.then(() => notify(notifications.NEW_CLAIM_CONNECTION));
 
 		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
 		if (~indexOfChildClaim && ('usedAt' in claims[indexOfChildClaim])) {
@@ -45,19 +44,26 @@ export default {
 
 	},
 
-	trackClaimConnection(state, { id, content }) {
+	trackClaimConnection({ claims }, { claimId }) {
+
+		const claim = claims.find((claim) => claim.id === claimId);
+		const newlyConnectedClaim = {
+			id: claimId,
+			content: claim.content,
+			spacedId: claim.spaceId
+		};
 
 		// load recently connected claims from localStorage
-		const { connectedClaims = [] } = localstorage.get('recent', {});
+		const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', []);
 
 		// bump existing / add claim to the list
-		fifo(connectedClaims, { id, content }, {
+		fifo(recentlyConnectedClaims, newlyConnectedClaim, {
 			max: 5,
-			compare: (claim) => claim.id === id
+			compare: (claim) => claim.id === claimId
 		});
 
 		// save recently connected claims to localStorage
-		localstorage.set('recentlyConnectedClaims', connectedClaims);
+		localstorage.set('recentlyConnectedClaims', recentlyConnectedClaims);
 		return {};
 
 	}

@@ -47,16 +47,16 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 	const currentSpaceId = spaces.find(space => space.isCurrent).id;
 
 	const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', [])
-		.filter(atCurrectSpace)
+		.filter(atCurrentSpace)
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get('recentlyViewedClaims', [])
 		// avoid showing current claim as it may have been recently added
 		// also avoid showing claims that weren't authored by the user
-		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id && atCurrectSpace(claim)))
+		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id && atCurrentSpace(claim)))
 		.map(markInvalidClaims);
 
 	const searchResults = search.ClaimDetailAddClaim.results
-		.filter(atCurrectSpace)
+		.filter(atCurrentSpace)
 		.map(markInvalidClaims);
 
 	return {
@@ -85,7 +85,7 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 		return claim;
 	}
 
-	function atCurrectSpace({ spaceId }) {
+	function atCurrentSpace({ spaceId }) {
 		return spaceId === currentSpaceId;
 	}
 
