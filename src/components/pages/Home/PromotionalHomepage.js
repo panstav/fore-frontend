@@ -1,12 +1,12 @@
 import { Link } from "wouter-preact";
-
 import classNames from "classnames";
+
+import Section from "wrappers/Section";
+import Access from "wrappers/Access";
 
 import SignupForBetaUpdates from "compounds/SignupForBetaUpdates";
 import CurrentFeatures from "compounds/CurrentFeatures";
 
-import Section from "wrappers/Section";
-import Access from "wrappers/Access";
 import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
 
 import { roles } from "constants.js";

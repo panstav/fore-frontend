@@ -1,8 +1,8 @@
-import noop from '../../../../lib/noop';
-
-import { Close } from 'components/elements/Icon';
+import noop from '../../../../../lib/noop';
 
 import useEscape from 'hooks/use-escape.js';
+
+import { Close } from 'elements/Icon';
 
 export default function Modal({ title, hideModal, children, hideable = true }) {
 

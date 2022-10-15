@@ -1,5 +1,6 @@
 import classnames from 'classnames';
-import Checkbox from 'components/elements/Checkbox';
+
+import Checkbox from 'elements/Checkbox';
 
 export default function SignupForBetaUpdates({ control, onSubmit, didSendWithoutMarking, successfullySignedUpForUpdates, className }) {
 

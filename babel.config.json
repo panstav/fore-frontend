@@ -3,7 +3,7 @@
 		"production": {
 			"plugins": [
 				["module-resolver", {
-					"root": ["./src", "./src/components"],
+					"root": ["./src", "./src/components", "./src/components/common"],
 					"alias": {
 						"preact/debug": "/lib/noop",
 						"unistore/devtools": "/lib/noop"
@@ -14,7 +14,7 @@
 		"offline": {
 			"plugins": [
 				["module-resolver", {
-					"root": ["./src", "./src/components"],
+					"root": ["./src", "./src/components", "./src/components/common"],
 					"alias": {
 						"services/xhr": "./src/services/xhr/fixtures",
 						"fixtures": "./fixtures"

@@ -3,9 +3,9 @@ import { connect } from 'unistore/preact';
 
 import isAuth from 'lib/is-auth';
 
-import actions from './actions';
-
 import useBooleanState from 'hooks/use-boolean-state';
+
+import actions from './actions';
 
 import Component from './SpaceSelector';
 

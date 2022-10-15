@@ -1,4 +1,4 @@
-import Section from "wrappers/Section";
+import Section from "components/common/wrappers/Section";
 
 import Feed from "compounds/Feed";
 

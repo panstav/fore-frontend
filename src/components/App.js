@@ -1,9 +1,8 @@
 import Providers from 'config/Providers';
+import TopNav from 'config/TopNav';
 import Router from 'config/Router';
+import Footer from 'config/Footer';
 import Notifications from 'config/Notifications';
-
-import TopNav from 'compounds/TopNav';
-import Footer from 'compounds/Footer';
 
 export default function App() {
 	return <Providers>
@@ -11,7 +10,7 @@ export default function App() {
 		<TopNav/>
 
 		<Router/>
-		
+
 		<Footer/>
 
 		<Notifications/>

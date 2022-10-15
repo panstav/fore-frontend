@@ -2,7 +2,7 @@ import { Link } from 'wouter-preact';
 
 import Access from 'wrappers/Access';
 
-import { Logo } from 'components/elements/Icon';
+import { Logo } from 'elements/Icon';
 
 import { roles } from 'constants';
 
