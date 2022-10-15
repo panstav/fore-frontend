@@ -9,9 +9,8 @@ import SignupWithGoogle from 'elements/SignupWithGoogle';
 export default function Connect({ connectingMethods, connectionMethod }) {
 	return <>
 		<Section>
-			<div className="box is-small m-auto panel is-primary">
-				<h1 className="title is-size-3 has-text-centered my-3">Fore</h1>
-
+			<h1 className="title is-size-2 has-text-centered pt-4 mb-6 has-text-primary">Fore</h1>
+			<div className="box is-small m-auto panel is-primary pt-2">
 				<div className="has-text-centered panel-tabs">
 					{connectingMethods.map(({ name, isActive, switchTo }) => {
 						const classes = classNames('is-flex-grow-1', isActive ? 'is-active' : '');
