@@ -7,7 +7,7 @@ export default {
 	},
 
 	async logout() {
-		return apiCall.get('logout');
+		return apiCall.post('logout');
 	},
 
 	async signUserForBetaUpdates(updates) {
