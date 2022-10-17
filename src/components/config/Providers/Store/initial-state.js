@@ -7,7 +7,7 @@ export default {
 
 	user: {},
 
-	spaces: [{ id: 'demo', name: 'Demo' }],
+	spaces: [],
 
 	claims: [],
 
