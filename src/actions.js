@@ -1,6 +1,9 @@
 import api from 'services/xhr';
 
 import notify from 'lib/notify.js';
+import scrollBackToTop from 'lib/scroll-back-to-top';
+
+import initialState from 'config/Providers/Store/initial-state';
 
 import { notifications } from 'constants.js';
 
@@ -16,4 +19,10 @@ export async function addClaim({ spaces, claims }, claim, { avoidNotifications =
 
 	claims.push(fullClaim);
 	return { claims };
+}
+
+export async function logOut() {
+	await api.logout();
+	scrollBackToTop();
+	return initialState;
 }

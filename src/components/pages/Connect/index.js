@@ -1,6 +1,5 @@
 import { useState, useCallback, useMemo } from 'preact/compat';
 import { connect } from 'unistore/preact';
-import { useLocation } from 'wouter-preact';
 
 import isAuth from 'lib/is-auth';
 
@@ -16,7 +15,6 @@ const connectingMethodNames = {
 export default connect(mapStateToProps)(Connect);
 
 function Connect({ isLoggedIn, methodFromUrl }) {
-	const [, setLocation] = useLocation();
 
 	const [selectedMethod, setSelectedMethod] = useState(methodFromUrl);
 	const switchTo = useCallback((method) => {
@@ -39,10 +37,8 @@ function Connect({ isLoggedIn, methodFromUrl }) {
 		return connectingMethod;
 	})), [selectedMethod, switchTo]);
 
-	// redirect a user to the homepage if they are already logged in
-	if (isLoggedIn) return setLocation('/', { replace: true	});
-
 	const props = {
+		isLoggedIn,
 		connectingMethods,
 		connectionMethod: selectedMethod
 	};
