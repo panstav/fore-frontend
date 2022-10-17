@@ -60,9 +60,11 @@ function OnChange() {
 }
 
 function useOverlayRemoval() {
+	const overlay = document.getElementById('splash-screen');
+	const animationDuration = 0.3;
+
 	useEffect(() => {
-		const overlay = document.body.firstElementChild;
-		const animationDuration = 0.3;
+		if (!overlay) return;
 
 		// set animation duration
 		overlay.style.animationDuration = animationDuration + 's';
