@@ -10,7 +10,7 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 
 	return <div className={classes}>
 		<button className={buttonClasses} onClick={toggleDropdown} onBlur={closeDropdown} tabIndex="0" style={{ fontSize: '0.9rem' }}>
-			<span className="icon-text text-wrap" style={{ width: '15ch' }}>{currentSpaceName}</span>
+			<span className="icon-text text-wrap has-text-left" style={{ width: '15ch' }}>{currentSpaceName}</span>
 			<DownArrow className="mr-0" style={{ width: '0.6rem' }} />
 		</button>
 		<div className="dropdown-menu fore-available-spaces">
