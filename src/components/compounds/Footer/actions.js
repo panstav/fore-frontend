@@ -7,7 +7,7 @@ import initialState from 'config/Providers/Store/initial-state';
 export default {
 
 	async logOut() {
-		api.logout();
+		await api.logout();
 		scrollBackToTop();
 		return initialState;
 	}
