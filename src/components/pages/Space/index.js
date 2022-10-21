@@ -37,13 +37,13 @@ function Space({ getSpaceDetail, spaceId, isDetailed, addClaim, }) {
 	return Component(props);
 }
 
-function mapStateToProps({ spaces }, { params: { spaceId } }) {
+function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
 
-	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceId);
+	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
 	const isDetailed = ~indexOfCurrentSpace && spaces[indexOfCurrentSpace].isDetailed;
 
 	return {
-		spaceId,
+		spaceId: spaces[indexOfCurrentSpace].id,
 		isDetailed
 	};
 }
