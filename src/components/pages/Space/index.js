@@ -14,7 +14,10 @@ import Component from './Space.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, addClaim, }) {
+function Space({ getSpaceDetail, spaceId, isDetailed, addClaim, setCurrentSpace }) {
+
+	// inform the app that we're in this space even if we already have the data
+	if (isDetailed) setCurrentSpace(spaceId);
 
 	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
 
@@ -40,10 +43,10 @@ function Space({ getSpaceDetail, spaceId, isDetailed, addClaim, }) {
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
 
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
-	const isDetailed = ~indexOfCurrentSpace && spaces[indexOfCurrentSpace].isDetailed;
+	const { id: spaceId, isDetailed } = spaces[indexOfCurrentSpace] || {};
 
 	return {
-		spaceId: spaces[indexOfCurrentSpace].id,
+		spaceId,
 		isDetailed
 	};
 }

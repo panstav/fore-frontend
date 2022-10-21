@@ -1,10 +1,12 @@
 import api from "services/xhr";
 
-import { addClaim } from "actions";
+import { addClaim, setCurrentSpace } from "actions";
 
 export default {
 
 	addClaim,
+
+	setCurrentSpace,
 
 	async getSpaceDetail({ spaces, claims }, spaceId) {
 
