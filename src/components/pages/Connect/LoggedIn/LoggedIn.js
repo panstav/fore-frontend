@@ -5,7 +5,7 @@ export default function LoggedIn({ userName, spaces, logOut }) {
 		<h2 className="is-title is-size-4 has-text-weight-bold mt-1 mb-2">Hey {userName}!</h2>
 
 		{spaces.length
-			? <SpacesMenu {...spaces} />
+			? <SpacesMenu {...{spaces}} />
 			: <NoSpaces />}
 
 		<div className="is-size-7">
