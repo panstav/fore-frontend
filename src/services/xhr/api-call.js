@@ -29,8 +29,6 @@ function transformApiCall(method) {
 					window.location.href = `${urls.frontEnd}/connect?login`;
 					return;
 				}
-
-				console.error(err);
 			});
 	};
 }
