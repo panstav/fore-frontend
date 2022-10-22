@@ -1,4 +1,5 @@
 import Section from 'wrappers/Section';
+import Tooltip from 'wrappers/Tooltip';
 
 import Avatar from 'elements/Avatar';
 
@@ -21,7 +22,7 @@ export default function ClaimDetail(props) {
 	</>;
 }
 
-function ClaimContent({ content, author, createdAtTimeAgo }) {
+function ClaimContent({ content, author, createdAt }) {
 	return <>
 		<h1 className="title mt-2 mb-3">{content}</h1>
 		<div className="is-flex is-align-items-center is-size-7">
@@ -29,7 +30,9 @@ function ClaimContent({ content, author, createdAtTimeAgo }) {
 				<Avatar userId={author.id} alt={`Profile image of "${author.name}"`} />
 				<span>{author.name}</span>
 			</div>
-			<div className="has-text-grey-light">{createdAtTimeAgo}</div>
+			<Tooltip content={createdAt.fullDate}>
+				<div className="has-text-grey-light">{createdAt.timeAgo}</div>
+			</Tooltip>
 		</div>
 	</>;
 }

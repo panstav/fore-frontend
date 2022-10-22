@@ -17,7 +17,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, author, createdAt, isDetailed, getClaimDetail, trackClaimView }) {
+function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -25,10 +25,13 @@ function ClaimDetail({ id, content, author, createdAt, isDetailed, getClaimDetai
 
 	trackClaimView({ claimId: id });
 
-	const createdAtTimeAgo = timeAgo.format(new Date(createdAt), 'mini');
+	const createdAt = {
+		fullDate: new Date(createdAtTime).toLocaleString('en-UK', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }),
+		timeAgo: timeAgo.format(new Date(createdAtTime), 'mini')
+	};
 
 	const props = {
-		content, author, createdAtTimeAgo
+		content, author, createdAt
 	};
 
 	return <ClaimDetailContext.Provider value={{ id }}>
@@ -40,5 +43,6 @@ function mapStateToProps({ claims }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	return pick(claim, ['id', 'content', 'usedHere', 'author', 'createdAt', 'isDetailed']);
+	const { content, usedHere, author, createdAt: createdAtTime, isDetailed } = claim;
+	return { id, content, usedHere, author, createdAtTime, isDetailed };
 }
