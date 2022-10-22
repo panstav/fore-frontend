@@ -3,6 +3,9 @@
   "version": "0.6.6",
   "description": "",
   "type": "module",
+  "@parcel/transformer-js": {
+    "inlineEnvironment": ["API", "npm_package_version"]
+  },
   "scripts": {
     "start-offline": "npm run build-entry-dev; NODE_ENV=offline parcel src/index.html",
     "start-dev-local": "npm run setup-dev; API=local parcel src/index.html",

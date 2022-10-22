@@ -6,12 +6,15 @@ import { Logo } from 'elements/Icon';
 
 import { roles } from 'constants';
 
-export default function Footer({ logOut }) {
+export default function Footer({ logOut, version }) {
 	return <footer className="mt-6">
 		<div className="container px-3">
 			<div className="is-flex is-align-items-center mb-4">
 				<Logo className="mr-3" />
-				<h2 className="has-text-weight-bold">Fore</h2>
+				<h2 className="is-flex is-align-items-baseline">
+					<span className="has-text-weight-bold">Fore</span>
+					{version && <span className="has-text-grey-lighter has-text-weight-medium is-size-7 ml-2">Alpha {version}</span> }
+				</h2>
 			</div>
 			<div className="is-size-7 mb-3">
 
