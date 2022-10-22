@@ -30,7 +30,7 @@
 			"importSource": "preact"
 		}],
 		["module-resolver", {
-			"root": ["./src", "./src/components"]
+			"root": ["./src", "./src/components", "./src/components/common"]
 		}]
 	]
 }
