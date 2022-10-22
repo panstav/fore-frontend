@@ -1,49 +1,23 @@
 import apiCall from './api-call';
+const { get, post, patch, del } = apiCall;
 
 export default {
 
-	async identify() {
-		return apiCall.get('identify');
-	},
+	identify: () => get('identify'),
+	logout: () => post('logout'),
 
-	async logout() {
-		return apiCall.post('logout');
-	},
+	getClaimDetail: ({ id }) => get(`claim-detail?id=${id}`),
+	getSpaceDetail: (id) => get(`space-detail?id=${id}`),
 
-	async signUserForBetaUpdates(updates) {
-		return apiCall.patch('beta-updates', updates);
-	},
+	addClaim: (claim) => post('claim', claim),
 
-	async getClaimDetail({ id }) {
-		return apiCall.get(`claim-detail?id=${id}`);
-	},
+	powerClaim: (relation) => post('power-claim', relation),
+	releasePower: (relation) => post('release-power', relation),
+	connectClaims: (connection) => post('connect-claims', connection),
+	disconnectClaim: (connection) => del('claim-connection', connection),
 
-	async getSpaceDetail(id) {
-		return apiCall.get(`space-detail?id=${id}`);
-	},
+	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${keywords}&spaceId=${spaceId}`),
 
-	powerClaim(relation) {
-		return apiCall.post('power-claim', relation);
-	},
-
-	releasePower(relation) {
-		return apiCall.post('release-power', relation);
-	},
-
-	async addClaim(claim) {
-		return apiCall.post('claim', claim);
-	},
-
-	async connectClaims(connection) {
-		return apiCall.post('connect-claims', connection);
-	},
-
-	async disconnectClaim(connection) {
-		return apiCall.delete('claim-connection', connection);
-	},
-
-	async searchClaimsOfUser({ keywords, spaceId }) {
-		return apiCall.get(`search-own-claims?q=${keywords}&spaceId=${spaceId}`);
-	}
+	signUserForBetaUpdates: (updates) => patch('beta-updates', updates),
 
 };
