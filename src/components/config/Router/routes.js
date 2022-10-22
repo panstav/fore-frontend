@@ -1,7 +1,7 @@
 import Home from 'pages/Home';
 import ConnectToFore from 'pages/Connect';
 import Support from 'pages/Support';
-import Space from 'pages/Space';
+import Space from 'components/pages/SpaceDetail';
 import ClaimDetail from 'pages/ClaimDetail';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
 

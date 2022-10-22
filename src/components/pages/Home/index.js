@@ -5,7 +5,7 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
-import Space from 'pages/Space';
+import Space from 'components/pages/SpaceDetail';
 
 import PromotionalHomepage from './PromotionalHomepage';
 

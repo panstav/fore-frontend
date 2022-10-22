@@ -10,7 +10,7 @@ import actions from "./actions";
 
 import Loader from "elements/Loader";
 
-import Component from './Space.js';
+import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
