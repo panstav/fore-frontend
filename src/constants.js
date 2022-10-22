@@ -4,9 +4,12 @@ export const urls = {
 };
 
 if (process.env.NODE_ENV !== 'production') {
-	urls.api = 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app';
-	// urls.api = 'https://panstav-fore-backend-qwvqv7q2pxx-3000.githubpreview.dev';
-	// urls.api = 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu43.gitpod.io';
+	urls.api = {
+		local: 'http://localhost:3000',
+		github: 'https://panstav-fore-backend-qwvqv7q2pxx-3000.preview.app.github.dev',
+		gitpod: 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu43.gitpod.io',
+		cloud: 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app'
+	}[process.env.API];
 }
 
 export const roles = {
