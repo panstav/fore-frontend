@@ -1,7 +1,6 @@
 import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
-import pick from 'lodash.pick';
 
 import Loader from 'elements/Loader';
 
