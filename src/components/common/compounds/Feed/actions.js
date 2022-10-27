@@ -1,0 +1,24 @@
+import api from "services/xhr";
+
+export default {
+
+	async loadMoreClaims({ claims, spaces }) {
+
+		const spaceIndex = spaces.findIndex((space) => space.isCurrent);
+		const spaceId = spaces[spaceIndex].id;
+
+		const lastClaim = claims
+			.filter((claim) => claim.spaceId === spaceId)
+			.sort((a, b) => b.createdAt - a.createdAt)
+			.pop();
+
+		const { claims: newClaims, isLastBatch } = await api.getClaimsBefore({ time: lastClaim.createdAt, spaceId });
+		spaces[spaceIndex].hasLoadedAll = isLastBatch;
+
+		return {
+			claims: claims.concat(newClaims),
+			spaces
+		};
+	}
+
+};

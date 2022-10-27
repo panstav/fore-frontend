@@ -1,5 +1,7 @@
 import { useState, useCallback, useMemo } from 'preact/compat';
 import { connect } from 'unistore/preact';
+import { useLocation } from 'wouter-preact';
+import { useForm } from 'react-hook-form';
 
 import isAuth from 'lib/is-auth';
 
@@ -16,8 +18,13 @@ export default connect(mapStateToProps)(Connect);
 
 function Connect({ isLoggedIn, methodFromUrl }) {
 
+	const { register: registerInput, handleSubmit, reset: resetForm } = useForm({
+		shouldUseNativeValidation: true
+	});
+
 	const [selectedMethod, setSelectedMethod] = useState(methodFromUrl);
 	const switchTo = useCallback((method) => {
+		resetForm();
 		// setState to the pretty name of the method
 		return setSelectedMethod(Object.keys(connectingMethodNames).includes(method) ? connectingMethodNames[method] : connectingMethodNames[Object.keys(connectingMethodNames)[0]]);
 	}, [setSelectedMethod]);
@@ -37,10 +44,15 @@ function Connect({ isLoggedIn, methodFromUrl }) {
 		return connectingMethod;
 	})), [selectedMethod, switchTo]);
 
+	const onSubmit = handleSubmit((data) => {
+		debugger;
+	});
+
 	const props = {
 		isLoggedIn,
 		connectingMethods,
-		connectionMethod: selectedMethod
+		connectionMethod: selectedMethod,
+		registerInput, onSubmit
 	};
 
 	return Component(props);

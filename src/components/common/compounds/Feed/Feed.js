@@ -4,10 +4,13 @@ import Section from 'wrappers/Section.js';
 
 import Avatar from 'elements/Avatar';
 
-export default function Feed({ claims }) {
+export default function Feed({ claims, hasLoadedAll, loadMoreClaims }) {
 	return <Section noSidePadding={true} className="claims-container">
 		<div className="boxes has-text-left" style={{ width: '100%', maxWidth: '70ch' }}>
 			{claims.map(Claim)}
+			{!hasLoadedAll && <div className="box has-text-centered is-link" onClick={loadMoreClaims}>
+				Load more
+			</div>}
 		</div>
 	</Section>;
 }

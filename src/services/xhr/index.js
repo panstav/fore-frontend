@@ -6,8 +6,10 @@ export default {
 	identify: () => get('identify'),
 	logout: () => post('logout'),
 
-	getClaimDetail: ({ id }) => get(`claim-detail?id=${id}`),
 	getSpaceDetail: (id) => get(`space-detail?id=${id}`),
+	getClaimsBefore: ({spaceId, time}) => get(`claims?olderThan=${time}&spaceId=${spaceId}`),
+	getClaimsAfter: ({spaceId, time}) => get(`claims?newerThan=${time}&spaceId=${spaceId}`),
+	getClaimDetail: ({ id }) => get(`claim-detail?id=${id}`),
 
 	addClaim: (claim) => post('claim', claim),
 
