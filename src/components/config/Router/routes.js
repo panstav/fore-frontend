@@ -29,16 +29,16 @@ export default redirects.concat([
 		minimumRole: roles.MEMBER
 	},
 	{
-		name: 'space-home',
+		name: 'space-detail',
 		path: '/space/:spaceId',
 		Component: Space,
-		minimumRole: roles.GUEST
+		minimumRole: roles.MEMBER
 	},
 	{
 		name: 'claim-detail',
 		path: '/claim/:id',
 		Component: ClaimDetail,
-		minimumRole: roles.ADMIN
+		minimumRole: roles.MEMBER
 	},
 	{
 		name: 'privacy-policy',
