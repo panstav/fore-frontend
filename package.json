@@ -5,6 +5,7 @@
   "type": "module",
   "@parcel/transformer-js": {
     "inlineEnvironment": [
+      "NODE_ENV",
       "API",
       "npm_package_version"
     ]
