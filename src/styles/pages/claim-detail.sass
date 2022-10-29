@@ -35,14 +35,18 @@ h1.title
 		border-top-right-radius: 0
 		border-bottom-right-radius: 0
 
+.support-claims, .opposition-claims
+	.box
+		box-shadow: $claim-detail-box-shadow
+		@include no-select-marks
+		margin-bottom: $size-8
+		@include mobile
+			padding-top: $size-9
+			padding-bottom: $size-9
+		@include tablet
+			margin-bottom: $size-7
+
 .fore-claim
-	@include no-select-marks
-	margin-bottom: $size-8
-	@include mobile
-		padding-top: $size-9
-		padding-bottom: $size-9
-	@include tablet
-		margin-bottom: $size-7
 
 	$start-gradient: white calc(100% - (var(--power) / var(--total-power) * 200%))
 	$end-support-gradient: rgba($success, 0.2) 100%

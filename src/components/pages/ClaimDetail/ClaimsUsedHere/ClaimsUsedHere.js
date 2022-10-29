@@ -31,23 +31,16 @@ const directions = Object.keys(propsByDirection);
 export default function ClaimsUsedHere({ support, opposition, totalPowerHere, parentHasUserPower, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
 	const claimsUsedHere = { support, opposition };
 	return <>
-		<Section className="is-flex is-justify-content-space-between mb-3">
-			{directions.map((direction) => {
-				const { label, color } = propsByDirection[direction];
-				const buttonClasses = classNames('button is-small has-text-weight-bold has-text-white', `has-background-${color}`);
-				return <button key={direction} onClick={addClaimHere(direction)} className={buttonClasses} style={{ borderRadius: '0.25em' }}>
-					{ direction === 'support' && <Plus /> }
-					<div className="icon-text">{label}</div>
-					{ direction === 'opposition' && <Plus /> }
-				</button>;
-			})}
-		</Section>
-		<Section withTopMargin={false} noSidePadding={true}>
+		<Section noSidePadding={true}>
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
-					const { contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
+					const { label, color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
+					const buttonClasses = classNames('box py-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
 					return <div key={direction} className={`${direction}-claims`}>
-						{!claimsUsedHere[direction].length && <div className="has-text-centered has-text-grey-light pt-3 pb-6">None</div>}
+						<div className={buttonClasses} onClick={addClaimHere(direction)}>
+							<Plus className="mr-1" />
+							<span className='has-text-weight-bold'>{label}</span>
+						</div>
 						{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
 							const styles = { ['--total-power']: totalPowerHere, ['--power']: power };
 							const classes = classNames(
