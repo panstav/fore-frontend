@@ -16,9 +16,9 @@ export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreCla
 }
 
 function Claim({ id, createdAtTimeAgo, content, author }) {
-	return <div className="box reset-anchors" key={id}>
-		<Link href={`/claim/${id}`}>
-			<a>
+	return <Link key={id} href={`/claim/${id}`}>
+		<a>
+			<div className="box reset-anchors">
 				<div className="is-flex is-justify-content-space-between is-align-items-center no-select-marks">
 					<div className="is-flex is-align-items-center">
 						<Avatar userId={author.id} alt={`Profile image of "${author.name}"`} style={{ width: '1.5rem' }} />
@@ -29,9 +29,9 @@ function Claim({ id, createdAtTimeAgo, content, author }) {
 					</div>
 				</div>
 				<div className="is-size-6 is-flex-grow-1 mt-3 mr-2 has-text-weight-bold no-select-marks">{content}</div>
-			</a>
-		</Link>
-	</div>;
+			</div>
+		</a>
+	</Link>;
 }
 
 function BoxLink(props) {
