@@ -4,13 +4,13 @@ import Section from 'wrappers/Section.js';
 
 import Avatar from 'elements/Avatar';
 
-export default function Feed({ claims, hasLoadedAll, loadMoreClaims }) {
+export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreClaims }) {
 	return <Section noSidePadding={true} className="claims-container">
 		<div className="boxes has-text-left" style={{ width: '100%', maxWidth: '70ch' }}>
+			<BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>
 			{claims.map(Claim)}
-			{!hasLoadedAll && <div className="box has-text-centered is-link" onClick={loadMoreClaims}>
-				Load more
-			</div>}
+			{hasLoadedAll || !claims.length ? null
+				: <BoxLink onClick={loadMoreClaims}>Load more</BoxLink>}
 		</div>
 	</Section>;
 }
@@ -32,4 +32,8 @@ function Claim({ id, createdAtTimeAgo, content, author }) {
 			</a>
 		</Link>
 	</div>;
+}
+
+function BoxLink(props) {
+	return <div className="box has-text-centered is-link py-2" {...props} />;
 }

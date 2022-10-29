@@ -1,10 +1,8 @@
 import api from "services/xhr";
 
-import { addClaim, setCurrentSpace } from "actions";
+import { setCurrentSpace } from "actions";
 
 export default {
-
-	addClaim,
 
 	setCurrentSpace,
 

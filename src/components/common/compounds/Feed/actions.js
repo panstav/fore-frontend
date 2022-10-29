@@ -1,6 +1,10 @@
 import api from "services/xhr";
 
+import { addClaim } from "actions";
+
 export default {
+
+	addClaim,
 
 	async loadMoreClaims({ claims, spaces }) {
 

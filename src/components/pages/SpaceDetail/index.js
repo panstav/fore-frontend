@@ -14,17 +14,12 @@ import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, addClaim, setCurrentSpace }) {
+function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace }) {
 
 	// inform the app that we're in this space even if we already have the data
 	if (isDetailed) setCurrentSpace(spaceId);
 
 	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
-
-	const { showAddClaimModal } = useContext(ModalContext);
-	const createNewClaim = () => showAddClaimModal({
-		onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous, spaceId })
-	});
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
@@ -33,7 +28,6 @@ function Space({ getSpaceDetail, spaceId, isDetailed, addClaim, setCurrentSpace 
 	if (!isDetailed) return <Loader/>;
 
 	const props = {
-		createNewClaim,
 		spaceId
 	};
 

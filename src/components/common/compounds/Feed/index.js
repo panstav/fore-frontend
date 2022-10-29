@@ -1,8 +1,11 @@
+import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
 
 import actions from './actions.js';
+
+import { ModalContext } from 'contexts.js';
 
 import Meta from 'compounds/Meta.js';
 
@@ -12,7 +15,12 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(Feed);
 
-function Feed({ spaceName, claims, loadMoreClaims, hasLoadedAll }) {
+function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedAll }) {
+
+	const { showAddClaimModal } = useContext(ModalContext);
+	const createNewClaim = () => showAddClaimModal({
+		onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous, spaceId })
+	});
 
 	if (!spaceName) return null;
 
@@ -24,6 +32,7 @@ function Feed({ spaceName, claims, loadMoreClaims, hasLoadedAll }) {
 		});
 
 	const props = {
+		createNewClaim,
 		claims: sortedClaims,
 		loadMoreClaims,
 		hasLoadedAll
@@ -38,6 +47,7 @@ function Feed({ spaceName, claims, loadMoreClaims, hasLoadedAll }) {
 function mapStateToProps({ spaces, claims }, { spaceId }) {
 	const currentSpace = spaces.find((space) => space.id === spaceId);
 	return {
+		spaceId,
 		spaceName: !currentSpace ? null : currentSpace.name,
 		hasLoadedAll: !currentSpace ? false : currentSpace.hasLoadedAll,
 		claims: claims.filter((claim) => claim.spaceId === spaceId)
