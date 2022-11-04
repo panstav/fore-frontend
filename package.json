@@ -1,6 +1,6 @@
 {
   "name": "fore-frontend",
-  "version": "0.6.8-0",
+  "version": "0.6.8",
   "description": "",
   "type": "module",
   "@parcel/transformer-js": {
