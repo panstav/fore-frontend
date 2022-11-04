@@ -10,7 +10,8 @@ export default function App() {
 		<TopNav/>
 
 		<Router/>
-
+		{/* eslint-disable-next-line */
+		}<button onClick={methodDoesNotExist}>Break the world</button>
 		<Footer/>
 
 		<Notifications/>

@@ -3,6 +3,7 @@ import 'preact/debug';
 import { h, render } from 'preact';
 import htm from 'htm';
 
+import 'services/js-tracking';
 import 'lib/timeago-setup.js';
 
 import App from 'App';
