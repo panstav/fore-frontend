@@ -1,4 +1,5 @@
 import api from 'services/xhr';
+import trackEvents from 'services/track-events';
 
 import notify from 'lib/notify.js';
 
@@ -17,6 +18,7 @@ export default {
 
 		const spaceId = claims[indexOfParentClaim].spaceId;
 		api.powerClaim({ parentId: parentClaimId, childId: childClaimId, direction, spaceId });
+		trackEvents('power_claim', { parentClaimId, childClaimId, direction, spaceId });
 
 		Object.assign(claims[indexOfParentClaim].usedHere[direction][indexOfChildClaim], {
 			isPoweredByUser: true,
@@ -34,6 +36,7 @@ export default {
 
 		const spaceId = claims[indexOfParentClaim].spaceId;
 		api.releasePower({ parentId: parentClaimId, childId: childClaimId, direction, spaceId });
+		trackEvents('release_claim', { parentClaimId, childClaimId, direction, spaceId });
 
 		Object.assign(claims[indexOfParentClaim].usedHere[direction][indexOfChildClaim], {
 			isPoweredByUser: false,
@@ -52,6 +55,7 @@ export default {
 		const spaceId = claims[indexOfParentClaim].spaceId;
 		api.disconnectClaim({ parentId: parentClaimId, childId: childClaimId, direction, spaceId })
 			.then(() => notify(notifications.CLAIM_DISCONNECTED, { claimId: childClaimId }));
+		trackEvents('disconnect_claim', { parentClaimId, childClaimId, direction, spaceId });
 
 		const list = claims[indexOfParentClaim].usedHere[direction];
 		claims[indexOfParentClaim].usedHere[direction] = list.slice(0, indexOfUsedChildClaim).concat(list.slice(indexOfUsedChildClaim + 1));

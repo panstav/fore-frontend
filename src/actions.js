@@ -1,4 +1,5 @@
 import api from 'services/xhr';
+import trackEvents from 'services/track-events';
 
 import notify from 'lib/notify.js';
 import scrollBackToTop from 'lib/scroll-back-to-top';
@@ -14,6 +15,7 @@ export async function addClaim({ spaces, claims }, claim, { avoidNotifications =
 
 	claim.spaceId = claim.spaceId || spaces.find((space) => space.isCurrent).id;
 	const fullClaim = await api.addClaim(claim);
+	trackEvents('create_claim', { claimId: fullClaim.id, spaceId: claim.spaceId });
 
 	if (!avoidNotifications) notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
 

@@ -1,10 +1,11 @@
 import api from 'services/xhr';
+import localstorage from 'services/localstorage';
+import trackEvents from 'services/track-events';
 
 import notify from 'lib/notify.js';
 import fifo from 'lib/fifo';
 
 import { notifications } from 'constants.js';
-import localstorage from 'services/localstorage';
 
 export default {
 
@@ -15,6 +16,7 @@ export default {
 		const spaceId = claims[indexOfParentClaim].spaceId;
 
 		const fullClaim = await api.addClaim({ parentId, parentContent, direction, spaceId, ...claim });
+		trackEvents('create_claim_and_use', { claimId: fullClaim.id, spaceId, parentId, direction });
 		notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
 
 		const newDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: fullClaim.id, content: fullClaim.content, power: 0, isByUser: true });
@@ -35,6 +37,7 @@ export default {
 		const spaceId = claims[indexOfParentClaim].spaceId;
 		api.connectClaims({ parentId, parentContent, childId, childContent, direction, spaceId })
 			.then(() => notify(notifications.NEW_CLAIM_CONNECTION));
+		trackEvents('connect_claims', { parentId, childId, direction, spaceId });
 
 		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
 		if (~indexOfChildClaim && ('usedAt' in claims[indexOfChildClaim])) {
