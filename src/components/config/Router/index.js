@@ -7,6 +7,8 @@ import scrollBackToTop from 'lib/scroll-back-to-top';
 
 import Access from 'wrappers/Access';
 
+import Meta from 'compounds/Meta';
+
 import routes from './routes';
 
 import { roles } from 'constants.js';
@@ -20,7 +22,7 @@ export default function Router() {
 	return <>
 		<OnChange/>
 		<Switch>
-			{routes.map(({ name, path, Component, minimumRole }) => {
+			{routes.map(({ name, path, Component, seo, minimumRole }) => {
 				return <Route key={path} path={path} component={({ params }) => {
 					return <Access minimum={minimumRole} onFail={({ userRole }) => {
 
@@ -36,6 +38,7 @@ export default function Router() {
 						if (failedPath !== defaultPathFor400) localstorage.set('redirectTo', failedPath);
 						return <Redirect to={`/connect`} />;
 					}}>
+						<Meta {...seo} />
 						<main id="page" data-page={name}>
 							<Component params={params} />
 						</main>

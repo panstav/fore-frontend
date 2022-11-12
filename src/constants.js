@@ -28,3 +28,8 @@ export const notifications = {
 	NEW_CLAIM_CONNECTION: 'new-claim-connection',
 	CLAIM_DISCONNECTED: 'claim-disconnected'
 };
+
+export const meta = {
+	title: 'Fore',
+	description: 'Where collaborative truth-seeking happens.'
+};

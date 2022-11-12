@@ -2,13 +2,15 @@ import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
 
+import Meta from 'compounds/Meta.js';
+
 import Component from './Feed.js';
 
 const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps)(Feed);
 
-function Feed({ claims }) {
+function Feed({ spaceName, claims }) {
 
 	const sortedClaims = claims
 		.sort((a, b) => b.createdAt - a.createdAt)
@@ -21,11 +23,16 @@ function Feed({ claims }) {
 		claims: sortedClaims
 	};
 
-	return Component(props);
+	return <>
+		<Meta title={spaceName} />
+		<Component {...props} />
+	</>;
 }
 
-function mapStateToProps({ claims }, { spaceId }) {
+function mapStateToProps({ spaces, claims }, { spaceId }) {
+	const currentSpace = spaces.find((space) => space.id === spaceId);
 	return {
+		spaceName: currentSpace.name,
 		claims: claims.filter((claim) => claim.spaceId === spaceId)
 	};
 }

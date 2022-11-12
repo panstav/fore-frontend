@@ -14,19 +14,30 @@ export default redirects.concat([
 		name: 'home',
 		path: '/',
 		Component: Home,
-		minimumRole: roles.GUEST
+		minimumRole: roles.GUEST,
+		seo: {
+			description: 'Debate, organize and earn for your ideas.',
+		}
 	},
 	{
 		name: 'connect',
 		path: '/connect',
 		Component: ConnectToFore,
-		minimumRole: roles.GUEST
+		minimumRole: roles.GUEST,
+		seo: {
+			title: 'Signup / Login',
+			description: 'Use your Google account to sign up or log in to Fore.'
+		}
 	},
 	{
 		name: 'support',
 		path: '/support',
 		Component: Support,
-		minimumRole: roles.MEMBER
+		minimumRole: roles.MEMBER,
+		seo: {
+			title: 'Support the Closed Beta',
+			description: 'Help us grow! Support the Fore\'s Closed Beta.'
+		}
 	},
 	{
 		name: 'space-detail',
@@ -44,6 +55,10 @@ export default redirects.concat([
 		name: 'privacy-policy',
 		path: '/privacy-policy',
 		Component: PrivacyPolicy,
-		minimumRole: roles.GUEST
+		minimumRole: roles.GUEST,
+		seo: {
+			title: 'Privacy Policy',
+			description: 'At Fore, accessible from https://fore.is, we take the privacy of our visitors seriously. This Privacy Policy document contains straightforward outline of the information that is recorded by Fore.'
+		}
 	}
 ]);

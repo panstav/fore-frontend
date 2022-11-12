@@ -2,6 +2,8 @@ import { connect } from 'unistore/preact';
 
 import TimeAgo from 'javascript-time-ago';
 
+import Meta from 'compounds/Meta';
+
 import Loader from 'elements/Loader';
 
 import useEffectUntil from 'hooks/use-effect-until';
@@ -33,9 +35,12 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 		content, author, createdAt
 	};
 
-	return <ClaimDetailContext.Provider value={{ id }}>
-		<Component {...props} />
-	</ClaimDetailContext.Provider>;
+	return <>
+		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${author.name}`} />
+		<ClaimDetailContext.Provider value={{ id }}>
+			<Component {...props} />
+		</ClaimDetailContext.Provider>
+	</>;
 }
 
 function mapStateToProps({ claims }, { params: { id } }) {

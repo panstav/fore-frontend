@@ -9,7 +9,7 @@ import CurrentFeatures from "compounds/CurrentFeatures";
 
 import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
 
-import { roles } from "constants.js";
+import { meta, roles } from "constants.js";
 
 const benefits = [
 	{
@@ -37,7 +37,7 @@ export default function PromotionalHomepage () {
 		<Section className="has-text-centered">
 			<Logo className="mt-5" style={{ width: '10rem', height: '10rem' }} />
 			<h1 className="title is-1 mt-6" style={{ letterSpacing: '0.05em' }}>Fore</h1>
-			<p className="has-text-weight-bold has-text-primary">Where collaborative truth-seeking happens.</p>
+			<p className="has-text-weight-bold has-text-primary">{meta.description}</p>
 			<Access minimum={roles.order[1]}
 				onFail={() => <SignupCTA whatFor="to get started." className="mt-6" />}
 			>
