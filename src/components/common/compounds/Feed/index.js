@@ -12,6 +12,8 @@ export default connect(mapStateToProps)(Feed);
 
 function Feed({ spaceName, claims }) {
 
+	if (!spaceName) return null;
+
 	const sortedClaims = claims
 		.sort((a, b) => b.createdAt - a.createdAt)
 		.map((claim) => {
@@ -32,7 +34,7 @@ function Feed({ spaceName, claims }) {
 function mapStateToProps({ spaces, claims }, { spaceId }) {
 	const currentSpace = spaces.find((space) => space.id === spaceId);
 	return {
-		spaceName: currentSpace.name,
+		spaceName: !currentSpace ? null : currentSpace.name,
 		claims: claims.filter((claim) => claim.spaceId === spaceId)
 	};
 }
