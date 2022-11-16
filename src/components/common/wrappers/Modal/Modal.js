@@ -13,7 +13,7 @@ export default function Modal({ title, hideModal, children, hideable = true }) {
 	return <div className="modal is-active">
 		<div className="modal-background" onClick={hideModal}/>
 		<div className="modal-content is-relative">
-			<div className="box p-0" style={{ maxHeight: '100%', overflow: 'scroll' }}>
+			<div className="box p-0" style={{ maxHeight: '100%', overflowY: 'auto' }}>
 
 				{hideable && <Close className="is-overlay" style={{ left: 'unset' }} onClick={hideModal} /> }
 				<div className="box-inner">
