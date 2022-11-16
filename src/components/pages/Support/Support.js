@@ -15,7 +15,7 @@ export default function Support({ isConfirmed, addAnotherClaim }) {
 				<hr/>
 			</>}
 
-			<p>On this page you can create early Claims while Fore is still in Closed Beta.</p>
+			<p>Create early Claims while Fore is in Closed Beta.</p>
 
 			<p>
 				<button className="button mb-5 is-primary" onClick={addAnotherClaim}>
@@ -29,13 +29,13 @@ export default function Support({ isConfirmed, addAnotherClaim }) {
 
 			<p>A single Claim is a statement, a held belief, a bid for a truth that other Claims can either support or oppose.</p>
 
-			<p>All Claims are universal. Every Claim will be assessed and rated for in two manners: 1&#41; Its relevancy may be featured within the context of other Claims. 2&#41; Its truthfullness will be deducted by other Claims that either support or oppose it.</p>
+			<p>Claims are universal. A Claim created in support or opposition to another can be reused to either support or oppose any other Claim on Fore. In contrast to replies on other social networks that are strictly dependent on their context.</p>
 
-			<p>All of this will make more sense in the future, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
+			<p>All of this will make more sense once Fore enters Open Beta, in the meantime - create a Claim that you believe to be true although others might not, yet.</p>
 
 			<Upgrade className="my-6" />
 
-			<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for debating constructively.</p>
+			<p>We&apos;re committed to creating a social platform where you can discover nuanced perspectives, challenge consensus, and earn for contributing meaningful Claims and debating constructively.</p>
 
 			<SignupForBetaUpdates className="mt-6" />
 

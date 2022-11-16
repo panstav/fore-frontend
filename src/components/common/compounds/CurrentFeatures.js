@@ -10,8 +10,8 @@ export default function CurrentFeatures() {
 			<h3 className="is-size-6">Closed Beta users can also:</h3>
 			<ul>
 				<li>Browse existing Claims</li>
-				<li>Submit a Claim in support or opposition to existing claims</li>
-				<li>Vote for the best support / opposition of a Claim</li>
+				<li>Support or Oppose to existing Claims</li>
+				<li>Vote for the best support / opposition to a Claim</li>
 			</ul>
 		</div>
 	</div>;
