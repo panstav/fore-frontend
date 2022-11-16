@@ -14,7 +14,7 @@ import { meta, roles } from "constants.js";
 const benefits = [
 	{
 		prompt: "Debate",
-		title: "Let the best ideas will shine forth",
+		title: "Let the best ideas shine forth",
 		description: "Debates on Fore are naturally constructive and insightful.",
 		illustration: IdeaAbstraction
 	},
@@ -27,7 +27,7 @@ const benefits = [
 	{
 		prompt: "Earn",
 		title: "Get rewarded for creating meaningful Claims",
-		description: "Creating a strong incentive to stand for truth is a major milestone on Fore&apos;s timeline. We&apos;re expecting unforeseeable results.",
+		description: "Creating a strong incentive to stand for truth is a major milestone on Fore's timeline. We're expecting unforeseeable results.",
 		illustration: Upgrade
 	}
 ];
