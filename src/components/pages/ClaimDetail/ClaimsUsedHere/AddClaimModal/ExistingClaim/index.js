@@ -8,6 +8,8 @@ import { ClaimDetailContext } from "contexts";
 
 import Component from "./ExistingClaim";
 
+import { localStorageKeys } from 'constants';
+
 export default withContext({
 	context: ClaimDetailContext,
 	map: ({ id }) => ({ claimId: id }),
@@ -46,10 +48,10 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 	const claimsUsedHere = concatUsedHere(claims, claimId);
 	const currentSpaceId = spaces.find(space => space.isCurrent).id;
 
-	const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', [])
+	const recentlyConnectedClaims = localstorage.get(localStorageKeys.recentlyConnectedClaims, [])
 		.filter(atCurrentSpace)
 		.map(markInvalidClaims);
-	const recentlyViewedClaims = localstorage.get('recentlyViewedClaims', [])
+	const recentlyViewedClaims = localstorage.get(localStorageKeys.recentlyViewedClaims, [])
 		// avoid showing current claim as it may have been recently added
 		// also avoid showing claims that weren't authored by the user
 		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id && atCurrentSpace(claim)))

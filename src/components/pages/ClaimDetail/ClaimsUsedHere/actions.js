@@ -5,7 +5,7 @@ import trackEvents from 'services/track-events';
 import notify from 'lib/notify.js';
 import fifo from 'lib/fifo';
 
-import { notifications } from 'constants.js';
+import { notifications, localStorageKeys } from 'constants.js';
 
 export default {
 
@@ -19,6 +19,7 @@ export default {
 		trackEvents('create_claim_and_use', { claimId: fullClaim.id, spaceId, parentId, direction });
 		notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
 
+		fullClaim.isByUser = true;
 		const newDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: fullClaim.id, content: fullClaim.content, power: 0, isByUser: true });
 
 		const newClaims = claims.concat(fullClaim);
@@ -59,7 +60,7 @@ export default {
 		};
 
 		// load recently connected claims from localStorage
-		const recentlyConnectedClaims = localstorage.get('recentlyConnectedClaims', []);
+		const recentlyConnectedClaims = localstorage.get(localStorageKeys.recentlyConnectedClaims, []);
 
 		// bump existing / add claim to the list
 		fifo(recentlyConnectedClaims, newlyConnectedClaim, {
@@ -68,7 +69,7 @@ export default {
 		});
 
 		// save recently connected claims to localStorage
-		localstorage.set('recentlyConnectedClaims', recentlyConnectedClaims);
+		localstorage.set(localStorageKeys.recentlyConnectedClaims, recentlyConnectedClaims);
 		return {};
 
 	}

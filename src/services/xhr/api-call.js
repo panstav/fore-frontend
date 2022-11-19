@@ -2,7 +2,7 @@ import ky from 'ky';
 
 import localstorage from 'services/localstorage';
 
-import { urls } from 'constants.js';
+import { urls, localStorageKeys } from 'constants.js';
 
 export default ['get', 'post', 'put', 'patch', 'del'].reduce((accu, method) => {
 	return ({ [method]: transformApiCall(method), ...accu });
@@ -27,7 +27,7 @@ function transformApiCall(method) {
 				}
 
 				if (err.response.status === 401) {
-					localstorage.set('redirectTo', window.location.pathname);
+					localstorage.set(localStorageKeys.redirectTo, window.location.pathname);
 					window.location.href = `${urls.frontEnd}/connect?login`;
 					return;
 				}

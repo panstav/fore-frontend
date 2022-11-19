@@ -12,6 +12,7 @@ export default {
 	getClaimDetail: ({ id }) => get(`claim-detail?id=${id}`),
 
 	addClaim: (claim) => post('claim', claim),
+	deleteClaim: ({ claimId }) => del('claim', { claimId }),
 
 	powerClaim: (relation) => post('power-claim', relation),
 	releasePower: (relation) => post('release-power', relation),

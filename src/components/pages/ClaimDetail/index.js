@@ -1,4 +1,6 @@
+import { useCallback } from 'preact/compat';
 import { connect } from 'unistore/preact';
+import { useLocation } from "wouter-preact";
 
 import TimeAgo from 'javascript-time-ago';
 
@@ -18,9 +20,15 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView }) {
+function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsAuthor, deleteClaim, spaceId }) {
+	const [, setLocation] = useLocation();
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
+
+	const handleDeleteClaim = useCallback(async () => {
+		await deleteClaim(id);
+		setLocation(`/space/${spaceId}`);
+	}, [id, spaceId]);
 
 	if (!isDetailed) return <Loader />;
 
@@ -32,7 +40,8 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 	};
 
 	const props = {
-		content, author, createdAt
+		content, author, createdAt, userIsAuthor,
+		deleteClaim: handleDeleteClaim
 	};
 
 	return <>
@@ -41,12 +50,15 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 			<Component {...props} />
 		</ClaimDetailContext.Provider>
 	</>;
+
 }
 
-function mapStateToProps({ claims }, { params: { id } }) {
+function mapStateToProps({ claims, user }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	const { content, usedHere, author, createdAt: createdAtTime, isDetailed } = claim;
-	return { id, content, usedHere, author, createdAtTime, isDetailed };
+	const { content, usedHere, author, createdAt: createdAtTime, isDetailed, spaceId, isByUser } = claim;
+	const userIsAuthor = isByUser || user.id === author.id;
+
+	return { id, content, usedHere, author, createdAtTime, isDetailed, userIsAuthor, spaceId };
 }

@@ -33,3 +33,9 @@ export const meta = {
 	title: 'Fore',
 	description: 'Where collaborative truth-seeking happens.'
 };
+
+export const localStorageKeys = {
+	redirectTo: 'redirectTo',
+	recentlyViewedClaims: 'recentlyViewedClaims',
+	recentlyConnectedClaims: 'recentlyConnectedClaims'
+};

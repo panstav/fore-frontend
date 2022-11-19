@@ -9,7 +9,7 @@ import Space from 'components/pages/SpaceDetail';
 
 import PromotionalHomepage from './PromotionalHomepage';
 
-import { roles } from 'constants.js';
+import { roles, localStorageKeys } from 'constants.js';
 
 export default connect(mapStateToProps)(Home);
 
@@ -18,7 +18,7 @@ function Home({ isLoggedIn, isBetaUser }) {
 	if (isLoggedIn) {
 		// successfully logging in directs users to homepage
 		// so we'll check whether there's a redirectTo saved
-		const redirectTo = localstorage.get('redirectTo');
+		const redirectTo = localstorage.get(localStorageKeys.redirectTo);
 		if (redirectTo) {
 			// delete it so this won't happen again before user lands on another unauthorized path
 			// and redirect to it

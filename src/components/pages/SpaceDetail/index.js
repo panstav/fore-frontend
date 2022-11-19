@@ -1,8 +1,5 @@
-import { useContext } from "preact/hooks";
 import { connect } from "unistore/preact";
 import { Redirect, useLocation } from "wouter-preact";
-
-import { ModalContext } from "contexts";
 
 import useEffectUntil from "hooks/use-effect-until";
 
@@ -16,14 +13,14 @@ export default connect(mapStateToProps, actions)(Space);
 
 function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace }) {
 
+	// if we're here for the public feed and we're not at home - redirect to home
+	const [location] = useLocation();
+	if (location !== '/' && spaceId === 'public') return <Redirect to="/" replace={true} />;
+
 	// inform the app that we're in this space even if we already have the data
 	if (isDetailed) setCurrentSpace(spaceId);
 
 	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
-
-	// if we're here for the public feed and we're not at home - redirect to home
-	const [location] = useLocation();
-	if (location !== '/' && spaceId === 'public') return <Redirect to="/" replace={true} />;
 
 	if (!isDetailed) return <Loader/>;
 
