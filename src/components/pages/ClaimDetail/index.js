@@ -1,6 +1,4 @@
-import { useCallback } from 'preact/compat';
 import { connect } from 'unistore/preact';
-import { useLocation } from "wouter-preact";
 
 import TimeAgo from 'javascript-time-ago';
 

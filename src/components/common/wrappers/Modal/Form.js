@@ -24,7 +24,7 @@ export default function Form({ onSubmit, hideable, autoClose = true, hideModal: 
 		if (ref.current) {
 			const inputElem = ref.current.querySelector('input, textarea');
 			if (inputElem) inputElem.focus();
-		};
+		}
 	}, [ref]);
 
 	return <FormProvider {...form}>
