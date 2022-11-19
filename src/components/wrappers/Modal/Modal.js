@@ -1,4 +1,4 @@
-import noop from '../../../../../lib/noop';
+import noop from '../../../../lib/noop';
 
 import useEscape from 'hooks/use-escape.js';
 
