@@ -21,7 +21,10 @@ export default function Form({ onSubmit, hideable, autoClose = true, hideModal: 
 	};
 
 	useEffect(() => {
-		if (ref.current) ref.current.querySelector('input, textarea').focus();
+		if (ref.current) {
+			const inputElem = ref.current.querySelector('input, textarea');
+			if (inputElem) inputElem.focus();
+		};
 	}, [ref]);
 
 	return <FormProvider {...form}>
