@@ -20,15 +20,9 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsAuthor, deleteClaim, spaceId }) {
-	const [, setLocation] = useLocation();
+function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsAuthor, spaceId }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
-
-	const handleDeleteClaim = useCallback(async () => {
-		await deleteClaim(id);
-		setLocation(`/space/${spaceId}`);
-	}, [id, spaceId]);
 
 	if (!isDetailed) return <Loader />;
 
@@ -40,8 +34,7 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 	};
 
 	const props = {
-		content, author, createdAt, userIsAuthor,
-		deleteClaim: handleDeleteClaim
+		content, author, createdAt, userIsAuthor, spaceId
 	};
 
 	return <>
