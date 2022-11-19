@@ -1,5 +1,6 @@
 import api from "services/xhr";
 import localstorage from "services/localstorage";
+import trackEvents from "services/track-events";
 
 import { localStorageKeys } from "constants";
 
@@ -7,7 +8,10 @@ export default {
 
 	async deleteClaim({ claims }, claimId) {
 
+		const spaceId = claims.find(claim => claim.id === claimId).spaceId;
+
 		await api.deleteClaim({ claimId });
+		trackEvents('delete_claim', { spaceId, claimId });
 
 		const recentlyViewedClaims = localstorage.get(localStorageKeys.recentlyViewedClaims, []);
 		const recentlyViewedClaimIndex = recentlyViewedClaims.findIndex((claim) => claim.id === claimId);
