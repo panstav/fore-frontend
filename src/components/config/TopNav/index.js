@@ -9,16 +9,16 @@ import { roles } from 'constants';
 
 export default connect(mapStateToProps)(TopNav);
 
-function TopNav({ isBetaOrAbove }) {
+function TopNav({ isMemberOrAbove }) {
 	// don't show the top nav if we're viewing the promotional homepage
 	const [location] = useLocation();
-	if (location === '/connect' || (!isBetaOrAbove && location === '/')) return null;
+	if (location === '/connect' || (!isMemberOrAbove && location === '/')) return null;
 
 	return Component();
 }
 
 function mapStateToProps({ user }) {
 	return {
-		isBetaOrAbove: isAuth(user.role, { minimum: roles.MEMBER_BETA })
+		isMemberOrAbove: isAuth(user.role, { minimum: roles.MEMBER })
 	};
 }

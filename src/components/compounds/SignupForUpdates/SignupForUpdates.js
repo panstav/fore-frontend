@@ -2,7 +2,7 @@ import classnames from 'classnames';
 
 import Checkbox from 'elements/Checkbox';
 
-export default function SignupForBetaUpdates({ control, onSubmit, didSendWithoutMarking, successfullySignedUpForUpdates, className }) {
+export default function SignupForUpdates({ control, onSubmit, didSendWithoutMarking, successfullySignedUpForUpdates, className, isMinorUpdatesDisabled }) {
 
 	const containerClasses = classnames('content', className);
 
@@ -19,14 +19,14 @@ export default function SignupForBetaUpdates({ control, onSubmit, didSendWithout
 		return <>
 			<div>
 				<label className="checkbox mb-3">
-					<Checkbox className="checkbox mr-1" name="notifyWhenOpenBeta" defaultValue={false} control={control} />
-					Email me when Fore enters Open Beta.
+					<Checkbox className="checkbox mr-1" name="notifyWhenMajorUpdates" defaultValue={false} control={control} />
+					Email me when Fore gets <strong>major</strong> updates.
 				</label>
 			</div>
 			<div>
 				<label className="checkbox mb-3">
-					<Checkbox className="checkbox mr-1" name="notifyOtherContributionOptions" defaultValue={false} control={control} />
-					Email me about other ways I can contribute.
+					<Checkbox className="checkbox mr-1" name="notifyWhenMinorUpdates" defaultValue={false} control={control} disabled={isMinorUpdatesDisabled} />
+					Email me when Fore gets <strong>minor</strong> updates too.
 				</label>
 			</div>
 			<div className="is-flex is-align-items-center">

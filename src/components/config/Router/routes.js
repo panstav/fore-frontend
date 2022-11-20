@@ -1,6 +1,5 @@
 import Home from 'pages/Home';
 import ConnectToFore from 'pages/Connect';
-import Support from 'pages/Support';
 import Space from 'components/pages/SpaceDetail';
 import ClaimDetail from 'pages/ClaimDetail';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
@@ -27,16 +26,6 @@ export default redirects.concat([
 		seo: {
 			title: 'Signup / Login',
 			description: 'Use your Google account to sign up or log in to Fore.'
-		}
-	},
-	{
-		name: 'support',
-		path: '/support',
-		Component: Support,
-		minimumRole: roles.MEMBER,
-		seo: {
-			title: 'Support the Closed Beta',
-			description: 'Help us grow! Support the Fore\'s Closed Beta.'
 		}
 	},
 	{

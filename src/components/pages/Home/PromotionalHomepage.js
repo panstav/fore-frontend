@@ -4,7 +4,7 @@ import classNames from "classnames";
 import Section from "wrappers/Section";
 import Access from "wrappers/Access";
 
-import SignupForBetaUpdates from "compounds/SignupForBetaUpdates";
+import SignupForUpdates from "compounds/SignupForUpdates";
 import CurrentFeatures from "compounds/CurrentFeatures";
 
 import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
@@ -38,11 +38,7 @@ export default function PromotionalHomepage () {
 			<Logo className="mt-5" style={{ width: '10rem', height: '10rem' }} />
 			<h1 className="title is-1 mt-6" style={{ letterSpacing: '0.05em' }}>Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">{meta.description}</p>
-			<Access minimum={roles.order[1]}
-				onFail={() => <SignupCTA whatFor="to get started." className="mt-6" />}
-			>
-				<Link className="button is-primary mt-5" to="/support">Support the Closed Beta</Link>
-			</Access>
+			<SignupCTA whatFor="to get started." className="mt-6" />
 		</Section>
 		<Section>
 			{benefits.map((benefit, index) => {
@@ -64,7 +60,7 @@ export default function PromotionalHomepage () {
 				</div>}
 			>
 				<div className="box">
-					<SignupForBetaUpdates />
+					<SignupForUpdates />
 				</div>
 				<p className="has-text-centered has-text-grey-lighter mb-4">Claim Truth</p>
 			</Access>

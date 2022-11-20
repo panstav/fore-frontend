@@ -13,10 +13,9 @@ if (process.env.NODE_ENV !== 'production') {
 }
 
 export const roles = {
-	order: ['GUEST', 'MEMBER', 'MEMBER_BETA', 'EDITOR', 'ADMIN'],
+	order: ['GUEST', 'MEMBER', 'EDITOR', 'ADMIN'],
 	GUEST: 'GUEST',
 	MEMBER: 'MEMBER',
-	MEMBER_BETA: 'MEMBER_BETA',
 	EDITOR: 'EDITOR',
 	ADMIN: 'ADMIN'
 };

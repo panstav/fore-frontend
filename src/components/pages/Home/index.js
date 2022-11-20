@@ -5,7 +5,10 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
+import Section from 'wrappers/Section';
+
 import Space from 'components/pages/SpaceDetail';
+import SignupForUpdates from 'compounds/SignupForUpdates';
 
 import PromotionalHomepage from './PromotionalHomepage';
 
@@ -13,7 +16,7 @@ import { roles, localStorageKeys } from 'constants.js';
 
 export default connect(mapStateToProps)(Home);
 
-function Home({ isLoggedIn, isBetaUser }) {
+function Home({ isLoggedIn, isMemberUser }) {
 
 	if (isLoggedIn) {
 		// successfully logging in directs users to homepage
@@ -27,8 +30,15 @@ function Home({ isLoggedIn, isBetaUser }) {
 		}
 	}
 
-	// show feed to beta users
-	if (isBetaUser) return <Space params={{ spaceId: 'public' }} />;
+	// show feed to members
+	if (isMemberUser) return <>
+		<Space params={{ spaceId: 'public' }} />
+		<Section>
+			<div className="box">
+				<SignupForUpdates />
+			</div>
+		</Section>
+	</>;
 
 	// otherwise show the promotional page
 	return <PromotionalHomepage />;
@@ -37,6 +47,6 @@ function Home({ isLoggedIn, isBetaUser }) {
 function mapStateToProps({ user }) {
 	return {
 		isLoggedIn: !!user.id,
-		isBetaUser: isAuth(user.role, { minimum: roles.MEMBER_BETA })
+		isMemberUser: isAuth(user.role, { minimum: roles.MEMBER })
 	};
 }

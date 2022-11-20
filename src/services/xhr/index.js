@@ -21,6 +21,6 @@ export default {
 
 	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${keywords}&spaceId=${spaceId}`),
 
-	signUserForBetaUpdates: (updates) => patch('beta-updates', updates),
+	signUserForUpdates: (updates) => patch('signup-for-updates', updates),
 
 };

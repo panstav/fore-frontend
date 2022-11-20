@@ -5,11 +5,15 @@ import { roles } from "constants";
 const redirects = [
 	{
 		from: '/very-first-claims',
-		to: '/support'
+		to: '/'
 	},
 	{
 		from: '/login',
 		to: '/connect'
+	},
+	{
+		from: '/support',
+		to: '/'
 	}
 ];
 
