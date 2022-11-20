@@ -1,4 +1,4 @@
-import { useCallback, useContext } from 'preact/hooks';
+import { useCallback, useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import classNames from 'classnames';

@@ -1,4 +1,4 @@
-import { useCallback } from 'preact/hooks';
+import { useCallback } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import isAuth from 'lib/is-auth';

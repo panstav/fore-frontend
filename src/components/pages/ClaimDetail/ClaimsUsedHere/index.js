@@ -1,4 +1,4 @@
-import { useCallback, useState } from 'preact/hooks';
+import { useCallback, useState } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import withContext from 'lib/with-context';

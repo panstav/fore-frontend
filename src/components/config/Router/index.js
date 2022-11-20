@@ -1,4 +1,4 @@
-import { useEffect } from 'preact/hooks';
+import { useEffect } from 'preact/compat';
 import { Route, Switch, Redirect, useLocation } from 'wouter-preact';
 
 import localstorage from 'services/localstorage';

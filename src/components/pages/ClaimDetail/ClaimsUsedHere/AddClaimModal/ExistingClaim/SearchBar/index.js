@@ -1,6 +1,7 @@
-import debounce from 'lib/debounce';
-import { useCallback, useState } from 'preact/hooks';
+import { useCallback, useState } from 'preact/compat';
 import { connect } from "unistore/preact";
+
+import debounce from 'lib/debounce';
 
 import actions from './actions';
 
