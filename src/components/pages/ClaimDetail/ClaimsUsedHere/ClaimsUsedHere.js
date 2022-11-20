@@ -31,7 +31,7 @@ const directions = Object.keys(propsByDirection);
 export default function ClaimsUsedHere({ support, opposition, totalPowerHere, parentHasUserPower, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
 	const claimsUsedHere = { support, opposition };
 	return <>
-		<Section noSidePadding={true}>
+		<Section withSidePadding={false}>
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
 					const { label, color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];

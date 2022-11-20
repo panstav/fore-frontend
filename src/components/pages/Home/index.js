@@ -31,14 +31,7 @@ function Home({ isLoggedIn, isMemberUser }) {
 	}
 
 	// show feed to members
-	if (isMemberUser) return <>
-		<Space params={{ spaceId: 'public' }} />
-		<Section>
-			<div className="box">
-				<SignupForUpdates />
-			</div>
-		</Section>
-	</>;
+	if (isMemberUser) return <Space params={{ spaceId: 'public' }} />;
 
 	// otherwise show the promotional page
 	return <PromotionalHomepage />;

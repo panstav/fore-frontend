@@ -15,7 +15,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(Feed);
 
-function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedAll }) {
+function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedAll, className }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 	const createNewClaim = () => showAddClaimModal({
@@ -35,7 +35,8 @@ function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedA
 		createNewClaim,
 		claims: sortedClaims,
 		loadMoreClaims,
-		hasLoadedAll
+		hasLoadedAll,
+		className
 	};
 
 	return <>

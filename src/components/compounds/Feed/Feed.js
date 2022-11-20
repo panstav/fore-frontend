@@ -1,12 +1,14 @@
 import { Link } from 'wouter-preact';
+import classNames from 'classnames';
 
 import Section from 'wrappers/Section.js';
 
 import Avatar from 'elements/Avatar';
 
-export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreClaims }) {
-	return <Section noSidePadding={true} className="claims-container">
-		<div className="boxes has-text-left" style={{ width: '100%', maxWidth: '70ch' }}>
+export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreClaims, className: classes }) {
+	const className = classNames('boxes is-limited has-text-left', classes);
+	return <Section withSidePadding={false} className="claims-container">
+		<div {...{ className }} style={{ width: '100%' }}>
 			<BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>
 			{claims.map(Claim)}
 			{hasLoadedAll || !claims.length ? null

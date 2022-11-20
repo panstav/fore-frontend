@@ -11,7 +11,7 @@ import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace }) {
+function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace, name }) {
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
@@ -24,8 +24,11 @@ function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace }) {
 
 	if (!isDetailed) return <Loader/>;
 
+	const spaceName = spaceId === 'public' ? 'Fore · Public' : name;
+
 	const props = {
-		spaceId
+		spaceId,
+		spaceName
 	};
 
 	return Component(props);
@@ -34,10 +37,11 @@ function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace }) {
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
 
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
-	const { id: spaceId, isDetailed } = spaces[indexOfCurrentSpace] || {};
+	const { id: spaceId, isDetailed, name } = spaces[indexOfCurrentSpace] || {};
 
 	return {
 		spaceId,
-		isDetailed
+		isDetailed,
+		name
 	};
 }
