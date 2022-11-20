@@ -8,13 +8,15 @@ import initialState from 'config/Providers/Store/initial-state';
 
 import { notifications } from 'constants.js';
 
-export async function addClaim({ spaces, claims }, claim, { avoidNotifications = false } = {}) {
+export async function addClaim({ spaces, claims, user }, claim, { avoidNotifications = false } = {}) {
 
 	let notificationId;
 	if (!avoidNotifications) notificationId = notify(notifications.NEW_CLAIM_SENT);
 
 	claim.spaceId = claim.spaceId || spaces.find((space) => space.isCurrent).id;
 	const fullClaim = await api.addClaim(claim);
+	fullClaim.author = { id: user.id, name: user.name };
+
 	trackEvents('create_claim', { claimId: fullClaim.id, spaceId: claim.spaceId });
 
 	if (!avoidNotifications) notify(notifications.NEW_CLAIM_CREATED, { _id: notificationId, claimId: fullClaim.id });
