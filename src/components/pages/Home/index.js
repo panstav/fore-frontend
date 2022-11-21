@@ -5,10 +5,7 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
-import Section from 'wrappers/Section';
-
 import Space from 'components/pages/SpaceDetail';
-import SignupForUpdates from 'compounds/SignupForUpdates';
 
 import PromotionalHomepage from './PromotionalHomepage';
 
