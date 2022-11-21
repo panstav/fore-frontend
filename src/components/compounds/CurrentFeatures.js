@@ -1,5 +1,8 @@
-export default function CurrentFeatures() {
-	return <div className="box is-small m-auto panel is-primary">
+import classNames from "classnames";
+
+export default function CurrentFeatures({ className: classes }) {
+	const className = classNames('box is-small mx-auto panel is-primary', classes);
+	return <div {...{ className }} >
 		<div className="content">
 			<h2>At the moment</h2>
 			<h3 className="is-size-6">Registered users can:</h3>

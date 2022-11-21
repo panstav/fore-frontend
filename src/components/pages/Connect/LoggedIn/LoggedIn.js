@@ -31,6 +31,6 @@ function SpacesMenu({ spaces }) {
 
 function NoSpaces() {
 	return <div className="notification">
-		You don&apos;t have access any spaces, yet.
+		You don&apos;t have access to any Space except for <Link to="/">Public</Link>.
 	</div>;
 }

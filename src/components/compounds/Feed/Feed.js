@@ -6,7 +6,7 @@ import Section from 'wrappers/Section.js';
 import Avatar from 'elements/Avatar';
 
 export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreClaims, className: classes }) {
-	const className = classNames('boxes is-limited has-text-left', classes);
+	const className = classNames('boxes is-medium has-text-left', classes);
 	return <Section withSidePadding={false} className="claims-container">
 		<div {...{ className }} style={{ width: '100%' }}>
 			<BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>

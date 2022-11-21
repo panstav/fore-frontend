@@ -4,23 +4,24 @@ import Section from 'wrappers/Section';
 
 import CurrentFeatures from 'compounds/CurrentFeatures';
 
+import { Logo } from 'elements/Icon';
 import SignupWithGoogle from 'elements/SignupWithGoogle';
 
 import LoggedIn from './LoggedIn';
 
 export default function Connect({ isLoggedIn, ...props }) {
 	return <>
-		<Section>
-			<h1 className="title is-size-2 has-text-centered pt-4 mb-6 has-text-primary">Fore</h1>
-			<div className="box is-small m-auto panel is-primary pt-2">
+		<Section withTopMargin={false} className='is-small'>
+			<div className="is-flex is-align-items-center mt-4 mb-6 pb-6">
+				<Logo className="has-text-primary mr-2" style={{ width: '2.75rem' }} />
+				<h1 className="title is-size-3 has-text-primary">Fore</h1>
+			</div>
+			<div className="box m-auto panel is-primary mt-6 pt-2">
 				{isLoggedIn
 					? <LoggedIn />
 					: <ConnectMethods {...props} />}
 			</div>
-		</Section>
-
-		<Section>
-			<CurrentFeatures />
+			<CurrentFeatures className="mt-6" />
 		</Section>
 	</>;
 }

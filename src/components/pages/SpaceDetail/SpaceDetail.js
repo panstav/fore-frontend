@@ -14,7 +14,7 @@ export default function Space({ spaceId, spaceName }) {
 
 			<Feed {...{ spaceId }} className="mx-auto" />
 
-			{spaceId === 'public' && <Section className="is-flex-shrink-1 is-limited">
+			{spaceId === 'public' && <Section className="is-flex-shrink-1 is-medium">
 				<div className="box">
 					<SignupForUpdates />
 				</div>
