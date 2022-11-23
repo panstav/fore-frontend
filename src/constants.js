@@ -30,7 +30,7 @@ export const notifications = {
 
 export const meta = {
 	title: 'Fore',
-	description: 'Where collaborative truth-seeking happens.'
+	description: 'Collaborative truth-seeking.'
 };
 
 export const localStorageKeys = {
