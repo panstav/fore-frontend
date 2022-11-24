@@ -19,7 +19,7 @@ export default function Footer({ logOut, version }) {
 			<div className="is-size-7 is-flex is-align-items-center is-flex-wrap-wrap mb-3">
 
 				<FooterLink href="https://twitter.com/what_is_fore">
-					<Twitter className="has-text-primary" />
+					<Twitter className="is-block has-text-grey-lighter has-text-primary-hover" />
 				</FooterLink>
 				<FooterLink href="mailto:hello@fore.is">Give feedback</FooterLink>
 				<FooterLink href="mailto:hello@fore.is">Report a bug</FooterLink>
