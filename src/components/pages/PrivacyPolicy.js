@@ -47,7 +47,7 @@ export default function PrivacyPolicy() {
 
 				<h2>Contact information</h2>
 
-				<p>For any questions or concerns regarding the privacy policy, please send us an email to <a href="mailto:hello@fore.is">hello@fore.is</a>.</p>
+				<p>For any questions or concerns regarding the privacy policy, please send us an email to <a href="mailto:hello@fore.is" target="_blank" rel="noopener noreferrer">>hello@fore.is</a>.</p>
 
 			</div>
 		</div>
