@@ -16,7 +16,7 @@ export default function Footer({ logOut, version }) {
 					{version && <span className="fore-version has-text-weight-medium is-size-7 ml-3">beta {version}</span> }
 				</h2>
 			</div>
-			<div className="is-size-7 is-flex is-align-items-center mb-3">
+			<div className="is-size-7 is-flex is-align-items-center is-flex-wrap-wrap mb-3">
 
 				<FooterLink href="https://twitter.com/what_is_fore">
 					<Twitter className="has-text-primary" />
