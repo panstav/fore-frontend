@@ -2,7 +2,7 @@ import { Link } from 'wouter-preact';
 
 import Access from 'wrappers/Access';
 
-import { Logo } from 'elements/Icon';
+import { Logo, Twitter } from 'elements/Icon';
 
 import { roles } from 'constants';
 
@@ -16,10 +16,13 @@ export default function Footer({ logOut, version }) {
 					{version && <span className="fore-version has-text-weight-medium is-size-7 ml-3">beta {version}</span> }
 				</h2>
 			</div>
-			<div className="is-size-7 mb-3">
+			<div className="is-size-7 is-flex is-align-items-center mb-3">
 
-				<FooterLink href="mailto:stavgeffen@gmail.com">Give feedback</FooterLink>
-				<FooterLink href="mailto:stavgeffen@gmail.com">Report a bug</FooterLink>
+				<FooterLink href="https://twitter.com/what_is_fore">
+					<Twitter className="has-text-primary" />
+				</FooterLink>
+				<FooterLink href="mailto:hello@fore.is">Give feedback</FooterLink>
+				<FooterLink href="mailto:hello@fore.is">Report a bug</FooterLink>
 
 				<Access minimum={roles.order[1]} onFail={() => {
 					return <FooterLink dotless={true} href="/privacy-policy">Privacy Policy</FooterLink>;
@@ -35,15 +38,25 @@ export default function Footer({ logOut, version }) {
 
 function FooterLink({ dotless, ...props }) {
 
-	return <span style={{ display: 'inline-block', cursor: 'default' }}>
+	if (props.href && isOutbound(props.href)) {
+		props.target = '_blank';
+		props.rel = 'noopener noreferrer';
+	}
+
+	return <span className='is-flex is-align-items-center' style={{ display: 'inline-block', cursor: 'default' }}>
 		<Anchor {...props} />
 		{!dotless && <span style={{ padding: '0 1em' }}>·</span>}
 	</span>;
 
-	function Anchor(props) {
-		if (props.onClick) return <span className="is-link" onClick={props.onClick}>{props.children}</span>;
-		if (props.href.includes('mailto')) return <a {...props}>{props.children}</a>;
-		return <Link {...props}>{props.children}</Link>;
+	function Anchor({ href, children, ...props }) {
+		if (props.onClick) return <span className="is-link" {...props}>{children}</span>;
+		if (href && isOutbound(href)) return <a {...props} href={href}>{children}</a>;
+		props.to = href;
+		return <Link {...props}>{children}</Link>;
 	}
 
+}
+
+function isOutbound(href) {
+	return (href.includes('://') && !href.startsWith('https://fore.is')) || href.startsWith('mailto:');
 }
