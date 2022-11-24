@@ -26,5 +26,5 @@ export default {
 };
 
 function sanitize (content) {
-	return content.replaceAll(/[^a-zA-Z !@#$%&*()`\-_+=\\/'"{}\[\]?><.,]/g, '').trim();
+	return content.replaceAll(/[^a-zA-Z !@#$%&*()`\-_+=\\/'"{}[\]?><.,]/g, '').trim();
 }
