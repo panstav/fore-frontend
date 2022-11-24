@@ -11,7 +11,7 @@ export default {
 	getClaimsAfter: ({spaceId, time}) => get(`claims?newerThan=${time}&spaceId=${spaceId}`),
 	getClaimDetail: ({ id }) => get(`claim-detail?id=${id}`),
 
-	addClaim: (claim) => post('claim', claim),
+	addClaim: (claim) => post('claim', { ...claim, content: sanitize(claim.content) }),
 	deleteClaim: ({ claimId }) => del('claim', { claimId }),
 
 	powerClaim: (relation) => post('power-claim', relation),
@@ -19,8 +19,12 @@ export default {
 	connectClaims: (connection) => post('connect-claims', connection),
 	disconnectClaim: (connection) => del('claim-connection', connection),
 
-	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${keywords}&spaceId=${spaceId}`),
+	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${sanitize(keywords)}&spaceId=${spaceId}`),
 
 	signUserForUpdates: (updates) => patch('signup-for-updates', updates),
 
 };
+
+function sanitize (content) {
+	return content.replaceAll(/[^a-zA-Z !@#$%&*()`\-_+=\\/'"{}\[\]?><.,]/g, '').trim();
+}
