@@ -1,7 +1,7 @@
 // a master key is used to store all fore data in localstorage
 const masterKey = 'foreis';
 
-export default { get, set, unset };
+export default { get, set, unset, clear };
 
 function get(key, fallback) {
 	if (!key) throw new Error('key is required');
@@ -34,4 +34,8 @@ function unset(key) {
 	const currentValue = get(key, {});
 	delete currentValue[key];
 	localStorage.setItem(masterKey, JSON.stringify(currentValue));
+}
+
+function clear() {
+	localStorage.removeItem(masterKey);
 }

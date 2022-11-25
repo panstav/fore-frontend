@@ -1,4 +1,5 @@
 import api from 'services/xhr';
+import localstorage from 'services/localstorage';
 import trackEvents from 'services/track-events';
 
 import notify from 'lib/notify.js';
@@ -74,6 +75,7 @@ export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
 export async function logOut() {
 	await api.logout();
+	localstorage.clear();
 	scrollBackToTop();
 	return initialState;
 }
