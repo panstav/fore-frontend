@@ -1,3 +1,5 @@
+import sanitize from 'lib/sanitize';
+
 import apiCall from './api-call';
 const { get, post, patch, del } = apiCall;
 
@@ -24,7 +26,3 @@ export default {
 	signUserForUpdates: (updates) => patch('signup-for-updates', updates),
 
 };
-
-function sanitize (content) {
-	return content.replaceAll(/[^a-zA-Z !@#$%&*()`\-_+=\\/'"{}[\]?><.,]/g, '').trim();
-}
