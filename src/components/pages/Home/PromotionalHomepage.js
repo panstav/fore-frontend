@@ -53,17 +53,10 @@ export default function PromotionalHomepage () {
 			<CurrentFeatures />
 		</Section>
 		<Section>
-			<Access minimum={roles.order[1]}
-				onFail={() => <div className="has-text-centered mt-6 mb-5">
-					<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>
-					<SignupCTA whatFor="to receive updates." className="mt-5" />
-				</div>}
-			>
-				<div className="box">
-					<SignupForUpdates />
-				</div>
-				<p className="has-text-centered has-text-grey-lighter mb-4">Claim Truth</p>
-			</Access>
+			<div className="has-text-centered mt-6 mb-5">
+				<p className="has-text-weight-bold has-text-primary mb-3">Claim Truth</p>
+				<SignupCTA whatFor="to receive updates." className="mt-5" />
+			</div>
 		</Section>
 	</>;
 }
