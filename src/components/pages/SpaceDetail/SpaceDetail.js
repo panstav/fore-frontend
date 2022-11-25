@@ -2,6 +2,7 @@ import Section from "wrappers/Section";
 
 import Feed from "compounds/Feed";
 import SignupForUpdates from "compounds/SignupForUpdates";
+import FAQ from 'compounds/FAQ';
 
 export default function Space({ spaceId, spaceName }) {
 	return <>
@@ -14,10 +15,11 @@ export default function Space({ spaceId, spaceName }) {
 
 			<Feed {...{ spaceId }} className="mx-auto" />
 
-			{spaceId === 'public' && <Section className="is-flex-shrink-1 is-medium">
+			{spaceId === 'public' && <Section className="is-flex-shrink-1 is-small">
 				<div className="box">
 					<SignupForUpdates />
 				</div>
+				<FAQ />
 			</Section>}
 
 		</Section>

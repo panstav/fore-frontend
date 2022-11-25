@@ -2,14 +2,13 @@ import { Link } from "wouter-preact";
 import classNames from "classnames";
 
 import Section from "wrappers/Section";
-import Access from "wrappers/Access";
 
-import SignupForUpdates from "compounds/SignupForUpdates";
+import FAQ from "compounds/FAQ";
 import CurrentFeatures from "compounds/CurrentFeatures";
 
 import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
 
-import { meta, roles } from "constants.js";
+import { meta } from "constants.js";
 
 const benefits = [
 	{
@@ -49,7 +48,10 @@ export default function PromotionalHomepage () {
 				/>;
 			})}
 		</Section>
-		<Section withTopMargin={false} className="pt-6">
+		<Section className="is-medium">
+			<FAQ />
+		</Section>
+		<Section>
 			<CurrentFeatures />
 		</Section>
 		<Section>
