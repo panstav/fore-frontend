@@ -1,7 +1,6 @@
 import getIdentity from 'fixtures/get-identity.js';
-import getLatestClaims from 'fixtures/get-new-claims.js';
-import getTopClaims from 'fixtures/get-new-claims.js';
 import getClaimDetail from 'fixtures/get-claim-detail.js';
+import getSpaceDetail from 'fixtures/get-space-detail.js';
 import addClaim from 'fixtures/add-claim.js';
 import connectClaims from 'fixtures/connect-claim';
 import powerClaim from 'fixtures/power';
@@ -10,9 +9,8 @@ import searchOwnClaims from 'fixtures/search-own-claims';
 
 const fixtures = {
 	identify: getIdentity,
-	getLatestClaims,
-	getTopClaims,
 	getClaimDetail,
+	getSpaceDetail,
 	addClaim,
 	connectClaims,
 	searchClaimsOfUser: searchOwnClaims,
