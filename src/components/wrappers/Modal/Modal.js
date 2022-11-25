@@ -29,7 +29,7 @@ export default function Modal({ title, hideModal, children, hideable = true }) {
 }
 
 export function Title ({ children }) {
-	return <div className="level is-mobile title is-4 has-text-grey">{children}</div>;
+	return <div className="title is-4 is-flex is-align-items-center has-text-grey mb-3">{children}</div>;
 }
 
 export function ContextTitle ({ children }) {
