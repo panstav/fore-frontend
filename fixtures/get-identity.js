@@ -8,6 +8,12 @@ export default function getIdentity () {
 			// role: roles.GUEST
 			// role: roles.MEMBER
 			role: roles.ADMIN
-		}
+		},
+		spaces: [
+			{
+				id: 'public',
+				name: 'Public'
+			}
+		]
 	};
 }
