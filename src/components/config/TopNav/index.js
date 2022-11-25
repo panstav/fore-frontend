@@ -9,21 +9,16 @@ import { roles } from 'constants';
 
 export default connect(mapStateToProps)(TopNav);
 
-function TopNav({ isMemberOrAbove, multipleSpacesAvailable }) {
+function TopNav({ isMemberOrAbove }) {
 	// don't show the top nav if we're viewing the promotional homepage
 	const [location] = useLocation();
 	if (location === '/connect' || (!isMemberOrAbove && location === '/')) return null;
 
-	const props = {
-		multipleSpacesAvailable
-	};
-
-	return Component(props);
+	return Component();
 }
 
-function mapStateToProps({ user, spaces }) {
+function mapStateToProps({ user }) {
 	return {
-		isMemberOrAbove: isAuth(user.role, { minimum: roles.MEMBER }),
-		multipleSpacesAvailable: spaces.length > 1
+		isMemberOrAbove: isAuth(user.role, { minimum: roles.MEMBER })
 	};
 }

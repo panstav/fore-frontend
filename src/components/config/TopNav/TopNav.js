@@ -4,7 +4,7 @@ import { Logo } from 'elements/Icon';
 
 import SpaceSelector from './SpaceSelector';
 
-export default function TopNav({ multipleSpacesAvailable }) {
+export default function TopNav() {
 	// noinspection HtmlUnknownTarget
 	return <div className="navbar is-primary">
 		<div className="container">
@@ -14,9 +14,9 @@ export default function TopNav({ multipleSpacesAvailable }) {
 						<Logo style={{ height: "2rem" }} className="ml-1 is-clickable has-text-white" />
 					</Link>
 				</div>
-				{multipleSpacesAvailable  && <div className="navbar-item">
+				<div className="navbar-item">
 					<SpaceSelector />
-				</div>}
+				</div>
 			</div>
 		</div>
 	</div>;

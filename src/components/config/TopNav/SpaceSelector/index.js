@@ -35,6 +35,8 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRol
 		return null;
 	}
 
+	if (availableSpaces.length === 1) return null;
+
 	const props = {
 		setCurrentSpace: handleSetCurrentSpace,
 		currentSpaceName: currentSpace.name,
