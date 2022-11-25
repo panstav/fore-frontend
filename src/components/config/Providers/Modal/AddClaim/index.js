@@ -6,6 +6,7 @@ import Tooltip from 'wrappers/Tooltip';
 import Checkbox from 'elements/Checkbox';
 
 import AddClaimBody from "./AddClaimBody";
+import Guidelines from './Guidelines';
 
 export default function AddClaim({ control, copiedContent }) {
 	return <>
@@ -23,6 +24,7 @@ export default function AddClaim({ control, copiedContent }) {
 				</label>
 			</Tooltip>
 		</div>
+		<Guidelines />
 		<div className="is-flex is-justify-content-space-between is-align-items-center">
 			<div><EscapedContent /></div>
 			<button className="button is-primary">Claim</button>
