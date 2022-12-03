@@ -1,6 +1,3 @@
-import { useFormContext, useWatch } from 'react-hook-form';
-import { regExp as sanitizedRegExp } from 'lib/sanitize';
-
 import Tooltip from 'wrappers/Tooltip';
 
 import Checkbox from 'elements/Checkbox';
