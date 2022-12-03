@@ -54,8 +54,8 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 				tooltip: parentHasUserPower ? 'You\'ve already powered a claim here' : 'Choose Claim as the best argument'
 			}),
 			{
-				label: 'Rephrase',
-				slug: 'rephrase-claim',
+				label: 'Copy',
+				slug: 'copy-claim',
 				icon: Copy,
 				onClick: () => {
 					showAddClaimModal({

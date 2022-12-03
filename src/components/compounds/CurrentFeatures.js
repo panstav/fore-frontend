@@ -10,7 +10,7 @@ export default function CurrentFeatures({ className: classes }) {
 				<li>Browse recent Claims</li>
 				<li>Support or Oppose to existing Claims</li>
 				<li>Give power to the best support / opposition to any Claim</li>
-				<li>Rephrase existing Claims</li>
+				<li>Copy existing Claims</li>
 			</ul>
 		</div>
 	</div>;
