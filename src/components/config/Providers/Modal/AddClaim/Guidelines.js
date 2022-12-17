@@ -1,9 +1,9 @@
 import classNames from "classnames";
 
 const guidelines = [
-	'Be respectful. Be factual. Be concise.',
-	'You can later reuse this Claim to support or oppose any other Claim, so try to articulate it in a way that makes sense regardless of where it is displayed.',
-	'Once your Claim is published it cannot be edited but you can choose to delete it at any time. The same applies to any Claim you choose to support / oppose to.'
+	'Be respectful, factual and concise.',
+	'You will be able to use this Claim to support or oppose any other Claim. Try to phrase it in a way that will make sense no matter where it is displayed.',
+	'Once your Claim is published - it cannot be modified, But you have the option to delete it at any time. The same is true for any Claim that you choose to support or oppose.'
 ];
 
 export default function Guidelines() {
