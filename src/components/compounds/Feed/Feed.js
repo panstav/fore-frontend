@@ -4,6 +4,7 @@ import classNames from 'classnames';
 import Section from 'wrappers/Section.js';
 
 import Avatar from 'elements/Avatar';
+import Username from 'elements/Username';
 
 export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreClaims, className: classes }) {
 	const className = classNames('boxes is-medium has-text-left', classes);
@@ -17,14 +18,14 @@ export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreCla
 	</Section>;
 }
 
-function Claim({ id, createdAtTimeAgo, content, author }) {
+function Claim({ id, createdAtTimeAgo, content, author, isAnonymous }) {
 	return <Link key={id} href={`/claim/${id}`}>
 		<a>
 			<div className="box reset-anchors">
 				<div className="is-flex is-justify-content-space-between is-align-items-center no-select-marks">
 					<div className="is-flex is-align-items-center">
-						<Avatar userId={author.id} alt={`Profile image of "${author.name}"`} style={{ width: '1.5rem' }} />
-						<span className="is-size-7">{author.name}</span>
+						<Avatar {...{ author, isAnonymous }} className="mr-2" style={{ width: '1.5rem' }} />
+						<Username {...{ author, isAnonymous }} className="is-size-7" />
 					</div>
 					<div className="is-size-7 has-text-grey-light">
 						{createdAtTimeAgo}

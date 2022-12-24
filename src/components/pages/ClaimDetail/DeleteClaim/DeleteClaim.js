@@ -10,9 +10,7 @@ export default function DeleteClaim({ userIsAuthor, deleteClaim, confirmDeletion
 				{children}
 			</Access>;
 		}}>
-			<div className="is-flex-grow-1 is-flex is-justify-content-end">
-				<button onClick={deleteClaim} className="button is-small is-danger is-outlined">Delete</button>
-			</div>
+			<button onClick={deleteClaim} className="button is-small is-danger is-outlined">Delete</button>
 		</WrapConditionally>
 
 		<Modal {...confirmDeletionModalProps} render={() => {
