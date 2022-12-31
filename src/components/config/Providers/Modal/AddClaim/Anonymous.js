@@ -26,7 +26,7 @@ export default function Anonymous() {
 			<Title>Anonymous Claims</Title>
 			<div className="content">
 				<p>If for some reason you prefer not to be associated with a particular Claim, you can Claim it anonymously.</p>
-				<p>Unlike regular Claims, others cannot know who the original author of the Claim is, and you cannot reuse an anonymous Claim to support or oppose other Claims on Fore, but anyone can "pick it up", Claim it as their own, and reuse it anywhere.</p>
+				<p>Unlike regular Claims, others cannot know who the original author of the Claim is, and you cannot reuse an anonymous Claim to support or oppose other Claims on Fore, but anyone can &quot;pick it up&quot;, Claim it as their own, and reuse it anywhere.</p>
 				<p><span className='has-text-weight-bold'>Note:</span> Even if someone picks up your anonymous Claim - the system will remember you as the original author. This will be very useful in the future when earnings are enabled.</p>
 			</div>
 			<div className='is-flex is-justify-content-end'>
