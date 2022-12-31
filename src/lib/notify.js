@@ -6,6 +6,24 @@ import { notifications } from 'constants.js';
 
 const presets = {
 
+	[notifications.NEW_SPACE_SENT]: () => ({
+		closeButton: false,
+		autoClose: false,
+		message: () => <div className="is-align-items-center is-flex is-justify-content-space-between">
+			<p>Creating your Space...</p>
+		</div>
+	}),
+
+	[notifications.NEW_SPACE_CREATED]: ({ spaceId }) => ({
+		type: 'success',
+		closeButton: true,
+		autoClose: true,
+		message: () => <div className="is-align-items-center is-flex is-justify-content-space-between">
+			<p>It's on!</p>
+			<Link className="button is-small" href={`/space/${spaceId}`}>View Space</Link>
+		</div>
+	}),
+
 	[notifications.NEW_CLAIM_SENT]: () => ({
 		closeButton: false,
 		autoClose: false,

@@ -21,6 +21,8 @@ export default {
 	connectClaims: (connection) => post('connect-claims', connection),
 	disconnectClaim: (connection) => del('claim-connection', connection),
 
+	addSpace: (space) => post('space', space),
+
 	claimAnonymousClaim: ({ claimId }) => post('claim-anonymous-claim', { claimId }),
 	anonymizeClaim: ({ claimId }) => post('anonymize-claim', { claimId }),
 

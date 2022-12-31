@@ -20,7 +20,7 @@ export default function ClaimOptionsDropdown({ isOpen, dropDownOptions, directio
 				{dropDownOptions.map(({ isDivider, key, label, disabled, onClick, icon: Icon, slug, tooltip }) => {
 					if (isDivider) return <hr className="dropdown-divider" {...{key}} />;
 					return <Fragment key={label}>
-						<a className="dropdown-item is-size-7 is-flex is-justify-content-space-between is-align-items-center" {...disabled ? { disabled } : { onClick }}>
+						<a {...disabled ? { disabled } : { onClick }} className="dropdown-item is-size-7 is-flex is-justify-content-space-between is-align-items-center pr-4">
 							<div className="is-flex is-align-items-center">
 								<div className="icon-wrapper is-flex is-justify-content-center mr-2">
 									<Icon className={slug} />
