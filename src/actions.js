@@ -16,7 +16,7 @@ export async function addClaim({ spaces, claims, user }, claim, { avoidNotificat
 
 	claim.spaceId = claim.spaceId || spaces.find((space) => space.isCurrent).id;
 	const fullClaim = await api.addClaim(claim);
-	fullClaim.author = { id: user.id, name: user.name };
+	if (!fullClaim.isAnonymous) fullClaim.author = { id: user.id, name: user.name };
 
 	trackEvents('create_claim', { claimId: fullClaim.id, spaceId: claim.spaceId });
 

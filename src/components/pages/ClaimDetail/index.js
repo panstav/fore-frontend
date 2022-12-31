@@ -18,7 +18,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsAuthor, spaceId }) {
+function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsAuthor, spaceId, isAnonymous }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -26,17 +26,23 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 
 	trackClaimView({ claimId: id });
 
+	const authorName = isAnonymous ? 'Anonymous' : author.name;
 	const createdAt = {
 		fullDate: new Date(createdAtTime).toLocaleString('en-UK', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }),
 		timeAgo: timeAgo.format(new Date(createdAtTime), 'mini')
 	};
 
 	const props = {
-		content, author, createdAt, userIsAuthor, spaceId
+		content,
+		author,
+		createdAt,
+		userIsAuthor,
+		spaceId,
+		isAnonymous
 	};
 
 	return <>
-		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${author.name}`} />
+		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${authorName}`} />
 		<ClaimDetailContext.Provider value={{ id }}>
 			<Component {...props} />
 		</ClaimDetailContext.Provider>
@@ -48,8 +54,8 @@ function mapStateToProps({ claims, user }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	const { content, usedHere, author, createdAt: createdAtTime, isDetailed, spaceId, isByUser } = claim;
-	const userIsAuthor = isByUser || user.id === author.id;
+	const { content, usedHere, author, createdAt: createdAtTime, isDetailed, spaceId, isByUser, isAnonymous } = claim;
+	const userIsAuthor = !isAnonymous && (isByUser || user.id === author.id);
 
-	return { id, content, usedHere, author, createdAtTime, isDetailed, userIsAuthor, spaceId };
+	return { id, content, usedHere, author, createdAtTime, isDetailed, isAnonymous, userIsAuthor, spaceId };
 }

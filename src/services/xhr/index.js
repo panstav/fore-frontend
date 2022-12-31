@@ -21,6 +21,9 @@ export default {
 	connectClaims: (connection) => post('connect-claims', connection),
 	disconnectClaim: (connection) => del('claim-connection', connection),
 
+	claimAnonymousClaim: ({ claimId }) => post('claim-anonymous-claim', { claimId }),
+	anonymizeClaim: ({ claimId }) => post('anonymize-claim', { claimId }),
+
 	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${sanitize(keywords)}&spaceId=${spaceId}`),
 
 	signUserForUpdates: (updates) => patch('signup-for-updates', updates),

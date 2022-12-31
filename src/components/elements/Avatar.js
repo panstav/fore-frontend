@@ -1,3 +1,8 @@
-export default function Avatar({ userId, alt, style }) {
-	return <img className="mr-2 is-round" src={userId ? `https://storage.googleapis.com/fore-www/avatars/${userId}.jpg` : 'https://thispersondoesnotexist.com/image'} {...{ alt }} {...{style}} />;
+import classNames from "classnames";
+import { Anonymous } from "elements/Icon";
+
+export default function Avatar({ isAnonymous, author, className: classes, style }) {
+	const className = classNames("is-round", classes);
+	if (isAnonymous) return <Anonymous {...{ className, style }} />;
+	return <img {...{ className, style }} src={`https://storage.googleapis.com/fore-www/avatars/${author.id}.jpg`} alt={`Profile image of "${author.name}"`} />;
 }
