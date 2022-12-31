@@ -25,7 +25,9 @@ export const notifications = {
 	NEW_CLAIM_SENT: 'new-claim-sent',
 	NEW_CLAIM_CREATED: 'new-claim-created',
 	NEW_CLAIM_CONNECTION: 'new-claim-connection',
-	CLAIM_DISCONNECTED: 'claim-disconnected'
+	CLAIM_DISCONNECTED: 'claim-disconnected',
+	NEW_SPACE_SENT: 'new-space-sent',
+	NEW_SPACE_CREATED: 'new-space-created'
 };
 
 export const meta = {

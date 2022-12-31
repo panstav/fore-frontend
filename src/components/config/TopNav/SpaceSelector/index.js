@@ -1,10 +1,11 @@
-import { useCallback } from 'preact/compat';
+import { useCallback, useEffect, useRef } from 'preact/compat';
 import { useLocation } from 'wouter-preact';
 import { connect } from 'unistore/preact';
 
-import attachHref from 'lib/attach-href-to-space';
-
+import useModal from 'hooks/use-modal';
 import useBooleanState from 'hooks/use-boolean-state';
+
+import { Plus } from "elements/Icon";
 
 import actions from './actions';
 
@@ -12,16 +13,17 @@ import Component from './SpaceSelector';
 
 export default connect(mapStateToProps, actions)(SpaceSelector);
 
-function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRole }) {
+function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createSpace }) {
 
-	const [isOpenDropdown,, closeDropdown, toggleDropdown] = useBooleanState(false);
-	const handleCloseDropdown = useCallback((event) => {
-		if (event.relatedTarget && event.relatedTarget.classList.contains('dropdown-item')) return;
-		closeDropdown();
-	}, [closeDropdown]);
+	const [isOpenDropdown, , closeDropdown, toggleDropdown] = useBooleanState(false);
+	const dropdownRef = useDropdownFocus(closeDropdown);
+
+	const [newSpaceModalProps, openNewSpaceModal] = useModal({
+		title: 'Create a new Space',
+		onSubmit: createSpace
+	});
 
 	const [location, setLocation] = useLocation();
-
 	const handleSetCurrentSpace = useCallback((nextSpaceId) => {
 		if (currentSpace !== nextSpaceId) return;
 		const nextSpaceUrl = `/space/${currentSpace}`;
@@ -35,9 +37,6 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRol
 		return null;
 	}
 
-	// avoid rendering dropdown when there is only one Space
-	if (availableSpaces.length === 1) return null;
-
 	const props = {
 		setCurrentSpace: handleSetCurrentSpace,
 		currentSpaceName: currentSpace.name,
@@ -45,21 +44,45 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRol
 		isOpenDropdown,
 		// ignore event data triggering the toggle
 		toggleDropdown: () => toggleDropdown(),
-		closeDropdown: handleCloseDropdown
+		dropdownRef,
+		newSpaceModalProps,
+		createSpace: () => openNewSpaceModal()
 	};
 
 	return Component(props);
 
+	function attachHref(space) {
+		// link to the space, unless it's the public space, then link to the homepage
+		space.href = space.id === 'public' ? '/' : `/space/${space.id}`;
+		return space;
+	}
+
 }
 
-function mapStateToProps({ user, spaces, claims }) {
+function mapStateToProps({ spaces, claims }) {
 	const currentSpace = spaces.find((space) => space.isCurrent);
 	const currentSpaceObj = currentSpace ? { id: currentSpace.id, name: currentSpace.name } : null;
 	return {
-		userRole: user.role,
 		currentSpace: currentSpaceObj,
 		availableSpaces: spaces,
 		// just to trigger a re-render when the user first navigates to a claim page
 		gotClaims: !!claims.length
 	};
+}
+
+function useDropdownFocus(cb) {
+
+	const ref = useRef();
+
+	useEffect(() => {
+		document.addEventListener("mousedown", handleClickOutside);
+		return () => document.removeEventListener("mousedown", handleClickOutside);
+	}, [ref, cb]);
+
+	return ref;
+
+	function handleClickOutside(event) {
+		if (ref.current && !ref.current.contains(event.target)) cb();
+	}
+
 }
