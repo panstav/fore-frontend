@@ -1,4 +1,5 @@
 import { useFormContext } from 'react-hook-form';
+import classNames from 'classnames';
 
 import useModal from 'hooks/use-modal';
 
@@ -7,15 +8,17 @@ import Modal, { Title } from 'wrappers/Modal';
 import Checkbox from 'elements/Checkbox';
 import { Info } from 'elements/Icon';
 
-export default function Anonymous() {
+export default function Anonymous({ className: classes }) {
 
 	const { control } = useFormContext();
 
 	const [whatsAnonModalProps, showWhatsAnonModal] = useModal();
 
+	const className = classNames('field is-flex', classes);
+
 	return <>
-		<div className="field is-flex">
-			<label className="">
+		<div {...{ className }}>
+			<label>
 				<Checkbox className="mr-1" name="isAnonymous" defaultValue={false} control={control} />
 				Anonymous
 			</label>

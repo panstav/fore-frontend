@@ -6,12 +6,10 @@ import CurrentSpace from './CurrentSpace';
 
 export default function AddClaim({ copiedContent }) {
 	return <>
-		<div className="field">
-			<div className="is-relative">
-				<AddClaimBody {...{ copiedContent }} />
-			</div>
+		<div className="fore-new-claim-body field p-2">
+			<AddClaimBody {...{ copiedContent }} className="mb-2" />
+			<Anonymous className="ml-1" />
 		</div>
-		<Anonymous />
 		<EscapedContent />
 		<Guidelines />
 		<div className="is-flex is-justify-content-end">
