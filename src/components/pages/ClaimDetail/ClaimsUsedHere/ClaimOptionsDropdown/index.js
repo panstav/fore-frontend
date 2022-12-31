@@ -11,15 +11,14 @@ import actions from './actions';
 
 import Component from './ClaimOptionsDropdown';
 
-const DEBUG_DROPDOWN = false;
-// const DEBUG_DROPDOWN = true;
-
 export default connect(null, actions)(ClaimOptionsDropdown);
 
-function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, claimId, claimContent, openClaimId, openDropdown, direction, powerClaim, releasePower, addClaim, disconnectClaim }) {
+function ClaimOptionsDropdown({ isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, claimId, claimContent, openClaimId, openDropdown, direction, powerClaim, releasePower, addClaim, disconnectClaim }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 	const { id: parentClaimId } = useContext(ClaimDetailContext);
+
+	const hasUserPoweredDirection = direction === 'support' ? hasUserPoweredSupport : hasUserPoweredOpposition;
 
 	const isOpen = claimId === openClaimId;
 
@@ -28,7 +27,7 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 		// state will handle closing the dropdown
 		if (!isOpen || (event.relatedTarget && event.relatedTarget.className.includes('dropdown'))) return;
 		// otherwise assume we've lost focus and close the dropdown
-		if (!DEBUG_DROPDOWN) openDropdown();
+		openDropdown();
 	}, [openClaimId, openDropdown]);
 
 	const dropDownOptions = [
@@ -46,12 +45,12 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, parentHasUserPower, c
 				slug: 'power-claim',
 				icon: Power,
 				onClick: () => {
-					if (parentHasUserPower) return;
+					if (hasUserPoweredDirection) return;
 					powerClaim({ parentClaimId, direction, childClaimId: claimId });
 					return openDropdown();
 				},
-				disabled: parentHasUserPower,
-				tooltip: parentHasUserPower ? 'You\'ve already powered a claim here' : 'Choose Claim as the best argument'
+				disabled: hasUserPoweredDirection,
+				tooltip: hasUserPoweredDirection ? `You've already powered a ${direction} to this Claim` : `Choose this Claim as the best ${direction}`
 			}),
 			{
 				label: 'Copy',

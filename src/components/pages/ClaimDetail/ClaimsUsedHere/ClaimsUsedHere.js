@@ -28,7 +28,7 @@ const propsByDirection = {
 };
 const directions = Object.keys(propsByDirection);
 
-export default function ClaimsUsedHere({ support, opposition, totalPowerHere, parentHasUserPower, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
+export default function ClaimsUsedHere({ support, opposition, totalPowerHere, hasUserPoweredSupport, hasUserPoweredOpposition, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
 	const claimsUsedHere = { support, opposition };
 	return <>
 		<Section withSidePadding={false}>
@@ -50,7 +50,7 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, pa
 							const innerClasses = classNames('fore-claim-inner is-flex reset-anchors', `is-flex is-flex-direction-${contentOptionsOrder}`);
 							return <div key={id + direction} data-direction={direction} className={classes} style={styles}>
 								<div className={innerClasses}>
-									<ClaimOptionsDropdown {...{ claimId: id, claimContent: content, isByUser, isPoweredByUser, parentHasUserPower, openClaimId: claimIdWithOpenDropdown, openDropdown, direction, style: dropDownStyle }} />
+									<ClaimOptionsDropdown {...{ claimId: id, claimContent: content, isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, openClaimId: claimIdWithOpenDropdown, openDropdown, direction, style: dropDownStyle }} />
 									<Link href={`/claim/${id}`} className="fore-claim-content is-flex-grow-1">{content}</Link>
 								</div>
 							</div>;

@@ -57,13 +57,15 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 		opposition: countPower(oppositionUsedHere)
 	};
 	const totalPowerHere = totalPower.support + totalPower.opposition;
-	const parentHasUserPower = supportUsedHere.concat(oppositionUsedHere).some((claim) => claim.isPoweredByUser);
+	const hasUserPoweredSupport = supportUsedHere.some((claim) => claim.isPoweredByUser);
+	const hasUserPoweredOpposition = oppositionUsedHere.some((claim) => claim.isPoweredByUser);
 
 	const props = {
 		support: supportUsedHere.sort(directedClaimSort),
 		opposition: oppositionUsedHere.sort(directedClaimSort),
 		totalPowerHere,
-		parentHasUserPower,
+		hasUserPoweredSupport,
+		hasUserPoweredOpposition,
 		addClaimHere,
 		addClaimHereModalProps,
 		claimIdWithOpenDropdown, openDropdown
