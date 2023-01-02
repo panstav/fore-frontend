@@ -17,7 +17,7 @@ export default withContext({
 	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
 });
 
-function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection }) {
+function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection, isPublic }) {
 
 	const [ claimIdWithOpenDropdown, setClaimIdWithOpenDropdown ] = useState();
 	const openDropdown = useCallback((claimId) => {
@@ -68,7 +68,8 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 		hasUserPoweredOpposition,
 		addClaimHere,
 		addClaimHereModalProps,
-		claimIdWithOpenDropdown, openDropdown
+		claimIdWithOpenDropdown, openDropdown,
+		isPublic
 	};
 
 	return Component(props);
@@ -98,7 +99,9 @@ function mapStateToProps({ claims }, { currentId }) {
 
 		// two arrays separated so that component would recognized change in each
 		supportUsedHere: claim.usedHere.support,
-		oppositionUsedHere: claim.usedHere.opposition
+		oppositionUsedHere: claim.usedHere.opposition,
+
+		isPublic: claim.spaceId === 'public'
 	};
 
 }

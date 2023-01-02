@@ -19,6 +19,7 @@ export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreCla
 }
 
 function Claim({ id, createdAtTimeAgo, content, author, isAnonymous }) {
+	const contentClasses = classNames('is-size-6 is-flex-grow-1 no-select-marks has-text-weight-bold mt-3 mr-2 clarify-mask');
 	return <Link key={id} href={`/claim/${id}`}>
 		<a>
 			<div className="box reset-anchors">
@@ -31,7 +32,7 @@ function Claim({ id, createdAtTimeAgo, content, author, isAnonymous }) {
 						{createdAtTimeAgo}
 					</div>
 				</div>
-				<div className="is-size-6 is-flex-grow-1 mt-3 mr-2 has-text-weight-bold no-select-marks">{content}</div>
+				<div className={contentClasses}>{content}</div>
 			</div>
 		</a>
 	</Link>;

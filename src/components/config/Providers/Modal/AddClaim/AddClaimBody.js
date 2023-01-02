@@ -1,5 +1,5 @@
 import { useFormContext, useWatch } from 'react-hook-form';
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 const maxCharacters = 240;
 
@@ -13,11 +13,11 @@ export default function AddClaimBody({ copiedContent = '', className: classes })
 		defaultValue: copiedContent // default value before the render
 	});
 
-	const className = classnames('is-relative', classes);
-	const counterClasses = classnames(content.length >= maxCharacters ? 'has-text-danger' : '');
+	const className = classNames('is-relative', classes);
+	const counterClasses = classNames(content.length >= maxCharacters ? 'has-text-danger' : '');
 
 	return <div {...{ className }}>
-		<textarea {...register('content', { required: true, maxLength: maxCharacters, value: copiedContent })} className="textarea pb-5" style="height: 12em; resize: none;"/>
+		<textarea {...register('content', { required: true, maxLength: maxCharacters, value: copiedContent })} className="textarea pb-5 clarity-mask" style="height: 12em; resize: none;"/>
 		<span className={counterClasses} style="position: absolute; bottom: 0.2em; right: 1em">{content.length}/{maxCharacters}</span>
 	</div>;
 }

@@ -1,12 +1,13 @@
 import { useEffect, useRef } from 'preact/compat';
 import { useLocation } from 'wouter-preact';
 
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import Modal from 'wrappers/Modal';
 
-export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
+export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps, isPublic }) {
 
+	const contentClassName = classNames(!isPublic && 'clarity-mask');
 	return <>
 
 		<div className="buttons has-addons">
@@ -18,7 +19,7 @@ export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
 			return <div className="boxes">
 				{claims.map(({ id, content }) => <Link key={id} onClick={hideModal} href={`/claim/${id}`}>
 					<div className="box levem is-clickable p-3">
-						<div>{content}</div>
+						<div className={contentClassName}>{content}</div>
 					</div>
 				</Link>)}
 			</div>;
@@ -32,7 +33,7 @@ function UsedIn({ label, className, times, onClick }) {
 
 	const counterWidth = calcDigitsWidth(times) + 'ch';
 	const gap = '0.5em';
-	const classes = classnames('button is-flex is-align-items-center is-size-7 px-2 py-3 is-clickable', className);
+	const classes = classNames('button is-flex is-align-items-center is-size-7 px-2 py-3 is-clickable', className);
 
 	return <button onClick={onClick} className={classes} style={{ width: '50%' }}>
 		<div className="has-text-weight-bold">{label}</div>

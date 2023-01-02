@@ -28,7 +28,7 @@ const propsByDirection = {
 };
 const directions = Object.keys(propsByDirection);
 
-export default function ClaimsUsedHere({ support, opposition, totalPowerHere, hasUserPoweredSupport, hasUserPoweredOpposition, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
+export default function ClaimsUsedHere({ support, opposition, totalPowerHere, hasUserPoweredSupport, hasUserPoweredOpposition, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown, isPublic }) {
 	const claimsUsedHere = { support, opposition };
 	return <>
 		<Section withSidePadding={false}>
@@ -37,24 +37,25 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, ha
 					const { label, color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
 					const buttonClasses = classNames('box py-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
 					return <div key={direction} className={`${direction}-claims`}>
+
 						<div className={buttonClasses} onClick={addClaimHere(direction)}>
 							<Plus className="mr-1" />
 							<span className='has-text-weight-bold'>{label}</span>
 						</div>
+
 						{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
-							const styles = { ['--total-power']: totalPowerHere, ['--power']: power };
-							const classes = classNames(
-								'fore-claim box is-clickable has-background-white',
-								isPoweredByUser && 'is-powered-by-user'
-							);
+							const className = classNames('fore-claim box is-clickable has-background-white', isPoweredByUser && 'is-powered-by-user');
+							const style = { ['--total-power']: totalPowerHere, ['--power']: power };
 							const innerClasses = classNames('fore-claim-inner is-flex reset-anchors', `is-flex is-flex-direction-${contentOptionsOrder}`);
-							return <div key={id + direction} data-direction={direction} className={classes} style={styles}>
+							const contentClasses = classNames('fore-claim-content is-flex-grow-1', !isPublic && 'clarity-mask');
+							return <div key={id + direction} data-direction={direction} {...{ className, style }} >
 								<div className={innerClasses}>
 									<ClaimOptionsDropdown {...{ claimId: id, claimContent: content, isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, openClaimId: claimIdWithOpenDropdown, openDropdown, direction, style: dropDownStyle }} />
-									<Link href={`/claim/${id}`} className="fore-claim-content is-flex-grow-1">{content}</Link>
+									<Link href={`/claim/${id}`} className={contentClasses}>{content}</Link>
 								</div>
 							</div>;
 						})}
+
 					</div>;
 				})}
 			</div>

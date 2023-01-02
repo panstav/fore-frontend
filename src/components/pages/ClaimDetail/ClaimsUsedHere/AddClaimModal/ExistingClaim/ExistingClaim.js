@@ -24,10 +24,10 @@ function ClaimsList({ title, searchRelated, searchKeywords, className, children 
 			? <ul className="buttons has-addons is-vertical">
 				{children.map(({ id, content, invalid }) => {
 					return <li key={id} disabled={invalid} className="button p-0 is-fullwidth" style={{ height: 'auto' }}>
-						<button disabled={invalid} className="has-text-left p-3 reset" style={{ width: '100%', height: '100%', whiteSpace: 'normal', cursor: invalid ? 'not-allowed' : 'pointer' }} data-claim-id={id} data-claim-content={content}>{content}</button>
+						<button disabled={invalid} className="has-text-left p-3 reset clarity-mask" style={{ width: '100%', height: '100%', whiteSpace: 'normal', cursor: invalid ? 'not-allowed' : 'pointer' }} data-claim-id={id} data-claim-content={content}>{content}</button>
 					</li>;
 				})}
 			</ul>
-			: <div>No results for &quot;{searchKeywords}&quot;.</div>}
+			: <div>No results for <span className="clarity-mask">&quot;{searchKeywords}&quot;</span>.</div>}
 	</div>;
 }

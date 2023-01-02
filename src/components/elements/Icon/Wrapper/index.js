@@ -1,4 +1,4 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import Component from './Wrapper';
 
@@ -9,7 +9,7 @@ export default function SVGWrapper({ className, ...props }) {
 	const clickableClass = 'onClick' in props ? 'is-clickable' : '';
 
 	const passedProps = {
-		className: classnames('icon', clickableClass, className),
+		className: classNames('icon', clickableClass, className),
 		...props
 	};
 
