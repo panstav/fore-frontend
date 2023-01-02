@@ -29,7 +29,7 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 	const [newSpaceModalProps, openNewSpaceModal] = useModal({
 		onSubmit: async (data) => {
 			const spaceId = await createSpace(data);
-			setLocation(spaceId);
+			setLocation(`/space/${spaceId}`);
 		}
 	});
 
@@ -94,7 +94,5 @@ function spacesSort (a, b) {
 	if (a.id === 'public') return -1;
 	if (b.id === 'public') return 1;
 	// then sort by name
-	const aaa = a.name.localeCompare(b.name);
-	debugger;
-	return aaa;
+	return a.name.localeCompare(b.name);
 }
