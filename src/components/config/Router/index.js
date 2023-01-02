@@ -20,7 +20,7 @@ export default function Router() {
 	useOverlayRemoval();
 
 	return <>
-		<OnChange/>
+		<OnRouteChange/>
 		<Switch>
 			{routes.map(({ name, path, Component, seo, minimumRole }) => {
 				return <Route key={path} path={path} component={({ params }) => {
@@ -55,10 +55,15 @@ export default function Router() {
 	</>;
 }
 
-function OnChange() {
+function OnRouteChange() {
 	useLocation();
-	if ('hj' in window) window.hj('stateChange', window.location.pathname);
+
+	// analytics - track page views
+	if ('gtag' in window) window.gtag('page_view', window.location.pathname);
+
+	// scroll to top
 	scrollBackToTop();
+
 	return null;
 }
 
