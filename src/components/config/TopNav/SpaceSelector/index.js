@@ -18,11 +18,6 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 	const [isOpenDropdown, , closeDropdown, toggleDropdown] = useBooleanState(false);
 	const dropdownRef = useDropdownFocus(closeDropdown);
 
-	const [newSpaceModalProps, openNewSpaceModal] = useModal({
-		title: 'Create a new Space',
-		onSubmit: createSpace
-	});
-
 	const [location, setLocation] = useLocation();
 	const handleSetCurrentSpace = useCallback((nextSpaceId) => {
 		if (currentSpace !== nextSpaceId) return;
@@ -30,6 +25,13 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 		if (location !== nextSpaceUrl) return setLocation(nextSpaceUrl);
 		setCurrentSpace(nextSpaceId);
 	}, [currentSpace, setLocation]);
+
+	const [newSpaceModalProps, openNewSpaceModal] = useModal({
+		onSubmit: async (data) => {
+			const spaceId = await createSpace(data);
+			setLocation(spaceId);
+		}
+	});
 
 	// avoid rendering dropdown when no Space was yet to be determined
 	if (!currentSpace){
@@ -40,7 +42,7 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 	const props = {
 		setCurrentSpace: handleSetCurrentSpace,
 		currentSpaceName: currentSpace.name,
-		availableSpaces: availableSpaces.map(attachHref),
+		availableSpaces: availableSpaces.map(attachHref).sort(spacesSort),
 		isOpenDropdown,
 		// ignore event data triggering the toggle
 		toggleDropdown: () => toggleDropdown(),
@@ -85,4 +87,14 @@ function useDropdownFocus(cb) {
 		if (ref.current && !ref.current.contains(event.target)) cb();
 	}
 
+}
+
+function spacesSort (a, b) {
+	// 'public' is always first
+	if (a.id === 'public') return -1;
+	if (b.id === 'public') return 1;
+	// then sort by name
+	const aaa = a.name.localeCompare(b.name);
+	debugger;
+	return aaa;
 }
