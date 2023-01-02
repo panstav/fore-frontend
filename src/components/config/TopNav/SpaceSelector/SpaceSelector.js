@@ -2,7 +2,7 @@ import { Link } from "wouter-preact";
 import { useFormContext } from "react-hook-form";
 import classNames from "classnames";
 
-import Modal from "wrappers/Modal";
+import Modal, { Title } from "wrappers/Modal";
 
 import { DownArrow, Logo, PrivateSpace, Plus } from "elements/Icon";
 
@@ -51,6 +51,7 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 
 		<Modal {...newSpaceModalProps} render={function CreateSpaceModal () {
 			return <>
+				<Title>Create a new Space</Title>
 				<div className="field my-5">
 					<NewSpaceNameInput />
 				</div>
