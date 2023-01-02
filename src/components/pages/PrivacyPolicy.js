@@ -20,7 +20,7 @@ export default function PrivacyPolicy() {
 
 				<p>When you register for an account with Google, we will ask for your contact information, including items such as name, email address, and the profile image that is associated with your Google account.</p>
 
-				<p>We do not mix the two. Identifiable information is stored separately from the anonymized usage information and nothing is stored that can be used to match the two.</p>
+				<p>We do not mix the two. Identifiable information is stored separately from the anonymized usage information and no information is saved for matching the two.</p>
 
 				<h2>How we use your information</h2>
 
