@@ -31,5 +31,38 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 			</div>
 		</div>
 
+		<Modal {...newSpaceModalProps} render={function CreateSpaceModal () {
+			return <>
+				<div className="field my-5">
+					<NewSpaceNameInput />
+				</div>
+				<div className="boxes">
+					{spaceTypes.map((type) => {
+						return <div className="box is-paddingless">
+							<SpaceType {...type} />
+						</div>;
+					})}
+				</div>
+			</>;
+		}} />
+	</>;
+}
+
+function SpaceType ({ name, label, description, icon: Icon }) {
+	const { setValue } = useFormContext();
+	return <button onClick={() => setValue('type', name)} className="reset is-flex is-align-items-center p-4 is-clickable" style={{ width: '100%' }}>
+		<Icon />
+		<div className="has-text-left">
+			<span className="is-block has-text-weight-bold mb-1">{label} Space</span>
+			<span className="is-block is-size-7">{description}</span>
+		</div>
+	</button>
+}
+
+function NewSpaceNameInput() {
+	const { register } = useFormContext();
+	return <>
+		<label className="label" htmlFor="space-name">A name for your Space</label>
+		<input className="input" id="space-name" type="text" placeholder={randomSpaceName()} {...register('name', { required: true, maxLength: 40 })} />
 	</>;
 }
