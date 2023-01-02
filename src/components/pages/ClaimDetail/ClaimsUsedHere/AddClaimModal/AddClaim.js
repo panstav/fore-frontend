@@ -6,7 +6,7 @@ import ExistingClaim from './ExistingClaim';
 export default function AddClaimModal({ direction, parentContent, isNewClaim, setClaimType }) {
 
 	return <>
-		<ContextTitle>{`In ${capitalize(direction)} of "${parentContent}"`}</ContextTitle>
+		<ContextTitle>In {capitalize(direction)} of "<span className="clarity-mask">{parentContent}</span>"</ContextTitle>
 		<SelectNewOrExisting {...{ setClaimType }} />
 		<hr />
 		{isNewClaim ? <NewClaim /> : <ExistingClaim />}

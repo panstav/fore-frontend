@@ -11,7 +11,7 @@ export default function SearchBar({ onChange, isLoading, className }) {
 	);
 
 	return <div className={classes}>
-		<input {...{onChange}} className="input" placeholder="Search" />
+		<input {...{onChange}} className="input clarity-mask" placeholder="Search" />
 		<Search className="p-2 is-left" />
 	</div>;
 

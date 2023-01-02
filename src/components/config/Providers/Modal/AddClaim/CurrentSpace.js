@@ -9,7 +9,7 @@ function CurrentSpace({ spaceName }) {
 	return <>
 		<span>on</span>
 		<Logo className="ml-2 mr-1" style={{ width: '1em' }} />
-		<span>{spaceName}</span>
+		<span className="clarity-mask">{spaceName}</span>
 	</>;
 }
 

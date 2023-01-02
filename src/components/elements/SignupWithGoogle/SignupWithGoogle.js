@@ -1,10 +1,10 @@
-import classnames from "classnames";
+import classNames from "classnames";
 
 import { Google } from "elements/Icon";
 
 export default function SignupWithGoogle({ authViaGoogleUrl, fullWidth, method, className }) {
 
-	const classes = classnames(
+	const classes = classNames(
 		'button is-outlined px-3',
 		fullWidth ? 'is-block is-flex is-align-items-center is-justify-content-center' : '',
 		className

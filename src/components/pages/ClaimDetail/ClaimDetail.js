@@ -1,3 +1,5 @@
+import classNames from 'classnames';
+
 import Section from 'wrappers/Section';
 import Tooltip from 'wrappers/Tooltip';
 
@@ -27,8 +29,9 @@ export default function ClaimDetail(props) {
 }
 
 function ClaimContent({ content, author, createdAt, userIsAuthor, spaceId, isAnonymous }) {
+	const className = classNames('title mt-2 mb-3', spaceId !== 'public' && 'clarify-mask');
 	return <>
-		<h1 className="title mt-2 mb-3">{content}</h1>
+		<h1 {...{ className }}>{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">
 
 			<div className='is-flex is-align-items-center'>

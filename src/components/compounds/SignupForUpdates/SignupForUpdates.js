@@ -1,10 +1,10 @@
-import classnames from 'classnames';
+import classNames from 'classnames';
 
 import Checkbox from 'elements/Checkbox';
 
 export default function SignupForUpdates({ control, onSubmit, didSendWithoutMarking, successfullySignedUpForUpdates, className, isMinorUpdatesDisabled }) {
 
-	const containerClasses = classnames('content', className);
+	const containerClasses = classNames('content', className);
 
 	return <form onSubmit={onSubmit} className={containerClasses}>
 		<h2 className="subtitle">Signup for updates:</h2>
