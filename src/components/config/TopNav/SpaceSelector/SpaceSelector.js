@@ -34,9 +34,10 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 			</button>
 			<div className="dropdown-menu fore-available-spaces">
 				<div className="dropdown-content">
-					{availableSpaces.map(({ id, key, href, tag, name }) => {
+					{availableSpaces.map(({ id, key, href, tag, name, isCurrent }) => {
 						const onClick = () => { toggleDropdown(); setCurrentSpace(id); };
-						return <Link {...{ key, href, onClick }} className="dropdown-item is-flex is-justify-content-space-between is-align-items-center">
+						const className = classNames('dropdown-item is-flex is-justify-content-space-between is-align-items-center', isCurrent && 'is-active');
+						return <Link {...{ key, href, onClick, className }}>
 							<span className="icon-text is-size-6">{name}</span>
 							{tag && <span className="tag is-size-8 is-light" style={{ textTransform: 'uppercase', alignItems: 'end' }}>{tag}</span>}
 						</Link>;
