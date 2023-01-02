@@ -14,7 +14,7 @@ export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
 			<UsedIn onClick={showUsedAt('opposition')} label="Opposing" times={usedAt.opposition.length} className="has-text-danger" />
 		</div>
 
-		<Modal {...usedAtModalProps} render={({ claims, hideModal }) => {
+		<Modal {...usedAtModalProps} render={function ClaimUsesModal({ claims, hideModal }) {
 			return <div className="boxes">
 				{claims.map(({ id, content }) => <Link key={id} onClick={hideModal} href={`/claim/${id}`}>
 					<div className="box levem is-clickable p-3">

@@ -49,7 +49,7 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 			</div>
 		</div>
 
-		<Modal {...newSpaceModalProps} render={() => {
+		<Modal {...newSpaceModalProps} render={function CreateSpaceModal () {
 			return <>
 				<div className="field my-5">
 					<NewSpaceNameInput />
