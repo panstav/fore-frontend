@@ -7,11 +7,11 @@
 	<link rel="preconnect" href="https://fonts.googleapis.com" />
 	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 
-	<!-- google analytics -->
-	<script async src="https://www.googletagmanager.com/gtag/js?id=G-66VTRFJMP6"></script>
-	<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-66VTRFJMP6');</script>
-
-	<title>Fore</title>
+	<if condition="env === 'production'">
+		<!-- google analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-66VTRFJMP6"></script>
+		<script>window.dataLayer = window.dataLayer || []; function gtag() { dataLayer.push(arguments); } gtag('js', new Date()); gtag('config', 'G-66VTRFJMP6');</script>
+	</if>
 
 	<link rel="stylesheet" href="index.sass">
 	<script defer type="module" src="index.js"></script>
