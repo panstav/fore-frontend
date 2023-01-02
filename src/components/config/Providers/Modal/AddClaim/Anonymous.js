@@ -33,7 +33,7 @@ export default function Anonymous({ className: classes }) {
 				<p><span className='has-text-weight-bold'>Note:</span> Even if someone picks up your anonymous Claim - the system will remember you as the original author. This will be very useful in the future when earnings are enabled.</p>
 			</div>
 			<div className='is-flex is-justify-content-end'>
-				<button onClick={hideModal} className="button is-primary">OK</button>
+				<button onClick={hideModal} className="button is-primary">ok</button>
 			</div>
 		</>} />
 	</>;
