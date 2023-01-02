@@ -13,7 +13,7 @@ export default function DeleteClaim({ userIsAuthor, deleteClaim, confirmDeletion
 			<button onClick={deleteClaim} className="button is-small is-danger is-outlined">Delete</button>
 		</WrapConditionally>
 
-		<Modal {...confirmDeletionModalProps} render={() => {
+		<Modal {...confirmDeletionModalProps} render={function ConfirmDeleteModal() {
 			return <>
 				<p>This action cannot be undone.</p>
 				<div className="is-flex is-justify-content-end">
