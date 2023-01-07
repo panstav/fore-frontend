@@ -7,6 +7,13 @@ export default {
 
 	user: {},
 
+	menus: {
+		main: false,
+		notifications: false
+	},
+
+	notifications: [],
+
 	spaces: [],
 
 	claims: [],

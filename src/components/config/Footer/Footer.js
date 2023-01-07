@@ -1,7 +1,6 @@
-import { Link } from 'wouter-preact';
-
 import Access from 'wrappers/Access';
 
+import MenuLink from 'elements/MenuLink';
 import { Logo, Twitter } from 'elements/Icon';
 
 import { roles } from 'constants';
@@ -37,26 +36,8 @@ export default function Footer({ logOut, version }) {
 }
 
 function FooterLink({ dotless, ...props }) {
-
-	if (props.href && isOutbound(props.href)) {
-		props.target = '_blank';
-		props.rel = 'noopener noreferrer';
-	}
-
 	return <span className='is-flex is-align-items-center' style={{ display: 'inline-block', cursor: 'default' }}>
-		<Anchor {...props} />
+		<MenuLink {...props} />
 		{!dotless && <span style={{ padding: '0 1em' }}>·</span>}
 	</span>;
-
-	function Anchor({ href, children, ...props }) {
-		if (props.onClick) return <span className="is-link" {...props}>{children}</span>;
-		if (href && isOutbound(href)) return <a {...props} href={href}>{children}</a>;
-		props.to = href;
-		return <Link {...props}>{children}</Link>;
-	}
-
-}
-
-function isOutbound(href) {
-	return (href.includes('://') && !href.startsWith('https://fore.is')) || href.startsWith('mailto:');
 }

@@ -2,7 +2,7 @@ import { useCallback } from 'preact/compat';
 import { useLocation } from 'wouter-preact';
 import { connect } from 'unistore/preact';
 
-import isAuth from 'lib/is-auth';
+import attachHref from 'lib/attach-href-to-space';
 
 import useBooleanState from 'hooks/use-boolean-state';
 
@@ -35,12 +35,13 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRol
 		return null;
 	}
 
+	// avoid rendering dropdown when there is only one Space
 	if (availableSpaces.length === 1) return null;
 
 	const props = {
 		setCurrentSpace: handleSetCurrentSpace,
 		currentSpaceName: currentSpace.name,
-		availableSpaces: availableSpaces.map(attachHrefDisabled),
+		availableSpaces: availableSpaces.map(attachHref),
 		isOpenDropdown,
 		// ignore event data triggering the toggle
 		toggleDropdown: () => toggleDropdown(),
@@ -48,18 +49,6 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, userRol
 	};
 
 	return Component(props);
-
-	function attachHrefDisabled(space) {
-		// item should appear unclickable to unauthenticated users
-		space.disabled = !isAuth(userRole, { minimum: space.minRole });
-		// disabled items + the items that direct to the current page - don't need a link
-		space.href = space.disabled
-			? null
-			// link to the space, unless it's the public space, then link to the home page
-			: space.id === 'public' ? '/' : `/space/${space.id}`;
-
-		return space;
-	}
 
 }
 
