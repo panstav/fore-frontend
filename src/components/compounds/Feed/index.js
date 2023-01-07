@@ -1,7 +1,7 @@
 import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
-import TimeAgo from 'javascript-time-ago';
+import timeAgo from 'lib/time-ago.js';
 
 import actions from './actions.js';
 
@@ -10,8 +10,6 @@ import { ModalContext } from 'contexts.js';
 import Meta from 'compounds/Meta.js';
 
 import Component from './Feed.js';
-
-const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(Feed);
 

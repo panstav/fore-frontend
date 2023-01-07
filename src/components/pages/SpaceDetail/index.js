@@ -11,14 +11,14 @@ import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace, name }) {
+function Space({ getSpaceDetail, spaceId, isDetailed, isSetAsCurrent, setCurrentSpace, name }) {
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
 	if (location !== '/' && spaceId === 'public') return <Redirect to="/" replace={true} />;
 
 	// inform the app that we're in this space even if we already have the data
-	if (isDetailed) setCurrentSpace(spaceId);
+	if (isDetailed && !isSetAsCurrent) setCurrentSpace(spaceId);
 
 	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
 
@@ -38,10 +38,12 @@ function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
 
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
 	const { id: spaceId, isDetailed, name } = spaces[indexOfCurrentSpace] || {};
+	const isSetAsCurrent = spaces[indexOfCurrentSpace].isCurrent;
 
 	return {
 		spaceId,
 		isDetailed,
+		isSetAsCurrent,
 		name
 	};
 }
