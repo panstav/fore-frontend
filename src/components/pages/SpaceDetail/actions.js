@@ -1,10 +1,6 @@
 import api from "services/xhr";
 
-import { setCurrentSpace } from "actions";
-
 export default {
-
-	setCurrentSpace,
 
 	async getSpaceDetail({ spaces, claims }, spaceId) {
 

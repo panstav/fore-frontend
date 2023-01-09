@@ -7,16 +7,18 @@ import actions from "./actions";
 
 export default connect(null, actions)(OnRouteChange);
 
-function OnRouteChange({ closeMenus }) {
+function OnRouteChange({ setCurrentSpace, closeMenus }) {
 	useLocation();
 
+	// close all menus
 	closeMenus();
+	// ensure the current space is set
+	setCurrentSpace();
+	// scroll to top
+	scrollBackToTop();
 
 	// analytics - track page views
 	if ('gtag' in window) window.gtag('page_view', window.location.pathname);
-
-	// scroll to top
-	scrollBackToTop();
 
 	return null;
 }
