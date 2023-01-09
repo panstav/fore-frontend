@@ -11,14 +11,11 @@ import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, isSetAsCurrent, setCurrentSpace, name }) {
+function Space({ getSpaceDetail, spaceId, isDetailed, name }) {
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
 	if (location !== '/' && spaceId === 'public') return <Redirect to="/" replace={true} />;
-
-	// inform the app that we're in this space even if we already have the data
-	if (isDetailed && !isSetAsCurrent) setCurrentSpace(spaceId);
 
 	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
 
