@@ -6,7 +6,7 @@ import Component from "./MobileMenu";
 
 export default connect(mapStateToProps, actions)(MobileMenu);
 
-function MobileMenu({ userName, ...props }) {
+function MobileMenu({ userName = '', ...props }) {
 
 	props.userFirstName = userName.split(' ')[0];
 
