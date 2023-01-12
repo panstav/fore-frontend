@@ -31,7 +31,7 @@ export default function TopNav({ isMenuOpen, isNotificationsOpen, toggleMainMenu
 				</div>
 				<Link to="/notifications">
 					<a className="navbar-burger is-flex is-justify-content-center is-align-items-center is-hidden-desktop">
-						<Bell className="has-text-white" />
+						<Bell className="current-color-stroke has-text-white" />
 					</a>
 				</Link>
 			</div>

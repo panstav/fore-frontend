@@ -1,4 +1,5 @@
 import classNames from "classnames";
+
 import { Anonymous } from "elements/Icon";
 
 export default function Avatar({ isAnonymous, author, className: classes, style }) {
