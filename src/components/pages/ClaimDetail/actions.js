@@ -3,11 +3,13 @@ import localstorage from 'services/localstorage';
 
 import fifo from 'lib/fifo';
 
+import { setCurrentSpace } from 'actions';
+
 import { localStorageKeys } from 'constants';
 
 export default {
 
-	async getClaimDetail({ claims }, id) {
+	async getClaimDetail({ claims, spaces }, id) {
 		const claim = await api.getClaimDetail({ id });
 		claim.isDetailed = true;
 
@@ -18,7 +20,10 @@ export default {
 			claims.push(claim);
 		}
 
-		return { claims };
+		// update current space, in case user landed on a claim detail page
+		const { spaces: updatedSpaces } = setCurrentSpace({ spaces, claims });
+
+		return { claims, spaces: updatedSpaces };
 	},
 
 	trackClaimView({ claims }, { claimId }) {
