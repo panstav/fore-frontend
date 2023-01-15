@@ -5,9 +5,11 @@ import scrollBackToTop from 'lib/scroll-back-to-top';
 
 import actions from "./actions";
 
-export default connect(null, actions)(OnRouteChange);
+import { roles } from "constants";
 
-function OnRouteChange({ setCurrentSpace, closeMenus }) {
+export default connect(mapStateToProps, actions)(OnRouteChange);
+
+function OnRouteChange({ isInternalTraffic, setCurrentSpace, closeMenus }) {
 	useLocation();
 
 	// close all menus
@@ -18,7 +20,14 @@ function OnRouteChange({ setCurrentSpace, closeMenus }) {
 	scrollBackToTop();
 
 	// analytics - track page views
-	if ('gtag' in window) window.gtag('page_view', window.location.pathname);
+	// unless the user is from Fore
+	if (!isInternalTraffic && 'gtag' in window) window.gtag('page_view', window.location.pathname);
 
 	return null;
+}
+
+function mapStateToProps ({ user }) {
+	return {
+		isInternalTraffic: user.role === roles.ADMIN
+	};
 }
