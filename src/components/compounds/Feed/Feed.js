@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import Section from 'wrappers/Section.js';
 
+import BoxLink from 'elements/BoxLink';
 import Avatar from 'elements/Avatar';
 import Username from 'elements/Username';
 
@@ -35,8 +36,4 @@ function Claim({ id, createdAtTimeAgo, content, author, isAnonymous }) {
 			</div>
 		</a>
 	</Link>;
-}
-
-function BoxLink(props) {
-	return <div className="box has-text-centered is-link py-2" {...props} />;
 }

@@ -1,8 +1,12 @@
 import { Link } from "wouter-preact";
 
+import Greeting from "elements/Greeting";
+
 export default function LoggedIn({ userName, spaces, logOut }) {
 	return <>
-		<h2 className="is-title is-size-4 has-text-weight-bold mt-1 mb-2">Hey {userName}!</h2>
+		<h2 className="is-title is-size-4 has-text-weight-bold mt-1 mb-2">
+			<Greeting userName={userName} />
+		</h2>
 
 		{spaces.length
 			? <SpacesMenu {...{spaces}} />

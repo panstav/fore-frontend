@@ -1,7 +1,8 @@
 import Home from 'pages/Home';
 import ConnectToFore from 'pages/Connect';
-import Space from 'components/pages/SpaceDetail';
+import Space from 'pages/SpaceDetail';
 import ClaimDetail from 'pages/ClaimDetail';
+import Notifications from 'pages/Notifications';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
 
 import redirects from './redirects.js';
@@ -38,6 +39,12 @@ export default redirects.concat([
 		name: 'claim-detail',
 		path: '/claim/:id',
 		Component: ClaimDetail,
+		minimumRole: roles.MEMBER
+	},
+	{
+		name: 'notifications',
+		path: '/notifications',
+		Component: Notifications,
 		minimumRole: roles.MEMBER
 	},
 	{
