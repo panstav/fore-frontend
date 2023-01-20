@@ -5,21 +5,9 @@ import classNames from "classnames";
 import Modal, { Title } from "wrappers/Modal";
 
 import TrimmedInput from "elements/TrimmedInput";
+import { DownArrow, Plus } from "elements/Icon";
 
-const spaceTypes = [
-	{
-		name: "shared",
-		label: "Shared",
-		description: "Empower group thinking",
-		icon: () => <Logo className="ml-1 mr-5" style={{ width: '2rem' }} />
-	},
-	{
-		name: "private",
-		label: "Private",
-		description: "Think for yourself",
-		icon: () => <PrivateSpace className="ml-1 mr-5" style={{ width: '2rem' }} />
-	}
-];
+import { meta } from "constants.js";
 
 export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentSpaceName, availableSpaces, setCurrentSpace, dropdownRef, newSpaceModalProps, createSpace }) {
 
@@ -50,17 +38,20 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 			</div>
 		</div>
 
-		<Modal {...newSpaceModalProps} render={function CreateSpaceModal () {
+		<Modal {...newSpaceModalProps} render={function CreateSpaceModal({ hideModal, spaceTypes, hasCreatedBothTypes }) {
 			return <>
 				<Title>Create a new Space</Title>
-				<div className="field my-5">
-					<label className="label" htmlFor="space-name">A name for your Space</label>
-					<TrimmedInput id="space-name" name="name" maxLength={30} placeholder={randomSpaceName()} />
-				</div>
-				<div className="boxes">
+				{hasCreatedBothTypes
+					? <p className="mb-5">You have already created a private and a shared space.<br />If you need more Spaces, <a href={`mailto:${meta.contactEmailAddress}`} target="_blank">contact us</a>.</p>
+					: <div className="field my-5">
+						<label className="label" htmlFor="space-name">A name for your Space</label>
+						<TrimmedInput id="space-name" name="name" maxLength={30} placeholder={randomSpaceName()} />
+					</div>
+				}
+				<div className="boxes reset-anchors">
 					{spaceTypes.map((type) => {
 						return <div className="box is-paddingless">
-							<SpaceType {...type} />
+							<SpaceType {...type} onClickCallback={hideModal} />
 						</div>;
 					})}
 				</div>
@@ -69,23 +60,25 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 	</>;
 }
 
-function SpaceType ({ name, label, description, icon: Icon }) {
-	const { setValue } = useFormContext();
-	return <button onClick={() => setValue('type', name)} className="reset is-flex is-align-items-center p-4 is-clickable" style={{ width: '100%' }}>
-		<Icon />
+function SpaceType({ name, label, description, icon: Icon, existingSpace, onClickCallback }) {
+	const spaceClassName = classNames('is-block has-text-weight-bold mb-1', existingSpace && 'has-text-primary');
+
+	return <Wrapper {...{ name, existingSpace, onClickCallback }} className="reset is-flex is-align-items-center p-4 is-clickable" style={{ width: '100%' }}>
+		<Icon className="ml-1 mr-5" style={{ width: '2rem' }} />
 		<div className="has-text-left">
-			<span className="is-block has-text-weight-bold mb-1">{label} Space</span>
-			<span className="is-block is-size-7">{description}</span>
+			<span className={spaceClassName} style={{ lineHeight: 1 }}>{existingSpace ? existingSpace.name : label}</span>
+			<span className="is-block is-size-7" style={{ lineHeight: 1 }}>{existingSpace ? `Go to your ${label}` : description}</span>
 		</div>
-	</button>
+	</Wrapper>;
 }
 
-function NewSpaceNameInput() {
-	const { register } = useFormContext();
-	return <>
-		<label className="label" htmlFor="space-name">A name for your Space</label>
-		<input className="input" id="space-name" type="text" placeholder={randomSpaceName()} {...register('name', { required: true, maxLength: 40 })} />
-	</>;
+function Wrapper({ name, existingSpace, onClickCallback, ...props }) {
+	const { setValue } = useFormContext();
+
+	const elemProps = existingSpace ? { onClick: onClickCallback, href: existingSpace.href } : { onClick: () => setValue('type', name) };
+	const Elem = existingSpace ? Link : 'button';
+
+	return <Elem {...props} {...elemProps} />;
 }
 
 function randomSpaceName() {

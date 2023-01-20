@@ -4,6 +4,8 @@ import MenuLink from "elements/MenuLink";
 import { Twitter } from "elements/Icon";
 import Greeting from "elements/Greeting";
 
+import { meta } from "constants";
+
 export default function MobileMenu({ userFirstName, logOut, className: classes }) {
 	const className = classNames('menu px-2', classes);
 	return <div {...{ className }}>
@@ -16,8 +18,8 @@ export default function MobileMenu({ userFirstName, logOut, className: classes }
 					Find us on <Twitter className="is-inline-block fore-twitter-icon ml-2" />
 				</span>
 			</MenuLink>
-			<MenuLink href="mailto:hello@fore.is">Give feedback</MenuLink>
-			<MenuLink href="mailto:hello@fore.is">Report a bug</MenuLink>
+			<MenuLink href={`mailto:${meta.contactEmailAddress}`} target="_blank">Give feedback</MenuLink>
+			<MenuLink href={`mailto:${meta.contactEmailAddress}`} target="_blank">Report a bug</MenuLink>
 			<MenuLink href="/privacy-policy">Privacy Policy</MenuLink>
 
 			{!!userFirstName

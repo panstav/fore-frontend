@@ -3,7 +3,7 @@ import Access from 'wrappers/Access';
 import MenuLink from 'elements/MenuLink';
 import { Logo, Twitter } from 'elements/Icon';
 
-import { roles } from 'constants';
+import { roles, meta } from 'constants';
 
 export default function Footer({ logOut, version }) {
 	return <footer className="mt-6">
@@ -20,8 +20,8 @@ export default function Footer({ logOut, version }) {
 				<FooterLink href="https://twitter.com/what_is_fore">
 					<Twitter className="is-block fore-twitter-icon" />
 				</FooterLink>
-				<FooterLink href="mailto:hello@fore.is">Give feedback</FooterLink>
-				<FooterLink href="mailto:hello@fore.is">Report a bug</FooterLink>
+				<FooterLink href={`mailto:${meta.contactEmailAddress}`} target="_blank">Give feedback</FooterLink>
+				<FooterLink href={`mailto:${meta.contactEmailAddress}`} target="_blank">Report a bug</FooterLink>
 
 				<Access minimum={roles.order[1]} onFail={() => {
 					return <FooterLink dotless={true} href="/privacy-policy">Privacy Policy</FooterLink>;
