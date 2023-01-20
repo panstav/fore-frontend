@@ -7,7 +7,7 @@ export default function MenuLink({ href, children, ...props }) {
 		props.rel = 'noopener noreferrer';
 	}
 
-	if (props.onClick) return <span className="is-link" {...props}>{children}</span>;
+	if (props.onClick) return <a {...props}>{children}</a>;
 
 	if (href && isOutbound(href)) return <a {...props} href={href}>{children}</a>;
 

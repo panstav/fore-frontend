@@ -23,7 +23,7 @@ export default function MobileMenu({ userFirstName, logOut, className: classes }
 			<MenuLink href="/privacy-policy">Privacy Policy</MenuLink>
 
 			{!!userFirstName
-				? <MenuLink onClick={logOut} className="navbar-item">Logout</MenuLink>
+				? <MenuLink onClick={logOut}>Logout</MenuLink>
 				: <MenuLink href="/connect">Login</MenuLink>
 			}
 		</ul>
