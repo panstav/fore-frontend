@@ -5,15 +5,32 @@ import { connect } from 'unistore/preact';
 import useModal from 'hooks/use-modal';
 import useBooleanState from 'hooks/use-boolean-state';
 
-import { Plus } from "elements/Icon";
+import { SharedSpace, PrivateSpace } from "elements/Icon";
 
 import actions from './actions';
 
 import Component from './SpaceSelector';
 
+import { roles } from 'constants';
+
+const spaceTypes = [
+	{
+		name: "shared",
+		label: "Shared Space",
+		description: "Empower group thinking",
+		icon: SharedSpace
+	},
+	{
+		name: "private",
+		label: "Private Space",
+		description: "Think for yourself",
+		icon: PrivateSpace
+	}
+];
+
 export default connect(mapStateToProps, actions)(SpaceSelector);
 
-function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createSpace }) {
+function SpaceSelector({ isAdmin, currentSpace, setCurrentSpace, spaces, createSpace }) {
 
 	const [isOpenDropdown, , closeDropdown, toggleDropdown] = useBooleanState(false);
 	const dropdownRef = useDropdownFocus(closeDropdown);
@@ -26,7 +43,10 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 		setCurrentSpace(nextSpaceId);
 	}, [currentSpace, setLocation]);
 
+	const hasCreatedBothTypes = !isAdmin && spaces.filter((space) => space.userRole === roles.ADMIN).map(({ type }) => type).length === spaceTypes.length;
 	const [newSpaceModalProps, openNewSpaceModal] = useModal({
+		hasCreatedBothTypes,
+		spaceTypes: spaceTypes.map(attachExisting),
 		onSubmit: async (data) => {
 			const spaceId = await createSpace(data);
 			setLocation(`/space/${spaceId}`);
@@ -42,7 +62,7 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 	const props = {
 		setCurrentSpace: handleSetCurrentSpace,
 		currentSpaceName: currentSpace.name,
-		availableSpaces: availableSpaces.map(attachHref).sort(spacesSort),
+		availableSpaces: spaces.map(attachHref).sort(spacesSort),
 		isOpenDropdown,
 		// ignore event data triggering the toggle
 		toggleDropdown: () => toggleDropdown(),
@@ -53,20 +73,29 @@ function SpaceSelector({ currentSpace, setCurrentSpace, availableSpaces, createS
 
 	return Component(props);
 
-	function attachHref(space) {
-		// link to the space, unless it's the public space, then link to the homepage
-		space.href = space.id === 'public' ? '/' : `/space/${space.id}`;
-		return space;
+	function attachExisting(type) {
+		// let the admin create both types even if they already have a space of that type
+		if (isAdmin) return type;
+		// attach the existing space of this type, if any
+		type.existingSpace = spaces.find((existingSpace) => existingSpace.type === type.name);
+		return type;
 	}
 
 }
 
-function mapStateToProps({ spaces, claims }) {
+function attachHref(space) {
+	// link to the space, unless it's the public space, then link to the homepage
+	space.href = space.id === 'public' ? '/' : `/space/${space.id}`;
+	return space;
+}
+
+function mapStateToProps({ spaces, claims, user }) {
 	const currentSpace = spaces.find((space) => space.isCurrent);
 	const currentSpaceObj = currentSpace ? { id: currentSpace.id, name: currentSpace.name } : null;
 	return {
+		isAdmin: user.role === roles.ADMIN,
 		currentSpace: currentSpaceObj,
-		availableSpaces: spaces,
+		spaces,
 		// just to trigger a re-render when the user first navigates to a claim page
 		gotClaims: !!claims.length
 	};

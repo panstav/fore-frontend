@@ -1,5 +1,7 @@
 import Section from 'wrappers/Section';
 
+import { meta } from 'constants';
+
 export default function PrivacyPolicy() {
 	return <Section className='is-medium'>
 
@@ -47,7 +49,7 @@ export default function PrivacyPolicy() {
 
 				<h2>Contact information</h2>
 
-				<p>For any questions or concerns regarding the privacy policy, please send us an email to <a href="mailto:hello@fore.is" target="_blank" rel="noopener noreferrer">hello@fore.is</a>.</p>
+				<p>For any questions or concerns regarding the privacy policy, please send us an email to <a href={`mailto:${meta.contactEmailAddress}`} target="_blank" rel="noopener noreferrer">{meta.contactEmailAddress}</a>.</p>
 
 			</div>
 		</div>
