@@ -34,7 +34,7 @@ const benefits = [
 export default function PromotionalHomepage () {
 	return <>
 		<Section className="has-text-centered">
-			<Logo className="mt-5" style={{ width: '10rem', height: '10rem' }} />
+			<Logo className="mt-6" style={{ width: '10rem', height: '10rem' }} />
 			<h1 className="title is-1 mt-6" style={{ letterSpacing: '0.05em' }}>Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">{meta.description}</p>
 			<SignupCTA whatFor="to get started." className="mt-6" />
@@ -80,7 +80,7 @@ function SideBySide({ prompt, title, description, illustration: Illustration, cl
 function SignupCTA ({ className, whatFor }) {
 	const classes = classNames('is-flex is-justify-content-center is-align-items-center', className);
 	return <div className={classes}>
-		<Link className="button is-primary mr-2" to="/connect?signup">Sign up</Link>
+		<Link className="button is-primary mr-2" to="/connect?login">Sign in</Link>
 		<span> {whatFor}</span>
 	</div>;
 }
