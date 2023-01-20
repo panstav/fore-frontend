@@ -75,6 +75,13 @@ export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
 }
 
+export function closeMenus({ menus }) {
+	if (!menus.main && !menus.notifications) return;
+	menus.main = false;
+	menus.notifications = false;
+	return { menus };
+}
+
 export async function logOut() {
 	await api.logout();
 	localstorage.clear();

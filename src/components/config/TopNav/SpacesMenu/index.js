@@ -2,17 +2,18 @@ import { connect } from 'unistore/preact';
 
 import attachHref from 'lib/attach-href-to-space';
 
+import actions from './actions';
+
+import { spacesSorter } from '../index';
 import Component from './SpacesMenu';
 
-export default connect(mapStateToProps)(SpacesMenu);
+export default connect(mapStateToProps, actions)(SpacesMenu);
 
-function SpacesMenu({ spaces }) {
-
-	// avoid rendering dropdown when there is only one Space
-	if (spaces.length < 2) return null;
+function SpacesMenu({ spaces, createSpace, closeMenus }) {
 
 	const props = {
-		spaces: spaces.map(attachHref)
+		spaces: spaces.map(attachHref).sort(spacesSorter),
+		createSpace: () => { closeMenus(); createSpace(); }
 	};
 
 	return Component(props);

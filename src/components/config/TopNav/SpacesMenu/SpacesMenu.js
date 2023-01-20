@@ -1,7 +1,8 @@
 import { Link } from "wouter-preact";
 import classNames from "classnames";
+import CreateSpaceButton from "../CreateSpaceButton";
 
-export default function SpacesMenu({ spaces }) {
+export default function SpacesMenu({ spaces, createSpace }) {
 	return <div className="menu px-2">
 		<p className="menu-label mb-1">
 			Spaces
@@ -17,6 +18,9 @@ export default function SpacesMenu({ spaces }) {
 					</Link>
 				</li>;
 			})}
+			<li>
+				<CreateSpaceButton onClick={createSpace} className="pl-2" />
+			</li>
 		</ul>
 	</div>;
 }
