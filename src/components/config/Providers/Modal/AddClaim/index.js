@@ -1,4 +1,5 @@
-import AddClaimBody from "./AddClaimBody";
+import TrimmedInput from "elements/TrimmedInput";
+
 import Anonymous from './Anonymous';
 import EscapedContent from './EscapedContent';
 import Guidelines from './Guidelines';
@@ -7,7 +8,7 @@ import CurrentSpace from './CurrentSpace';
 export default function AddClaim({ copiedContent }) {
 	return <>
 		<div className="fore-new-claim-body field p-2">
-			<AddClaimBody {...{ copiedContent }} className="mb-2" />
+			<TrimmedInput name="content" type="textarea" maxLength={240} defaultValue={copiedContent} className="mb-2" inputClasses="pb-5" />
 			<Anonymous className="ml-1" />
 		</div>
 		<EscapedContent />

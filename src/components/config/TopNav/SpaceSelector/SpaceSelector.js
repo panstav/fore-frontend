@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import Modal, { Title } from "wrappers/Modal";
 
-import { DownArrow, Logo, PrivateSpace, Plus } from "elements/Icon";
+import TrimmedInput from "elements/TrimmedInput";
 
 const spaceTypes = [
 	{
@@ -54,7 +54,8 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 			return <>
 				<Title>Create a new Space</Title>
 				<div className="field my-5">
-					<NewSpaceNameInput />
+					<label className="label" htmlFor="space-name">A name for your Space</label>
+					<TrimmedInput id="space-name" name="name" maxLength={30} placeholder={randomSpaceName()} />
 				</div>
 				<div className="boxes">
 					{spaceTypes.map((type) => {
