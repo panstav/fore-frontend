@@ -30,7 +30,7 @@ export default function Form({ onSubmit, hideable, autoClose = true, hideModal: 
 	return <FormProvider {...form}>
 		<Modal {...{ title, hideModal, hideable }}>
 			<form ref={ref} onSubmit={form.handleSubmit(handleSubmit)}>
-				{render(Object.assign({}, form, modalProps))}
+				{render(Object.assign({ hideModal }, form, modalProps))}
 			</form>
 		</Modal>
 	</FormProvider>;
