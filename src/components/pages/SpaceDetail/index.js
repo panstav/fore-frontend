@@ -11,21 +11,22 @@ import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, name }) {
+function Space({ getSpaceDetail, id, name, type, isDetailed }) {
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
-	if (location !== '/' && spaceId === 'public') return <Redirect to="/" replace={true} />;
+	if (location !== '/' && id === 'public') return <Redirect to="/" replace={true} />;
 
-	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
+	useEffectUntil(() => getSpaceDetail(id), [isDetailed]);
 
 	if (!isDetailed) return <Loader/>;
 
-	const spaceName = spaceId === 'public' ? 'Fore · Public' : name;
+	const spaceName = id === 'public' ? 'Fore · Public' : name;
 
 	const props = {
-		spaceId,
-		spaceName
+		id,
+		name: spaceName,
+		type
 	};
 
 	return Component(props);
@@ -33,11 +34,12 @@ function Space({ getSpaceDetail, spaceId, isDetailed, name }) {
 
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
-	const { id: spaceId, isDetailed, name } = spaces[indexOfCurrentSpace] || {};
+	const { id, type, isDetailed, name } = spaces[indexOfCurrentSpace] || {};
 
 	return {
-		spaceId,
-		isDetailed,
-		name
+		id,
+		name,
+		type,
+		isDetailed
 	};
 }
