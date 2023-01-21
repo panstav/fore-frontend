@@ -32,15 +32,12 @@ function Space({ getSpaceDetail, spaceId, isDetailed, name }) {
 }
 
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
-
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
 	const { id: spaceId, isDetailed, name } = spaces[indexOfCurrentSpace] || {};
-	const isSetAsCurrent = spaces[indexOfCurrentSpace].isCurrent;
 
 	return {
 		spaceId,
 		isDetailed,
-		isSetAsCurrent,
 		name
 	};
 }
