@@ -11,6 +11,7 @@ export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreCla
 	const className = classNames('boxes is-medium has-text-left', classes);
 	return <Section withSidePadding={false} className="claims-container">
 		<div {...{ className }} style={{ width: '100%' }}>
+			{!claims.length && <div className='box has-no-hover has-text-centered'>New Claims will show up here.</div>}
 			<BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>
 			{claims.map(Claim)}
 			{hasLoadedAll || !claims.length ? null
