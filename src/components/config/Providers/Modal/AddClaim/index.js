@@ -15,7 +15,7 @@ export default function AddClaim({ copiedContent }) {
 		<Guidelines />
 		<div className="is-flex is-justify-content-end">
 			<button className="button is-primary">
-				<span>Claim&nbsp;</span>
+				<span>Claim on&nbsp;</span>
 				<CurrentSpace />
 			</button>
 		</div>
