@@ -12,7 +12,7 @@ export default function Footer({ logOut, version }) {
 				<Logo className="mr-3" />
 				<h2 className="is-flex is-align-items-baseline">
 					<span className="has-text-weight-bold">Fore</span>
-					{version && <span className="fore-version has-text-weight-medium is-size-7 ml-3">beta {version}</span> }
+					{version && <span className="fore-version has-text-weight-medium is-size-7 ml-3">{version}</span> }
 				</h2>
 			</div>
 			<div className="is-size-7 is-flex is-align-items-center is-flex-wrap-wrap mb-3">
