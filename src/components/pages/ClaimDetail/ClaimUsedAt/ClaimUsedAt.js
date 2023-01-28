@@ -10,8 +10,8 @@ export default function ClaimUsedAt({ usedAt, showUsedAt, usedAtModalProps }) {
 	return <>
 
 		<div className="buttons has-addons">
-			<UsedIn onClick={showUsedAt('support')} label="Supporting" times={usedAt.support.length} className="has-text-success" />
-			<UsedIn onClick={showUsedAt('opposition')} label="Opposing" times={usedAt.opposition.length} className="has-text-danger" />
+			<UsedIn onClick={showUsedAt('support')} label="Supports" times={usedAt.support.length} className="has-text-success" />
+			<UsedIn onClick={showUsedAt('opposition')} label="Opposes" times={usedAt.opposition.length} className="has-text-danger" />
 		</div>
 
 		<Modal {...usedAtModalProps} render={({ claims, hideModal }) => {
