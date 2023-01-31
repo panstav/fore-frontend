@@ -45,12 +45,17 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, hasUserPoweredSupport
 				slug: 'power-claim',
 				icon: Power,
 				onClick: () => {
-					if (hasUserPoweredDirection) return;
+					if (isByUser || hasUserPoweredDirection) return;
 					powerClaim({ parentClaimId, direction, childClaimId: claimId });
 					return openDropdown();
 				},
-				disabled: hasUserPoweredDirection,
-				tooltip: hasUserPoweredDirection ? `You've already powered a ${direction} to this Claim` : `Choose this Claim as the best ${direction}`
+					disabled: isByUser || hasUserPoweredDirection,
+					tooltip: !isByUser && !hasUserPoweredDirection ? `Choose this Claim as the best ${direction}`
+						: isByUser
+							? `You can only for Claims created by others`
+						: hasUserPoweredDirection
+								? `You've already powered a ${direction} to this Claim`
+						: null
 			}),
 			{
 				label: 'Copy',
