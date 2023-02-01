@@ -1,8 +1,11 @@
 import Section from "wrappers/Section";
+import Access from "wrappers/Access";
 
 import Feed from "compounds/Feed";
 import SignupForUpdates from "compounds/SignupForUpdates";
 import FAQ from 'compounds/FAQ';
+
+import ShareInvite from "./ShareInvite";
 
 export default function Space({ id, type, name }) {
 	return <>
@@ -29,9 +32,9 @@ export default function Space({ id, type, name }) {
 						: <div className="box">
 							<h3 className="title is-5">Members</h3>
 							<p>New members will be show up here.</p>
-							<div className="has-text-centered">
-								<button className="button is-primary mt-5">Share an invite</button>
-							</div>
+							<Access only={r => r.ADMIN} atSpace={id}>
+								<ShareInvite />
+							</Access>
 						</div>}
 
 				</Section>}

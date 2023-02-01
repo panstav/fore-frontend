@@ -6,6 +6,7 @@ const { get, post, patch, del } = apiCall;
 export default {
 
 	identify: () => get('identify'),
+	getInvitationDetail: (invitationId) => get(`invitation-detail?id=${invitationId}`),
 	logout: () => post('logout'),
 
 	getSpaceDetail: (id) => get(`space-detail?id=${id}`),

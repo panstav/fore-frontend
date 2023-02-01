@@ -36,6 +36,12 @@ export default redirects.concat([
 		minimumRole: roles.MEMBER
 	},
 	{
+		name: 'invitation-to-space',
+		path: '/space/:spaceId?invitation=:invitationId',
+		Component: SpaceInvitation,
+		minimumRole: roles.GUEST
+	},
+	{
 		name: 'claim-detail',
 		path: '/claim/:id',
 		Component: ClaimDetail,
