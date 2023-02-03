@@ -36,6 +36,6 @@ function spaceSorter(a, b) {
 }
 
 function attachLinkTo(space) {
-	space.link = space.slug || space.id;
+	space.link = `/space/${space.slug || space.id}`;
 	return space;
 }

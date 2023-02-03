@@ -20,7 +20,7 @@ function SpacesMenu({ spaces }) {
 		<ul className="menu-list">
 			{spaces.map(({ name, id, link }) => {
 				return <li key={id}>
-					<Link href={`/spaces/${link}`}>
+					<Link href={link}>
 						{name}
 					</Link>
 				</li>;
