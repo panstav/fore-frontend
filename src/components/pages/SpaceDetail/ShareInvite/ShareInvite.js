@@ -2,7 +2,7 @@ import Modal, { Title } from "wrappers/Modal";
 
 import { Copy, Share } from "elements/Icon";
 
-export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation }) {
+export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl }) {
 	return <>
 
 		<div className="has-text-centered">
@@ -10,7 +10,6 @@ export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWeb
 		</div>
 
 		<Modal {...shareInviteModalProps} render={function ShareInviteModal({ }) {
-
 			return <>
 				<Title>Invite members</Title>
 				<span>After joining with your link, Space members will be able to:</span>
@@ -25,9 +24,8 @@ export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWeb
 
 				{invitationLink
 					? <>
-						<p>{invitationLink}</p>
-						<div className="is-flex is-justify-content-space-evenly mt-5">
-							<button className="button">
+						<div className="buttons is-flex mb-0">
+							<button onClick={copyUrl} className="button">
 								<Copy />
 								<div className="icon-text ml-2">Copy link</div>
 							</button>
@@ -36,6 +34,7 @@ export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWeb
 								<div className="icon-text ml-2">Share link</div>
 							</button>}
 						</div>
+						<input onClick={selectEntireLink} className="input" type="url" value={invitationLink} />
 					</>
 					: <div className="has-text-centered">
 						<button onClick={createInvitation} className="button is-primary mx-auto">Create an Invitation Link</button>

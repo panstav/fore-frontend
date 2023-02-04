@@ -1,5 +1,7 @@
-import { useMemo } from 'preact/hooks';
+import { useCallback, useMemo, useState } from 'preact/hooks';
 import { connect } from 'unistore/preact';
+
+import { copy } from 'services/clipboard';
 
 import actions from './actions';
 
@@ -19,6 +21,15 @@ function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invi
 
 	const [shareInviteModalProps, showShareInviteModal] = useModal();
 
+	const [hasSelectedAllOnce, setHasSelectedAllOnce] = useState(false);
+	const selectEntireLink = useCallback((e) => {
+		if (hasSelectedAllOnce) return;
+		setHasSelectedAllOnce(true);
+		e.target.select()
+	}, [hasSelectedAllOnce]);
+
+	const copyUrl = () => copy(invitationLink);
+
 	const hasWebShare = useMemo(() => {
 		if (!invitationId) return false;
 
@@ -28,15 +39,17 @@ function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invi
 			url: invitationLink
 		};
 
-		return 'share' in navigator && 'canShare' in navigator && navigator.canShare(spaceWebShareObj)
-	}, [userFirstName, spaceId, invitationId]);
+		return 'share' in navigator && 'canShare' in navigator && navigator.canShare(spaceWebShareObj);
+	}, [userFirstName, spaceName, spaceId, invitationId]);
 
 	const props = {
 		shareInviteModalProps,
 		shareInvite: showShareInviteModal,
 		hasWebShare,
 		invitationLink,
-		createInvitation: handleCreateInvitation
+		createInvitation: handleCreateInvitation,
+		selectEntireLink,
+		copyUrl
 	};
 
 	return Component(props);
