@@ -19,40 +19,36 @@ export default function Space({ id, type, name, participants }) {
 
 			<Feed spaceId={id} className="mx-auto" />
 
-			{type === 'private'
-				? null
-				: <Section className="is-flex-shrink-1 is-small">
+			<Section className="is-flex-shrink-1 is-small">
 
-					{id === 'public'
-						? <>
-							<div className="box">
-								<SignupForUpdates />
-							</div>
-							<FAQ />
-						</>
-						: <div className="box">
-							<h3 className="title is-5">Members</h3>
+				{id === 'public' && <>
+					<div className="box">
+						<SignupForUpdates />
+					</div>
+					<FAQ />
+				</>}
 
-							{participants.length < 2
-								? <p>New members will be show up here.</p>
-								: <ul className="is-flex is-flex-wrap-wrap is-justify-content-center">
-									{participants.map((id) => {
-										const author = { name: '', id };
-										return <li key={id}>
-											<Avatar {...{ author }} className="mx-1" style={{ width: '2.5rem' }} />
-										</li>;
-									})}
-								</ul>
-							}
+				{type === 'shared' && id !== 'public' && <div className="box">
+					<h3 className="title is-5">Members</h3>
 
-							<Access only={r => r.ADMIN} atSpace={id}>
-								<ShareInvite />
-							</Access>
-						</div>}
+					{participants.length < 2
+						? <p>New members will be show up here.</p>
+						: <ul className="is-flex is-flex-wrap-wrap is-justify-content-center">
+							{participants.map((id) => {
+								const author = { name: '', id };
+								return <li key={id}>
+									<Avatar {...{ author }} className="mx-1" style={{ width: '2.5rem' }} />
+								</li>;
+							})}
+						</ul>
+					}
 
-				</Section>}
+					<Access only={r => r.ADMIN} atSpace={id}>
+						<ShareInvite />
+					</Access>
+				</div>}
 
-
+			</Section>
 
 		</Section>
 
