@@ -10,6 +10,7 @@ import useModal from 'hooks/use-modal';
 import Component from './ShareInvite';
 
 import { urls } from 'constants';
+import { canShare, share } from 'services/webshare';
 
 export default connect(mapStateToProps, actions)(ShareInvite);
 
@@ -30,17 +31,13 @@ function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invi
 
 	const copyUrl = () => copy(invitationLink);
 
-	const hasWebShare = useMemo(() => {
-		if (!invitationId) return false;
-
-		const spaceWebShareObj = {
-			title: `${userFirstName} has invited you to a Space on Fore`,
-			text: `Join "${spaceName}" to read, support and oppose existing Claims, and create Claims of your own.`,
-			url: invitationLink
-		};
-
-		return 'share' in navigator && 'canShare' in navigator && navigator.canShare(spaceWebShareObj);
-	}, [userFirstName, spaceName, spaceId, invitationId]);
+	const webShareObject = {
+		title: `${userFirstName} has invited you to a Space on Fore`,
+		text: `Join "${spaceName}" to read, support and oppose existing Claims, and create Claims of your own.`,
+		url: invitationLink
+	};
+	const hasWebShare = useMemo(() => canShare(webShareObject), []);
+	const webShare = () => share(webShareObject);
 
 	const props = {
 		shareInviteModalProps,
@@ -49,7 +46,8 @@ function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invi
 		invitationLink,
 		createInvitation: handleCreateInvitation,
 		selectEntireLink,
-		copyUrl
+		copyUrl,
+		webShare
 	};
 
 	return Component(props);

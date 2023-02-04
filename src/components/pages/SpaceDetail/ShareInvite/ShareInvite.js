@@ -2,7 +2,7 @@ import Modal, { Title } from "wrappers/Modal";
 
 import { Copy, Share } from "elements/Icon";
 
-export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl }) {
+export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare }) {
 	return <>
 
 		<div className="has-text-centered">
@@ -29,7 +29,7 @@ export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWeb
 								<Copy />
 								<div className="icon-text ml-2">Copy link</div>
 							</button>
-							{hasWebShare && <button className="button">
+							{hasWebShare && <button onClick={webShare} className="button">
 								<Share />
 								<div className="icon-text ml-2">Share link</div>
 							</button>}
