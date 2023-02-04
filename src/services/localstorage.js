@@ -31,9 +31,9 @@ function unset(key) {
 	if (!key) throw new Error('key is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
-	const currentValue = get(key, {});
-	delete currentValue[key];
-	localStorage.setItem(masterKey, JSON.stringify(currentValue));
+	const masterValue = JSON.parse(localStorage.getItem(masterKey) || '{}');
+	delete masterValue[key];
+	localStorage.setItem(masterKey, JSON.stringify(masterValue));
 }
 
 function clear() {
