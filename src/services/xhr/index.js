@@ -6,6 +6,8 @@ const { get, post, patch, del } = apiCall;
 export default {
 
 	identify: () => get('identify'),
+	getInvitationDetail: (invitationId) => get(`invitation-detail?id=${invitationId}`),
+	acceptSpaceInvitation: (invitationId) => post('accept-invitation', { invitationId }),
 	logout: () => post('logout'),
 
 	getSpaceDetail: (id) => get(`space-detail?id=${id}`),
@@ -22,6 +24,7 @@ export default {
 	disconnectClaim: (connection) => del('claim-connection', connection),
 
 	addSpace: (space) => post('space', space),
+	createInvitation: (invitation) => post('invitation', invitation),
 
 	claimAnonymousClaim: ({ claimId }) => post('claim-anonymous-claim', { claimId }),
 	anonymizeClaim: ({ claimId }) => post('anonymize-claim', { claimId }),

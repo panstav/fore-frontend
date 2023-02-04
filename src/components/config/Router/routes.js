@@ -1,6 +1,7 @@
 import Home from 'pages/Home';
 import ConnectToFore from 'pages/Connect';
 import Space from 'pages/SpaceDetail';
+import SpaceInvitation from 'pages/SpaceInvitation';
 import ClaimDetail from 'pages/ClaimDetail';
 import Notifications from 'pages/Notifications';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
@@ -28,6 +29,12 @@ export default redirects.concat([
 			title: 'Signup / Login',
 			description: 'Use your Google account to sign up or log in to Fore.'
 		}
+	},
+	{
+		name: 'invitation-to-space',
+		path: '/space-invitation/:invitationId',
+		Component: SpaceInvitation,
+		minimumRole: roles.MEMBER
 	},
 	{
 		name: 'space-detail',

@@ -48,6 +48,7 @@ function TopNav({ isMemberOrAbove, isAdmin, isMenuOpen, isNotificationsOpen, tog
 
 	const props = {
 		isMenuOpen,
+		isLoggedIn: isMemberOrAbove,
 		isNotificationsOpen,
 		toggleMainMenu,
 		createSpace: () => openNewSpaceModal(),

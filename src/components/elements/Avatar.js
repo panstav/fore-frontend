@@ -10,6 +10,6 @@ export default function Avatar({ isAnonymous, author, className: classes, style 
 	return <img
 		{...{ className, style }}
 		src={`https://storage.googleapis.com/fore-www/avatars/${author.id}.jpg`}
-		alt={`Profile image of "${author.name}"`}
+		alt={author.name ? `Profile image of "${author.name}"` : ''}
 	/>;
 }

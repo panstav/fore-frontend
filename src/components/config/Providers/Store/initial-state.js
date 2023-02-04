@@ -20,6 +20,8 @@ export default {
 
 	search: {
 		ClaimDetailAddClaim: emptySearch
-	}
+	},
+
+	invitations: [],
 
 };

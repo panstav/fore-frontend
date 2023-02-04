@@ -1,10 +1,14 @@
 import Section from "wrappers/Section";
+import Access from "wrappers/Access";
 
 import Feed from "compounds/Feed";
 import SignupForUpdates from "compounds/SignupForUpdates";
 import FAQ from 'compounds/FAQ';
 
-export default function Space({ id, type, name }) {
+import ShareInvite from "./ShareInvite";
+import Avatar from "components/elements/Avatar";
+
+export default function Space({ id, type, name, participants }) {
 	return <>
 
 		<Section withTopMargin={true}>
@@ -28,10 +32,22 @@ export default function Space({ id, type, name }) {
 						</>
 						: <div className="box">
 							<h3 className="title is-5">Members</h3>
-							<p>New members will be show up here.</p>
-							<div className="has-text-centered">
-								<button className="button is-primary mt-5">Share an invite</button>
-							</div>
+
+							{participants.length < 2
+								? <p>New members will be show up here.</p>
+								: <ul className="is-flex is-flex-wrap-wrap is-justify-content-center">
+									{participants.map((id) => {
+										const author = { name: '', id };
+										return <li key={id}>
+											<Avatar {...{ author }} className="mx-1" style={{ width: '2.5rem' }} />
+										</li>;
+									})}
+								</ul>
+							}
+
+							<Access only={r => r.ADMIN} atSpace={id}>
+								<ShareInvite />
+							</Access>
 						</div>}
 
 				</Section>}

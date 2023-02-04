@@ -88,3 +88,11 @@ export async function logOut() {
 	scrollBackToTop();
 	return initialState;
 }
+
+export async function getInvitationDetail({ invitations }, invitationId) {
+	const invitation = await api.getInvitationDetail(invitationId);
+	if (!invitation) return {};
+
+	const updatedInvitations = invitations.concat(invitation);
+	return { invitations: updatedInvitations };
+}

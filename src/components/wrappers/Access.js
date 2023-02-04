@@ -18,8 +18,13 @@ function Access({ userRole, minimum, only, onFail = returnNull, children }) {
 	return children;
 }
 
-function mapStateToProps({ user }) {
-	return { userRole: user.role };
+function mapStateToProps({ user, spaces }, { atSpace }) {
+
+	const userRole = atSpace
+		? spaces.find(space => space.id === atSpace)?.userRole
+		: user.role;
+
+	return { userRole };
 }
 
 function funcOrInline(property) {

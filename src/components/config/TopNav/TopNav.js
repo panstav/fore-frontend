@@ -14,7 +14,7 @@ import MobileMenu from './MobileMenu';
 
 import { meta } from 'constants';
 
-export default function TopNav({ isMenuOpen, isNotificationsOpen, toggleMainMenu, toggleNotificationsMenu, createSpace, newSpaceModalProps }) {
+export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, toggleMainMenu, toggleNotificationsMenu, createSpace, newSpaceModalProps }) {
 
 	const menuClasses = classNames('navbar-menu', isMenuOpen && 'is-active');
 	const notificationsClasses = classNames('navbar-item has-dropdown is-hidden-touch', isNotificationsOpen && 'is-active');
@@ -36,26 +36,26 @@ export default function TopNav({ isMenuOpen, isNotificationsOpen, toggleMainMenu
 							</a>
 						</Link>
 					</div>
-					<Link to="/notifications">
+					{isLoggedIn ? <Link to="/notifications">
 						<a className="navbar-burger is-flex is-justify-content-center is-align-items-center is-hidden-desktop">
 							<Bell className="current-color-stroke has-text-white" />
 						</a>
-					</Link>
+					</Link> : <div className='navbar-burger' />}
 				</div>
 				<div className={menuClasses}>
 					<div className="navbar-start">
-						<div className="navbar-item is-hidden-touch">
+						{isLoggedIn && <div className="navbar-item is-hidden-touch">
 							<SpaceSelector createSpace={createSpace} />
-						</div>
+						</div>}
 						<div className="is-hidden-desktop">
-							<SpacesMenu createSpace={createSpace} />
+							{isLoggedIn && <SpacesMenu createSpace={createSpace} />}
 							<MobileMenu className="mt-4" />
 						</div>
 					</div>
 					<div className="navbar-end">
-						<div onClick={toggleNotificationsMenu} className={notificationsClasses}>
+						{isLoggedIn && <div onClick={toggleNotificationsMenu} className={notificationsClasses}>
 							<Notifications />
-						</div>
+						</div>}
 					</div>
 				</div>
 			</div>
