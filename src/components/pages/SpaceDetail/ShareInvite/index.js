@@ -2,6 +2,7 @@ import { useCallback, useMemo, useState } from 'preact/hooks';
 import { connect } from 'unistore/preact';
 
 import { copy } from 'services/clipboard';
+import { canShare, share } from 'services/webshare';
 
 import actions from './actions';
 
@@ -9,16 +10,17 @@ import useModal from 'hooks/use-modal';
 
 import Component from './ShareInvite';
 
-import { urls } from 'constants';
-import { canShare, share } from 'services/webshare';
+import { urls, spaceMaxParticipants } from 'constants';
 
 export default connect(mapStateToProps, actions)(ShareInvite);
 
-function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invitationId }) {
+function ShareInvite({ numberOfParticipants, spaceId, spaceName, createInvitation, invitationId, userFirstName }) {
 
 	const invitationLink = invitationId && `${urls.frontEnd}/space-invitation/${invitationId}`;
 
-	const handleCreateInvitation = () => createInvitation({ spaceId, spaceName });
+	const handleCreateInvitation = () => {
+		if (numberOfParticipants < spaceMaxParticipants) createInvitation({ spaceId, spaceName })
+	};
 
 	const [shareInviteModalProps, showShareInviteModal] = useModal();
 
@@ -47,7 +49,9 @@ function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invi
 		createInvitation: handleCreateInvitation,
 		selectEntireLink,
 		copyUrl,
-		webShare
+		webShare,
+		numberOfParticipants,
+		spaceMaxParticipants
 	};
 
 	return Component(props);
@@ -57,7 +61,7 @@ function ShareInvite({ userFirstName, spaceId, spaceName, createInvitation, invi
 function mapStateToProps({ user, spaces, invitations }) {
 
 	const space = spaces.find(space => space.isCurrent);
-	const { id: spaceId, name: spaceName } = space;
+	const { id: spaceId, name: spaceName, participants } = space;
 
 	const invitationId = invitations.find(invite => invite.spaceId === spaceId)?.invitationId;
 
@@ -65,6 +69,7 @@ function mapStateToProps({ user, spaces, invitations }) {
 		userFirstName: user.name.split(' ')[0],
 		spaceId,
 		spaceName,
-		invitationId
+		invitationId,
+		numberOfParticipants: participants.length
 	};
 }

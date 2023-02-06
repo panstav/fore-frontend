@@ -39,3 +39,5 @@ export const localStorageKeys = {
 	recentlyViewedClaims: 'recentlyViewedClaims',
 	recentlyConnectedClaims: 'recentlyConnectedClaims'
 };
+
+export const spaceMaxParticipants = 12;
