@@ -7,6 +7,8 @@ import Loader from 'elements/Loader';
 import actions from './actions';
 
 import Component from './SpaceInvitation';
+import localstorage from 'services/localstorage';
+import { localStorageKeys } from 'constants';
 
 export default connect(mapStateToProps, actions)(SpaceInvitation);
 
@@ -20,7 +22,11 @@ function SpaceInvitation({ params: { invitationId }, memberOfSpace, getInvitatio
 	// redirect to homepage if we don't have an invitation
 	if (!invitationId) return <Redirect to='/' replace={true} />;
 	// redirect to space if we're already a member
-	if (memberOfSpace) return <Redirect to={`/space/${invitationDetail.spaceId}`} replace={true} />;
+	if (memberOfSpace) {
+		// here we can be sure that we can remove the postLogin redirect
+		localstorage.unset(localStorageKeys.redirectTo);
+		return <Redirect to={`/space/${invitationDetail.spaceId}`} replace={true} />
+	};
 
 	if (!invitationDetail) return <Loader />;
 
