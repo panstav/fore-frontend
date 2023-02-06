@@ -12,7 +12,7 @@ const Component = connect(mapStateToProps)(AddClaim);
 // export a simple function instead of a connect() invocation
 export default function AddClaimRender({ copiedContent }) {
 	return <Component copiedContent={copiedContent} />;
-};
+}
 
 function AddClaim({ isntPrivateSpace, copiedContent }) {
 	const textAreaClasses = isntPrivateSpace ? 'mb-2' : null;
