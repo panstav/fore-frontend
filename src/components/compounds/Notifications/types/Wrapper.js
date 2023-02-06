@@ -13,7 +13,7 @@ export default function Notification({ icon: Icon, url, createdAt, children }) {
 }
 
 function Content({ children }) {
-	return <p className="icon-text is-inline-block">
+	return <p className="icon-text is-inline-block is-size-7">
 		{children}
 	</p>;
 }
