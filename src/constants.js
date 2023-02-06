@@ -30,7 +30,8 @@ export const notifications = {
 
 export const meta = {
 	title: 'Fore',
-	description: 'Collaborative truth-seeking.'
+	description: 'Collaborative truth-seeking.',
+	contactEmailAddress: 'hello@fore.is'
 };
 
 export const localStorageKeys = {
@@ -38,3 +39,5 @@ export const localStorageKeys = {
 	recentlyViewedClaims: 'recentlyViewedClaims',
 	recentlyConnectedClaims: 'recentlyConnectedClaims'
 };
+
+export const spaceMaxParticipants = 12;

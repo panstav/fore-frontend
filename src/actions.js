@@ -37,10 +37,7 @@ export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 	// set the current space to the first requirements satisfier
 	const { pathname } = window.location;
 
-	if (pathname === '/') {
-		const updatedSpaces = setCurrentBy((space) => space.id === 'public');
-		return { spaces: updatedSpaces };
-	}
+	if (pathname === '/') return setToPublic();
 
 	// usually, the resource id is the second part of the url
 	// and the first part is the type of the resource
@@ -61,16 +58,28 @@ export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
 	// assume action will be called again when a space indicator is relevant
 	// (e.g. when the user navigates to a space page)
+	return setToPublic();
+
+	function setToPublic() {
+		const updatedSpaces = setCurrentBy((space) => space.id === 'public');
+		return { spaces: updatedSpaces };
+	}
 
 	function setCurrentBy(fn) {
 		return spaces.map((space) => {
 			const isCurrent = fn(space);
 			if (isCurrent !== true && isCurrent !== false) throw new Error('setCurrentBy first argument must return a boolean');
-			space.isCurrent = isCurrent;
-			return space;
+			return { ...space, isCurrent };
 		});
 	}
 
+}
+
+export function closeMenus({ menus }) {
+	if (!menus.main && !menus.notifications) return;
+	menus.main = false;
+	menus.notifications = false;
+	return { menus };
 }
 
 export async function logOut() {
@@ -78,4 +87,12 @@ export async function logOut() {
 	localstorage.clear();
 	scrollBackToTop();
 	return initialState;
+}
+
+export async function getInvitationDetail({ invitations }, invitationId) {
+	const invitation = await api.getInvitationDetail(invitationId);
+	if (!invitation) return {};
+
+	const updatedInvitations = invitations.concat(invitation);
+	return { invitations: updatedInvitations };
 }

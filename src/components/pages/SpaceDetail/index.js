@@ -11,37 +11,37 @@ import Component from './SpaceDetail.js';
 
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, spaceId, isDetailed, setCurrentSpace, name }) {
+function Space({ getSpaceDetail, id, name, type, participants, isDetailed }) {
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
-	if (location !== '/' && spaceId === 'public') return <Redirect to="/" replace={true} />;
+	if (location !== '/' && id === 'public') return <Redirect to="/" replace={true} />;
 
-	// inform the app that we're in this space even if we already have the data
-	if (isDetailed) setCurrentSpace(spaceId);
-
-	useEffectUntil(() => getSpaceDetail(spaceId), [isDetailed]);
+	useEffectUntil(() => getSpaceDetail(id), [isDetailed]);
 
 	if (!isDetailed) return <Loader/>;
 
-	const spaceName = spaceId === 'public' ? 'Fore · Public' : name;
+	const spaceName = id === 'public' ? 'Fore · Public' : name;
 
 	const props = {
-		spaceId,
-		spaceName
+		id,
+		name: spaceName,
+		type,
+		participants
 	};
 
 	return Component(props);
 }
 
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
-
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
-	const { id: spaceId, isDetailed, name } = spaces[indexOfCurrentSpace] || {};
+	const { id, type, name, participants, isDetailed } = spaces[indexOfCurrentSpace] || {};
 
 	return {
-		spaceId,
-		isDetailed,
-		name
+		id,
+		name,
+		type,
+		participants,
+		isDetailed
 	};
 }

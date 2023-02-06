@@ -7,6 +7,13 @@
 	@extend .level
 	@extend .is-mobile
 
+a, button
+	&.dropdown-item.is-active
+		background-color: $primary-light
+
+.navbar-dropdown
+	color: $primary
+
 .buttons
 	// sets correct border radius for vertically stacked buttons
 	&.has-addons.is-vertical
@@ -61,7 +68,3 @@ body.with-modal
 	// fix odd pulling downwards of buttons stack
 	.buttons:last-child
 		margin-bottom: unset
-
-a, button
-	&.dropdown-item
-		padding-right: $size-6

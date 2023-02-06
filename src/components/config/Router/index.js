@@ -1,13 +1,13 @@
 import { useEffect } from 'preact/compat';
-import { Route, Switch, Redirect, useLocation } from 'wouter-preact';
+import { Route, Switch, Redirect } from 'wouter-preact';
 
 import localstorage from 'services/localstorage';
-
-import scrollBackToTop from 'lib/scroll-back-to-top';
 
 import Access from 'wrappers/Access';
 
 import Meta from 'compounds/Meta';
+
+import OnRouteChange from './OnRouteChange';
 
 import routes from './routes';
 
@@ -53,18 +53,6 @@ export default function Router() {
 			}
 		</Switch>
 	</>;
-}
-
-function OnRouteChange() {
-	useLocation();
-
-	// analytics - track page views
-	if ('gtag' in window) window.gtag('page_view', window.location.pathname);
-
-	// scroll to top
-	scrollBackToTop();
-
-	return null;
 }
 
 function useOverlayRemoval() {

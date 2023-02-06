@@ -3,6 +3,7 @@ import classNames from 'classnames';
 
 import Section from 'wrappers/Section.js';
 
+import BoxLink from 'elements/BoxLink';
 import Avatar from 'elements/Avatar';
 import Username from 'elements/Username';
 
@@ -10,6 +11,7 @@ export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreCla
 	const className = classNames('boxes is-medium has-text-left', classes);
 	return <Section withSidePadding={false} className="claims-container">
 		<div {...{ className }} style={{ width: '100%' }}>
+			{!claims.length && <div className='box has-no-hover has-text-centered'>New Claims will show up here.</div>}
 			<BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>
 			{claims.map(Claim)}
 			{hasLoadedAll || !claims.length ? null
@@ -35,8 +37,4 @@ function Claim({ id, createdAtTimeAgo, content, author, isAnonymous }) {
 			</div>
 		</a>
 	</Link>;
-}
-
-function BoxLink(props) {
-	return <div className="box has-text-centered is-link py-2" {...props} />;
 }

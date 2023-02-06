@@ -1,7 +1,9 @@
 import Home from 'pages/Home';
 import ConnectToFore from 'pages/Connect';
-import Space from 'components/pages/SpaceDetail';
+import Space from 'pages/SpaceDetail';
+import SpaceInvitation from 'pages/SpaceInvitation';
 import ClaimDetail from 'pages/ClaimDetail';
+import Notifications from 'pages/Notifications';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
 
 import redirects from './redirects.js';
@@ -29,6 +31,12 @@ export default redirects.concat([
 		}
 	},
 	{
+		name: 'invitation-to-space',
+		path: '/space-invitation/:invitationId',
+		Component: SpaceInvitation,
+		minimumRole: roles.MEMBER
+	},
+	{
 		name: 'space-detail',
 		path: '/space/:spaceId',
 		Component: Space,
@@ -38,6 +46,12 @@ export default redirects.concat([
 		name: 'claim-detail',
 		path: '/claim/:id',
 		Component: ClaimDetail,
+		minimumRole: roles.MEMBER
+	},
+	{
+		name: 'notifications',
+		path: '/notifications',
+		Component: Notifications,
 		minimumRole: roles.MEMBER
 	},
 	{

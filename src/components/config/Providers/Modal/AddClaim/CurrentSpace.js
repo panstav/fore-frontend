@@ -7,8 +7,7 @@ export default connect(mapStateToProps)(CurrentSpace);
 function CurrentSpace({ spaceName }) {
 	if (!spaceName) return null;
 	return <>
-		<span>on</span>
-		<Logo className="ml-2 mr-1" style={{ width: '1em' }} />
+		<Logo className="ml-1 mr-1" style={{ width: '1em' }} />
 		<span>{spaceName}</span>
 	</>;
 }
