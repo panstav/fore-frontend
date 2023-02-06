@@ -7,7 +7,10 @@ import EscapedContent from './EscapedContent';
 import Guidelines from './Guidelines';
 import CurrentSpace from './CurrentSpace';
 
-export default connect(mapStateToProps)(AddClaim);
+const Component = connect(mapStateToProps)(AddClaim);
+
+// export a simple function instead of a connect() invocation
+export default (props) => Component(props);
 
 function AddClaim({ isntPrivateSpace, copiedContent }) {
 	const textAreaClasses = isntPrivateSpace ? 'mb-2' : null;
