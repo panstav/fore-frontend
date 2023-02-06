@@ -38,8 +38,8 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, ha
 					const buttonClasses = classNames('box py-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
 					return <div key={direction} className={`${direction}-claims`}>
 						<div className={buttonClasses} onClick={addClaimHere(direction)}>
-							<Plus className="mr-1" />
-							<span className='has-text-weight-bold'>{label}</span>
+							<Plus className="is-flex-shrink-0 mr-1" />
+							<span className='has-text-weight-bold'>Claim in {direction.charAt(0).toUpperCase() + direction.slice(1)}</span>
 						</div>
 						{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
 							const styles = { ['--total-power']: totalPowerHere, ['--power']: power };
