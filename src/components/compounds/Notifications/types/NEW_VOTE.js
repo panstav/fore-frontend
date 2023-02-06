@@ -10,7 +10,7 @@ import { NotificationContext } from '../Notifications';
 
 export default function NEW_VOTE({ direction, parentId, createdAt, parentContent, voterFirstName }) {
 	return <Notification icon={NewVoteUserIcon} url={`/claim/${parentId}`} createdAt={createdAt}>
-		{voterFirstName} voted for your <SO>{direction}</SO> to "{trimClaimContent(parentContent)}"
+		{voterFirstName} voted for your <SO>{direction}</SO> to &quot;{trimClaimContent(parentContent)}&quot;
 	</Notification>;
 }
 

@@ -65,7 +65,7 @@ export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, to
 			return <>
 				<Title>Create a new Space</Title>
 				{hasCreatedBothTypes
-					? <p className="mb-5">You have already created a private and a shared space.<br />If you need more Spaces, <a href={`mailto:${meta.contactEmailAddress}`} target="_blank">contact us</a>.</p>
+					? <p className="mb-5">You have already created a private and a shared space.<br />If you need more Spaces, <a href={`mailto:${meta.contactEmailAddress}`} target="_blank" rel="noreferrer">contact us</a>.</p>
 					: <div className="field my-5">
 						<label className="label" htmlFor="space-name">A name for your Space</label>
 						<TrimmedInput id="space-name" name="name" maxLength={30} placeholder={randomSpaceName()} />
@@ -73,7 +73,7 @@ export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, to
 				}
 				<div className="boxes reset-anchors">
 					{spaceTypes.map((type) => {
-						return <div className="box is-paddingless">
+						return <div key={type} className="box is-paddingless">
 							<SpaceType {...type} onClickCallback={hideModal} />
 						</div>;
 					})}

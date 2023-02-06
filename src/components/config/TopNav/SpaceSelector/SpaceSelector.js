@@ -20,7 +20,7 @@ export default function SpaceSelector({ isOpenDropdown, toggleDropdown, currentS
 				{availableSpaces.map(({ id, key, href, tag, name, isCurrent }) => {
 					const onClick = () => { toggleDropdown(); setCurrentSpace(id); };
 					const className = classNames('dropdown-item is-flex is-justify-content-space-between is-align-items-center', isCurrent && 'is-active');
-					return <Link {...{ key, href, onClick, className }}>
+					return <Link key={key} {...{ href, onClick, className }}>
 						<span className="icon-text is-size-6">{name}</span>
 						{tag && <span className="tag is-size-8 is-light" style={{ textTransform: 'uppercase', alignItems: 'end' }}>{tag}</span>}
 					</Link>;

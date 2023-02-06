@@ -19,7 +19,7 @@ function ShareInvite({ numberOfParticipants, spaceId, spaceName, createInvitatio
 	const invitationLink = invitationId && `${urls.frontEnd}/space-invitation/${invitationId}`;
 
 	const handleCreateInvitation = () => {
-		if (numberOfParticipants < spaceMaxParticipants) createInvitation({ spaceId, spaceName })
+		if (numberOfParticipants < spaceMaxParticipants) createInvitation({ spaceId, spaceName });
 	};
 
 	const [shareInviteModalProps, showShareInviteModal] = useModal();
@@ -28,7 +28,7 @@ function ShareInvite({ numberOfParticipants, spaceId, spaceName, createInvitatio
 	const selectEntireLink = useCallback((e) => {
 		if (hasSelectedAllOnce) return;
 		setHasSelectedAllOnce(true);
-		e.target.select()
+		e.target.select();
 	}, [hasSelectedAllOnce]);
 
 	const copyUrl = () => copy(invitationLink);

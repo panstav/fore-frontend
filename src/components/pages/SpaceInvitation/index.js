@@ -16,7 +16,6 @@ function SpaceInvitation({ params: { invitationId }, memberOfSpace, getInvitatio
 		// get the space name by querying it using the invitation as id
 		if (!invitationDetail) getInvitationDetail(invitationId);
 	}, [invitationDetail, invitationId]);
-debugger;
 
 	// redirect to homepage if we don't have an invitation
 	if (!invitationId) return <Redirect to='/' replace={true} />;
@@ -41,7 +40,6 @@ function mapStateToProps({ spaces, invitations }, { params: { invitationId } }) 
 
 	// check whether the user is already a member of the space
 	const memberOfSpace = invitationDetail.spaceId && spaces.find((space) => space.id === invitationDetail.spaceId);
-debugger;
 
 	return {
 		invitationDetail,

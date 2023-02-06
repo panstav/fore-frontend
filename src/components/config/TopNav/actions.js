@@ -22,4 +22,4 @@ export default (store) => ({
 		goToSpace(fullSpace.id);
 	}
 
-})
+});

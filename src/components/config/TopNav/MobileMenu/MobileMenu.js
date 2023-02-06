@@ -22,9 +22,9 @@ export default function MobileMenu({ userFirstName, logOut, className: classes }
 			<MenuLink href={`mailto:${meta.contactEmailAddress}`} target="_blank">Report a bug</MenuLink>
 			<MenuLink href="/privacy-policy">Privacy Policy</MenuLink>
 
-			{!!userFirstName
-				? <MenuLink onClick={logOut}>Logout</MenuLink>
-				: <MenuLink href="/connect">Login</MenuLink>
+			{!userFirstName
+				? <MenuLink href="/connect">Login</MenuLink>
+				: <MenuLink onClick={logOut}>Logout</MenuLink>
 			}
 		</ul>
 	</div>;

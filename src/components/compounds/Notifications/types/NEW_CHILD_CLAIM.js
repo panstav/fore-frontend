@@ -15,7 +15,7 @@ export default function NEW_CHILD_CLAIM({ parentContent, direction, newClaimId, 
 			: "Anonymous"}
 		&nbsp;wrote in&nbsp;
 		<SO>{direction}</SO>
-		&nbsp;of "{trimClaimContent(parentContent)}".
+		&nbsp;of &quot;{trimClaimContent(parentContent)}&quot;.
 	</Notification>;
 }
 

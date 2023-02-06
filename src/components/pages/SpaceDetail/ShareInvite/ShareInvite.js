@@ -9,7 +9,7 @@ export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWeb
 			<button onClick={shareInvite} className="button is-primary is-outlined mt-5">Share an invite</button>
 		</div>
 
-		<Modal {...shareInviteModalProps} render={function ShareInviteModal({ }) {
+		<Modal {...shareInviteModalProps} render={function ShareInviteModal() {
 			return <>
 				<Title>Invite members</Title>
 				<span>After joining with your link, Space members will be able to:</span>

@@ -1,4 +1,4 @@
-import { connect } from "unistore/preact"
+import { connect } from "unistore/preact";
 
 import TrimmedInput from "elements/TrimmedInput";
 
@@ -7,12 +7,7 @@ import EscapedContent from './EscapedContent';
 import Guidelines from './Guidelines';
 import CurrentSpace from './CurrentSpace';
 
-const Connector = connect(mapStateToProps)(AddClaim);
-
-// export a simple function instead of a connect() invocation
-export default ({ copiedContent }) => {
-	return <Connector copiedContent={copiedContent} />;
-};
+export default connect(mapStateToProps)(AddClaim);
 
 function AddClaim({ isntPrivateSpace, copiedContent }) {
 	const textAreaClasses = isntPrivateSpace ? 'mb-2' : null;

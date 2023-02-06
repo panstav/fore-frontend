@@ -8,7 +8,7 @@ function Notifications({ notifications }) {
 
 	const props = {
 		notifications
-	}
+	};
 
 	return Component(props);
 

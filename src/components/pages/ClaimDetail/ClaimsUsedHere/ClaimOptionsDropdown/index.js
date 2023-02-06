@@ -49,13 +49,14 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, hasUserPoweredSupport
 					powerClaim({ parentClaimId, direction, childClaimId: claimId });
 					return openDropdown();
 				},
-					disabled: isByUser || hasUserPoweredDirection,
-					tooltip: !isByUser && !hasUserPoweredDirection ? `Choose this Claim as the best ${direction}`
-						: isByUser
-							? `You can only for Claims created by others`
+				disabled: isByUser || hasUserPoweredDirection,
+				tooltip: (!isByUser && !hasUserPoweredDirection)
+					? `Choose this Claim as the best ${direction}`
+					: isByUser
+						? `You can only for Claims created by others`
 						: hasUserPoweredDirection
-								? `You've already powered a ${direction} to this Claim`
-						: null
+							? `You've already powered a ${direction} to this Claim`
+							: null
 			}),
 			{
 				label: 'Copy',

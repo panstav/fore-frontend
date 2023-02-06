@@ -16,9 +16,12 @@ export default (props) => {
 
 	if (!invitationId) return null;
 
-	const Component = connect(mapStateToProps, actions)(Invitation);
-	return <Component invitationId={invitationId} {...props} />;
+	props.invitationId = invitationId;
+
+	return Component(props);
 };
+
+const Component = connect(mapStateToProps, actions)(Invitation);
 
 function Invitation({ invitationId, getInvitationDetail, invitationDetail, className }) {
 
