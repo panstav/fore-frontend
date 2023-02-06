@@ -9,17 +9,18 @@ import SpaceInvitationNotice from 'elements/SpaceInvitationNotice';
 
 import { localStorageKeys } from 'constants';
 
-export default (props) => {
+export default function InvitationConnector(props) {
 
 	// check whether the user has an invitation
 	const invitationId = /^\/space-invitation\/(?<invitationId>.+)/.exec(localstorage.get(localStorageKeys.redirectTo, ''))?.groups?.invitationId;
 
-	if (!invitationId) return null;
+	if (!invitationId)
+		return null;
 
 	props.invitationId = invitationId;
 
-	return Component(props);
-};
+	return <Component {...props} />;
+}
 
 const Component = connect(mapStateToProps, actions)(Invitation);
 
