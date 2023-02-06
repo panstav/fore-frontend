@@ -15,7 +15,7 @@ export default function Notification({ icon: Icon, url, createdAt, children }) {
 
 function Content({ children }) {
 	const [location] = useLocation();
-	const className = classNames('icon-text is-inline-block', location !== '/notifications' && 'is-size-7')
+	const className = classNames('icon-text is-inline-block', location !== '/notifications' && 'is-size-7');
 	return <p className={className}>
 		{children}
 	</p>;

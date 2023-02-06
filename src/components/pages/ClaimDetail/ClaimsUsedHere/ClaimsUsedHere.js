@@ -12,14 +12,12 @@ import AddClaimModal from './AddClaimModal';
 // keep this order of directions instead of mapping object keys
 const propsByDirection = {
 	support: {
-		label: 'Support',
 		color: 'success',
 		contentOptionsOrder: 'row',
 		dropdownIsRight: false,
 		dropDownStyle: { paddingRight: '2px' }
 	},
 	opposition: {
-		label: 'Oppose',
 		color: 'danger',
 		contentOptionsOrder: 'row-reverse',
 		dropdownIsRight: true,
@@ -34,7 +32,7 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, ha
 		<Section withSidePadding={false}>
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
-					const { label, color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
+					const { color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
 					const buttonClasses = classNames('box py-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
 					return <div key={direction} className={`${direction}-claims`}>
 						<div className={buttonClasses} onClick={addClaimHere(direction)}>

@@ -25,8 +25,8 @@ function SpaceInvitation({ params: { invitationId }, memberOfSpace, getInvitatio
 	if (memberOfSpace) {
 		// here we can be sure that we can remove the postLogin redirect
 		localstorage.unset(localStorageKeys.redirectTo);
-		return <Redirect to={`/space/${invitationDetail.spaceId}`} replace={true} />
-	};
+		return <Redirect to={`/space/${invitationDetail.spaceId}`} replace={true} />;
+	}
 
 	if (!invitationDetail) return <Loader />;
 
