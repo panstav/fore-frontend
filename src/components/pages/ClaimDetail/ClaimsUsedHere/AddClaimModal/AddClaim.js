@@ -3,10 +3,20 @@ import { Title, ContextTitle } from "wrappers/Modal";
 
 import ExistingClaim from './ExistingClaim';
 
+const directedCopy = {
+	support: {
+		titleChunk: 'Support of',
+	},
+	opposition: {
+		titleChunk: 'Opposition to',
+	}
+};
+
 export default function AddClaimModal({ direction, parentContent, isNewClaim, setClaimType }) {
+	const { titleChunk } = directedCopy[direction];
 
 	return <>
-		<ContextTitle>{`In ${capitalize(direction)} of "${parentContent}"`}</ContextTitle>
+		<ContextTitle>{`In ${capitalize(titleChunk)} "${parentContent}"`}</ContextTitle>
 		<SelectNewOrExisting {...{ setClaimType }} />
 		<hr />
 		{isNewClaim ? <NewClaim /> : <ExistingClaim />}
