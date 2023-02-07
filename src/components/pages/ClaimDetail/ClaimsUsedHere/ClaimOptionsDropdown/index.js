@@ -53,7 +53,7 @@ function ClaimOptionsDropdown({ isByUser, isPoweredByUser, hasUserPoweredSupport
 				tooltip: (!isByUser && !hasUserPoweredDirection)
 					? `Choose this Claim as the best ${direction}`
 					: isByUser
-						? `You can only for Claims created by others`
+						? `You can only power Claims created by others`
 						: hasUserPoweredDirection
 							? `You've already powered a ${direction} to this Claim`
 							: null
