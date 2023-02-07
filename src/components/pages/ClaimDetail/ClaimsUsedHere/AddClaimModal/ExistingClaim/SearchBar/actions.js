@@ -1,6 +1,6 @@
 import api from 'services/xhr';
 
-import { emptySearch } from "components/config/Providers/Store/initial-state";
+import { emptySearch } from "components/config/Store/initial-state";
 
 export default {
 

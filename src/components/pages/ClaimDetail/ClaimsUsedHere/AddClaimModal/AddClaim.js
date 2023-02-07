@@ -1,4 +1,4 @@
-import NewClaimBody from "config/Providers/Modal/AddClaim";
+import NewClaimBody from "components/wrappers/Modal/modals/AddClaim";
 import { Title, ContextTitle } from "wrappers/Modal";
 
 import ExistingClaim from './ExistingClaim';

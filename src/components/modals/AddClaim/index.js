@@ -6,17 +6,19 @@ import Anonymous from './Anonymous';
 import EscapedContent from './EscapedContent';
 import Guidelines from './Guidelines';
 import CurrentSpace from './CurrentSpace';
+import { ContextTitle } from "../../Modal";
 
 const Component = connect(mapStateToProps)(AddClaim);
 
 // export a simple function instead of a connect() invocation
-export default function AddClaimRender({ copiedContent }) {
+export default function AddClaimModal({ copiedContent }) {
 	return <Component copiedContent={copiedContent} />;
 }
 
 function AddClaim({ isntPrivateSpace, copiedContent }) {
 	const textAreaClasses = isntPrivateSpace ? 'mb-2' : null;
 	return <>
+		<ContextTitle>You&apos;re claiming that:</ContextTitle>
 		<div className="fore-new-claim-body field p-2">
 			<TrimmedInput name="content" type="textarea" maxLength={240} defaultValue={copiedContent} className={textAreaClasses} inputClasses="pb-5" />
 			{isntPrivateSpace && <Anonymous className="ml-1" />}

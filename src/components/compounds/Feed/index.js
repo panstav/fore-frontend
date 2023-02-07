@@ -10,13 +10,13 @@ import { ModalContext } from 'contexts.js';
 import Meta from 'compounds/Meta.js';
 
 import Component from './Feed.js';
+import useModal from 'hooks/use-modal.js';
 
 export default connect(mapStateToProps, actions)(Feed);
 
 function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedAll, className }) {
 
-	const { showAddClaimModal } = useContext(ModalContext);
-	const createNewClaim = () => showAddClaimModal({
+	const [addClaimModalProps, createNewClaim] = useModal({
 		onSubmit: ({ content, isAnonymous }) => addClaim({ content, isAnonymous, spaceId })
 	});
 
@@ -30,6 +30,7 @@ function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedA
 		});
 
 	const props = {
+		addClaimModalProps,
 		createNewClaim,
 		claims: sortedClaims,
 		loadMoreClaims,

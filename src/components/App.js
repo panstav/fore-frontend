@@ -1,18 +1,23 @@
-import Providers from 'config/Providers';
+import StoreProvider from 'config/Store';
+import AuthProvider from 'config/Auth';
+
 import TopNav from 'config/TopNav';
 import Router from 'config/Router';
 import Footer from 'config/Footer';
 import Notifications from 'config/Notifications';
 
 export default function App() {
-	return <Providers>
+	return <StoreProvider>
+		<AuthProvider>
 
-		<TopNav/>
+			<TopNav />
 
-		<Router/>
+			<Router />
 
-		<Footer/>
+			<Footer />
 
-		<Notifications/>
-	</Providers>;
+			<Notifications />
+
+		</AuthProvider>
+	</StoreProvider>;
 }

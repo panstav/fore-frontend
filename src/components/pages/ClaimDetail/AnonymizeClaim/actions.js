@@ -2,7 +2,7 @@ import api from "services/xhr";
 import localstorage from "services/localstorage";
 import trackEvents from "services/track-events";
 
-import { emptySearch } from "components/config/Providers/Store/initial-state";
+import { emptySearch } from "components/config/Store/initial-state";
 
 import { localStorageKeys } from "constants";
 

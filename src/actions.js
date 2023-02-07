@@ -5,7 +5,7 @@ import trackEvents from 'services/track-events';
 import notify from 'lib/notify.js';
 import scrollBackToTop from 'lib/scroll-back-to-top';
 
-import initialState from 'config/Providers/Store/initial-state';
+import initialState from 'components/config/Store/initial-state';
 
 import { notifications } from 'constants.js';
 
