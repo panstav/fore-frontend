@@ -20,13 +20,7 @@ export default function CurrentFeatures({ className: classes }) {
 
 function NewFeature({ children }) {
 	return <li>
-		<div className="is-flex is-justify-content-space-between is-align-items-center">
-			{children}
-			<New />
-		</div>
+		{children}
+		<span className="tag is-primary has-text-weight-bold is-size-8 ml-2">NEW</span>
 	</li>;
-}
-
-function New() {
-	return <span className="tag is-primary is-size-8 ml-2">NEW</span>;
 }
