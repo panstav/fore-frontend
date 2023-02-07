@@ -53,22 +53,23 @@
 		</svg>
 
 		<style>
-			body > .is-overlay {
+			body #splash-screen {
 				background-color: #224659;
 				z-index: 9999999;
 			}
-			body > .is-overlay.fading {
+			body #splash-screen.fading {
 				animation: fade;
 				animation-timing-function: cubic-bezier(1, 0.1, 1, 1);
 				opacity: 0;
 			}
-			body > .is-overlay.hidden {
+			body #splash-screen.hidden {
 				display: none !important;
 			}
 
-			body .is-overlay svg {
+			body #splash-screen svg {
 				fill: white;
 				width: 70px;
+				height: 70px;
 				animation: rotation 4s;
 				animation-timing-function: linear;
 				animation-iteration-count: infinite;
