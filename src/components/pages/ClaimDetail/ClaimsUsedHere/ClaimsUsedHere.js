@@ -33,7 +33,7 @@ export default function ClaimsUsedHere({ support, opposition, totalPowerHere, ha
 			<div className="is-flex is-justify-content-space-between">
 				{directions.map((direction) => {
 					const { color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
-					const buttonClasses = classNames('box py-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
+					const buttonClasses = classNames('fore-claim-so-cta box p-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
 					return <div key={direction} className={`${direction}-claims`}>
 						<div className={buttonClasses} onClick={addClaimHere(direction)}>
 							<Plus className="is-flex-shrink-0 mr-1" />
