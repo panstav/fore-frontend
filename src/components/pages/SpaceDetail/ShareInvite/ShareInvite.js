@@ -40,7 +40,7 @@ export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWeb
 					<button onClick={createInvitation} className="button is-primary mx-auto">Create an Invitation Link</button>
 				</div>}
 
-				<div className="mt-5">
+				<div className="mt-5 pt-3">
 
 					<progress className="progress mb-2" value={numberOfParticipants} max={spaceMaxParticipants}>
 						{100 * (numberOfParticipants / spaceMaxParticipants)}%
