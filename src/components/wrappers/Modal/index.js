@@ -9,8 +9,7 @@ export default function ModalWrapper({ render, hideModal, ...modalProps }) {
 
 	if (!Object.keys(modalProps).length) return null;
 
-	const onSubmit = modalProps.onSubmit;
-	if (onSubmit) return <ComponentWithForm {...{ render, onSubmit, hideModal, ...modalProps }}/>;
+	if (modalProps.onSubmit) return <ComponentWithForm {...{ render, hideModal, ...modalProps }}/>;
 
 	const props = {
 		title: modalProps.title,
