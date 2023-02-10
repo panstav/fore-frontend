@@ -16,6 +16,7 @@ export default function SignupForUpdates({ control, onSubmit, didSendWithoutMark
 	</form>;
 
 	function Form() {
+		const minorUpdatesLabelStyle = { cursor: isMinorUpdatesDisabled ? 'not-allowed' : 'pointer' };
 		return <>
 			<div>
 				<label className="checkbox mb-3">
@@ -24,7 +25,7 @@ export default function SignupForUpdates({ control, onSubmit, didSendWithoutMark
 				</label>
 			</div>
 			<div>
-				<label className="checkbox mb-3">
+				<label className="checkbox mb-3" style={minorUpdatesLabelStyle}>
 					<Checkbox className="checkbox mr-1" name="notifyWhenMinorUpdates" defaultValue={false} control={control} disabled={isMinorUpdatesDisabled} />
 					Email me when Fore gets <strong>minor</strong> updates too.
 				</label>
