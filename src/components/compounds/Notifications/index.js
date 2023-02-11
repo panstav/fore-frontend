@@ -1,5 +1,3 @@
-import timeAgo from 'lib/time-ago.js';
-
 import * as types from './types';
 
 import Component from './Notifications';
