@@ -8,8 +8,8 @@ import { SO, directedVars, trimClaimContent, IconInIcon } from "./index";
 import Notification from './Wrapper';
 import { NotificationContext } from "../Notifications";
 
-export default function NEW_CHILD_CLAIM({ parentContent, direction, newClaimId, isAnonymous, childAuthorFirstName, createdAt }) {
-	return <Notification icon={NewChildClaimIcon} url={`/claim/${newClaimId}`} createdAt={createdAt}>
+export default function NEW_CHILD_CLAIM({ parentContent, direction, newClaimId, isAnonymous, childAuthorFirstName }) {
+	return <Notification icon={NewChildClaimIcon} url={`/claim/${newClaimId}`}>
 		{!isAnonymous
 			? childAuthorFirstName
 			: "Anonymous"}

@@ -8,8 +8,8 @@ import { IconInIcon, SO, trimClaimContent } from './index';
 import Notification from './Wrapper';
 import { NotificationContext } from '../Notifications';
 
-export default function NEW_VOTE({ direction, parentId, createdAt, parentContent, voterFirstName }) {
-	return <Notification icon={NewVoteUserIcon} url={`/claim/${parentId}`} createdAt={createdAt}>
+export default function NEW_VOTE({ direction, parentId, parentContent, voterFirstName }) {
+	return <Notification icon={NewVoteUserIcon} url={`/claim/${parentId}`}>
 		{voterFirstName} voted for your <SO>{direction}</SO> to &quot;{trimClaimContent(parentContent)}&quot;
 	</Notification>;
 }
