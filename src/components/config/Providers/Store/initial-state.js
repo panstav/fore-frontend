@@ -18,6 +18,10 @@ export default {
 
 	claims: [],
 
+	ai: {
+		claim: undefined
+	},
+
 	search: {
 		ClaimDetailAddClaim: emptySearch
 	},
