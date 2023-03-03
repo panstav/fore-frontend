@@ -1,4 +1,5 @@
 import { connect } from 'unistore/preact';
+import { useLocation } from 'wouter-preact';
 
 import actions from './actions.js';
 
@@ -10,8 +11,15 @@ export default connect(null, actions)(Footer);
 
 function Footer({ logOut }) {
 
+	const [, setLocation] = useLocation();
+
+	const handleLogOut = async () => {
+		setLocation('/connect');
+		logOut();
+	};
+
 	const props = {
-		logOut,
+		logOut: handleLogOut,
 		version
 	};
 
