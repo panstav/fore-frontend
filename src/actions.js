@@ -5,6 +5,7 @@ import trackEvents from 'services/track-events';
 import notify from 'lib/notify.js';
 import scrollBackToTop from 'lib/scroll-back-to-top';
 
+import { store } from 'config/Providers/Store';
 import initialState from 'config/Providers/Store/initial-state';
 
 import { notifications } from 'constants.js';
@@ -24,6 +25,22 @@ export async function addClaim({ spaces, claims, user }, claim, { avoidNotificat
 
 	claims.push(fullClaim);
 	return { claims };
+}
+
+export async function createSpace({ spaces }, { space, onSuccess }) {
+
+	space.type = space.type || 'shared';
+
+	const fullSpace = await api.addSpace(space);
+
+	trackEvents('create_space', { spaceId: fullSpace.id });
+
+	const updatedSpaces = spaces.concat(fullSpace)
+		.map((space) => Object.assign({}, space, { isCurrent: space.id === fullSpace.id }));
+
+	store.setState({ spaces: updatedSpaces });
+
+	if (onSuccess) onSuccess(fullSpace);
 }
 
 export function setCurrentSpace({ spaces, claims }, nextSpaceId) {

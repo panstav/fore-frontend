@@ -1,5 +1,7 @@
 import { Link } from "wouter-preact";
 
+import useCreateSpace from "hooks/use-create-space";
+
 import Greeting from "elements/Greeting";
 
 export default function LoggedIn({ userName, spaces, logOut }) {
@@ -34,7 +36,9 @@ function SpacesMenu({ spaces }) {
 }
 
 function NoSpaces() {
+	const createSpace = useCreateSpace();
 	return <div className="notification">
-		You don&apos;t have access to any Space except for <Link to="/">Public</Link>.
+		You don&apos;t have access to any Spaces.
+		<button className="button is-small is-primary is-outlined mt-2" onClick={createSpace}>Create a Space</button>
 	</div>;
 }
