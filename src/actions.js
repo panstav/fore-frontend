@@ -26,6 +26,21 @@ export async function addClaim({ spaces, claims, user }, claim, { avoidNotificat
 	return { claims };
 }
 
+export async function createSpace(state, { space, cb }) {
+	debugger;
+	space.type = space.type || 'shared';
+
+	const fullSpace = await api.addSpace(space);
+
+	trackEvents('create_space', { spaceId: fullSpace.id });
+
+	const updatedSpaces = spaces.concat(fullSpace)
+		.map((space) => Object.assign({}, space, { isCurrent: space.id === fullSpace.id }));
+
+	if (cb) cb(fullSpace);
+	return { spaces: updatedSpaces };
+}
+
 export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
 	if (nextSpaceId) {

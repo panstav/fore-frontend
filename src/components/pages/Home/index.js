@@ -5,38 +5,44 @@ import localstorage from 'services/localstorage';
 
 import isAuth from 'lib/is-auth';
 
-import Space from 'components/pages/SpaceDetail';
+import Space from 'pages/SpaceDetail';
 
 import PromotionalHomepage from './PromotionalHomepage';
+import EmptyState from './EmptyState';
 
-import { roles, localStorageKeys } from 'constants.js';
+import { localStorageKeys } from 'constants.js';
 
 export default connect(mapStateToProps)(Home);
 
-function Home({ isLoggedIn, isMemberUser }) {
+function Home({ isLoggedIn, isMemberOfPublic, availableSpaces }) {
 
-	if (isLoggedIn) {
-		// successfully logging in directs users to homepage
-		// so we'll check whether there's a redirectTo saved
-		const redirectTo = localstorage.get(localStorageKeys.redirectTo);
-		if (redirectTo) {
-			// delete it so this won't happen again before user lands on another unauthorized path
-			// and redirect to it
-			localstorage.unset('redirectTo');
-			return <Redirect to={redirectTo} replace={true} />;
-		}
+	if (!isLoggedIn) return <PromotionalHomepage />;
+
+	// successfully logging in directs users to homepage
+	// so we'll check whether there's a redirectTo saved
+	const redirectTo = localstorage.get(localStorageKeys.redirectTo);
+	if (redirectTo) {
+		// delete it so this won't happen again before user lands on another unauthorized path
+		// and redirect to it
+		localstorage.unset('redirectTo');
+		return <Redirect to={redirectTo} replace={true} />;
 	}
 
 	// show feed to members
-	if (isMemberUser) return <Space params={{ spaceId: 'public' }} />;
+	if (isMemberOfPublic) return <Space params={{ spaceId: 'public' }} />;
 
-	// otherwise show the promotional page
-	return <PromotionalHomepage />;
+	/////////////////////////////////////////////////////////////////////////////////////////
+	// redirect to the first available space if there's any
+	// if (availableSpaces.length) return <Redirect to={`/space/${availableSpaces[0].id}`} />;
+
+	// otherwise show some info about how to get started
+	return <EmptyState />;
 }
 
-function mapStateToProps({ user }) {
+function mapStateToProps({ user, spaces }) {
 	return {
 		isLoggedIn: !!user.id,
-		isMemberUser: isAuth(user.role, { minimum: roles.MEMBER })
+		isMemberOfPublic: !!spaces.find((space) => space.id === 'public'),
+		availableSpaces: spaces
 	};
 }

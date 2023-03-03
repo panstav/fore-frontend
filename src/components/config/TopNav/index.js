@@ -40,10 +40,9 @@ function TopNav({ isMemberOrAbove, isAdmin, isMenuOpen, isNotificationsOpen, tog
 	const [newSpaceModalProps, openNewSpaceModal] = useModal({
 		hasCreatedBothTypes,
 		spaceTypes: spaceTypes.map(attachExisting),
-		onSubmit: (data) => createSpace({
-			space: data,
-			goToSpace: (spaceId) => setLocation(`/space/${spaceId}`)
-		})
+		onSubmit: (data) => {
+			createSpace({ space: data, onSuccess: ({ id }) => setLocation(`/space/${id}`) });
+		}
 	});
 
 	const props = {
