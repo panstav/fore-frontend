@@ -1,5 +1,6 @@
-import { closeMenus } from "actions";
+import { closeMenus, setCurrentSpace } from "actions";
 
 export default {
-	closeMenus
+	closeMenus,
+	setCurrentSpace
 };

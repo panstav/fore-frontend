@@ -9,11 +9,14 @@ import { roles } from "constants";
 
 export default connect(mapStateToProps, actions)(OnRouteChange);
 
-function OnRouteChange({ isInternalTraffic, closeMenus }) {
+function OnRouteChange({ isInternalTraffic, closeMenus, setCurrentSpace }) {
 	useLocation();
 
 	// close all menus
 	closeMenus();
+
+	// regardless of route, ensure the current space is set
+	setCurrentSpace();
 
 	// scroll to top
 	scrollBackToTop();

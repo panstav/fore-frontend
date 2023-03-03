@@ -10,6 +10,7 @@ import { localStorageKeys } from 'constants';
 export default {
 
 	async getClaimDetail({ claims, spaces }, id) {
+
 		const claim = await api.getClaimDetail({ id });
 		claim.isDetailed = true;
 
@@ -20,10 +21,13 @@ export default {
 			claims.push(claim);
 		}
 
-		// update current space, in case user landed on a claim detail page
-		const { spaces: updatedSpaces } = setCurrentSpace({ spaces, claims });
+		// if there's no current space - it means we just landed, and now that we have the claim - we can set it
+		if (!spaces.find((space) => space.isCurrent)) {
+			const { spaces: updatedSpaces } = setCurrentSpace({ spaces, claims });
+			return { claims, spaces: updatedSpaces };
+		}
 
-		return { claims, spaces: updatedSpaces };
+		return { claims };
 	},
 
 	trackClaimView({ claims }, { claimId }) {

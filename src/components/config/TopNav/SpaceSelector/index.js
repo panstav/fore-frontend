@@ -25,10 +25,7 @@ function SpaceSelector({ currentSpace, setCurrentSpace, spaces, createSpace }) {
 	}, [currentSpace, setLocation]);
 
 	// avoid rendering dropdown when no Space was yet to be determined
-	if (!currentSpace){
-		setCurrentSpace();
-		return null;
-	}
+	if (!currentSpace) return null;
 
 	const props = {
 		setCurrentSpace: handleSetCurrentSpace,

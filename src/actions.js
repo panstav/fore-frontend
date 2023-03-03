@@ -58,7 +58,7 @@ export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
 	// assume action will be called again when a space indicator is relevant
 	// (e.g. when the user navigates to a space page)
-	return setToPublic();
+	return {};
 
 	function setToPublic() {
 		const updatedSpaces = setCurrentBy((space) => space.id === 'public');
