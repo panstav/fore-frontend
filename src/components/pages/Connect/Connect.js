@@ -24,7 +24,7 @@ export default function Connect({ isLoggedIn, ...props }) {
 				: <ConnectMethods {...props} />}
 		</div>
 
-		<CurrentFeatures className="mt-6" />
+		<CurrentFeatures className="is-small mt-6" />
 
 	</Section>;
 }

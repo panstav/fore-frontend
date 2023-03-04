@@ -48,10 +48,10 @@ export default function PromotionalHomepage () {
 				/>;
 			})}
 		</Section>
-		<Section className="is-medium">
+		<Section className="is-max-desktop pt-6">
 			<FAQ />
 		</Section>
-		<Section>
+		<Section className="is-max-desktop">
 			<CurrentFeatures />
 		</Section>
 		<Section>
