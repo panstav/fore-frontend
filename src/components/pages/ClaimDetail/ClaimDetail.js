@@ -45,6 +45,7 @@ function ClaimContent({ content, author, createdAt, userIsAuthor, spaceId, isAno
 			<div className='buttons'>
 				{isAnonymous && <ClaimAnonymous />}
 				{userIsAuthor && <Anonymize />}
+				{!userIsAuthor && <Follow />}
 				<Delete {...{ userIsAuthor, spaceId }} />
 			</div>
 
