@@ -14,15 +14,15 @@ export default function AddClaimRender({ copiedContent }) {
 	return <Component copiedContent={copiedContent} />;
 }
 
-function AddClaim({ isntPrivateSpace, copiedContent }) {
-	const textAreaClasses = isntPrivateSpace ? 'mb-2' : null;
+function AddClaim({ isPrivateSpace, copiedContent }) {
+	const textAreaClasses = isPrivateSpace ? null : 'mb-2';
 	return <>
 		<div className="fore-new-claim-body field p-2">
 			<TrimmedInput name="content" type="textarea" maxLength={240} defaultValue={copiedContent} className={textAreaClasses} inputClasses="pb-5" />
-			{isntPrivateSpace && <Anonymous className="ml-1" />}
+			<Anonymous isAvailable={!isPrivateSpace} className="ml-1" />
 		</div>
 		<EscapedContent />
-		{isntPrivateSpace && <Guidelines />}
+		{isPrivateSpace || <Guidelines />}
 		<div className="is-flex is-justify-content-end">
 			<button className="button is-primary">
 				<span>Claim on&nbsp;</span>
@@ -33,8 +33,8 @@ function AddClaim({ isntPrivateSpace, copiedContent }) {
 }
 
 function mapStateToProps({ spaces }) {
-	const isntPrivateSpace = spaces.find(space => space.isCurrent)?.type !== 'private';
+	const isPrivateSpace = spaces.find(space => space.isCurrent)?.type === 'private';
 	return {
-		isntPrivateSpace
+		isPrivateSpace
 	};
 }

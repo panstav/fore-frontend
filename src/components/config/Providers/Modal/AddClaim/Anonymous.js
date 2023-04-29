@@ -8,11 +8,13 @@ import Modal, { Title } from 'wrappers/Modal';
 import Checkbox from 'elements/Checkbox';
 import { Info } from 'elements/Icon';
 
-export default function Anonymous({ className: classes }) {
+export default function Anonymous({ isAvailable, className: classes }) {
 
 	const { control } = useFormContext();
 
 	const [whatsAnonModalProps, showWhatsAnonModal] = useModal();
+
+	if (!isAvailable) return <Checkbox className="is-hidden" name="isAnonymous" defaultValue={false} />;
 
 	const className = classNames('field is-flex', classes);
 
