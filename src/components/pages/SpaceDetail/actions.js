@@ -10,13 +10,19 @@ export default {
 		let space, cachedClaims = [];
 		if (!~indexOfRequestedSpace) {
 			// if space not found in store, fetch it from server
-			[space, cachedClaims] = await fetchSpaceDetail();
+			const result = await fetchSpaceDetail();
+			if (!result) return;
+
+			[space, cachedClaims] = result;
 			spaces.push(space);
 		} else {
 			// if space found in store, use it
 			if (!spaces[indexOfRequestedSpace].isDetailed) {
 				// unless space is not detailed, fetch it from server
-				[space, cachedClaims] = await fetchSpaceDetail();
+				const result = await fetchSpaceDetail();
+				if (!result) return;
+
+				[space, cachedClaims] = result;
 				spaces[indexOfRequestedSpace] = Object.assign({}, spaces[indexOfRequestedSpace], space);
 			}
 		}
@@ -34,7 +40,13 @@ export default {
 		};
 
 		async function fetchSpaceDetail () {
-			const { claims, ...space } = await api.getSpaceDetail(spaceId);
+			const result = await api.getSpaceDetail(spaceId);
+
+			// if the space is not found - we don't want to add it to the list
+			// service will probably handle it, but just in case quit here
+			if (!result) return;
+
+			const { claims, ...space } = result;
 			space.isDetailed = true;
 			return [space, claims];
 		}

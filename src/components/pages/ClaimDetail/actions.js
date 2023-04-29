@@ -12,6 +12,11 @@ export default {
 	async getClaimDetail({ claims, spaces }, id) {
 
 		const claim = await api.getClaimDetail({ id });
+
+		// if the claim is not found - we don't want to add it to the list
+		// service will probably handle it, but just in case quit here
+		if (!claim) return;
+
 		claim.isDetailed = true;
 
 		const index = claims.findIndex((claim) => claim.id === id);
