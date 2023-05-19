@@ -38,7 +38,7 @@ function Home({ isLoggedIn, isMemberOfPublic, availableSpaces, firstName }) {
 
 function mapStateToProps({ user, spaces }) {
 	return {
-		firstName: user.name.split(' ')[0],
+		firstName: user.name?.split(' ')[0],
 		isLoggedIn: !!user.id,
 		isMemberOfPublic: !!spaces.find((space) => space.id === 'public'),
 		availableSpaces: spaces
