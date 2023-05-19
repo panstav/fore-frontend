@@ -16,7 +16,7 @@ export default function Space({ id, type, name, participants }) {
 		</Section>
 
 		<Section withSidePadding={false}>
-			<div className="columns">
+			<div className="columns m-auto">
 
 				<div className="column is-two-thirds">
 					<Feed spaceId={id} className="mx-auto" />
