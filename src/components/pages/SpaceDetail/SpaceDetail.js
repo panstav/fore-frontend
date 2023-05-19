@@ -18,11 +18,11 @@ export default function Space({ id, type, name, participants }) {
 		<Section withSidePadding={false}>
 			<div className="columns m-auto">
 
-				<div className="column is-two-thirds">
+				<div className="column is-two-thirds px-0-mobile">
 					<Feed spaceId={id} className="mx-auto" />
 				</div>
 
-				<div className="column is-one-third">
+				<div className="column is-one-third px-0-mobile">
 					{id === 'public' && <>
 						<div className="box">
 							<SignupForUpdates />
