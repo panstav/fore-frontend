@@ -34,7 +34,7 @@ const benefits = [
 export default function PromotionalHomepage () {
 	return <>
 		<Section className="has-text-centered">
-			<Logo className="mt-6" style={{ width: '10rem', height: '10rem' }} />
+			<Logo className="has-text-primary mt-6" style={{ width: 'min(60vw, 500px)', height: 'auto' }} />
 			<h1 className="title is-1 mt-6" style={{ letterSpacing: '0.05em' }}>Fore</h1>
 			<p className="has-text-weight-bold has-text-primary">{meta.description}</p>
 			<SignupCTA whatFor="to get started." className="mt-6" />
