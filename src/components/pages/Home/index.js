@@ -12,7 +12,7 @@ import { localStorageKeys } from 'constants.js';
 
 export default connect(mapStateToProps)(Home);
 
-function Home({ isLoggedIn, isMemberOfPublic, availableSpaces }) {
+function Home({ isLoggedIn, isMemberOfPublic, availableSpaces, firstName }) {
 
 	if (!isLoggedIn) return <PromotionalHomepage />;
 
@@ -33,11 +33,12 @@ function Home({ isLoggedIn, isMemberOfPublic, availableSpaces }) {
 	if (availableSpaces.length) return <Redirect to={`/space/${availableSpaces[0].id}`} />;
 
 	// otherwise show some info about how to get started
-	return <EmptyState />;
+	return <EmptyState firstName={firstName} />;
 }
 
 function mapStateToProps({ user, spaces }) {
 	return {
+		firstName: user.name.split(' ')[0],
 		isLoggedIn: !!user.id,
 		isMemberOfPublic: !!spaces.find((space) => space.id === 'public'),
 		availableSpaces: spaces

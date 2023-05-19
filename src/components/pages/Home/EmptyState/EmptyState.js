@@ -1,14 +1,24 @@
 import Section from "wrappers/Section";
 
-export default function EmptyState({ createSpace }) {
-	return <Section className="is-medium">
+import { FirstSpace } from "elements/Icon";
+
+export default function EmptyState({ firstName, createSpace }) {
+	return <Section>
 		<div className="content">
-			<h1>Welcome! 👋</h1>
-			<p>It looks like you haven&apos;t joined or created any Spaces yet.</p>
-			<p>If you know someone with a Space on Fore - ask them for an invitation and join their Space.</p>
-			<p>Otherwise - Go ahead and create a Space to get started.</p>
-			<div className="has-text-centered mt-5">
-				<button onClick={createSpace} className="button is-primary is-outlined">Create a Space</button>
+			<h1 className="mb-6">Hey, {firstName}! 👋</h1>
+			<div onClick={createSpace} className="box is-clickable" style={{ border: '2px solid var(--color-primary)' }}>
+				<div className="columns is-align-items-center">
+					<div className="column">
+						<FirstSpace className="px-5" />
+					</div>
+					<div className="column">
+						<div className="is-size-2 has-text-centered">Create a Space</div>
+						<div className="has-text-centered">Where Claims will be considered by your group</div>
+					</div>
+				</div>
+			</div>
+			<div className="is-shadowless is-paddingless has-text-centered">
+				<span className="has-text-weight-bold">To join a Space:</span> Enter the URL that was shared with you in the address bar of your browser.
 			</div>
 		</div>
 	</Section>;
