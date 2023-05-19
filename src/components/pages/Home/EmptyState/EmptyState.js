@@ -13,7 +13,7 @@ export default function EmptyState({ firstName, createSpace }) {
 					</div>
 					<div className="column">
 						<div className="is-size-2 has-text-centered">Create a Space</div>
-						<div className="has-text-centered">Where Claims will be considered by your group</div>
+						<div className="has-text-centered">Where Claims can be considered by your group</div>
 					</div>
 				</div>
 			</div>
