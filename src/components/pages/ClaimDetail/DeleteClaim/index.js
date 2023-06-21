@@ -12,14 +12,14 @@ import Component from "./DeleteClaim";
 
 export default connect(null, actions)(DeleteClaim);
 
-function DeleteClaim({ userIsAuthor, deleteClaim, spaceId }) {
+function DeleteClaim({ userIsOwner, deleteClaim, spaceId }) {
 
 	const { id: claimId } = useContext(ClaimDetailContext);
 
 	const [, setLocation] = useLocation();
 
 	const [confirmDeletionModalProps, showConfirmDeletionModal] = useModal({
-		title: "Sure you want to delete this claim?",
+		title: "Sure you want to delete this Claim?",
 		onSubmit: async () => {
 			await deleteClaim(claimId);
 			setLocation(`/space/${spaceId}`);
@@ -27,7 +27,7 @@ function DeleteClaim({ userIsAuthor, deleteClaim, spaceId }) {
 	});
 
 	const props = {
-		userIsAuthor,
+		userIsOwner,
 		deleteClaim: showConfirmDeletionModal,
 		confirmDeletionModalProps
 	};

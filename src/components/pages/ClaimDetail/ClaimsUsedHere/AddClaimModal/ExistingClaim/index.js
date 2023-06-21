@@ -52,10 +52,14 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 		.filter(atCurrentSpace)
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get(localStorageKeys.recentlyViewedClaims, [])
-		// avoid showing current claim as it may have been recently added
-		// also avoid showing claims that weren't authored by the user
-		.filter((claim) => (claim.id !== claimId && claim.authorId === user.id && atCurrentSpace(claim)))
-		.map(markInvalidClaims);
+	.filter((claim) => (
+		// avoid showing current claim as it may have also been recently added
+		claim.id !== claimId
+		// also avoid showing claims that aren't owned by the user
+		&& claim.ownerId === user.id
+		// also avoid showing claims that are not in the current space
+		&& atCurrentSpace(claim)))
+	.map(markInvalidClaims);
 
 	const searchResults = search.ClaimDetailAddClaim.results
 		.filter(atCurrentSpace)
@@ -77,8 +81,6 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 
 		// disable the claim if
 		claim.invalid =
-			// user is not the author of the claim
-			// claim.authorId && user.id !== claim.authorId
 			// it was already used here
 			claimsUsedHere.some((usedHere) => usedHere.id === claim.id)
 			// it is the same as the parent claim

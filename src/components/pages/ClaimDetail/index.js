@@ -18,7 +18,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsAuthor, spaceId, isAnonymous }) {
+function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsOwner, spaceId, isAnonymous }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -26,7 +26,7 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 
 	trackClaimView({ claimId: id });
 
-	const authorName = isAnonymous ? 'Anonymous' : author.name;
+	const ownerName = isAnonymous ? 'Anonymous' : owner.name;
 	const createdAt = {
 		fullDate: new Date(createdAtTime).toLocaleString('en-UK', { year: 'numeric', month: 'numeric', day: 'numeric', hour: 'numeric', minute: 'numeric' }),
 		timeAgo: timeAgo.format(new Date(createdAtTime), 'mini')
@@ -34,15 +34,15 @@ function ClaimDetail({ id, content, author, createdAtTime, isDetailed, getClaimD
 
 	const props = {
 		content,
-		author,
+		owner,
 		createdAt,
-		userIsAuthor,
+		userIsOwner,
 		spaceId,
 		isAnonymous
 	};
 
 	return <>
-		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${authorName}`} />
+		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${ownerName}`} />
 		<ClaimDetailContext.Provider value={{ id }}>
 			<Component {...props} />
 		</ClaimDetailContext.Provider>
@@ -54,8 +54,8 @@ function mapStateToProps({ claims, user }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	const { content, usedHere, author, createdAt: createdAtTime, isDetailed, spaceId, isByUser, isAnonymous } = claim;
-	const userIsAuthor = !isAnonymous && (isByUser || user.id === author.id);
+	const { content, usedHere, owner, createdAt: createdAtTime, isDetailed, spaceId, isByUser, isAnonymous } = claim;
+	const userIsOwner = !isAnonymous && (isByUser || user.id === owner.id);
 
-	return { id, content, usedHere, author, createdAtTime, isDetailed, isAnonymous, userIsAuthor, spaceId };
+	return { id, content, usedHere, owner, createdAtTime, isDetailed, isAnonymous, userIsOwner, spaceId };
 }

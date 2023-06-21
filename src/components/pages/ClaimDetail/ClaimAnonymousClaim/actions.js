@@ -12,7 +12,7 @@ export default {
 
 		const claimIndex = claims.findIndex((claim) => claim.id === claimId);
 		if (~claimIndex) {
-			claims[claimIndex].author = {
+			claims[claimIndex].owner = {
 				id: user.id,
 				name: user.name
 			};

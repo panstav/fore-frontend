@@ -31,7 +31,7 @@ export default {
 
 		const claimIndex = claims.findIndex((claim) => claim.id === claimId);
 		if (~claimIndex) {
-			claims[claimIndex].author = null;
+			claims[claimIndex].owner = null;
 			claims[claimIndex].isAnonymous = true;
 		}
 

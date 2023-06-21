@@ -3,6 +3,10 @@ import getClaimDetail from './get-claim-detail';
 export default function addClaim({ parentId, direction, spaceId, ...claim }) {
 
 	const claimId = new Date().getTime().toString().slice(-6);
+	const authorObj = {
+		name: "You!",
+		profileImageUrl: `https://avatars.dicebear.com/v2/avataaars/${claimId}.jpg`
+	};
 
 	const newClaim = {
 		...claim,
@@ -10,10 +14,8 @@ export default function addClaim({ parentId, direction, spaceId, ...claim }) {
 		id: claimId,
 
 		createdAt: new Date().getTime(),
-		author: {
-			name: "You!",
-			profileImageUrl: `https://avatars.dicebear.com/v2/avataaars/${claimId}.jpg`
-		},
+		author: authorObj,
+		owner: authorObj,
 		usedAt: {
 			support: [],
 			opposition: []

@@ -8,10 +8,10 @@ import { SO, directedVars, trimClaimContent, IconInIcon } from "./index";
 import Notification from './Wrapper';
 import { NotificationContext } from "../Notifications";
 
-export default function NEW_CHILD_CLAIM({ parentContent, direction, newClaimId, isAnonymous, childAuthorFirstName }) {
+export default function NEW_CHILD_CLAIM({ parentContent, direction, newClaimId, isAnonymous, childOwnerFirstName }) {
 	return <Notification icon={NewChildClaimIcon} url={`/claim/${newClaimId}`}>
 		{!isAnonymous
-			? childAuthorFirstName
+			? childOwnerFirstName
 			: "Anonymous"}
 		&nbsp;wrote in&nbsp;
 		<SO>{direction}</SO>
@@ -20,7 +20,7 @@ export default function NEW_CHILD_CLAIM({ parentContent, direction, newClaimId, 
 }
 
 function NewChildClaimIcon(props) {
-	const { childAuthorFirstName, childAuthorId, isAnonymous, direction } = useContext(NotificationContext);
+	const { childOwnerFirstName, childOwnerId, isAnonymous, direction } = useContext(NotificationContext);
 	const { color } = directedVars[direction];
 
 	return <IconInIcon
@@ -28,7 +28,7 @@ function NewChildClaimIcon(props) {
 		innerIconWrapperStyle={{ padding: '2px' }}
 		outer={() => isAnonymous
 			? <Anonymous />
-			: <Avatar author={{ name: childAuthorFirstName, id: childAuthorId }} />}
+			: <Avatar user={{ name: childOwnerFirstName, id: childOwnerId }} />}
 		inner={({ className: classes, style }) => {
 			const className = classNames(`has-background-${color}`, classes);
 			return <div className={className} style={style} />;

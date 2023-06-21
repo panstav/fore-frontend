@@ -8,7 +8,7 @@ import ClaimUsedAt from './ClaimUsedAt';
 import ClaimsUsedHere from './ClaimsUsedHere';
 import Delete from './DeleteClaim';
 import Anonymize from './AnonymizeClaim';
-import ClaimAnonymous from './ClaimAnonymousClaim';
+import ClaimAnonymousClaim from './ClaimAnonymousClaim';
 
 export default function ClaimDetail(props) {
 	return <>
@@ -26,15 +26,15 @@ export default function ClaimDetail(props) {
 	</>;
 }
 
-function ClaimContent({ content, author, createdAt, userIsAuthor, spaceId, isAnonymous }) {
+function ClaimContent({ content, owner, createdAt, userIsOwner, spaceId, isAnonymous }) {
 	return <>
 		<h1 className="title mt-2 mb-3">{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">
 
 			<div className='is-flex is-align-items-center'>
 				<div className="fore-claim-owner levem is-justify-content-start mb-0 mr-3">
-					<Avatar {...{ author, isAnonymous }} className="mr-3" />
-					<Username {...{ author, isAnonymous }} />
+					<Avatar user={owner} {...{ isAnonymous }} className="mr-3" />
+					<Username name={owner.name} {...{ isAnonymous }} />
 				</div>
 
 				<Tooltip content={createdAt.fullDate}>
@@ -43,9 +43,9 @@ function ClaimContent({ content, author, createdAt, userIsAuthor, spaceId, isAno
 			</div>
 
 			<div className='buttons'>
-				{isAnonymous && <ClaimAnonymous />}
-				{userIsAuthor && <Anonymize />}
-				<Delete {...{ userIsAuthor, spaceId }} />
+				{isAnonymous && <ClaimAnonymousClaim />}
+				{userIsOwner && <Anonymize />}
+				<Delete {...{ userIsOwner, spaceId }} />
 			</div>
 
 		</div>

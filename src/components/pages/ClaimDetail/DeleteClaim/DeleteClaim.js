@@ -2,10 +2,10 @@ import Access from "wrappers/Access";
 import WrapConditionally from "wrappers/WrapConditionally";
 import Modal from "wrappers/Modal";
 
-export default function DeleteClaim({ userIsAuthor, deleteClaim, confirmDeletionModalProps }) {
+export default function DeleteClaim({ userIsOwner, deleteClaim, confirmDeletionModalProps }) {
 	return <>
 
-		<WrapConditionally if={!userIsAuthor} wrapper={({ children }) => {
+		<WrapConditionally if={!userIsOwner} wrapper={({ children }) => {
 			return <Access only={(r) => r.ADMIN}>
 				{children}
 			</Access>;

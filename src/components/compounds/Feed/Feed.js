@@ -18,14 +18,14 @@ export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreCla
 	</div>;
 }
 
-function Claim({ id, createdAtTimeAgo, content, author, isAnonymous }) {
+function Claim({ id, createdAtTimeAgo, content, owner, isAnonymous }) {
 	return <Link key={id} href={`/claim/${id}`}>
 		<a>
 			<div className="box reset-anchors">
 				<div className="is-flex is-justify-content-space-between is-align-items-center no-select-marks">
 					<div className="is-flex is-align-items-center">
-						<Avatar {...{ author, isAnonymous }} className="mr-2" style={{ width: '1.5rem' }} />
-						<Username {...{ author, isAnonymous }} className="is-size-7" />
+						<Avatar user={owner} {...{ isAnonymous }} className="mr-2" style={{ width: '1.5rem' }} />
+						<Username name={owner.name} {...{ isAnonymous }} className="is-size-7" />
 					</div>
 					<div className="is-size-7 has-text-grey-light">
 						{createdAtTimeAgo}
