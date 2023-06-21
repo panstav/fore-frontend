@@ -31,9 +31,9 @@ export default function Anonymous({ isAvailable, className: classes }) {
 			return <>
 				<Title>Anonymous Claims</Title>
 				<div className="content">
-					<p>If for some reason you prefer not to be associated with a particular Claim, you can Claim it anonymously.</p>
-					<p>Unlike regular Claims, others cannot know who the original author of the Claim is, and you cannot reuse an anonymous Claim to support or oppose other Claims on Fore, but anyone can &quot;pick it up&quot;, Claim it as their own, and reuse it anywhere.</p>
-					<p><span className='has-text-weight-bold'>Note:</span> Even if someone picks up your anonymous Claim - the system will remember you as the original author. This will be very useful in the future when earnings are enabled.</p>
+					<p>If for some reason you prefer not to be associated with this particular Claim, you can Claim it anonymously.</p>
+					<p>Unlike regular Claims: The original author of an anonymous Claim is hidden. As long as a Claim is anonymous it cannot be reused to support or oppose any other Claims. Anyone can &quot;pick up an anonymous Claim&quot;, Claim it as their own, and reuse it anywhere.</p>
+					<p><span className='has-text-weight-bold'>Note:</span> Even if someone picks up a Claim you created anonymously - the system will remember you as its original author. This will be very useful in the future when earnings are enabled.</p>
 				</div>
 				<div className='is-flex is-justify-content-end'>
 					<button onClick={hideModal} className="button is-primary">OK</button>
