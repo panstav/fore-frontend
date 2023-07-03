@@ -18,7 +18,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsOwner, spaceId, isAnonymous }) {
+function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsOwner, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -37,6 +37,7 @@ function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDe
 		owner,
 		createdAt,
 		userIsOwner,
+		isUserCurrentAndOriginalAuthor,
 		spaceId,
 		isAnonymous
 	};

@@ -12,7 +12,7 @@ import Component from "./DeleteClaim";
 
 export default connect(null, actions)(DeleteClaim);
 
-function DeleteClaim({ userIsOwner, deleteClaim, spaceId }) {
+function DeleteClaim({ deleteClaim, spaceId }) {
 
 	const { id: claimId } = useContext(ClaimDetailContext);
 
@@ -27,7 +27,6 @@ function DeleteClaim({ userIsOwner, deleteClaim, spaceId }) {
 	});
 
 	const props = {
-		userIsOwner,
 		deleteClaim: showConfirmDeletionModal,
 		confirmDeletionModalProps
 	};
