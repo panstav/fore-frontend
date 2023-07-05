@@ -40,4 +40,4 @@ export const localStorageKeys = {
 	recentlyConnectedClaims: 'recentlyConnectedClaims'
 };
 
-export const spaceMaxParticipants = 12;
+export const spaceMaxParticipants = 8;
