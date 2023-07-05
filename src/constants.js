@@ -3,12 +3,12 @@ export const urls = {
 	api: 'https://api.fore.is'
 };
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.API) {
 	urls.api = {
 		local: 'http://localhost:3000',
 		github: 'https://panstav-fore-backend-qwvqv7q2pxx-3000.preview.app.github.dev',
 		gitpod: 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu43.gitpod.io',
-		cloud: 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app'
+		devCloud: 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app'
 	}[process.env.API];
 }
 
