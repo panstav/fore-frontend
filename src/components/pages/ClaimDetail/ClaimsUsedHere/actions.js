@@ -38,7 +38,7 @@ export default {
 		const spaceId = claims[indexOfParentClaim].spaceId;
 		api.connectClaims({ parentId, parentContent, childId, childContent, direction, spaceId })
 			.then(() => notify(notifications.NEW_CLAIM_CONNECTION));
-		trackEvents('connect_claims', { parentId, childId, direction, spaceId });
+		trackEvents('use_claim', { parentId, childId, direction, spaceId });
 
 		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
 		if (~indexOfChildClaim && ('usedAt' in claims[indexOfChildClaim])) {
