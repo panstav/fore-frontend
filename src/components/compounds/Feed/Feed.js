@@ -25,7 +25,7 @@ function Claim({ id, createdAtTimeAgo, content, owner, isAnonymous }) {
 				<div className="is-flex is-justify-content-space-between is-align-items-center no-select-marks">
 					<div className="is-flex is-align-items-center">
 						<Avatar user={owner} {...{ isAnonymous }} className="mr-2" style={{ width: '1.5rem' }} />
-						<Username name={owner.name} {...{ isAnonymous }} className="is-size-7" />
+						<Username name={owner?.name} {...{ isAnonymous }} className="is-size-7" />
 					</div>
 					<div className="is-size-7 has-text-grey-light">
 						{createdAtTimeAgo}

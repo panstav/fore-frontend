@@ -34,7 +34,7 @@ function ClaimContent({ content, owner, createdAt, userIsOwner, isUserCurrentAnd
 			<div className='is-flex is-align-items-center'>
 				<div className="fore-claim-owner levem is-justify-content-start mb-0 mr-3">
 					<Avatar user={owner} {...{ isAnonymous }} className="mr-3" />
-					<Username name={owner.name} {...{ isAnonymous }} />
+					<Username name={owner?.name} {...{ isAnonymous }} />
 				</div>
 
 				<Tooltip content={createdAt.fullDate}>
