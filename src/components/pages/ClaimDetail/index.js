@@ -55,8 +55,8 @@ function mapStateToProps({ claims, user }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	const { content, usedHere, owner, createdAt: createdAtTime, isDetailed, spaceId, isByUser, isAnonymous } = claim;
+	const { content, usedHere, owner, createdAt: createdAtTime, isDetailed, spaceId, isByUser, isAnonymous, isUserCurrentAndOriginalAuthor } = claim;
 	const userIsOwner = !isAnonymous && (isByUser || user.id === owner.id);
 
-	return { id, content, usedHere, owner, createdAtTime, isDetailed, isAnonymous, userIsOwner, spaceId };
+	return { id, content, usedHere, owner, createdAtTime, isDetailed, isAnonymous, userIsOwner, spaceId, isUserCurrentAndOriginalAuthor };
 }
