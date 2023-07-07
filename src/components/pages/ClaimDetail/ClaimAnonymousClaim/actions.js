@@ -7,17 +7,18 @@ export default {
 
 		const spaceId = claims.find(claim => claim.id === claimId).spaceId;
 
-		await api.claimAnonymousClaim({ claimId });
+		const { isUserCurrentAndOriginalAuthor = false } = await api.claimAnonymousClaim({ claimId });
 		trackEvents('claim_anonymous_claim', { spaceId, claimId });
 
 		const claimIndex = claims.findIndex((claim) => claim.id === claimId);
-		if (~claimIndex) {
-			claims[claimIndex].owner = {
+		Object.assign(claims[claimIndex], {
+			isAnonymous: false,
+			owner: {
 				id: user.id,
 				name: user.name
-			};
-			claims[claimIndex].isAnonymous = false;
-		}
+			},
+			isUserCurrentAndOriginalAuthor
+		});
 
 		return { claims };
 

@@ -30,10 +30,11 @@ export default {
 		}
 
 		const claimIndex = claims.findIndex((claim) => claim.id === claimId);
-		if (~claimIndex) {
-			claims[claimIndex].owner = null;
-			claims[claimIndex].isAnonymous = true;
-		}
+		Object.assign(claims[claimIndex], {
+			isAnonymous: true,
+			owner: null,
+			isUserCurrentAndOriginalAuthor: false
+		});
 
 		search.ClaimDetailAddClaim = emptySearch;
 
