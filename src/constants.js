@@ -1,3 +1,5 @@
+export const maintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+
 export const urls = {
 	frontEnd: window.origin,
 	api: 'https://api.fore.is'
