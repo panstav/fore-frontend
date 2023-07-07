@@ -2,6 +2,8 @@ import { Link } from "wouter-preact";
 import { useFormContext } from "react-hook-form";
 import classNames from "classnames";
 
+import randomSpaceName from "lib/random-space-name";
+
 import TrimmedInput from "elements/TrimmedInput";
 
 import { meta } from "constants";
@@ -44,48 +46,4 @@ function Wrapper({ name, existingSpace, onClickCallback, ...props }) {
 	const Elem = existingSpace ? Link : 'button';
 
 	return <Elem {...props} {...elemProps} />;
-}
-
-function randomSpaceName() {
-
-	const spaceNames = [
-		"Team Brainstorming",
-		"Company Strategy Planning",
-		"Group Project Discussion",
-		"New Product Ideation",
-		"Event Planning Committee",
-		"Community Decision Making",
-		"Political Action Group",
-		"Nonprofit Board Meeting",
-		"Classroom Debate Club",
-		"Startup Pitch Session",
-		"Idea Workshop",
-		"Innovation Lab",
-		"Brainstorming Bootcamp",
-		"Solution Squad",
-		"Think Tank",
-		"Creative Collective",
-		"Problem-Solving Posse",
-		"Idea Incubator",
-		"Innovation Hub",
-		"Brainstorming Braintrust",
-		"Post-Event Debrief",
-		"Event Feedback Forum",
-		"Event Planning Recap",
-		"Post-Event Follow-Up",
-		"Event Review Session",
-		"Hackathon Planning",
-		"Hackathon Support",
-		"Hackathon Collaboration",
-		"Festival Organizing",
-		"Festival Volunteer Coordination",
-		"Retreat Planning",
-		"Retreat Group Discussion",
-		"Seminar Coordination",
-		"Seminar Group Work",
-		"Monthly Planning Meeting",
-		"Weekly Team Check-In"
-	];
-
-	return spaceNames[Math.floor(Math.random() * spaceNames.length)];
 }

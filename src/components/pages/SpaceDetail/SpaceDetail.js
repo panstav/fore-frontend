@@ -37,9 +37,9 @@ export default function Space({ id, type, name, participants }) {
 							? <p>New members will be show up here.</p>
 							: <ul className="is-flex is-flex-wrap-wrap is-justify-content-center">
 								{participants.map((id) => {
-									const author = { name: '', id };
+									const owner = { name: '', id };
 									return <li key={id}>
-										<Avatar {...{ author }} className="mx-1" style={{ width: '2.5rem' }} />
+										<Avatar user={owner} className="mx-1" style={{ width: '2.5rem' }} />
 									</li>;
 								})}
 							</ul>

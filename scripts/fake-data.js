@@ -13,18 +13,22 @@ let claims = faker.extensions.arrayOf(50, () => ({
 	createdAt: faker.date.past().getTime()
 }));
 
-claims = claims.map((claim) => ({
-	...claim,
-	author: {
+claims = claims.map((claim) => {
+	const authorObj = {
 		name: faker.helpers.userCard().name,
 		profileImageUrl: `https://avatars.dicebear.com/v2/avataaars/${claim.id}.jpg`
-	},
-	usedAt: getRandomClaimRefs({ max: 5 }),
-	usedHere: getRandomClaimRefs({
-		max: 5,
-		map: (ref) => ({ ...ref, power: Math.floor(Math.random() * 10) * (Math.floor(Math.random() * 5) % 5 ? 1 : 5) })
-	})
-}));
+	};
+	return ({
+		...claim,
+		author: authorObj,
+		owner: authorObj,
+		usedAt: getRandomClaimRefs({ max: 5 }),
+		usedHere: getRandomClaimRefs({
+			max: 5,
+			map: (ref) => ({ ...ref, power: Math.floor(Math.random() * 10) * (Math.floor(Math.random() * 5) % 5 ? 1 : 5) })
+		})
+	});
+});
 
 // eslint-disable-next-line no-debugger
 debugger;

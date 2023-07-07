@@ -19,7 +19,7 @@ function NewVoteUserIcon (props) {
 
 	return <IconInIcon
 		{...props}
-		outer={() => <Avatar author={{ name: voterFirstName, id: voterId }} />}
+		outer={() => <Avatar user={{ name: voterFirstName, id: voterId }} />}
 		inner={(props) => <UpArrow {...props} className="has-text-success" svgProps={{ style: { transform: 'scale(1.5)' } }} />}
 	/>;
 }

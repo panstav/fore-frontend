@@ -41,7 +41,7 @@ export default {
 		const newViewedClaim = {
 			id: claimId,
 			content: claim.content,
-			authorId: claim.isAnonymous ? null : claim.author.id,
+			ownerId: claim.isAnonymous ? null : claim.owner.id,
 			spaceId: claim.spaceId,
 		};
 

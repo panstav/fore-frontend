@@ -1,17 +1,9 @@
-import Access from "wrappers/Access";
-import WrapConditionally from "wrappers/WrapConditionally";
 import Modal from "wrappers/Modal";
 
-export default function DeleteClaim({ userIsAuthor, deleteClaim, confirmDeletionModalProps }) {
+export default function DeleteClaim({ deleteClaim, confirmDeletionModalProps }) {
 	return <>
 
-		<WrapConditionally if={!userIsAuthor} wrapper={({ children }) => {
-			return <Access only={(r) => r.ADMIN}>
-				{children}
-			</Access>;
-		}}>
-			<button onClick={deleteClaim} className="button is-small is-danger is-outlined">Delete</button>
-		</WrapConditionally>
+		<button onClick={deleteClaim} className="button is-small is-danger is-outlined">Delete</button>
 
 		<Modal {...confirmDeletionModalProps} render={function ConfirmDeleteModal() {
 			return <>

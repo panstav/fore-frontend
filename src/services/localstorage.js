@@ -1,5 +1,11 @@
+import { localStorageKeys } from "constants";
+
 // a master key is used to store all fore data in localstorage
 const masterKey = 'foreis';
+
+const keysOfClaimCaches = [localStorageKeys.recentlyViewedClaims, localStorageKeys.recentlyConnectedClaims];
+
+deprecate();
 
 export default { get, set, unset, clear };
 
@@ -22,6 +28,8 @@ function set(key, value) {
 	if (!value) throw new Error('value is required');
 	if (key.includes('.')) throw new Error('dot notation is not supported');
 
+	if (keysOfClaimCaches.includes(key) && Array.isArray(value) && value.some((item) => 'authorId' in item)) throw new Error('authorId is deprecated');
+
 	const previousMasterValue = JSON.parse(localStorage.getItem(masterKey) || '{}');
 	const newMasterValue = Object.assign({}, previousMasterValue, { [key]: value });
 	localStorage.setItem(masterKey, JSON.stringify(newMasterValue));
@@ -38,4 +46,12 @@ function unset(key) {
 
 function clear() {
 	localStorage.removeItem(masterKey);
+}
+
+function deprecate() {
+	keysOfClaimCaches.forEach((key) => {
+		const store = get(key);
+		if (!store || !store.length) return;
+		if (store.some((item) => Object.keys(item).includes('authorId'))) clear();
+	});
 }

@@ -14,7 +14,7 @@
     "start-offline": "npm run build-entry-dev; NODE_ENV=offline parcel src/index.html",
     "start-dev-local": "npm run setup-dev; API=local parcel src/index.html",
     "start-dev-github": "npm run setup-dev; API=github parcel src/index.html",
-    "start-dev-cloud": "npm run setup-dev; API=cloud parcel src/index.html",
+    "start-dev-cloud": "npm run setup-dev; API=devCloud parcel src/index.html",
     "start-production": "npm run build-entry-prod; parcel src/index.html",
     "build": "npm run build-entry-prod; parcel build --no-source-maps src/index.html; cp static/* dist",
     "clean": "rm dist/* -rf; rm .parcel-cache/* -rf",

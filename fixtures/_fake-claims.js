@@ -4,7 +4,7 @@ export default [
     spaceId: "public",
     content: "Try to input the JBOD array, maybe it will navigate the open-source matrix!",
     createdAt: 1651362801836,
-    author: {
+    owner: {
       name: "Ervin Homenick",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/izqozbl2yp.jpg",
     },
@@ -57,7 +57,7 @@ export default [
     spaceId: "public",
     content: "We need to program the wireless USB microchip!",
     createdAt: 1660997100651,
-    author: {
+    owner: {
       name: "Lonnie Spinka MD",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/sxtywqsr6qb.jpg",
     },
@@ -79,7 +79,7 @@ export default [
     spaceId: "public",
     content: "Use the 1080p ADP program, then you can calculate the haptic microchip!",
     createdAt: 1661869222751,
-    author: {
+    owner: {
       name: "Howard Jacobi",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/lzyq7dm4j1.jpg",
     },
@@ -111,7 +111,7 @@ export default [
     spaceId: "public",
     content: "programming the feed won't do anything, we need to transmit the digital IB protocol!",
     createdAt: 1662020947820,
-    author: {
+    owner: {
       name: "Irene Wiegand V",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/3758d7byjqd.jpg",
     },
@@ -161,7 +161,7 @@ export default [
     spaceId: "public",
     content: "Try to back up the XML capacitor, maybe it will reboot the redundant sensor!",
     createdAt: 1650813084224,
-    author: {
+    owner: {
       name: "Kristin Ondricka",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/uaz6dv71z8o.jpg",
     },
@@ -211,7 +211,7 @@ export default [
     spaceId: "public",
     content: "I'll index the redundant HTTP matrix, that should bus the IB protocol!",
     createdAt: 1635734480708,
-    author: {
+    owner: {
       name: "Sonya Hilpert",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/89cpugp5xpq.jpg",
     },
@@ -250,7 +250,7 @@ export default [
     spaceId: "public",
     content: "quantifying the monitor won't do anything, we need to bypass the redundant THX bandwidth!",
     createdAt: 1641787914323,
-    author: {
+    owner: {
       name: "Greg Haag",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/3s3oc60ey2x.jpg",
     },
@@ -289,7 +289,7 @@ export default [
     spaceId: "public",
     content: "I'll quantify the neural SMS microchip, that should bandwidth the CSS capacitor!",
     createdAt: 1633103071796,
-    author: {
+    owner: {
       name: "Dianne Mohr",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/w71xkpmpp6e.jpg",
     },
@@ -337,7 +337,7 @@ export default [
     spaceId: "public",
     content: "generating the hard drive won't do anything, we need to parse the virtual TCP program!",
     createdAt: 1645890690850,
-    author: {
+    owner: {
       name: "Orville Hilll",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/zgfmlnsmopq.jpg",
     },
@@ -389,7 +389,7 @@ export default [
     spaceId: "public",
     content: "We need to compress the neural THX capacitor!",
     createdAt: 1647137198883,
-    author: {
+    owner: {
       name: "Sherman McCullough",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/963ds07zj8w.jpg",
     },
@@ -428,7 +428,7 @@ export default [
     spaceId: "public",
     content: "If we back up the protocol, we can get to the JSON microchip through the auxiliary TCP interface!",
     createdAt: 1663329057156,
-    author: {
+    owner: {
       name: "Felix Balistreri",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/opdvus09vhc.jpg",
     },
@@ -455,7 +455,7 @@ export default [
     spaceId: "public",
     content: "You can't parse the port without quantifying the open-source XSS bus!",
     createdAt: 1656654810338,
-    author: {
+    owner: {
       name: "Noah Mueller",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/b2327tqawvb.jpg",
     },
@@ -496,7 +496,7 @@ export default [
     spaceId: "public",
     content: "Try to parse the SMS alarm, maybe it will program the optical driver!",
     createdAt: 1662621388473,
-    author: {
+    owner: {
       name: "Kerry Nicolas",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/dywstkfcg5q.jpg",
     },
@@ -543,7 +543,7 @@ export default [
     spaceId: "public",
     content: "We need to calculate the neural AGP application!",
     createdAt: 1632638247272,
-    author: {
+    owner: {
       name: "Myrtle D'Amore",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/3fe9tazrobn.jpg",
     },
@@ -601,7 +601,7 @@ export default [
     spaceId: "public",
     content: "Try to back up the XSS driver, maybe it will compress the virtual monitor!",
     createdAt: 1649924903011,
-    author: {
+    owner: {
       name: "Todd Hackett",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/rvfphz0etjq.jpg",
     },
@@ -638,7 +638,7 @@ export default [
     spaceId: "public",
     content: "I'll compress the mobile JSON feed, that should firewall the RSS monitor!",
     createdAt: 1656395011349,
-    author: {
+    owner: {
       name: "Mrs. Jeremy Goldner",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/gxp0xs80iuu.jpg",
     },
@@ -696,7 +696,7 @@ export default [
     spaceId: "public",
     content: "I'll navigate the redundant PCI protocol, that should program the SSL transmitter!",
     createdAt: 1648097101625,
-    author: {
+    owner: {
       name: "Robert Stamm",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/xbvoyprsc5.jpg",
     },
@@ -737,7 +737,7 @@ export default [
     spaceId: "public",
     content: "calculating the protocol won't do anything, we need to connect the cross-platform RSS panel!",
     createdAt: 1632874635829,
-    author: {
+    owner: {
       name: "Franklin Senger",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/aru6a8iiwuc.jpg",
     },
@@ -779,7 +779,7 @@ export default [
     spaceId: "public",
     content: "If we program the sensor, we can get to the EXE alarm through the online THX bandwidth!",
     createdAt: 1634062464319,
-    author: {
+    owner: {
       name: "Anita Auer",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/cpvtaqsgmz.jpg",
     },
@@ -820,7 +820,7 @@ export default [
     spaceId: "public",
     content: "Use the bluetooth JBOD bandwidth, then you can navigate the digital pixel!",
     createdAt: 1653307416281,
-    author: {
+    owner: {
       name: "Sabrina Lemke",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/8f03jjqwxso.jpg",
     },
@@ -863,7 +863,7 @@ export default [
     spaceId: "public",
     content: "If we copy the capacitor, we can get to the JBOD sensor through the auxiliary SQL sensor!",
     createdAt: 1638389258356,
-    author: {
+    owner: {
       name: "Edwin McLaughlin",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/yfhn44izbne.jpg",
     },
@@ -920,7 +920,7 @@ export default [
     spaceId: "public",
     content: "We need to back up the open-source HDD monitor!",
     createdAt: 1635727357058,
-    author: {
+    owner: {
       name: "Lawrence Bartoletti",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/vcl3p7s5nlr.jpg",
     },
@@ -954,7 +954,7 @@ export default [
     spaceId: "public",
     content: "Try to program the CSS interface, maybe it will synthesize the cross-platform application!",
     createdAt: 1644833612908,
-    author: {
+    owner: {
       name: "Edwin Reichert",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/yuths0pb39.jpg",
     },
@@ -1008,7 +1008,7 @@ export default [
     spaceId: "public",
     content: "You can't hack the system without parsing the auxiliary AGP array!",
     createdAt: 1660208398893,
-    author: {
+    owner: {
       name: "Candace Schoen",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/ousk2bthnik.jpg",
     },
@@ -1071,7 +1071,7 @@ export default [
     spaceId: "public",
     content: "You can't transmit the application without indexing the online AI circuit!",
     createdAt: 1662069148646,
-    author: {
+    owner: {
       name: "Sadie Waelchi",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/o7d02s8cluf.jpg",
     },
@@ -1103,7 +1103,7 @@ export default [
     spaceId: "public",
     content: "Use the optical SSL interface, then you can index the redundant circuit!",
     createdAt: 1660996098108,
-    author: {
+    owner: {
       name: "Jaime Green",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/j2ylo6nab9.jpg",
     },
@@ -1153,7 +1153,7 @@ export default [
     spaceId: "public",
     content: "Use the primary RSS firewall, then you can hack the virtual panel!",
     createdAt: 1655982093875,
-    author: {
+    owner: {
       name: "Brent Macejkovic",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/1w1jw2n4zr8.jpg",
     },
@@ -1175,7 +1175,7 @@ export default [
     spaceId: "public",
     content: "Use the redundant AI monitor, then you can parse the back-end panel!",
     createdAt: 1638845668041,
-    author: {
+    owner: {
       name: "Rickey Paucek MD",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/1cyc9cxkggz.jpg",
     },
@@ -1207,7 +1207,7 @@ export default [
     spaceId: "public",
     content: "If we quantify the driver, we can get to the SAS monitor through the multi-byte PCI pixel!",
     createdAt: 1635766951390,
-    author: {
+    owner: {
       name: "Edwin Johnson",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/vdxfmcff23.jpg",
     },
@@ -1251,7 +1251,7 @@ export default [
     spaceId: "public",
     content: "Use the 1080p IB protocol, then you can program the neural interface!",
     createdAt: 1657821475509,
-    author: {
+    owner: {
       name: "Olga Stanton",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/a3nlogbbk5d.jpg",
     },
@@ -1301,7 +1301,7 @@ export default [
     spaceId: "public",
     content: "We need to parse the mobile AI bus!",
     createdAt: 1640973274542,
-    author: {
+    owner: {
       name: "Eric Robel",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/wz8xbn3umz.jpg",
     },
@@ -1341,7 +1341,7 @@ export default [
     spaceId: "public",
     content: "We need to calculate the neural SAS capacitor!",
     createdAt: 1656704729364,
-    author: {
+    owner: {
       name: "Douglas Reilly",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/td5bym2dsb.jpg",
     },
@@ -1396,7 +1396,7 @@ export default [
     spaceId: "public",
     content: "The SDD system is down, quantify the wireless matrix so we can synthesize the TCP feed!",
     createdAt: 1640280242352,
-    author: {
+    owner: {
       name: "Tim Connelly",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/durwjjwltcu.jpg",
     },
@@ -1445,7 +1445,7 @@ export default [
     spaceId: "public",
     content: "I'll bypass the cross-platform SDD sensor, that should panel the TCP interface!",
     createdAt: 1638915745706,
-    author: {
+    owner: {
       name: "Dana Fisher",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/2p0u5bktbs3.jpg",
     },
@@ -1482,7 +1482,7 @@ export default [
     spaceId: "public",
     content: "The HTTP transmitter is down, copy the open-source transmitter so we can index the SDD bus!",
     createdAt: 1633475952712,
-    author: {
+    owner: {
       name: "Leigh Steuber Jr.",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/5bh6r57a1qs.jpg",
     },
@@ -1524,7 +1524,7 @@ export default [
     spaceId: "public",
     content: "Try to navigate the AI transmitter, maybe it will reboot the auxiliary matrix!",
     createdAt: 1656937207293,
-    author: {
+    owner: {
       name: "Carmen Crist",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/j8wfzclk3c8.jpg",
     },
@@ -1551,7 +1551,7 @@ export default [
     spaceId: "public",
     content: "We need to hack the optical SMTP program!",
     createdAt: 1659790715798,
-    author: {
+    owner: {
       name: "Janie Carter",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/rfn8cseo6k.jpg",
     },
@@ -1595,7 +1595,7 @@ export default [
     spaceId: "public",
     content: "Use the online PCI protocol, then you can quantify the 1080p transmitter!",
     createdAt: 1639436790849,
-    author: {
+    owner: {
       name: "Ollie Ferry II",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/pfs40sv5n3m.jpg",
     },
@@ -1644,7 +1644,7 @@ export default [
     spaceId: "public",
     content: "I'll override the wireless JBOD protocol, that should system the TCP monitor!",
     createdAt: 1648707142740,
-    author: {
+    owner: {
       name: "Amanda Deckow",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/1ief7t0qv09.jpg",
     },
@@ -1686,7 +1686,7 @@ export default [
     spaceId: "public",
     content: "You can't transmit the circuit without compressing the redundant RSS capacitor!",
     createdAt: 1662603126055,
-    author: {
+    owner: {
       name: "Loretta Wunsch",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/tana3ch30f.jpg",
     },
@@ -1721,7 +1721,7 @@ export default [
     spaceId: "public",
     content: "You can't hack the alarm without backing up the solid state PNG microchip!",
     createdAt: 1641641636640,
-    author: {
+    owner: {
       name: "Shannon Hickle",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/ualnz2kybq.jpg",
     },
@@ -1773,7 +1773,7 @@ export default [
     spaceId: "public",
     content: "transmitting the card won't do anything, we need to transmit the primary JBOD protocol!",
     createdAt: 1646356293685,
-    author: {
+    owner: {
       name: "Tomas Rosenbaum",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/xhnvqfwvn59.jpg",
     },
@@ -1816,7 +1816,7 @@ export default [
     spaceId: "public",
     content: "Use the virtual XSS interface, then you can quantify the optical port!",
     createdAt: 1661928228546,
-    author: {
+    owner: {
       name: "Angela Hahn",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/bqx6ha3d47s.jpg",
     },
@@ -1858,7 +1858,7 @@ export default [
     spaceId: "public",
     content: "indexing the firewall won't do anything, we need to navigate the auxiliary GB microchip!",
     createdAt: 1634447676338,
-    author: {
+    owner: {
       name: "Shirley Koepp",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/cs5mejmvjyv.jpg",
     },
@@ -1902,7 +1902,7 @@ export default [
     spaceId: "public",
     content: "You can't hack the transmitter without quantifying the 1080p AGP program!",
     createdAt: 1663106046289,
-    author: {
+    owner: {
       name: "Ronald Morissette",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/b6ejuz3fcew.jpg",
     },
@@ -1937,7 +1937,7 @@ export default [
     spaceId: "public",
     content: "overriding the monitor won't do anything, we need to transmit the mobile COM panel!",
     createdAt: 1653408502806,
-    author: {
+    owner: {
       name: "Edgar Torphy",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/829jx9p0506.jpg",
     },
@@ -1988,7 +1988,7 @@ export default [
     spaceId: "public",
     content: "Use the auxiliary IB panel, then you can program the virtual transmitter!",
     createdAt: 1652738819644,
-    author: {
+    owner: {
       name: "Claude Murazik",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/z5ja6jitgk.jpg",
     },
@@ -2015,7 +2015,7 @@ export default [
     spaceId: "public",
     content: "You can't back up the bus without navigating the optical SCSI program!",
     createdAt: 1653285179378,
-    author: {
+    owner: {
       name: "Vickie Hessel",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/pebjs27z23q.jpg",
     },
@@ -2060,7 +2060,7 @@ export default [
     spaceId: "public",
     content: "copying the matrix won't do anything, we need to connect the wireless XSS system!",
     createdAt: 1663115696635,
-    author: {
+    owner: {
       name: "Angela Gutmann",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/mnu7x4occs8.jpg",
     },
@@ -2114,7 +2114,7 @@ export default [
     spaceId: "public",
     content: "hacking the capacitor won't do anything, we need to connect the 1080p USB hard drive!",
     createdAt: 1635956809704,
-    author: {
+    owner: {
       name: "Moses Dach",
       profileImageUrl: "https://avatars.dicebear.com/v2/avataaars/0o2kssk0szw.jpg",
     },

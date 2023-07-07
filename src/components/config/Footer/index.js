@@ -14,8 +14,8 @@ function Footer({ logOut }) {
 	const [, setLocation] = useLocation();
 
 	const handleLogOut = async () => {
-		setLocation('/connect');
 		logOut();
+		setLocation('/');
 	};
 
 	const props = {
