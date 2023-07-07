@@ -52,14 +52,14 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 		.filter(atCurrentSpace)
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get(localStorageKeys.recentlyViewedClaims, [])
-	.filter((claim) => (
-		// avoid showing current claim as it may have also been recently added
-		claim.id !== claimId
-		// also avoid showing claims that aren't owned by the user
-		&& claim.ownerId === user.id
-		// also avoid showing claims that are not in the current space
-		&& atCurrentSpace(claim)))
-	.map(markInvalidClaims);
+		.filter((claim) => (
+			// avoid showing current claim as it may have also been recently added
+			claim.id !== claimId
+			// also avoid showing claims that aren't owned by the user
+			&& claim.ownerId === user.id
+			// also avoid showing claims that are not in the current space
+			&& atCurrentSpace(claim)))
+		.map(markInvalidClaims);
 
 	const searchResults = search.ClaimDetailAddClaim.results
 		.filter(atCurrentSpace)
