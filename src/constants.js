@@ -5,7 +5,9 @@ export const urls = {
 	api: 'https://api.fore.is'
 };
 
+export let localToCloudDev = false;
 if (process.env.API) {
+	if (process.env.API === 'devCloud') localToCloudDev = true;
 	urls.api = {
 		local: 'http://localhost:3000',
 		github: 'https://panstav-fore-backend-qwvqv7q2pxx-3000.preview.app.github.dev',
