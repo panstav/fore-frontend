@@ -28,18 +28,19 @@ export default function ClaimDetail(props) {
 
 function ClaimContent({ content, owner, createdAt, userIsOwner, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
 	return <>
-		<h1 className="title mt-2 mb-3">{content}</h1>
+		<h1 className="title mt-2">{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">
 
 			<div className='is-flex is-align-items-center'>
-				<div className="fore-claim-owner levem is-justify-content-start mb-0 mr-3">
-					<Avatar user={owner} {...{ isAnonymous }} className="mr-3" />
-					<Username name={owner?.name} {...{ isAnonymous }} />
+				<div className="levem is-justify-content-start mb-0 mr-3">
+					<Avatar user={owner} {...{ isAnonymous }} className="mr-3" style={{ width: '2.25rem' }} />
+					<div className='is-flex is-align-items-baseline'>
+						<Username name={owner?.name} {...{ isAnonymous }} className="fore-claim-owner mr-2" />
+						<Tooltip content={createdAt.fullDate}>
+							<div className="has-text-grey-light">{createdAt.timeAgo}</div>
+						</Tooltip>
+					</div>
 				</div>
-
-				<Tooltip content={createdAt.fullDate}>
-					<div className="has-text-grey-light">{createdAt.timeAgo}</div>
-				</Tooltip>
 			</div>
 
 			<div className='buttons'>
