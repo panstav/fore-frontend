@@ -33,7 +33,7 @@ export default function SignupForUpdates({ control, onSubmit, didSendWithoutMark
 				</label>
 			</div>
 			<div className="is-flex is-align-items-center">
-				<button className="button is-small is-success mr-3">Let me know</button>
+				<button className="button is-small is-success is-outlined mr-3">Let me know</button>
 				{didSendWithoutMarking && <p className="notification is-warning is-small">Mark at least one of these to signup for updates.</p>}
 			</div>
 		</div>;
