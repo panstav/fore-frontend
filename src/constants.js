@@ -1,4 +1,5 @@
 export const maintenanceMode = process.env.MAINTENANCE_MODE === 'true';
+export const isOffline = process.env.NODE_ENV === 'offline';
 
 export const urls = {
 	frontEnd: window.origin,
