@@ -1,11 +1,13 @@
 import classNames from 'classnames';
 
-import qaPairs from './qaPairs';
+import { asideContentClasses, asideHeaderClasses } from 'lib/css';
+
+import qaPairs from './copy';
 
 export default function FAQ ({ big, className: classes }) {
 	const wrapperClassName = classNames('content', classes);
-	const titleClassName = classNames(big || 'is-size-6 mb-3');
-	const contentWrapper = classNames(big || 'is-size-7');
+	const titleClassName = classNames(big || asideHeaderClasses);
+	const contentWrapper = classNames(big || asideContentClasses);
 	return <div className={wrapperClassName}>
 		<h2 className={titleClassName}>{big ? 'Frequently Asked Questions' : 'FAQs'}:</h2>
 		<div className={contentWrapper}>

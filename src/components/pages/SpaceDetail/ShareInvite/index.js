@@ -4,9 +4,9 @@ import { connect } from 'unistore/preact';
 import { copy } from 'services/clipboard';
 import { canShare, share } from 'services/webshare';
 
-import actions from './actions';
-
 import useModal from 'hooks/use-modal';
+
+import actions from './actions';
 
 import Component from './ShareInvite';
 
@@ -14,7 +14,7 @@ import { urls, spaceMaxParticipants } from 'constants';
 
 export default connect(mapStateToProps, actions)(ShareInvite);
 
-function ShareInvite({ numberOfParticipants, spaceId, spaceName, createInvitation, invitationId, userFirstName }) {
+function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName, createInvitation, invitationId, userFirstName }) {
 
 	const invitationLink = invitationId && `${urls.frontEnd}/space-invitation/${invitationId}`;
 
@@ -42,6 +42,7 @@ function ShareInvite({ numberOfParticipants, spaceId, spaceName, createInvitatio
 	const webShare = () => share(webShareObject);
 
 	const props = {
+		ButtonComponent,
 		shareInviteModalProps,
 		shareInvite: showShareInviteModal,
 		hasWebShare,

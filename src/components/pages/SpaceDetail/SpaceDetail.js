@@ -1,6 +1,8 @@
 import Section from "wrappers/Section";
 import Access from "wrappers/Access";
 
+import { asideContentClasses, asideHeaderClasses } from "lib/css";
+
 import Feed from "compounds/Feed";
 import SignupForUpdates from "compounds/SignupForUpdates";
 import FAQ from 'compounds/FAQ';
@@ -28,29 +30,35 @@ export default function Space({ id, type, name, participants }) {
 						<SignupForUpdates />
 					</>}
 
-					{type === 'shared' && id !== 'public' && <div className="box">
-						<h3 className="title is-5">Members</h3>
-
+					{type === 'shared' && id !== 'public' && <div>
+						<h3 className={asideHeaderClasses}>Members</h3>
 						{participants.length < 2
-							? <p>New members will be show up here.</p>
-							: <ul className="is-flex is-flex-wrap-wrap is-justify-content-center">
-								{participants.map((id) => {
-									const owner = { name: '', id };
-									return <li key={id}>
-										<Avatar user={owner} className="mx-1" style={{ width: '2.5rem' }} />
-									</li>;
-								})}
-							</ul>
-						}
-
-						<Access only={r => r.ADMIN} atSpace={id}>
-							<ShareInvite />
-						</Access>
+							? <p className={asideContentClasses}>New members will be show up here.</p>
+							: <ul className="is-flex is-flex-wrap-wrap">
+								{participants.map((id, index) => {
+									return <ListItemAvatar key={id} isFirst={index === 0}>
+										<Avatar user={{ id, name: '' }} style={{ width: '1.75rem' }} />
+									</ListItemAvatar>;
+								}).concat(<Access only={r => r.ADMIN} atSpace={id}>
+									<ShareInvite key="share-invite" ButtonComponent={({ onClick }) => <ListItemAvatar>
+										<button onClick={onClick} className="button is-round p-0" style={{ width: '1.75rem', height: '1.75rem' }}>+</button>
+									</ListItemAvatar>} />
+								</Access>)}
+							</ul>}
 					</div>}
+
 				</div>
 
 			</div>
 		</Section>
 
 	</>;
+
+}
+
+function ListItemAvatar({ isFirst, children }) {
+	const marginLeft = isFirst || '-0.5rem';
+	return <li style={{ marginLeft }}>
+		{children}
+	</li>;
 }

@@ -1,13 +1,13 @@
+import classNames from "classnames";
+
 import Modal, { Title } from "wrappers/Modal";
 
 import { Copy, Share } from "elements/Icon";
 
-export default function ShareInvite({ shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare, numberOfParticipants, spaceMaxParticipants }) {
+export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare, numberOfParticipants, spaceMaxParticipants }) {
 	return <>
 
-		<div className="has-text-centered">
-			<button onClick={shareInvite} className="button is-primary is-outlined mt-5">Share an invite</button>
-		</div>
+		<ButtonComponent onClick={shareInvite} />
 
 		<Modal {...shareInviteModalProps} render={function ShareInviteModal() {
 			return <>

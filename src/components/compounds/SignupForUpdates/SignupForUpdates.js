@@ -1,5 +1,7 @@
 import classnames from 'classnames';
 
+import { asideContentClasses, asideHeaderClasses } from 'lib/css';
+
 import Checkbox from 'elements/Checkbox';
 
 export default function SignupForUpdates({ control, onSubmit, didSendWithoutMarking, successfullySignedUpForUpdates, className, isMinorUpdatesDisabled }) {
@@ -7,7 +9,7 @@ export default function SignupForUpdates({ control, onSubmit, didSendWithoutMark
 	const containerClasses = classnames('content', className);
 
 	return <form onSubmit={onSubmit} className={containerClasses}>
-		<h2 className="is-size-6 mb-3">Email me when:</h2>
+		<h2 className={asideHeaderClasses}>Email me when:</h2>
 
 		{successfullySignedUpForUpdates
 			? <p className="notification is-success is-small">Awesome. You&apos;re In!</p>
@@ -17,7 +19,7 @@ export default function SignupForUpdates({ control, onSubmit, didSendWithoutMark
 
 	function Form() {
 		const minorUpdatesLabelStyle = { cursor: isMinorUpdatesDisabled ? 'not-allowed' : 'auto' };
-		return <div className='is-size-7'>
+		return <div className={asideContentClasses}>
 			<div>
 				<label className="checkbox mb-3">
 					<Checkbox className="checkbox mr-1" name="notifyWhenMajorUpdates" defaultValue={false} control={control} />
