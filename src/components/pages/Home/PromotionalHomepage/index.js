@@ -6,30 +6,11 @@ import Section from "wrappers/Section";
 import FAQ from "compounds/FAQ";
 import CurrentFeatures from "compounds/CurrentFeatures";
 
-import { Logo, IdeaAbstraction, Cooperation, Upgrade } from "elements/Icon";
+import { Logo } from "elements/Icon";
 
 import { meta } from "constants.js";
 
-const benefits = [
-	{
-		prompt: "Debate",
-		title: "Let the best ideas shine forth",
-		description: "Debates on Fore are naturally constructive and insightful.",
-		illustration: IdeaAbstraction
-	},
-	{
-		prompt: "Organize",
-		title: "Next level group thinking",
-		description: "A dedicated space for your group will create a deeper sense of certainty.",
-		illustration: Cooperation
-	},
-	{
-		prompt: "Earn",
-		title: "Get rewarded for creating meaningful Claims",
-		description: "Creating a strong incentive to stand for truth is a major milestone on Fore's timeline. We're expecting unforeseeable results.",
-		illustration: Upgrade
-	}
-];
+import benefits from './copy';
 
 export default function PromotionalHomepage () {
 	return <>
@@ -49,7 +30,7 @@ export default function PromotionalHomepage () {
 			})}
 		</Section>
 		<Section className="is-max-desktop pt-6">
-			<FAQ />
+			<FAQ big className="box" />
 		</Section>
 		<Section className="is-max-desktop">
 			<CurrentFeatures />

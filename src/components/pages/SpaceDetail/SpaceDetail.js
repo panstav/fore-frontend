@@ -18,16 +18,14 @@ export default function Space({ id, type, name, participants }) {
 		<Section withSidePadding={false}>
 			<div className="columns m-auto">
 
-				<div className="column is-two-thirds px-0-mobile">
+				<div className="column is-three-quarters px-0-mobile">
 					<Feed spaceId={id} className="mx-auto" />
 				</div>
 
-				<div className="column is-one-third px-0-mobile">
+				<div className="column is-one-quarter pt-4">
 					{id === 'public' && <>
-						<div className="box">
-							<SignupForUpdates />
-						</div>
 						<FAQ />
+						<SignupForUpdates />
 					</>}
 
 					{type === 'shared' && id !== 'public' && <div className="box">
