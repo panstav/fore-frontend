@@ -12,9 +12,9 @@ export default function Notifications({ notifications, withViewAllButton }) {
 
 	return <div className="boxes">
 		{!notifications.length ? <EmptyState /> : <>
-			{notifications.map(({ type, payload }) => {
+			{notifications.map(({ type, payload, notificationId }) => {
 				const Component = types[type];
-				return <div key={payload.createdAt} className="box is-align-items-top is-paddingless reset-anchors">
+				return <div key={notificationId} className="box is-align-items-top is-paddingless reset-anchors">
 					<NotificationContext.Provider value={payload}>
 						<Component {...payload} />
 					</NotificationContext.Provider>
