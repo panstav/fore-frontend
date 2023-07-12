@@ -1,12 +1,19 @@
-import { useContext } from "preact/hooks";
+import { memo, useContext } from "preact/compat";
 import { Link, useLocation } from "wouter-preact";
+
 import classNames from "classnames";
 
 import timeAgo from "lib/time-ago";
 
 import { NotificationContext } from "../Notifications";
 
-export default function Notification({ icon: Icon, url, children }) {
+// use a memoized component to prevent re-rendering of notifications that haven't changed
+// otherwise every additional notification would cause all notifications to re-render
+export default memo(Notification, (prevProps, nextProps) => {
+	return prevProps.notificationId === nextProps.notificationId;
+});
+
+function Notification({ icon: Icon, url, children }) {
 	const { createdAt: timestamp } = useContext(NotificationContext);
 
 	const Wrapper = url ? Link : 'div';
