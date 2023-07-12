@@ -24,10 +24,10 @@ function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedA
 
 	const sortedClaims = claims
 		.sort((a, b) => b.createdAt - a.createdAt)
-		.map((claim) => {
-			claim.createdAtTimeAgo = timeAgo.format(new Date(claim.createdAt), 'mini-now');
-			return claim;
-		});
+		.map((claim) => ({
+			...claim,
+			createdAtTimeAgo: timeAgo.format(new Date(claim.createdAt), 'mini-now')
+		}));
 
 	const props = {
 		createNewClaim,
