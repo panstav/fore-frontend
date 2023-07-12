@@ -31,6 +31,8 @@ export default {
 
 	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${sanitize(keywords)}&spaceId=${spaceId}`),
 
+	getNotificationsBefore: ({ time }) => get(`notifications?olderThan=${time}`),
+
 	signUserForUpdates: (updates) => patch('signup-for-updates', updates),
 
 };

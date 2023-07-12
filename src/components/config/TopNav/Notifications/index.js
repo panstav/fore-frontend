@@ -7,7 +7,7 @@ import Component from "./Notifications";
 
 export default connect(mapStateToProps, actions)(Notifications);
 
-function Notifications({ notifications, toggleNotificationsMenu, isOpen }) {
+function Notifications({ toggleNotificationsMenu, isOpen }) {
 
 	const [location] = useLocation();
 	const handleToggleNotificationsMenu = () => {
@@ -17,7 +17,6 @@ function Notifications({ notifications, toggleNotificationsMenu, isOpen }) {
 
 	const props = {
 		isOpen,
-		notifications,
 		toggleNotificationsMenu: handleToggleNotificationsMenu
 	};
 
@@ -25,9 +24,8 @@ function Notifications({ notifications, toggleNotificationsMenu, isOpen }) {
 
 }
 
-function mapStateToProps({ menus, notifications }) {
+function mapStateToProps({ menus }) {
 	return {
-		isOpen: menus.notifications,
-		notifications
+		isOpen: menus.notifications
 	};
 }
