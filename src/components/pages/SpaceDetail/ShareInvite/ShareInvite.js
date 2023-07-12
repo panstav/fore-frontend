@@ -1,5 +1,3 @@
-import classNames from "classnames";
-
 import Modal, { Title } from "wrappers/Modal";
 
 import { Copy, Share } from "elements/Icon";
