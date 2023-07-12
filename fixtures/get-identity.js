@@ -1,5 +1,7 @@
 import { roles } from 'constants';
 
+import _fakeSpaces from './_fake-spaces';
+
 export default function getIdentity () {
 	return {
 		user: {
@@ -9,11 +11,6 @@ export default function getIdentity () {
 			// role: roles.MEMBER
 			role: roles.ADMIN
 		},
-		spaces: [
-			{
-				id: 'public',
-				name: 'Public'
-			}
-		]
+		spaces: _fakeSpaces
 	};
 }

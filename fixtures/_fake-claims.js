@@ -54,7 +54,7 @@ export default [
   },
   {
     id: "sxtywqsr6qb",
-    spaceId: "public",
+    spaceId: "private",
     content: "We need to program the wireless USB microchip!",
     createdAt: 1660997100651,
     owner: {
@@ -1150,7 +1150,7 @@ export default [
   },
   {
     id: "1w1jw2n4zr8",
-    spaceId: "public",
+    spaceId: "private",
     content: "Use the primary RSS firewall, then you can hack the virtual panel!",
     createdAt: 1655982093875,
     owner: {
