@@ -7,7 +7,6 @@ import Username from 'elements/Username';
 import ClaimUsedAt from './ClaimUsedAt';
 import ClaimsUsedHere from './ClaimsUsedHere';
 import DeleteClaim from './DeleteClaim';
-import Anonymize from './AnonymizeClaim';
 import ClaimAnonymousClaim from './ClaimAnonymousClaim';
 
 export default function ClaimDetail(props) {
@@ -26,7 +25,7 @@ export default function ClaimDetail(props) {
 	</>;
 }
 
-function ClaimContent({ content, owner, createdAt, userIsOwner, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
+function ClaimContent({ content, owner, createdAt, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
 	return <>
 		<h1 className="title mt-2">{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">
@@ -45,7 +44,6 @@ function ClaimContent({ content, owner, createdAt, userIsOwner, isUserCurrentAnd
 
 			<div className='buttons'>
 				{isAnonymous && <ClaimAnonymousClaim />}
-				{userIsOwner && <Anonymize />}
 				{isUserCurrentAndOriginalAuthor && <DeleteClaim {...{ spaceId }} />}
 			</div>
 

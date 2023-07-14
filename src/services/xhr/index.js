@@ -27,7 +27,6 @@ export default {
 	createInvitation: (invitation) => post('invitation', invitation),
 
 	claimAnonymousClaim: ({ claimId }) => post('claim-anonymous-claim', { claimId }),
-	anonymizeClaim: ({ claimId }) => post('anonymize-claim', { claimId }),
 
 	searchClaimsOfUser: ({ keywords, spaceId }) => get(`search-own-claims?q=${sanitize(keywords)}&spaceId=${spaceId}`),
 

@@ -18,7 +18,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDetail, trackClaimView, userIsOwner, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
+function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDetail, trackClaimView, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -36,7 +36,6 @@ function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDe
 		content,
 		owner,
 		createdAt,
-		userIsOwner,
 		isUserCurrentAndOriginalAuthor,
 		spaceId,
 		isAnonymous
@@ -51,12 +50,11 @@ function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDe
 
 }
 
-function mapStateToProps({ claims, user }, { params: { id } }) {
+function mapStateToProps({ claims }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	const { content, usedHere, owner, createdAt: createdAtTime, isDetailed, spaceId, isByUser, isAnonymous, isUserCurrentAndOriginalAuthor } = claim;
-	const userIsOwner = !isAnonymous && (isByUser || user.id === owner.id);
+	const { content, usedHere, owner, createdAt: createdAtTime, isDetailed, spaceId, isAnonymous, isUserCurrentAndOriginalAuthor } = claim;
 
-	return { id, content, usedHere, owner, createdAtTime, isDetailed, isAnonymous, userIsOwner, spaceId, isUserCurrentAndOriginalAuthor };
+	return { id, content, usedHere, owner, createdAtTime, isDetailed, isAnonymous, spaceId, isUserCurrentAndOriginalAuthor };
 }

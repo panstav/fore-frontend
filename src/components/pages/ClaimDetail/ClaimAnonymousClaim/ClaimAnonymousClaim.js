@@ -7,7 +7,7 @@ export default function ClaimAnonymousClaim({ claimAnonymousClaim, confirmClaimi
 
 		<Modal {...confirmClaimingAnonymousClaimModalProps} render={function ConfirmClaimingAnonymousClaimModal() {
 			return <>
-				<p>Your name will be displayed beside this Claim and you will be able to reuse wherever. This action can always be undone.</p>
+				<p>Your name will be displayed beside this Claim and you will be able to reuse it anywhere. This action cannot be undone.</p>
 				<div className="is-flex is-justify-content-end">
 					<button className="button is-danger">Claim</button>
 				</div>

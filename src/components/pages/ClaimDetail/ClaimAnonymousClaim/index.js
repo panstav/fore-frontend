@@ -16,7 +16,7 @@ function ClaimAnonymousClaim({ claimAnonymousClaim }) {
 	const { id: claimId } = useContext(ClaimDetailContext);
 
 	const [confirmClaimingAnonymousClaimModalProps, showConfirmClaimAnonymousClaimModal] = useModal({
-		title: "Sure you want to Claim this as your own?",
+		title: "Sure you want to claim this as your own?",
 		onSubmit: async () => {
 			await claimAnonymousClaim(claimId);
 		}
