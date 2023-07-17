@@ -1,7 +1,8 @@
 export default [
 	{
 		id: 'public',
-		name: 'Public'
+		name: 'Public',
+		type: 'public'
 	},
 	{
 		"id": "private",
