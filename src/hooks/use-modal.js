@@ -1,4 +1,5 @@
-import { useCallback, useState } from 'preact/compat';
+import { useCallback, useEffect, useState } from 'preact/compat';
+import { useLocation } from 'wouter-preact';
 
 export default function useModal(propsFromHook = {}) {
 
@@ -7,6 +8,16 @@ export default function useModal(propsFromHook = {}) {
 		window.document.body.classList.toggle('with-modal', false);
 		return setModalProps();
 	};
+
+	const [location] = useLocation();
+	const [prevLocation, setPrevLocation] = useState(location);
+	// close modal upon navigation
+	useEffect(() => {
+		if (location !== prevLocation) {
+			hideModal();
+			setPrevLocation(location);
+		}
+	}, [location, !!modalProps]);
 
 	const showModal = useCallback((propsFromCallback = {}) => {
 		const newProps = Object.assign({ hideModal },
