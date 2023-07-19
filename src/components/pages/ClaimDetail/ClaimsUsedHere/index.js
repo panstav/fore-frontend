@@ -1,7 +1,5 @@
-import { useCallback, useState } from 'preact/compat';
+import { useCallback, useContext, useState } from 'preact/compat';
 import { connect } from 'unistore/preact';
-
-import withContext from 'lib/with-context';
 
 import { ClaimDetailContext } from 'contexts';
 
@@ -11,13 +9,11 @@ import Component from './ClaimsUsedHere';
 
 import actions from './actions';
 
-export default withContext({
-	context: ClaimDetailContext,
-	map: ({ id }) => ({ currentId: id }),
-	component: connect(mapStateToProps, actions)(ClaimsUsedHere)
-});
+export default connect(null, actions)(ClaimsUsedHere);
 
-function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection }) {
+function ClaimsUsedHere() {
+
+	const { id: parentId, content: parentContent, usedHere: { support: supportUsedHere, opposition: oppositionUsedHere }, addClaimWithUse, connectClaims, trackClaimConnection } = useContext(ClaimDetailContext);
 
 	const [ claimIdWithOpenDropdown, setClaimIdWithOpenDropdown ] = useState();
 	const openDropdown = useCallback((claimId) => {
@@ -84,21 +80,5 @@ function ClaimsUsedHere({ parentId, parentContent, supportUsedHere, oppositionUs
 		// if a and b are both powered by user or none is - sort by power
 		return b.power - a.power;
 	}
-
-}
-
-function mapStateToProps({ claims }, { currentId }) {
-
-	const claim = claims.find((claim) => claim.id === currentId);
-	if (!claim) return {};
-
-	return {
-		parentId: claim.id,
-		parentContent: claim.content,
-
-		// two arrays separated so that component would recognized change in each
-		supportUsedHere: claim.usedHere.support,
-		oppositionUsedHere: claim.usedHere.opposition
-	};
 
 }
