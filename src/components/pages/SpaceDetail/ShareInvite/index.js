@@ -4,15 +4,23 @@ import { connect } from 'unistore/preact';
 import { copy } from 'services/clipboard';
 import { canShare, share } from 'services/webshare';
 
+import withContext from 'lib/with-context';
+
+import { SpaceDetailContext } from 'contexts';
+
+import { urls, spaceMaxParticipants } from 'constants';
+
 import useModal from 'hooks/use-modal';
 
 import actions from './actions';
 
 import Component from './ShareInvite';
 
-import { urls, spaceMaxParticipants } from 'constants';
-
-export default connect(mapStateToProps, actions)(ShareInvite);
+export default withContext({
+	context: SpaceDetailContext,
+	map: ({ id, name, participants }) => ({ spaceId: id, spaceName: name, participants }),
+	component: connect(mapStateToProps, actions)(ShareInvite)
+});
 
 function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName, createInvitation, invitationId, userFirstName }) {
 
@@ -59,17 +67,12 @@ function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName
 
 }
 
-function mapStateToProps({ user, spaces, invitations }) {
-
-	const space = spaces.find(space => space.isCurrent);
-	const { id: spaceId, name: spaceName, participants } = space;
+function mapStateToProps({ user, invitations }, { spaceId, participants }) {
 
 	const invitationId = invitations.find(invite => invite.spaceId === spaceId)?.invitationId;
 
 	return {
 		userFirstName: user.name.split(' ')[0],
-		spaceId,
-		spaceName,
 		invitationId,
 		numberOfParticipants: participants.length
 	};

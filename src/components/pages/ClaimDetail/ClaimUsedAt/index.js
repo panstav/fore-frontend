@@ -1,8 +1,4 @@
-import { connect } from 'unistore/preact';
-
-import pick from 'lodash.pick';
-
-import withContext from 'lib/with-context';
+import { useContext } from 'preact/hooks';
 
 import useModal from 'hooks/use-modal.js';
 
@@ -10,13 +6,9 @@ import { ClaimDetailContext } from 'contexts.js';
 
 import Component from './ClaimUsedAt.js';
 
-export default withContext({
-	context: ClaimDetailContext,
-	map: ({ id }) => ({ currentId: id }),
-	component: connect(mapStateToProps)(ClaimUsedAt)
-});
+export default function ClaimUsedAt() {
 
-function ClaimUsedAt({ usedAt }) {
+	const { usedAt } = useContext(ClaimDetailContext);
 
 	const [usedAtModalProps, showUsedInModal] = useModal(({ direction, claims }) => ({
 		title: `Used in ${direction}`,
@@ -34,11 +26,4 @@ function ClaimUsedAt({ usedAt }) {
 	};
 
 	return Component(props);
-}
-
-function mapStateToProps({ claims }, { currentId }) {
-	const claim = claims.find((claim) => claim.id === currentId);
-	if (!claim) return {};
-
-	return pick(claim, ['id', 'content', 'usedAt']);
 }

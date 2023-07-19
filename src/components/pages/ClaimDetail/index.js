@@ -18,7 +18,7 @@ const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDetail, trackClaimView, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
+function ClaimDetail({ id, content, owner, createdAt: createdAtTime, isDetailed, getClaimDetail, trackClaimView, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous, usedHere, usedAt }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -32,19 +32,22 @@ function ClaimDetail({ id, content, owner, createdAtTime, isDetailed, getClaimDe
 		timeAgo: timeAgo.format(new Date(createdAtTime), 'mini')
 	};
 
-	const props = {
+	const claimProps = {
+		id,
 		content,
 		owner,
 		createdAt,
 		isUserCurrentAndOriginalAuthor,
 		spaceId,
-		isAnonymous
+		isAnonymous,
+		usedHere,
+		usedAt
 	};
 
 	return <>
 		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${ownerName}`} />
-		<ClaimDetailContext.Provider value={{ id }}>
-			<Component {...props} />
+		<ClaimDetailContext.Provider value={claimProps}>
+			<Component />
 		</ClaimDetailContext.Provider>
 	</>;
 
@@ -54,7 +57,7 @@ function mapStateToProps({ claims }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
 
-	const { content, usedHere, owner, createdAt: createdAtTime, isDetailed, spaceId, isAnonymous, isUserCurrentAndOriginalAuthor } = claim;
+	const { content, usedHere, usedAt, owner, createdAt: createdAtTime, isDetailed, spaceId, isAnonymous, isUserCurrentAndOriginalAuthor } = claim;
 
-	return { id, content, usedHere, owner, createdAtTime, isDetailed, isAnonymous, spaceId, isUserCurrentAndOriginalAuthor };
+	return { id, content, usedHere, usedAt, owner, createdAtTime, isDetailed, isAnonymous, spaceId, isUserCurrentAndOriginalAuthor };
 }

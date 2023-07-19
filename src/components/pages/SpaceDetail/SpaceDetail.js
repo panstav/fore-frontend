@@ -1,16 +1,23 @@
-import Section from "wrappers/Section";
-import Access from "wrappers/Access";
+import { useContext } from "preact/hooks";
 
 import { asideContentClasses, asideHeaderClasses } from "lib/css";
+
+import { SpaceDetailContext } from "contexts";
+
+import Section from "wrappers/Section";
+import Access from "wrappers/Access";
 
 import Feed from "compounds/Feed";
 import SignupForUpdates from "compounds/SignupForUpdates";
 import FAQ from 'compounds/FAQ';
 
-import ShareInvite from "./ShareInvite";
-import Avatar from "components/elements/Avatar";
+import Avatar from "elements/Avatar";
 
-export default function Space({ id, type, name, participants }) {
+import ShareInvite from "./ShareInvite";
+
+export default function Space() {
+	const { id, type, name, participants } = useContext(SpaceDetailContext);
+	
 	return <>
 
 		<Section withTopMargin={true}>

@@ -1,15 +1,20 @@
+import { useContext } from 'preact/hooks';
+
 import Section from 'wrappers/Section';
 import Tooltip from 'wrappers/Tooltip';
 
 import Avatar from 'elements/Avatar';
 import Username from 'elements/Username';
 
+import { ClaimDetailContext } from 'contexts';
+
 import ClaimUsedAt from './ClaimUsedAt';
 import ClaimsUsedHere from './ClaimsUsedHere';
 import DeleteClaim from './DeleteClaim';
 import ClaimAnonymousClaim from './ClaimAnonymousClaim';
 
-export default function ClaimDetail(props) {
+
+export default function ClaimDetail() {
 	return <>
 
 		<Section withTopMargin={false} className="mt-3">
@@ -17,15 +22,16 @@ export default function ClaimDetail(props) {
 		</Section>
 
 		<Section>
-			<ClaimContent {...props} />
+			<ClaimContent />
 		</Section>
 
-		<ClaimsUsedHere/>
+		<ClaimsUsedHere />
 
 	</>;
 }
 
-function ClaimContent({ content, owner, createdAt, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous }) {
+function ClaimContent() {
+	const { content, owner, createdAt, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous } = useContext(ClaimDetailContext)
 	return <>
 		<h1 className="title mt-2">{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">

@@ -3,6 +3,8 @@ import { Redirect, useLocation } from "wouter-preact";
 
 import useEffectUntil from "hooks/use-effect-until";
 
+import { SpaceDetailContext } from 'contexts';
+
 import actions from "./actions";
 
 import Loader from "elements/Loader";
@@ -30,7 +32,9 @@ function Space({ getSpaceDetail, id, name, type, participants, isDetailed }) {
 		participants
 	};
 
-	return Component(props);
+	return <SpaceDetailContext.Provider value={props}>
+		<Component />
+	</SpaceDetailContext.Provider>;
 }
 
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
