@@ -30,7 +30,7 @@ function Home({ isLoggedIn, isMemberOfPublic, availableSpaces, firstName }) {
 	if (isMemberOfPublic) return <Space params={{ spaceId: 'public' }} />;
 
 	// redirect to the first available space if there's any
-	if (availableSpaces.length) return <Redirect to={`/space/${availableSpaces[0].id}`} />;
+	if (availableSpaces.length) return <Redirect to={`/space/${availableSpaces[0].id}`} replace={true} />;
 
 	// otherwise show some info about how to get started
 	return <EmptyState firstName={firstName} />;
