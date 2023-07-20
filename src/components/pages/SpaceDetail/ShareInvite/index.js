@@ -1,10 +1,13 @@
-import { useCallback, useMemo, useState } from 'preact/hooks';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { connect } from 'unistore/preact';
+
+import QrCreator from 'qr-creator';
 
 import { copy } from 'services/clipboard';
 import { canShare, share } from 'services/webshare';
 
 import withContext from 'lib/with-context';
+import { primaryColor } from 'lib/css';
 
 import { SpaceDetailContext } from 'contexts';
 
@@ -30,6 +33,8 @@ function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName
 		if (numberOfParticipants < spaceMaxParticipants) createInvitation({ spaceId, spaceName });
 	};
 
+	const qrRef = useRef();
+
 	const [shareInviteModalProps, showShareInviteModal] = useModal();
 
 	const [hasSelectedAllOnce, setHasSelectedAllOnce] = useState(false);
@@ -38,6 +43,21 @@ function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName
 		setHasSelectedAllOnce(true);
 		e.target.select();
 	}, [hasSelectedAllOnce]);
+
+	useEffect(() => {
+
+		// avoid rendering if there is no invitation link or a ref to the qr container element
+		if (!invitationLink || !qrRef.current) return;
+
+		QrCreator.render({
+			text: invitationLink,
+			radius: 0.25, // 0.0 to 0.5
+			ecLevel: 'H', // L, M, Q, H
+			fill: primaryColor, // foreground color
+			background: null, // color or null for transparent
+			size: 256 // in pixels
+		}, qrRef.current);
+	}, [invitationLink, qrRef.current]);
 
 	const copyUrl = () => copy(invitationLink);
 
@@ -60,7 +80,8 @@ function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName
 		copyUrl,
 		webShare,
 		numberOfParticipants,
-		spaceMaxParticipants
+		spaceMaxParticipants,
+		qrRef
 	};
 
 	return Component(props);

@@ -55,6 +55,7 @@
     "posthtml-minifier": "^0.1.0",
     "preact": "^10.6.4",
     "preact-router": "^3.2.1",
+    "qr-creator": "^1.0.0",
     "react-helmet": "^6.1.0",
     "react-hook-form": "^7.25.3",
     "react-modal": "^3.14.4",

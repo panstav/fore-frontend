@@ -1,8 +1,12 @@
+import classNames from "classnames";
+
 import Modal, { Title } from "wrappers/Modal";
 
 import { Copy, Share } from "elements/Icon";
 
-export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare, numberOfParticipants, spaceMaxParticipants }) {
+export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare, numberOfParticipants, spaceMaxParticipants, qrRef }) {
+	const qrContainerClassName = classNames('has-text-centered', invitationLink && 'mt-5 pt-2');
+
 	return <>
 
 		<ButtonComponent onClick={shareInvite} />
@@ -37,6 +41,8 @@ export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteM
 				{!invitationLink && (numberOfParticipants < spaceMaxParticipants) && <div className="has-text-centered">
 					<button onClick={createInvitation} className="button is-primary mx-auto">Create an Invitation Link</button>
 				</div>}
+
+				<div className={qrContainerClassName} ref={qrRef} />
 
 				<div className="mt-5 pt-3">
 
