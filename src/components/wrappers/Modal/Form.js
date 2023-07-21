@@ -11,9 +11,11 @@ export default function Form({ onSubmit, hideable, autoClose = true, hideModal: 
 		shouldUseNativeValidation: true
 	});
 
+	const isClean = () => !Object.values(form.formState.dirtyFields).length;
+
 	const hideModal = useCallback(() => {
-		if (!Object.values(form.formState.dirtyFields).length || confirm('Sure?')) return unsafeHideModal();
-	}, [Object.values(form.formState.dirtyFields).length]);
+		if (isClean() || confirm('Sure?')) return unsafeHideModal();
+	}, [isClean()]);
 
 	const handleSubmit = (...args) => {
 		onSubmit(...args);
@@ -25,7 +27,7 @@ export default function Form({ onSubmit, hideable, autoClose = true, hideModal: 
 			const inputElem = ref.current.querySelector('input, textarea');
 			if (inputElem) inputElem.focus();
 		}
-	}, [ref]);
+	}, [ref.current]);
 
 	return <FormProvider {...form}>
 		<Modal {...{ title, hideModal, hideable }}>
