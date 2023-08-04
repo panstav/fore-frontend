@@ -1,17 +1,14 @@
-import { useCallback, useEffect, useRef } from 'preact/compat';
-import { useForm, FormProvider } from 'react-hook-form';
+import { useCallback } from 'preact/compat';
+
+import { FormProvider } from 'react-hook-form';
+
+import useCustomForm from 'hooks/use-custom-form';
 
 import Modal from './Modal';
 
 export default function Form({ onSubmit, hideable, autoClose = true, hideModal: unsafeHideModal, render, title, ...modalProps }) {
 
-	const ref = useRef(null);
-
-	const form = useForm({
-		shouldUseNativeValidation: true
-	});
-
-	const isClean = () => !Object.values(form.formState.dirtyFields).length;
+	const { ref, form, isClean } = useCustomForm();
 
 	const hideModal = useCallback(() => {
 		if (isClean() || confirm('Sure?')) return unsafeHideModal();
@@ -21,13 +18,6 @@ export default function Form({ onSubmit, hideable, autoClose = true, hideModal: 
 		onSubmit(...args);
 		if (autoClose) unsafeHideModal();
 	};
-
-	useEffect(() => {
-		if (ref.current) {
-			const inputElem = ref.current.querySelector('input, textarea');
-			if (inputElem) inputElem.focus();
-		}
-	}, [ref.current]);
 
 	return <FormProvider {...form}>
 		<Modal {...{ title, hideModal, hideable }}>
