@@ -11,9 +11,9 @@ import actions from './actions';
 
 export default connect(null, actions)(ClaimsUsedHere);
 
-function ClaimsUsedHere() {
+function ClaimsUsedHere({ addClaimWithUse, connectClaims, trackClaimConnection }) {
 
-	const { id: parentId, content: parentContent, usedHere: { support: supportUsedHere, opposition: oppositionUsedHere }, addClaimWithUse, connectClaims, trackClaimConnection } = useContext(ClaimDetailContext);
+	const { id: parentId, content: parentContent, usedHere: { support: supportUsedHere, opposition: oppositionUsedHere } } = useContext(ClaimDetailContext);
 
 	const [ claimIdWithOpenDropdown, setClaimIdWithOpenDropdown ] = useState();
 	const openDropdown = useCallback((claimId) => {
