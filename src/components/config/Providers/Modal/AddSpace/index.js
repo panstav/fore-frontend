@@ -43,8 +43,10 @@ function AddSpace({ isAdmin, spaces }) {
 		// let the admin create both types even if they already have a space of that type
 		if (isAdmin) return type;
 		// attach the existing space of this type, if any
-		type.existingSpace = spaces.find((existingSpace) => existingSpace.type === type.name);
-		return type;
+		return {
+			...type,
+			existingSpace: spaces.find((existingSpace) => existingSpace.type === type.name)
+		};
 	}
 
 }

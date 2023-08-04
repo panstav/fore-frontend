@@ -11,6 +11,6 @@ export default function getIdentity () {
 			// role: roles.MEMBER
 			role: roles.ADMIN
 		},
-		spaces: _fakeSpaces
+		spaces: [..._fakeSpaces]
 	};
 }

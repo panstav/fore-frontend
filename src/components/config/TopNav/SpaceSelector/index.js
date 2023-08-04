@@ -2,11 +2,14 @@ import { useCallback, useEffect, useRef } from 'preact/compat';
 import { useLocation } from 'wouter-preact';
 import { connect } from 'unistore/preact';
 
+import attachHref from 'lib/attach-href-to-space';
+
 import useBooleanState from 'hooks/use-boolean-state';
 
 import actions from './actions';
 
 import { spacesSorter } from '../index';
+
 import Component from './SpaceSelector';
 
 export default connect(mapStateToProps, actions)(SpaceSelector);
@@ -40,12 +43,6 @@ function SpaceSelector({ currentSpace, setCurrentSpace, spaces, createSpace }) {
 
 	return Component(props);
 
-}
-
-function attachHref(space) {
-	// link to the space, unless it's the public space, then link to the homepage
-	space.href = space.id === 'public' ? '/' : `/space/${space.id}`;
-	return space;
 }
 
 function mapStateToProps({ spaces, claims }) {
