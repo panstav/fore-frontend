@@ -23,13 +23,16 @@ export default {
 				if (!result) return;
 
 				[space, cachedClaims] = result;
+				// eslint-disable-next-line no-param-reassign
 				spaces[indexOfRequestedSpace] = Object.assign({}, spaces[indexOfRequestedSpace], space);
 			}
 		}
 
 		const claimIdsFromState = claims.map(({ id }) => id);
 		const cleanSpaces = spaces.map((space) => {
+			// eslint-disable-next-line no-param-reassign
 			if (space.isCurrent) delete space.isCurrent;
+			// eslint-disable-next-line no-param-reassign
 			if (space.id === spaceId) space.isCurrent = true;
 			return space;
 		});

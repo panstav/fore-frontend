@@ -46,8 +46,8 @@ function getRandomClaimRefs({ max = 10, map = (x) => x }) {
 		}, { support: [], opposition: [] });
 }
 
-function arrayOf(times, fillerFn) {
-	times = (typeof times === 'number') ? { min: times, max: times } : times;
+function arrayOf(timesProp, fillerFn) {
+	const times = (typeof timesProp === 'number') ? { min: timesProp, max: timesProp } : timesProp;
 	return Array(faker.datatype.number(times)).fill(null).map(fillerFn);
 }
 

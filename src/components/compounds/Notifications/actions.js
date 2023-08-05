@@ -10,6 +10,7 @@ export default {
 		const { notifications: newNotifications, isLastBatch } = await api.getNotificationsBefore({ time: queryNotificationsBefore });
 
 		// while store.notification is an array, we'll mark one of the notification with isLastBatch
+		// eslint-disable-next-line no-param-reassign
 		if (isLastBatch) notifications[0].isLastBatch = true;
 
 		const updatedNotifications = notifications.concat(newNotifications).sort((a, b) => b.payload.createdAt - a.payload.createdAt);

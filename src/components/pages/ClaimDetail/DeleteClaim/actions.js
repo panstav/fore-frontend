@@ -58,6 +58,7 @@ export default {
 			return claim;
 		});
 
+		// eslint-disable-next-line no-param-reassign
 		search.ClaimDetailAddClaim = emptySearch;
 
 		return { claims: cleanClaims, search };

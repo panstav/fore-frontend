@@ -1,6 +1,10 @@
 import { Link } from "wouter-preact";
 
-export default function MenuLink({ href, children, ...props }) {
+import cloneDeep from "lodash.clonedeep";
+
+export default function MenuLink({ href, children, ...passedProps }) {
+
+	const props = cloneDeep(passedProps);
 
 	if (href && isOutbound(href)) {
 		props.target = '_blank';

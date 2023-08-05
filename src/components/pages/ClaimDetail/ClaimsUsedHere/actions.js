@@ -33,6 +33,7 @@ export default {
 
 		const indexOfParentClaim = claims.findIndex(({ id }) => id === parentId);
 		const newParentDirectedUsedHere = claims[indexOfParentClaim].usedHere[direction].concat({ id: childId, content: childContent, power: 0, isByUser: true });
+		// eslint-disable-next-line no-param-reassign
 		claims[indexOfParentClaim].usedHere[direction] = newParentDirectedUsedHere;
 
 		const spaceId = claims[indexOfParentClaim].spaceId;
@@ -43,6 +44,7 @@ export default {
 		const indexOfChildClaim = claims.findIndex(({ id }) => id === childId);
 		if (~indexOfChildClaim && ('usedAt' in claims[indexOfChildClaim])) {
 			const newChildDirectedUsedAt = claims[indexOfChildClaim].usedAt[direction].concat({ id: parentId, content: parentContent, power: 0 });
+			// eslint-disable-next-line no-param-reassign
 			claims[indexOfChildClaim].usedAt[direction] = newChildDirectedUsedAt;
 		}
 

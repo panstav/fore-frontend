@@ -10,6 +10,7 @@ export default ['get', 'post', 'put', 'patch', 'del'].reduce((accu, method) => {
 
 // a function that return a function that calls ky with the method given to the first function
 function transformApiCall(method) {
+	// eslint-disable-next-line no-param-reassign
 	if (method === 'del') method = 'delete';
 
 	return (endpoint, data) => {

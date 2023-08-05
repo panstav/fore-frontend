@@ -15,6 +15,7 @@ export async function addClaim({ spaces, claims, user }, claim, { avoidNotificat
 	let notificationId;
 	if (!avoidNotifications) notificationId = notify(notifications.NEW_CLAIM_SENT);
 
+	// eslint-disable-next-line no-param-reassign
 	claim.spaceId = claim.spaceId || spaces.find((space) => space.isCurrent).id;
 	const fullClaim = await api.addClaim(claim);
 	if (!fullClaim.isAnonymous) fullClaim.owner = { id: user.id, name: user.name };
@@ -29,6 +30,7 @@ export async function addClaim({ spaces, claims, user }, claim, { avoidNotificat
 
 export async function createSpace({ spaces }, { space, onSuccess }) {
 
+	// eslint-disable-next-line no-param-reassign
 	space.type = space.type || 'shared';
 
 	const fullSpace = await api.addSpace(space);
@@ -94,7 +96,9 @@ export function setCurrentSpace({ spaces, claims }, nextSpaceId) {
 
 export function closeMenus({ menus }) {
 	if (!menus.main && !menus.notifications) return;
+	// eslint-disable-next-line no-param-reassign
 	menus.main = false;
+	// eslint-disable-next-line no-param-reassign
 	menus.notifications = false;
 	return { menus };
 }

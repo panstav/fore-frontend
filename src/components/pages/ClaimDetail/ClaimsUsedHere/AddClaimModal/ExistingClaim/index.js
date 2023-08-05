@@ -83,15 +83,14 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 	}
 
 	function markInvalidClaims (claim) {
-
-		// disable the claim if
-		claim.invalid =
-			// it was already used here
-			claimsUsedHere.some((usedHere) => usedHere.id === claim.id)
-			// it is the same as the parent claim
-			|| claim.id === claimId;
-
-		return claim;
+		return {
+			...claim,
+			invalid:
+				// it was already used here
+				claimsUsedHere.some((usedHere) => usedHere.id === claim.id)
+				// it is the same as the parent claim
+				|| claim.id === claimId
+		};
 	}
 
 	function atCurrentSpace({ spaceId }) {

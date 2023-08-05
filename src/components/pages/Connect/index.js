@@ -33,6 +33,7 @@ function Connect({ isLoggedIn, methodFromUrl }) {
 		}
 	].map((connectingMethod) => {
 		// adds isActive property according to method name
+		// eslint-disable-next-line no-param-reassign
 		connectingMethod.isActive = connectingMethod.name === selectedMethod;
 		return connectingMethod;
 	})), [selectedMethod, switchTo]);

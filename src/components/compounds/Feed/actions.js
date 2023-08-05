@@ -17,6 +17,7 @@ export default {
 			.pop();
 
 		const { claims: newClaims, isLastBatch } = await api.getClaimsBefore({ time: lastClaim.createdAt, spaceId });
+		// eslint-disable-next-line no-param-reassign
 		spaces[spaceIndex].hasLoadedAll = isLastBatch;
 
 		return {

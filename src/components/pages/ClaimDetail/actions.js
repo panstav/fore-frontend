@@ -21,6 +21,7 @@ export default {
 
 		const index = claims.findIndex((claim) => claim.id === id);
 		if (index >= 0) {
+			// eslint-disable-next-line no-param-reassign
 			claims[index] = claim;
 		} else {
 			claims.push(claim);

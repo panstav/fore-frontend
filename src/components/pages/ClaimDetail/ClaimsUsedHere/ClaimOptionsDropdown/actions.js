@@ -58,11 +58,13 @@ export default {
 		trackEvents('disconnect_claim', { parentClaimId, childClaimId, direction, spaceId });
 
 		const list = claims[indexOfParentClaim].usedHere[direction];
+		// eslint-disable-next-line no-param-reassign
 		claims[indexOfParentClaim].usedHere[direction] = list.slice(0, indexOfUsedChildClaim).concat(list.slice(indexOfUsedChildClaim + 1));
 
 		const indexOfChildClaim = claims.findIndex(claim => claim.id === childClaimId);
 		if (~indexOfChildClaim && ('usedAt' in claims[indexOfChildClaim])) {
 			const list = claims[indexOfChildClaim].usedAt[direction];
+			// eslint-disable-next-line no-param-reassign
 			claims[indexOfChildClaim].usedAt[direction] = list.slice(0, indexOfChildClaim).concat(list.slice(indexOfChildClaim + 1));
 		}
 
