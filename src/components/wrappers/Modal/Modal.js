@@ -4,9 +4,9 @@ import useEscape from 'hooks/use-escape.js';
 
 import { Close } from 'elements/Icon';
 
-export default function Modal({ title, hideModal, children, hideable = true }) {
+export default function Modal({ title, hideModal: hideModalProp, children, hideable = true }) {
 
-	if (!hideable) hideModal = noop;
+	const hideModal = !hideable ? noop : hideModalProp;
 
 	useEscape(hideModal);
 

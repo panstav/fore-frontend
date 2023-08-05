@@ -1,4 +1,4 @@
-export default function Username({ name, isAnonymous, className }) {
-	if (isAnonymous) name = "Anonymous";
+export default function Username({ name: nameProp, isAnonymous, className }) {
+	const name = isAnonymous ? "Anonymous" : nameProp;
 	return <span {...{ className }}>{name}</span>;
 }

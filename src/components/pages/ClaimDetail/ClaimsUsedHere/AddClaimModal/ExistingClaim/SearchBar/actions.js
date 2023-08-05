@@ -5,6 +5,7 @@ import { emptySearch } from "components/config/Providers/Store/initial-state";
 export default {
 
 	clearSearchResults: ({ search }) => {
+		// eslint-disable-next-line no-param-reassign
 		search.ClaimDetailAddClaim = emptySearch;
 		return { search };
 	},
@@ -18,6 +19,7 @@ export default {
 			spaceId: spaces.find(space => space.isCurrent).id
 		});
 
+		// eslint-disable-next-line no-param-reassign
 		search.ClaimDetailAddClaim = {
 			results: searchResults || [],
 			keywords

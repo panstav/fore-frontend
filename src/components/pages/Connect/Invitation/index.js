@@ -17,6 +17,7 @@ export default function InvitationConnector(props) {
 	if (!invitationId)
 		return null;
 
+	// eslint-disable-next-line no-param-reassign
 	props.invitationId = invitationId;
 
 	return <Component {...props} />;

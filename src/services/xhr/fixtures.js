@@ -20,6 +20,7 @@ const fixtures = {
 
 // export js objects as functions that return them
 export default Object.keys(fixtures).reduce((accu, fixtureName) => {
+	// eslint-disable-next-line no-param-reassign
 	accu[fixtureName] = hideBehindTimeout(fixtures[fixtureName]);
 	return accu;
 }, {});

@@ -1,3 +1,5 @@
+import cloneDeep from 'lodash.clonedeep';
+
 import { roles } from 'constants';
 
 import _fakeSpaces from './_fake-spaces';
@@ -11,6 +13,6 @@ export default function getIdentity () {
 			// role: roles.MEMBER
 			role: roles.ADMIN
 		},
-		spaces: [..._fakeSpaces]
+		spaces: cloneDeep(_fakeSpaces)
 	};
 }
