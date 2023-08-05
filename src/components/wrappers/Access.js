@@ -32,6 +32,6 @@ function funcOrInline(property) {
 }
 
 function returnNull() {
-	// default behaviour is to avoid rendering children when conditions aren't met
+	// default behavior is to avoid rendering children when conditions aren't met
 	return null;
 }
