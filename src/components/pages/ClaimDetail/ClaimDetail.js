@@ -31,7 +31,7 @@ export default function ClaimDetail() {
 }
 
 function ClaimContent() {
-	const { content, owner, createdAt, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous } = useContext(ClaimDetailContext)
+	const { content, owner, createdAt, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous } = useContext(ClaimDetailContext);
 	return <>
 		<h1 className="title mt-2">{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">

@@ -53,7 +53,7 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 			// avoid showing the claim of this page
 			claim.id !== claimId
 			// also avoid showing claims that are not in the current space
-			&& atCurrentSpace(claim)
+			&& atCurrentSpace(claim);
 		})
 		.map(markInvalidClaims);
 	const recentlyViewedClaims = localstorage.get(localStorageKeys.recentlyViewedClaims, [])
