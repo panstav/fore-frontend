@@ -1,3 +1,3 @@
-export default function releasePower({ parentId, direciotn, childId }) {
+export default function releasePower({ parentId, direction, childId }) {
 	return true;
 }
