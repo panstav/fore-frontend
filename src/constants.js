@@ -11,17 +11,15 @@ if (process.env.API) {
 	if (process.env.API === 'devCloud' && window.origin.includes('localhost')) localToCloudDev = true;
 	urls.api = {
 		local: 'http://localhost:3000',
-		github: 'https://panstav-fore-backend-qwvqv7q2pxx-3000.preview.app.github.dev',
-		gitpod: 'https://3000-panstav-forebackend-zm4h0qr6aac.ws-eu43.gitpod.io',
 		devCloud: 'https://fore-backend-dev-l6jtvpnuaa-uc.a.run.app'
 	}[process.env.API];
 }
 
 export const roles = {
-	order: ['GUEST', 'MEMBER', 'EDITOR', 'ADMIN'],
+	order: ['GUEST', 'MEMBER', 'DEBATER', 'ADMIN'],
 	GUEST: 'GUEST',
 	MEMBER: 'MEMBER',
-	EDITOR: 'EDITOR',
+	DEBATER: 'DEBATER',
 	ADMIN: 'ADMIN'
 };
 
