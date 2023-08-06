@@ -1,10 +1,18 @@
+import { useContext } from "preact/hooks";
+
 import classNames from "classnames";
+
+import { SpaceDetailContext } from "contexts";
 
 import Modal, { Title } from "wrappers/Modal";
 
 import { Copy, Share } from "elements/Icon";
 
+import { spaceTypes } from "constants";
+
 export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare, numberOfParticipants, spaceMaxParticipants, qrRef }) {
+	const { type: spaceType } = useContext(SpaceDetailContext);
+
 	const qrContainerClassName = classNames('has-text-centered', invitationLink && 'mt-5 pt-2');
 
 	return <>
@@ -18,8 +26,10 @@ export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteM
 				<div className="content">
 					<ul className="mb-6">
 						<li>View all existing Claims</li>
-						<li>Create Claims of their own</li>
-						<li>Claim in support or opposition to existing Claims</li>
+						{spaceType !== spaceTypes.DEBATE && <>
+							<li>Create Claims of their own</li>
+							<li>Claim in support or opposition to existing Claims</li>
+						</>}
 						<li>Vote for best supporting or opposing Claims to power</li>
 					</ul>
 				</div>

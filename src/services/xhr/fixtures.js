@@ -15,7 +15,8 @@ const fixtures = {
 	connectClaims,
 	searchClaimsOfUser: searchOwnClaims,
 	powerClaim,
-	releasePower
+	releasePower,
+	setSpaceSettings: () => ({})
 };
 
 // export js objects as functions that return them

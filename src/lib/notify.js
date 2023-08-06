@@ -39,7 +39,16 @@ const presets = {
 			<p>Claim disconnected</p>
 			<Link className="button is-small" href={`/claim/${claimId}`}>View Claim</Link>
 		</div>
+	}),
+
+	[notifications.SPACE_SETTINGS_SET]: () => ({
+		type: 'success',
+		autoClose: true,
+		message: () => <div className="is-align-items-center is-flex is-justify-content-space-between">
+			<p>Space settings saved</p>
+		</div>
 	})
+	
 };
 
 export default function notify(preset, { _id: notificationId, ...data } = {}) {

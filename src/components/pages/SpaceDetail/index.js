@@ -1,6 +1,8 @@
 import { connect } from "unistore/preact";
 import { Redirect, useLocation } from "wouter-preact";
 
+import pick from "lodash.pick";
+
 import useEffectUntil from "hooks/use-effect-until";
 
 import { SpaceDetailContext } from 'contexts';
@@ -11,9 +13,11 @@ import Loader from "elements/Loader";
 
 import Component from './SpaceDetail.js';
 
+import { spaceTypes } from "constants";
+
 export default connect(mapStateToProps, actions)(Space);
 
-function Space({ getSpaceDetail, id, name, type, participants, isDetailed }) {
+function Space({ getSpaceDetail, id, name, type, participants, isDetailed, settings }) {
 
 	// if we're here for the public feed and we're not at home - redirect to home
 	const [location] = useLocation();
@@ -25,27 +29,31 @@ function Space({ getSpaceDetail, id, name, type, participants, isDetailed }) {
 
 	const spaceName = id === 'public' ? 'Fore · Public' : name;
 
-	const props = {
+	const contextProps = {
 		id,
 		name: spaceName,
 		type,
-		participants
+		participants,
+		settings
 	};
 
-	return <SpaceDetailContext.Provider value={props}>
-		<Component />
+	const isSettingUpDebate = type === 'debate' && !settings?.startTime;
+	const isPublicSpace = id === 'public';
+	const isShowingMembersSection = [spaceTypes.SHARED, spaceTypes.DEBATE].includes(type) && !isPublicSpace;
+
+	const props = {
+		name,
+		isSettingUpDebate,
+		isPublicSpace,
+		isShowingMembersSection
+	};
+
+	return <SpaceDetailContext.Provider value={contextProps}>
+		<Component {...props} />
 	</SpaceDetailContext.Provider>;
 }
 
 function mapStateToProps({ spaces }, { params: { spaceId: spaceIdOrSlug } }) {
 	const indexOfCurrentSpace = spaces.findIndex(space => space.id === spaceIdOrSlug || space.slug === spaceIdOrSlug);
-	const { id, type, name, participants, isDetailed } = spaces[indexOfCurrentSpace] || {};
-
-	return {
-		id,
-		name,
-		type,
-		participants,
-		isDetailed
-	};
+	return pick(spaces[indexOfCurrentSpace], ['id', 'name', 'type', 'participants', 'isDetailed', 'settings']);
 }

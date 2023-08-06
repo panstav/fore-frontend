@@ -14,6 +14,7 @@ export default {
 	getClaimsBefore: ({spaceId, time}) => get(`claims?olderThan=${time}&spaceId=${spaceId}`),
 	getClaimsAfter: ({spaceId, time}) => get(`claims?newerThan=${time}&spaceId=${spaceId}`),
 	getClaimDetail: ({ id }) => get(`claim-detail?id=${id}`),
+	setSpaceSettings: (settings) => post('space-settings', settings),
 
 	addClaim: (claim) => post('claim', { ...claim, content: sanitize(claim.content) }),
 	deleteClaim: ({ claimId }) => del('claim', { claimId }),

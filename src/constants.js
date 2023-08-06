@@ -23,12 +23,20 @@ export const roles = {
 	ADMIN: 'ADMIN'
 };
 
+export const spaceTypes = {
+	PUBLIC: 'public',
+	PRIVATE: 'private',
+	SHARED: 'shared',
+	DEBATE: 'debate'
+};
+
 export const notifications = {
 	autoCloseMs: 5000,
 	NEW_CLAIM_SENT: 'new-claim-sent',
 	NEW_CLAIM_CREATED: 'new-claim-created',
 	NEW_CLAIM_CONNECTION: 'new-claim-connection',
-	CLAIM_DISCONNECTED: 'claim-disconnected'
+	CLAIM_DISCONNECTED: 'claim-disconnected',
+	SPACE_SETTINGS_SET: 'space-settings-set'
 };
 
 export const meta = {

@@ -1,17 +1,23 @@
 import { connect } from "unistore/preact";
 
-import { Logo, PrivateSpace, SharedSpace } from 'elements/Icon';
+import { DebateSpace, Logo, PrivateSpace, SharedSpace } from 'elements/Icon';
+
+import { spaceTypes } from "constants";
 
 const iconsByType = {
-	private: {
+	[spaceTypes.PRIVATE]: {
 		Icon: PrivateSpace,
 		transform: 'scale(1.75)'
 	},
-	shared: {
+	[spaceTypes.SHARED]: {
 		Icon: SharedSpace,
 		transform: 'translate(1px, 1px)'
 	},
-	public: {
+	[spaceTypes.DEBATE]: {
+		Icon: DebateSpace,
+		transform: 'translate(1px, 1px)'
+	},
+	[spaceTypes.PUBLIC]: {
 		Icon: Logo,
 		transform: ''
 	}
