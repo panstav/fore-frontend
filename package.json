@@ -22,7 +22,7 @@
     "test": "npm run lint",
     "fake-data": "node scripts/fake-data.js",
     "preversion": "npm test",
-    "setup-dev": "npm run clean; npm run build-entry-dev; export NODE_ENV=development",
+    "setup-dev": "npm run build-entry-dev; export NODE_ENV=development",
     "build-entry-dev": "node scripts/build-entry-dev.js",
     "build-entry-prod": "node scripts/build-entry-prod.js; export NODE_ENV=production"
   },
