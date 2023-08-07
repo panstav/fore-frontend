@@ -2,11 +2,12 @@ import { useEffect, useRef } from "preact/hooks";
 
 import { useForm } from 'react-hook-form';
 
-export default function useCustomForm({ autoFocus = true } = {}) {
+export default function useCustomForm({ autoFocus = true, defaultValues = {} } = {}) {
 
 	const ref = useRef(null);
 
 	const form = useForm({
+		defaultValues,
 		shouldUseNativeValidation: true
 	});
 
