@@ -1,5 +1,6 @@
 import { connect } from 'unistore/preact';
 
+import pick from 'lodash.pick';
 import TimeAgo from 'javascript-time-ago';
 
 import Meta from 'compounds/Meta';
@@ -56,8 +57,5 @@ function ClaimDetail({ id, content, owner, createdAt: createdAtTime, isDetailed,
 function mapStateToProps({ claims }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
-
-	const { content, usedHere, usedAt, owner, createdAt: createdAtTime, isDetailed, spaceId, isAnonymous, isUserCurrentAndOriginalAuthor } = claim;
-
-	return { id, content, usedHere, usedAt, owner, createdAtTime, isDetailed, isAnonymous, spaceId, isUserCurrentAndOriginalAuthor };
+	return pick(claim, ['id', 'content', 'usedHere', 'usedAt', 'owner', 'createdAt', 'isDetailed', 'spaceId', 'isAnonymous', 'isUserCurrentAndOriginalAuthor']);
 }
