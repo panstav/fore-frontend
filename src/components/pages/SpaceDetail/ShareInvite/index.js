@@ -1,31 +1,21 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { connect } from 'unistore/preact';
-
 import QrCreator from 'qr-creator';
 
 import { copy } from 'services/clipboard';
 import { canShare, share } from 'services/webshare';
-
-import withContext from 'lib/with-context';
 import { primaryColor } from 'lib/css';
-
-import { SpaceDetailContext } from 'contexts';
 
 import { urls, spaceMaxParticipants } from 'constants';
 
 import useModal from 'hooks/use-modal';
 
 import actions from './actions';
-
 import Component from './ShareInvite';
 
-export default withContext({
-	context: SpaceDetailContext,
-	map: ({ id, name, participants }) => ({ spaceId: id, spaceName: name, participants }),
-	component: connect(mapStateToProps, actions)(ShareInvite)
-});
+export default connect(mapStateToProps, actions)(ShareInvite);
 
-function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName, createInvitation, invitationId, userFirstName }) {
+function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName, spaceType, createInvitation, invitationId, userFirstName }) {
 
 	const invitationLink = invitationId && `${urls.frontEnd}/space-invitation/${invitationId}`;
 
@@ -81,7 +71,8 @@ function ShareInvite({ ButtonComponent, numberOfParticipants, spaceId, spaceName
 		webShare,
 		numberOfParticipants,
 		spaceMaxParticipants,
-		qrRef
+		qrRef,
+		spaceType
 	};
 
 	return Component(props);

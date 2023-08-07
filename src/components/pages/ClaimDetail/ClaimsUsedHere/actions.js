@@ -52,13 +52,12 @@ export default {
 
 	},
 
-	trackClaimConnection({ claims }, { claimId }) {
+	trackClaimConnection(state, { claimId, claimContent, spaceId }) {
 
-		const claim = claims.find((claim) => claim.id === claimId);
 		const newlyConnectedClaim = {
 			id: claimId,
-			content: claim.content,
-			spacedId: claim.spaceId
+			content: claimContent,
+			spaceId
 		};
 
 		// load recently connected claims from localStorage

@@ -12,14 +12,14 @@ const directedCopy = {
 	}
 };
 
-export default function AddClaimModal({ direction, parentContent, isNewClaim, setClaimType }) {
+export default function AddClaimModal({ direction, parentClaimId, parentContent, isNewClaim, setClaimType }) {
 	const { titleChunk } = directedCopy[direction];
 
 	return <>
 		<ContextTitle>{`In ${capitalize(titleChunk)} "${parentContent}"`}</ContextTitle>
 		<SelectNewOrExisting {...{ setClaimType }} />
 		<hr />
-		{isNewClaim ? <NewClaim /> : <ExistingClaim />}
+		{isNewClaim ? <NewClaim /> : <ExistingClaim {...{ parentClaimId }} />}
 	</>;
 
 }

@@ -1,12 +1,9 @@
-import { useContext } from 'preact/hooks';
+import pick from 'lodash.pick';
 
 import Section from 'wrappers/Section';
 import Tooltip from 'wrappers/Tooltip';
-
 import Avatar from 'elements/Avatar';
 import Username from 'elements/Username';
-
-import { ClaimDetailContext } from 'contexts';
 
 import ClaimUsedAt from './ClaimUsedAt';
 import ClaimsUsedHere from './ClaimsUsedHere';
@@ -14,24 +11,27 @@ import DeleteClaim from './DeleteClaim';
 import ClaimAnonymousClaim from './ClaimAnonymousClaim';
 
 
-export default function ClaimDetail() {
+export default function ClaimDetail(props) {
+
 	return <>
 
 		<Section withTopMargin={false} className="mt-3">
-			<ClaimUsedAt />
+			<ClaimUsedAt {...pick(props, 'usedAt')} />
 		</Section>
 
 		<Section>
-			<ClaimContent />
+			<ClaimContent {...props} />
 		</Section>
 
-		<ClaimsUsedHere />
+		<ClaimsUsedHere {...pick(props, ['claimId', 'content', 'spaceId'])} />
 
 	</>;
 }
 
-function ClaimContent() {
-	const { content, owner, createdAt, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous } = useContext(ClaimDetailContext);
+function ClaimContent(props) {
+	const { content, owner, createdAt, isUserCurrentAndOriginalAuthor, isAnonymous } = props;
+	const actionProps = pick(props, ['claimId', 'spaceId']);
+
 	return <>
 		<h1 className="title mt-2">{content}</h1>
 		<div className="is-flex is-justify-content-space-between is-align-items-center is-size-7">
@@ -49,8 +49,8 @@ function ClaimContent() {
 			</div>
 
 			<div className='buttons'>
-				{isAnonymous && <ClaimAnonymousClaim />}
-				{isUserCurrentAndOriginalAuthor && <DeleteClaim {...{ spaceId }} />}
+				{isAnonymous && <ClaimAnonymousClaim {...actionProps} />}
+				{isUserCurrentAndOriginalAuthor && <DeleteClaim {...actionProps} />}
 			</div>
 
 		</div>

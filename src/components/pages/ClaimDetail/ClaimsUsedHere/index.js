@@ -1,19 +1,14 @@
-import { useCallback, useContext, useState } from 'preact/compat';
+import { useCallback, useState } from 'preact/compat';
 import { connect } from 'unistore/preact';
-
-import { ClaimDetailContext } from 'contexts';
 
 import useModal from 'hooks/use-modal';
 
+import actions from './actions';
 import Component from './ClaimsUsedHere';
 
-import actions from './actions';
+export default connect(mapStateToProps, actions)(ClaimsUsedHere);
 
-export default connect(null, actions)(ClaimsUsedHere);
-
-function ClaimsUsedHere({ addClaimWithUse, connectClaims, trackClaimConnection }) {
-
-	const { id: parentId, content: parentContent, usedHere: { support: supportUsedHere, opposition: oppositionUsedHere } } = useContext(ClaimDetailContext);
+function ClaimsUsedHere({ claimId: parentId, content: parentContent, spaceId, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection }) {
 
 	const [ claimIdWithOpenDropdown, setClaimIdWithOpenDropdown ] = useState();
 	const openDropdown = useCallback((claimId) => {
@@ -26,6 +21,7 @@ function ClaimsUsedHere({ addClaimWithUse, connectClaims, trackClaimConnection }
 	const addClaimHere = (direction) => () => {
 		return showAddClaimHereModal({
 			direction,
+			parentClaimId: parentId,
 			parentContent,
 			onSubmit: ({ content, isAnonymous }, event) => {
 				const claimId = event.submitter?.dataset.claimId;
@@ -36,7 +32,7 @@ function ClaimsUsedHere({ addClaimWithUse, connectClaims, trackClaimConnection }
 					childContent: claimContent,
 					parentId,
 					parentContent
-				}).then(() => trackClaimConnection({ claimId }));
+				}).then(() => trackClaimConnection({ claimId, claimContent, spaceId }));
 				return addClaimWithUse({
 					direction,
 					content,
@@ -57,6 +53,7 @@ function ClaimsUsedHere({ addClaimWithUse, connectClaims, trackClaimConnection }
 	const hasUserPoweredOpposition = oppositionUsedHere.some((claim) => claim.isPoweredByUser);
 
 	const props = {
+		parentClaimId: parentId,
 		support: supportUsedHere.sort(directedClaimSort),
 		opposition: oppositionUsedHere.sort(directedClaimSort),
 		totalPowerHere,
@@ -81,4 +78,15 @@ function ClaimsUsedHere({ addClaimWithUse, connectClaims, trackClaimConnection }
 		return b.power - a.power;
 	}
 
+}
+
+function mapStateToProps({ claims }, { claimId }) {
+
+	const claim = claims.find((claim) => claim.id === claimId);
+	const { support: supportUsedHere, opposition: oppositionUsedHere } = claim.usedHere;
+
+	return {
+		supportUsedHere,
+		oppositionUsedHere,
+	};
 }

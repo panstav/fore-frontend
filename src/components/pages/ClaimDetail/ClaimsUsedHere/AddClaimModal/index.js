@@ -2,7 +2,7 @@ import { useCallback, useState } from 'preact/compat';
 
 import Component from './AddClaim';
 
-export default function AddClaim({ direction, parentContent }) {
+export default function AddClaim({ direction, parentClaimId, parentContent }) {
 
 	const [claimType, setClaimType] = useState('new');
 	const onChangeClaimType = useCallback((event) => {
@@ -12,7 +12,9 @@ export default function AddClaim({ direction, parentContent }) {
 	const isNewClaim = claimType === 'new';
 
 	const props = {
-		direction, parentContent,
+		direction,
+		parentClaimId,
+		parentContent,
 		isNewClaim,
 		setClaimType: onChangeClaimType
 	};

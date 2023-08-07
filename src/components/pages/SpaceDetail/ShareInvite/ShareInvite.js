@@ -1,7 +1,6 @@
 import classNames from "classnames";
 
 import Modal, { Title } from "wrappers/Modal";
-
 import { Copy, Share } from "elements/Icon";
 
 export default function ShareInvite({ ButtonComponent, shareInvite, shareInviteModalProps, hasWebShare, invitationLink, createInvitation, selectEntireLink, copyUrl, webShare, numberOfParticipants, spaceMaxParticipants, qrRef }) {

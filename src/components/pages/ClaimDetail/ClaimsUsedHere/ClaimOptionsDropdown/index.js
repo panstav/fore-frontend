@@ -1,22 +1,19 @@
 import { useCallback, useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
-
 import classNames from 'classnames';
 
-import { ClaimDetailContext, ModalContext } from 'contexts';
+import { ModalContext } from 'contexts';
 
 import { Power, Close, Copy } from 'elements/Icon';
 
 import actions from './actions';
-
 import Component from './ClaimOptionsDropdown';
 
 export default connect(null, actions)(ClaimOptionsDropdown);
 
-function ClaimOptionsDropdown({ isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, claimId, claimContent, openClaimId, openDropdown, direction, powerClaim, releasePower, addClaim, disconnectClaim }) {
+function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, claimId, claimContent, openClaimId, openDropdown, direction, powerClaim, releasePower, addClaim, disconnectClaim }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
-	const { id: parentClaimId } = useContext(ClaimDetailContext);
 
 	const hasUserPoweredDirection = direction === 'support' ? hasUserPoweredSupport : hasUserPoweredOpposition;
 

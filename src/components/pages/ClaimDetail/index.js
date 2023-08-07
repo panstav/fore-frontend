@@ -1,25 +1,20 @@
 import { connect } from 'unistore/preact';
-
 import pick from 'lodash.pick';
 import TimeAgo from 'javascript-time-ago';
 
 import Meta from 'compounds/Meta';
-
 import Loader from 'elements/Loader';
 
 import useEffectUntil from 'hooks/use-effect-until';
 
-import { ClaimDetailContext } from 'contexts';
-
 import actions from './actions';
-
 import Component from './ClaimDetail';
 
 const timeAgo = new TimeAgo();
 
 export default connect(mapStateToProps, actions)(ClaimDetail);
 
-function ClaimDetail({ id, content, owner, createdAt: createdAtTime, isDetailed, getClaimDetail, trackClaimView, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous, usedHere, usedAt }) {
+function ClaimDetail({ id, content, owner, createdAt: createdAtTime, isDetailed, getClaimDetail, trackClaimView, isUserCurrentAndOriginalAuthor, spaceId, isAnonymous, usedAt }) {
 
 	useEffectUntil(() => getClaimDetail(id), [isDetailed]);
 
@@ -33,23 +28,20 @@ function ClaimDetail({ id, content, owner, createdAt: createdAtTime, isDetailed,
 		timeAgo: timeAgo.format(new Date(createdAtTime), 'mini')
 	};
 
-	const claimProps = {
-		id,
+	const props = {
+		claimId: id,
 		content,
 		owner,
 		createdAt,
 		isUserCurrentAndOriginalAuthor,
 		spaceId,
 		isAnonymous,
-		usedHere,
 		usedAt
 	};
 
 	return <>
 		<Meta title={content} description={`Claimed ${createdAt.timeAgo} ago by ${ownerName}`} />
-		<ClaimDetailContext.Provider value={claimProps}>
-			<Component />
-		</ClaimDetailContext.Provider>
+		<Component {...props} />
 	</>;
 
 }
@@ -57,5 +49,6 @@ function ClaimDetail({ id, content, owner, createdAt: createdAtTime, isDetailed,
 function mapStateToProps({ claims }, { params: { id } }) {
 	const claim = claims.find((claim) => claim.id === id);
 	if (!claim) return { id };
-	return pick(claim, ['id', 'content', 'usedHere', 'usedAt', 'owner', 'createdAt', 'isDetailed', 'spaceId', 'isAnonymous', 'isUserCurrentAndOriginalAuthor']);
+
+	return pick(claim, ['id', 'content', 'usedAt', 'owner', 'createdAt', 'isDetailed', 'spaceId', 'isAnonymous', 'isUserCurrentAndOriginalAuthor']);
 }

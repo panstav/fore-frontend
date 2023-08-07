@@ -2,19 +2,11 @@ import { connect } from "unistore/preact";
 
 import localstorage from "services/localstorage";
 
-import withContext from "lib/with-context";
-
-import { ClaimDetailContext } from "contexts";
+import { localStorageKeys } from 'constants';
 
 import Component from "./ExistingClaim";
 
-import { localStorageKeys } from 'constants';
-
-export default withContext({
-	context: ClaimDetailContext,
-	map: ({ id }) => ({ claimId: id }),
-	component: connect(mapStateToProps)(ExistingClaim)
-});
+export default connect(mapStateToProps)(ExistingClaim);
 
 function ExistingClaim({ searchResults, searchKeywords, recentlyConnectedClaims, recentlyViewedClaims }) {
 
@@ -43,15 +35,15 @@ function ExistingClaim({ searchResults, searchKeywords, recentlyConnectedClaims,
 
 }
 
-function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
+function mapStateToProps ({ user, search, spaces, claims }, { parentClaimId }) {
 
-	const claimsUsedHere = concatUsedHere(claims, claimId);
+	const claimsUsedHere = concatUsedHere(claims, parentClaimId);
 	const currentSpaceId = spaces.find(space => space.isCurrent).id;
 
 	const recentlyConnectedClaims = localstorage.get(localStorageKeys.recentlyConnectedClaims, [])
 		.filter((claim) => {
 			// avoid showing the claim of this page
-			claim.id !== claimId
+			claim.id !== parentClaimId
 			// also avoid showing claims that are not in the current space
 			&& atCurrentSpace(claim);
 		})
@@ -59,7 +51,7 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 	const recentlyViewedClaims = localstorage.get(localStorageKeys.recentlyViewedClaims, [])
 		.filter((claim) => (
 			// avoid showing the claim of this page
-			claim.id !== claimId
+			claim.id !== parentClaimId
 			// also avoid showing claims that aren't owned by the user
 			&& claim.ownerId === user.id
 			// also avoid showing claims that are not in the current space
@@ -89,7 +81,7 @@ function mapStateToProps ({ user, search, spaces, claims }, { claimId }) {
 				// it was already used here
 				claimsUsedHere.some((usedHere) => usedHere.id === claim.id)
 				// it is the same as the parent claim
-				|| claim.id === claimId
+				|| claim.id === parentClaimId
 		};
 	}
 

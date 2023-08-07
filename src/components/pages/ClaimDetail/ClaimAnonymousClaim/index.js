@@ -1,19 +1,13 @@
-import { useContext } from "preact/compat";
 import { connect } from "unistore/preact";
-
-import { ClaimDetailContext } from "contexts";
 
 import useModal from "hooks/use-modal";
 
 import actions from "./actions";
-
 import Component from "./ClaimAnonymousClaim";
 
 export default connect(null, actions)(ClaimAnonymousClaim);
 
-function ClaimAnonymousClaim({ claimAnonymousClaim }) {
-
-	const { id: claimId, spaceId } = useContext(ClaimDetailContext);
+function ClaimAnonymousClaim({ claimId, spaceId, claimAnonymousClaim }) {
 
 	const [confirmClaimingAnonymousClaimModalProps, showConfirmClaimAnonymousClaimModal] = useModal({
 		title: "Sure you want to claim this as your own?",

@@ -1,20 +1,14 @@
-import { useContext } from "preact/compat";
 import { connect } from "unistore/preact";
 import { useLocation } from "wouter-preact";
-
-import { ClaimDetailContext } from "contexts";
 
 import useModal from "hooks/use-modal";
 
 import actions from "./actions";
-
 import Component from "./DeleteClaim";
 
 export default connect(null, actions)(DeleteClaim);
 
-function DeleteClaim({ deleteClaim, spaceId }) {
-
-	const { id: claimId } = useContext(ClaimDetailContext);
+function DeleteClaim({ claimId, spaceId, deleteClaim }) {
 
 	const [, setLocation] = useLocation();
 
