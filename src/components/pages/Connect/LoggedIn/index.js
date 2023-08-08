@@ -1,12 +1,10 @@
 import { connect } from "unistore/preact";
 
-import actions from "./actions";
-
 import Component from "./LoggedIn";
 
-export default connect(mapStateToProps, actions)(LoggedIn);
+export default connect(mapStateToProps)(LoggedIn);
 
-function LoggedIn({ userName, spaces: availableSpaces, logOut }) {
+function LoggedIn({ userName, spaces: availableSpaces }) {
 
 	const spaces = availableSpaces
 		.sort(spaceSorter)
@@ -14,8 +12,7 @@ function LoggedIn({ userName, spaces: availableSpaces, logOut }) {
 
 	const props = {
 		userName: userName.split(" ")[0],
-		spaces,
-		logOut
+		spaces
 	};
 
 	return Component(props);

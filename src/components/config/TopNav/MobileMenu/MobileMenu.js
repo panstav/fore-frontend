@@ -1,12 +1,13 @@
+import { Link } from "wouter-preact";
 import classNames from "classnames";
+
+import { meta } from "constants";
 
 import MenuLink from "elements/MenuLink";
 import { Twitter } from "elements/Icon";
 import Greeting from "elements/Greeting";
 
-import { meta } from "constants";
-
-export default function MobileMenu({ userFirstName, logOut, className: classes }) {
+export default function MobileMenu({ userFirstName, className: classes }) {
 	const className = classNames('menu px-2', classes);
 	return <div {...{ className }}>
 		<p className="menu-label mb-1">
@@ -24,7 +25,7 @@ export default function MobileMenu({ userFirstName, logOut, className: classes }
 
 			{!userFirstName
 				? <MenuLink href="/connect">Login</MenuLink>
-				: <MenuLink onClick={logOut}>Logout</MenuLink>
+				: <Link to="/logout">Logout</Link>
 			}
 		</ul>
 	</div>;

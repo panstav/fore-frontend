@@ -4,7 +4,7 @@ import useCreateSpace from "hooks/use-create-space";
 
 import Greeting from "elements/Greeting";
 
-export default function LoggedIn({ userName, spaces, logOut }) {
+export default function LoggedIn({ userName, spaces }) {
 	return <>
 		<h2 className="is-title is-size-4 has-text-weight-bold mt-1 mb-2">
 			<Greeting userName={userName} />
@@ -15,7 +15,7 @@ export default function LoggedIn({ userName, spaces, logOut }) {
 			: <NoSpaces />}
 
 		<div className="is-size-7">
-			Not you? <span onClick={logOut} className="is-link">Log out</span>
+			Not you? <Link to="/logout">Log out</Link>
 		</div>
 	</>;
 }

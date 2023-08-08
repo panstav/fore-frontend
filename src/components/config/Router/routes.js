@@ -5,10 +5,11 @@ import SpaceInvitation from 'pages/SpaceInvitation';
 import ClaimDetail from 'pages/ClaimDetail';
 import Notifications from 'pages/Notifications';
 import PrivacyPolicy from 'pages/PrivacyPolicy.js';
-
-import redirects from './redirects.js';
+import Logout from 'pages/Logout';
 
 import { roles } from 'constants.js';
+
+import redirects from './redirects.js';
 
 export default redirects.concat([
 	{
@@ -62,6 +63,15 @@ export default redirects.concat([
 		seo: {
 			title: 'Privacy Policy',
 			description: 'At Fore, accessible from https://fore.is, we take the privacy of our visitors seriously. This Privacy Policy document contains straightforward outline of the information that is recorded by Fore.'
+		}
+	},
+	{
+		name: 'logout',
+		path: '/logout',
+		Component: Logout,
+		minimumRole: roles.GUEST,
+		seo: {
+			title: 'Loggin out...'
 		}
 	}
 ]);

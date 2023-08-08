@@ -1,18 +1,14 @@
 import { connect } from "unistore/preact";
 
-import cloneDeep from "lodash.clonedeep";
-
-import actions from "./actions";
-
 import Component from "./MobileMenu";
 
-export default connect(mapStateToProps, actions)(MobileMenu);
+export default connect(mapStateToProps)(MobileMenu);
 
-function MobileMenu({ userName = '', ...passedProps }) {
+function MobileMenu({ userName = '' }) {
 
-	const props = Object.assign({}, cloneDeep(passedProps), {
+	const props = {
 		userFirstName: userName.split(' ')[0]
-	});
+	};
 
 	return Component(props);
 
