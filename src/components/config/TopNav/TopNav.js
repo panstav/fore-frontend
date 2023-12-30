@@ -1,4 +1,5 @@
-import { Link } from 'wouter-preact';
+import { Fragment } from 'preact';
+import { Link, useLocation } from 'wouter-preact';
 import classNames from 'classnames';
 
 import { Bell, Logo } from 'elements/Icon';
@@ -23,11 +24,7 @@ export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, to
 					<span aria-hidden="true"></span>
 				</a>
 				<div className="navbar-item is-flex-grow-1 is-justify-content-center is-align-items-center p-0">
-					<Link to="/">
-						<a className='is-flex is-align-items-center px-4' style={{ height: '100%' }}>
-							<Logo style={{ height: "2rem" }} className="is-clickable has-text-white" />
-						</a>
-					</Link>
+					<HomeButton />
 				</div>
 				{isLoggedIn ? <Link to="/notifications">
 					<a className="navbar-burger is-flex is-justify-content-center is-align-items-center is-hidden-desktop">
@@ -53,4 +50,17 @@ export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, to
 			</div>
 		</div>
 	</div>;
+}
+
+function HomeButton() {
+	const [location] = useLocation();
+	const isAtSpace = location.startsWith('/space/');
+
+	const Wrapper = isAtSpace ? Fragment : Link;
+
+	return <Wrapper to="/">
+		<a className='is-flex is-align-items-center px-4' style={{ height: '100%' }}>
+			<Logo style={{ height: "2rem" }} className="is-clickable has-text-white" />
+		</a>
+	</Wrapper>;
 }
