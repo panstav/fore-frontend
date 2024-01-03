@@ -7,7 +7,7 @@ import Username from 'elements/Username';
 
 export default function Feed({ createNewClaim, claims, canCreateClaims, hasLoadedAll, loadMoreClaims, className: classes }) {
 	const className = classNames('boxes has-text-left', classes);
-	return <div withSidePadding={false} className="claims-container">
+	return <div className="claims-container">
 		<div {...{ className }} style={{ width: '100%' }}>
 			{!claims.length && <div className='box has-no-hover has-text-centered'>New Claims will show up here.</div>}
 			{canCreateClaims  && <BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>}
