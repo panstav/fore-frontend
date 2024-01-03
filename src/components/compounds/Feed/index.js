@@ -2,6 +2,7 @@ import { useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
 import timeAgo from 'lib/time-ago.js';
+import { isAuthCreateClaims } from 'lib/is-auth.js';
 
 import actions from './actions.js';
 
@@ -13,7 +14,7 @@ import Component from './Feed.js';
 
 export default connect(mapStateToProps, actions)(Feed);
 
-function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedAll, className }) {
+function Feed({ addClaim, spaceId, spaceName, canCreateClaims, claims, loadMoreClaims, hasLoadedAll, className }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 	const createNewClaim = () => showAddClaimModal({
@@ -32,6 +33,7 @@ function Feed({ addClaim, spaceId, spaceName, claims, loadMoreClaims, hasLoadedA
 	const props = {
 		createNewClaim,
 		claims: sortedClaims,
+		canCreateClaims,
 		loadMoreClaims,
 		hasLoadedAll,
 		className
@@ -47,8 +49,9 @@ function mapStateToProps({ spaces, claims }, { spaceId }) {
 	const currentSpace = spaces.find((space) => space.id === spaceId);
 	return {
 		spaceId,
-		spaceName: !currentSpace ? null : currentSpace.name,
-		hasLoadedAll: !currentSpace ? false : currentSpace.hasLoadedAll,
+		spaceName: currentSpace?.name,
+		canCreateClaims: isAuthCreateClaims(),
+		hasLoadedAll: currentSpace?.hasLoadedAll,
 		claims: claims.filter((claim) => claim.spaceId === spaceId)
 	};
 }

@@ -10,3 +10,11 @@ export default function isAuth(userRole, { minimum, only }) {
 		|| (only && !only.includes(userRole))
 	);
 }
+
+export function isAuthCreateClaims() {
+	return true;
+}
+
+export function isAuthPowerClaims() {
+	return true;
+}

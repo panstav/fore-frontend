@@ -25,7 +25,7 @@ const propsByDirection = {
 };
 const directions = Object.keys(propsByDirection);
 
-export default function ClaimsUsedHere({ parentClaimId, support, opposition, totalPowerHere, hasUserPoweredSupport, hasUserPoweredOpposition, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown }) {
+export default function ClaimsUsedHere({ parentClaimId, support, opposition, totalPowerHere, hasUserPoweredSupport, hasUserPoweredOpposition, addClaimHere, addClaimHereModalProps, claimIdWithOpenDropdown, openDropdown, canCreateClaims }) {
 	const claimsUsedHere = { support, opposition };
 
 	return <>
@@ -35,10 +35,10 @@ export default function ClaimsUsedHere({ parentClaimId, support, opposition, tot
 					const { color, contentOptionsOrder, dropDownStyle } = propsByDirection[direction];
 					const buttonClasses = classNames('fore-claim-so-cta box p-2 is-link is-flex is-justify-content-center is-align-items-center', `has-text-${color}`);
 					return <div key={direction} className={`${direction}-claims`}>
-						<div className={buttonClasses} onClick={addClaimHere(direction)}>
+						{canCreateClaims && <div className={buttonClasses} onClick={addClaimHere(direction)}>
 							<Plus className="is-flex-shrink-0 mr-1" />
 							<span className='has-text-weight-bold'>Claim in {direction.charAt(0).toUpperCase() + direction.slice(1)}</span>
-						</div>
+						</div>}
 						{claimsUsedHere[direction].map(({ id, content, power, isByUser, isPoweredByUser }) => {
 							const styles = { ['--total-power']: totalPowerHere, ['--power']: power };
 							const classes = classNames(

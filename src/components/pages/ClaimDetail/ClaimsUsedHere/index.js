@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'preact/compat';
 import { connect } from 'unistore/preact';
 
+import { isAuthCreateClaims } from 'lib/is-auth';
 import useModal from 'hooks/use-modal';
 
 import actions from './actions';
@@ -8,7 +9,7 @@ import Component from './ClaimsUsedHere';
 
 export default connect(mapStateToProps, actions)(ClaimsUsedHere);
 
-function ClaimsUsedHere({ claimId: parentId, content: parentContent, spaceId, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection }) {
+function ClaimsUsedHere({ claimId: parentId, content: parentContent, spaceId, supportUsedHere, oppositionUsedHere, addClaimWithUse, connectClaims, trackClaimConnection, canCreateClaims }) {
 
 	const [ claimIdWithOpenDropdown, setClaimIdWithOpenDropdown ] = useState();
 	const openDropdown = useCallback((claimId) => {
@@ -61,7 +62,8 @@ function ClaimsUsedHere({ claimId: parentId, content: parentContent, spaceId, su
 		hasUserPoweredOpposition,
 		addClaimHere,
 		addClaimHereModalProps,
-		claimIdWithOpenDropdown, openDropdown
+		claimIdWithOpenDropdown, openDropdown,
+		canCreateClaims
 	};
 
 	return Component(props);
@@ -86,6 +88,7 @@ function mapStateToProps({ claims }, { claimId }) {
 	const { support: supportUsedHere, opposition: oppositionUsedHere } = claim.usedHere;
 
 	return {
+		canCreateClaims: isAuthCreateClaims(),
 		supportUsedHere,
 		oppositionUsedHere,
 	};

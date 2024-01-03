@@ -5,12 +5,12 @@ import BoxLink from 'elements/BoxLink';
 import Avatar from 'elements/Avatar';
 import Username from 'elements/Username';
 
-export default function Feed({ createNewClaim, claims, hasLoadedAll, loadMoreClaims, className: classes }) {
+export default function Feed({ createNewClaim, claims, canCreateClaims, hasLoadedAll, loadMoreClaims, className: classes }) {
 	const className = classNames('boxes has-text-left', classes);
 	return <div withSidePadding={false} className="claims-container">
 		<div {...{ className }} style={{ width: '100%' }}>
 			{!claims.length && <div className='box has-no-hover has-text-centered'>New Claims will show up here.</div>}
-			<BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>
+			{canCreateClaims  && <BoxLink onClick={createNewClaim}>Create a Claim</BoxLink>}
 			{claims.map(Claim)}
 			{hasLoadedAll || !claims.length ? null
 				: <BoxLink onClick={loadMoreClaims}>Load more</BoxLink>}

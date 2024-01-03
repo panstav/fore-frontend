@@ -2,6 +2,7 @@ import { useCallback, useContext } from 'preact/compat';
 import { connect } from 'unistore/preact';
 import classNames from 'classnames';
 
+import { isAuthCreateClaims, isAuthPowerClaims } from 'lib/is-auth';
 import { ModalContext } from 'contexts';
 
 import { Power, Close, Copy } from 'elements/Icon';
@@ -9,9 +10,9 @@ import { Power, Close, Copy } from 'elements/Icon';
 import actions from './actions';
 import Component from './ClaimOptionsDropdown';
 
-export default connect(null, actions)(ClaimOptionsDropdown);
+export default connect(mapStateToProps, actions)(ClaimOptionsDropdown);
 
-function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, claimId, claimContent, openClaimId, openDropdown, direction, powerClaim, releasePower, addClaim, disconnectClaim }) {
+function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUserPoweredSupport, hasUserPoweredOpposition, claimId, claimContent, openClaimId, openDropdown, direction, powerClaim, releasePower, addClaim, disconnectClaim, canPowerClaims, canCreateClaims }) {
 
 	const { showAddClaimModal } = useContext(ModalContext);
 
@@ -29,7 +30,7 @@ function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUse
 
 	const dropDownOptions = [
 		[
-			(isPoweredByUser ? {
+			canPowerClaims && (isPoweredByUser ? {
 				label: 'Release Power',
 				slug: 'release-power',
 				icon: Power,
@@ -55,7 +56,7 @@ function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUse
 							? `You've already powered a ${direction} to this Claim`
 							: null
 			}),
-			{
+			canCreateClaims && {
 				label: 'Copy',
 				slug: 'copy-claim',
 				icon: Copy,
@@ -68,7 +69,7 @@ function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUse
 				}
 			}
 		],
-		!isByUser ? null : [
+		isByUser && [
 			{
 				label: 'Disconnect',
 				slug: 'disconnect',
@@ -96,4 +97,11 @@ function ClaimOptionsDropdown({ parentClaimId, isByUser, isPoweredByUser, hasUse
 
 	return Component(props);
 
+}
+
+function mapStateToProps() {
+	return {
+		canCreateClaims: isAuthCreateClaims(),
+		canPowerClaims: isAuthPowerClaims()
+	};
 }
