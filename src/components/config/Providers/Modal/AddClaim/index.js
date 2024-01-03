@@ -1,11 +1,8 @@
 import { connect } from "unistore/preact";
 
-import TrimmedInput from "elements/TrimmedInput";
+import { spaceTypes } from "constants.js";
 
-import Anonymous from './Anonymous';
-import EscapedContent from './EscapedContent';
-import Guidelines from './Guidelines';
-import CurrentSpace from './CurrentSpace';
+import Template from "./AddClaim.js";
 
 const Component = connect(mapStateToProps)(AddClaim);
 
@@ -15,26 +12,21 @@ export default function AddClaimRender({ copiedContent }) {
 }
 
 function AddClaim({ isPrivateSpace, copiedContent }) {
-	const textAreaClasses = isPrivateSpace ? null : 'mb-2';
-	return <>
-		<div className="fore-new-claim-body field p-2">
-			<TrimmedInput name="content" type="textarea" maxLength={240} defaultValue={copiedContent} className={textAreaClasses} inputClasses="pb-5" />
-			<Anonymous isAvailable={!isPrivateSpace} className="ml-1" />
-		</div>
-		<EscapedContent />
-		{isPrivateSpace || <Guidelines />}
-		<div className="is-flex is-justify-content-end">
-			<button className="button is-primary">
-				<span>Claim on&nbsp;</span>
-				<CurrentSpace />
-			</button>
-		</div>
-	</>;
+
+	const props = {
+		copiedContent,
+		isAnonymousAvailable: !isPrivateSpace,
+		isDisplayingGuidelines: !isPrivateSpace
+	};
+
+	return Template(props);
+
 }
 
 function mapStateToProps({ spaces }) {
-	const isPrivateSpace = spaces.find(space => space.isCurrent)?.type === 'private';
+	const spaceType = spaces.find(space => space.isCurrent)?.type;
+
 	return {
-		isPrivateSpace
+		isPrivateSpace: spaceType === spaceTypes.PRIVATE
 	};
 }
