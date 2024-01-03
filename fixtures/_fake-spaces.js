@@ -1,12 +1,17 @@
+import { roles, spaceTypes } from "constants";
+
 export default [
 	{
 		id: 'public',
-		name: 'Public'
+		name: 'Public',
+		type: spaceTypes.PUBLIC,
+		settings: {}
 	},
 	{
 		"id": "private",
 		"name": "private space",
-		"type": "private",
-		"userRole": "ADMIN"
+		"type": spaceTypes.PRIVATE,
+		"userRole": roles.ADMIN,
+		settings: {}
 	}
 ];

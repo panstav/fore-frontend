@@ -23,6 +23,12 @@ export const roles = {
 	ADMIN: 'ADMIN'
 };
 
+export const spaceTypes = {
+	PUBLIC: 'public',
+	PRIVATE: 'private',
+	SHARED: 'shared',
+};
+
 export const notifications = {
 	autoCloseMs: 5000,
 	NEW_CLAIM_SENT: 'new-claim-sent',
