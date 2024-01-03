@@ -16,7 +16,7 @@
     "start-dev-cloud": "npm run setup-dev; API=devCloud parcel src/index.html",
     "start-production": "npm run build-entry-prod; parcel src/index.html",
     "build": "npm run build-entry-prod; parcel build --no-source-maps src/index.html; cp static/* dist",
-    "build-dev": "npm run build-entry-prod; parcel build src/index.html --no-cache --no-source-maps --reporter @parcel/reporter-bundle-analyzer",
+    "build-dev": "npm run build-entry-prod; parcel build src/index.html --no-cache --no-optimize --reporter @parcel/reporter-bundle-analyzer",
     "clean": "rm dist/* -rf; rm .parcel-cache/* -rf",
     "lint": "eslint .",
     "test": "npm run lint",
