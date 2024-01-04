@@ -15,9 +15,12 @@ export default connect(mapStateToProps, actions)(TopNav);
 
 function TopNav({ isMemberOrAbove, isMenuOpen, isNotificationsOpen, toggleMainMenu }) {
 
-	// don't show the top nav if we're viewing the promotional homepage
+	// don't show the top nav if
 	const [location] = useLocation();
-	if (location === '/connect' || (!isMemberOrAbove && location === '/')) return null;
+	// we're viewing the connect page
+	if (location === '/connect'
+	// we're viewing the promotional homepage and we're not logged in
+	|| (!isMemberOrAbove && location === '/')) return null;
 
 	const handleCreateSpace = useCreateSpace();
 
