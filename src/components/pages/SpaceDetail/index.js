@@ -1,5 +1,4 @@
 import { connect } from "unistore/preact";
-import { Redirect, useLocation } from "wouter-preact";
 import pick from "lodash.pick";
 
 import { spaceTypes } from "constants";
@@ -14,10 +13,6 @@ import Component from './SpaceDetail.js';
 export default connect(mapStateToProps, actions)(Space);
 
 function Space({ getSpaceDetail, id, name, type, participants, isDetailed }) {
-
-	// if we're here for the public feed and we're not at home - redirect to home
-	const [location] = useLocation();
-	if (location !== '/' && id === 'public') return <Redirect to="/" replace={true} />;
 
 	useEffectUntil(() => getSpaceDetail(id), [isDetailed]);
 

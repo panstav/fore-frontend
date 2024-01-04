@@ -13,7 +13,7 @@ import { roles } from 'constants';
 
 export default connect(mapStateToProps, actions)(TopNav);
 
-function TopNav({ isMemberOrAbove, isMenuOpen, isNotificationsOpen, toggleMainMenu }) {
+function TopNav({ currentSpace, isMemberOrAbove, isMenuOpen, isNotificationsOpen, toggleMainMenu }) {
 
 	// don't show the top nav if
 	const [location] = useLocation();
@@ -24,7 +24,12 @@ function TopNav({ isMemberOrAbove, isMenuOpen, isNotificationsOpen, toggleMainMe
 
 	const handleCreateSpace = useCreateSpace();
 
+	let homeButtonHref = '/';
+	if (currentSpace?.id && currentSpace?.id !== 'public') homeButtonHref = `/space/${currentSpace.id}`;
+	if (location === homeButtonHref) homeButtonHref = null;
+
 	const props = {
+		homeButtonHref,
 		isMenuOpen,
 		isLoggedIn: isMemberOrAbove,
 		isNotificationsOpen,

@@ -12,7 +12,7 @@ import { localStorageKeys } from 'constants.js';
 
 export default connect(mapStateToProps)(Home);
 
-function Home({ isLoggedIn, isMemberOfPublic, availableSpaces, firstName }) {
+function Home({ isLoggedIn, isMemberOfPublic, currentSpace, availableSpaces, firstName }) {
 
 	if (!isLoggedIn) return <PromotionalHomepage />;
 
@@ -29,8 +29,12 @@ function Home({ isLoggedIn, isMemberOfPublic, availableSpaces, firstName }) {
 	// show feed to members
 	if (isMemberOfPublic) return <Space params={{ spaceId: 'public' }} />;
 
+	// redirect to the current space if there's any
+	if (currentSpace && currentSpace.id !== 'public') return <Redirect to={`/space/${currentSpace.id}`} replace={true} />;
+
 	// redirect to the first available space if there's any
-	if (availableSpaces.length) return <Redirect to={`/space/${availableSpaces[0].id}`} replace={true} />;
+	const spaceIndex = Math.floor(Math.random() * availableSpaces.length);
+	if (availableSpaces.length) return <Redirect to={`/space/${availableSpaces[spaceIndex].id}`} replace={true} />;
 
 	// otherwise show some info about how to get started
 	return <EmptyState firstName={firstName} />;
@@ -38,6 +42,7 @@ function Home({ isLoggedIn, isMemberOfPublic, availableSpaces, firstName }) {
 
 function mapStateToProps({ user, spaces }) {
 	return {
+		currentSpace: spaces.find((space) => space.isCurrent),
 		firstName: user.name?.split(' ')[0],
 		isLoggedIn: !!user.id,
 		isMemberOfPublic: !!spaces.find((space) => space.id === 'public'),

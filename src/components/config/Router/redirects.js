@@ -4,6 +4,10 @@ import { roles } from "constants";
 
 const redirects = [
 	{
+		from: '/space/public',
+		to: '/'
+	},
+	{
 		from: '/very-first-claims',
 		to: '/'
 	},

@@ -1,5 +1,5 @@
 import { Fragment } from 'preact';
-import { Link, useLocation } from 'wouter-preact';
+import { Link } from 'wouter-preact';
 import classNames from 'classnames';
 
 import { Bell, Logo } from 'elements/Icon';
@@ -9,7 +9,7 @@ import Notifications from './Notifications';
 import SpacesMenu from './SpacesMenu';
 import MobileMenu from './MobileMenu';
 
-export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, toggleMainMenu, toggleNotificationsMenu, createSpace }) {
+export default function TopNav({ homeButtonHref, isLoggedIn, isMenuOpen, isNotificationsOpen, toggleMainMenu, toggleNotificationsMenu, createSpace }) {
 
 	const menuClasses = classNames('navbar-menu', isMenuOpen && 'is-active');
 	const notificationsClasses = classNames('navbar-item has-dropdown is-hidden-touch', isNotificationsOpen && 'is-active');
@@ -24,7 +24,7 @@ export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, to
 					<span aria-hidden="true"></span>
 				</a>
 				<div className="navbar-item is-flex-grow-1 is-justify-content-center is-align-items-center p-0">
-					<HomeButton />
+					<HomeButton href={homeButtonHref} />
 				</div>
 				{isLoggedIn ? <Link to="/notifications">
 					<a className="navbar-burger is-flex is-justify-content-center is-align-items-center is-hidden-desktop">
@@ -52,13 +52,9 @@ export default function TopNav({ isLoggedIn, isMenuOpen, isNotificationsOpen, to
 	</div>;
 }
 
-function HomeButton() {
-	const [location] = useLocation();
-	const isAtSpace = location.startsWith('/space/');
-
-	const Wrapper = isAtSpace ? Fragment : Link;
-
-	return <Wrapper to="/">
+function HomeButton({ href }) {
+	const Wrapper = href ? Link : Fragment;
+	return <Wrapper to={href}>
 		<a className='is-flex is-align-items-center px-4' style={{ height: '100%' }}>
 			<Logo style={{ height: "2rem" }} className="is-clickable has-text-white" />
 		</a>
