@@ -31,9 +31,9 @@ export default function Anonymous({ isAvailable, className: classes }) {
 			return <>
 				<Title>Anonymous Claims</Title>
 				<div className="content">
-					<p>If for some reason you prefer to not be associated with this Claim, you can Claim it anonymously.</p>
-					<p>Unlike regular Claims: The original author of an anonymous Claim is hidden. As long as a Claim is anonymous it cannot be reused to support or oppose any other Claims. Anyone can &quot;pick up an anonymous Claim&quot;, Claim it as their own to be able to use it anywhere.</p>
-					<p><span className='has-text-weight-bold'>Note:</span> Even if someone picks up a Claim you created anonymously - the system will internally remember you as its original author. This will be very useful in the future when earnings are enabled.</p>
+					<p>Claim anonymously to avoid being associated to it.</p>
+					<p>Unlike regular Claims: The author of an anonymous Claim will remain unknown. As long as a Claim is anonymous it cannot be reused to support or oppose any other Claim. Anyone can &quot;pick up&quot; an anonymous Claim, Claim it as their own and then be able to use it anywhere.</p>
+					<p><span className='has-text-weight-bold'>Note:</span> When earnings are enabled, you could be rewarded for Claims that were created anonymously, as well.</p>
 				</div>
 				<div className='is-flex is-justify-content-end'>
 					<button onClick={hideModal} className="button is-primary">OK</button>
