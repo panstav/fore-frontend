@@ -25,7 +25,7 @@
     "setup-dev": "npm run build-entry-dev; export NODE_ENV=development",
     "build-entry-dev": "node scripts/build-entry-dev.js",
     "build-entry-prod": "node scripts/build-entry-prod.js; export NODE_ENV=production",
-    "build:debugging-build": "npm run build-entry-prod; parcel build src/index.html --no-cache && sentry-cli sourcemaps inject dist && sentry-cli sourcemaps upload dist --release=fore-frontend@$npm_package_version",
+    "build:debugging-build": "npm run build-entry-prod; parcel build src/index.html --no-cache && sentry-cli sourcemaps inject dist && sentry-cli sourcemaps upload dist --release=fore-frontend@$npm_package_version || true",
     "build:production-build": "npm run build-entry-prod; parcel build --no-source-maps src/index.html; cp static/* dist"
   },
   "keywords": [],
