@@ -20,14 +20,14 @@ function transformApiCall(method) {
 			.catch((err) => {
 				console.error(err);
 
-				if (err.response.status === 400) {
+				if (err.response?.status === 400) {
 					// we might have already redirected to home, no need to do it again
 					if (window.location.pathname === '/') return;
 					window.location.href = urls.frontEnd;
 					return;
 				}
 
-				if (err.response.status === 401) {
+				if (err.response?.status === 401) {
 					localstorage.set(localStorageKeys.redirectTo, window.location.pathname);
 					window.location.href = `${urls.frontEnd}/connect?login`;
 					return;
