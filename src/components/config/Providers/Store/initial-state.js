@@ -14,6 +14,8 @@ export default {
 
 	notifications: [],
 
+	arcade: {},
+
 	spaces: [],
 
 	claims: [],

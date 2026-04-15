@@ -1,5 +1,6 @@
 import Home from 'pages/Home';
 import ConnectToFore from 'pages/Connect';
+import Discovery from 'pages/Discovery';
 import Space from 'pages/SpaceDetail';
 import SpaceInvitation from 'pages/SpaceInvitation';
 import ClaimDetail from 'pages/ClaimDetail';
@@ -29,6 +30,16 @@ export default redirects.concat([
 		seo: {
 			title: 'Signup / Login',
 			description: 'Use your Google account to sign up or log in to Fore.'
+		}
+	},
+	{
+		name: 'Discovery',
+		path: '/discovery',
+		Component: Discovery,
+		minimumRole: roles.GUEST,
+		seo: {
+			title: 'Discovery',
+			description: 'Explore Fore in Arcade mode'
 		}
 	},
 	{
@@ -71,7 +82,7 @@ export default redirects.concat([
 		Component: Logout,
 		minimumRole: roles.GUEST,
 		seo: {
-			title: 'Loggin out...'
+			title: 'Logging out...'
 		}
 	}
 ]);

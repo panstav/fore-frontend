@@ -11,6 +11,12 @@ $pageloader-opacity: 1 !default
 	@keyframes #{$name}
 		@content
 
+.pageloader~.pageloader-label
+	position: absolute
+	top: 50%
+	display: block
+	z-index: 9999
+
 .pageloader
 
 	@each $name, $pair in $colors
